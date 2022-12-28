@@ -29,6 +29,8 @@
 import io
 import numpy as np
 import time
+import cv2
+
 
 from src.templates.threadwithstop import ThreadWithStop
 
@@ -64,15 +66,16 @@ class CameraThread(ThreadWithStop):
         self._init_camera()
         
         # record mode
-        if self.recordMode:
-            self.camera.start_recording('picam'+ self._get_timestamp()+'.h264',format='h264')
+        # if self.recordMode:
+        #     self.camera.start_recording('picam'+ self._get_timestamp()+'.h264',format='h264')
 
         # Sets a callback function for every unpacked frame
-        self.camera.capture_sequence(
-                                    self._streams(), 
-                                    use_video_port  =   True, 
-                                    format          =   'rgb',
-                                    resize          =   self.imgSize)
+        # self.camera.capture_sequence(
+        #                             self._streams(), 
+        #                             use_video_port  =   True, 
+        #                             format          =   'rgb',
+        #                             resize          =   self.imgSize)
+        self._streams()
         # record mode
         if self.recordMode:
             self.camera.stop_recording()
@@ -85,19 +88,19 @@ class CameraThread(ThreadWithStop):
         
         # this how the firmware works.
         # the camera has to be imported here
-        from picamera import PiCamera
+        # from picamera import PiCamera
 
         # camera
-        self.camera = PiCamera()
+        self.camera = cv2.VideoCapture('/dev/video0')
 
         # camera settings
-        self.camera.resolution      =   (1640,1232)
-        self.camera.framerate       =   15
+        # self.camera.resolution      =   (1280,960)
+        # self.camera.framerate       =   30
 
-        self.camera.brightness      =   50
-        self.camera.shutter_speed   =   1200
-        self.camera.contrast        =   0
-        self.camera.iso             =   0 # auto
+        # self.camera.brightness      =   50
+        # self.camera.shutter_speed   =   2000
+        #self.camera.contrast        =   0
+        # self.camera.iso             =   0 # auto
         
 
         self.imgSize                =   (640, 480)    # the actual image size
@@ -119,22 +122,22 @@ class CameraThread(ThreadWithStop):
 
         while self._running:
             
-            yield self._stream
-            self._stream.seek(0)
-            data = self._stream.read()
+            # yield self._stream
+            # self._stream.seek(0)
+            # data = self._stream.read()
 
-            # read and reshape from bytes to np.array
-            data  = np.frombuffer(data, dtype=np.uint8)
-            data  = np.reshape(data, (480, 640, 3))
+            # # read and reshape from bytes to np.array
+            # data  = np.frombuffer(data, dtype=np.uint8)
+            # data  = np.reshape(data, (480, 640, 3))
+            ret, data = self.camera.read()
+            # cv2.imshow("data", data)
+            # cv2.waitKey(1)
             stamp = time.time()
 
             # output image and time stamp
             # Note: The sending process can be blocked, when doesn't exist any consumer process and it reaches the limit size.
             for outP in self.outPs:
                 outP.send([[stamp], data])
-
-            
-            self._stream.seek(0)
-            self._stream.truncate()
+    
 
 
