@@ -135,6 +135,8 @@ class LaneDebuginggProcess(WorkerProcess):
 
 
                 angle_visualized_image = cv2.line(angle_visualized_image, error_point, (int(image_size[1] * 0.5), image_size[0]), 125, 2)
+                angle_visualized_image = cv2.putText(angle_visualized_image, str(int(angle)), (50, 50), cv2.FONT_HERSHEY_SIMPLEX, \
+                    1, 255, 1, cv2.LINE_AA)
 
                 for out in outP:
                     out.send({"angle_visualized_image" : angle_visualized_image,

@@ -78,7 +78,6 @@ class imageShowProcess(WorkerProcess):
         outP : Pipe
             Output pipe to send the steering angle value to other process.
         """
-        print("type: ", type(inPs))
         while True:
             try:
                 # Obtain image

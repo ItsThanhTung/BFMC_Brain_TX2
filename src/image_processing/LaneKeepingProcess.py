@@ -275,6 +275,8 @@ class LaneKeepingProcess(WorkerProcess):
         old_angle = 0
         state = 0
         # EnablePID(outP[0])
+        # if not self.debug: 
+        #     EnablePID(outP[0])
 
         while True:
             try:
@@ -287,17 +289,15 @@ class LaneKeepingProcess(WorkerProcess):
                 speed, angle, state, debug_data = self.laneKeeping(edge_image, old_angle, state) 
                 old_angle = angle
                 # new_angle = self.pid(angle)
-                print(angle)
                 # setSpeed(outP[0], float(speed * 0.35))
-                setSpeed(outP[0], float(0))
-                setAngle(outP[0] , float(angle))
-
-                if self.debug:
-                    outP[1].send(debug_data)
+                if not self.debug: 
+                    setSpeed(outP[0], float(0))
+                    setAngle(outP[0] , float(angle))
+                else:
+                    outP[0].send(debug_data)
 
             except Exception as e:
-                print("Lane keeping error:")
-                print(e)
+                print("Lane keeping error:", e)
 
 
 def setSpeed (outP, Speed:float):

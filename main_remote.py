@@ -57,7 +57,7 @@ if __name__ == '__main__':
     enableCameraSpoof   =  False 
     enableRc            =  False
 
-    enableDebugLane = False
+
 
     # =============================== INITIALIZING PROCESSES =================================
     allProcesses = list()
@@ -72,25 +72,20 @@ if __name__ == '__main__':
         camProc = CameraReceiverProcess([],[camStS])
         allProcesses.append(camProc)
     
-    imageShow = imageShowProcess([camStR], [])
 
-    # imagePreprocessShowR, imagePreprocessShowS = Pipe(duplex = False)           # laneKeeping  ->  imageShow
-    # imagePreprocessR, imagePreprocessS = Pipe(duplex = False)                     # laneKeeping  ->  imageShow
-    # laneDebugR, laneDebugS = Pipe(duplex = False) 
-    # laneDebugShowR, laneDebugShowS = Pipe(duplex = False) 
+    imagePreprocessShowR, imagePreprocessShowS = Pipe(duplex = False)           # preprocess  ->  imageShow
+    imagePreprocessR, imagePreprocessS = Pipe(duplex = False)                     # preprocess  ->  laneKeeping
+    laneDebugR, laneDebugS = Pipe(duplex = False)                                  # laneKeeping -> laneDebug
+    laneDebugShowR, laneDebugShowS = Pipe(duplex = False)                           # laneDebug -> imageShow
 
-    # imagePreprocess = ImagePreprocessingProcess([camStR], [imagePreprocessS, imagePreprocessShowS])
-    # laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [laneDebugS], enableDebugLane)
+    imagePreprocess = ImagePreprocessingProcess([camStR], [imagePreprocessShowS, imagePreprocessS])
+    laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [laneDebugS], True)
+    laneDebugProcess = LaneDebuginggProcess([laneDebugR], [laneDebugShowS])
+    imageShow = imageShowProcess([imagePreprocessShowR, laneDebugShowR], [])
     
-    # if enableDebugLane:
-    #     laneDebugProcess = LaneDebuginggProcess([laneDebugR], [laneDebugShowS])
-    #     imageShow = imageShowProcess([laneDebugShowR, imagePreprocessShowR], [])
-    #     allProcesses.append(laneDebugProcess)
-    # else:
-    #     imageShow = imageShowProcess([imagePreprocessShowR], [])
-    
-    # allProcesses.append(imagePreprocess)
-    # allProcesses.append(laneKeepingProcess)
+    allProcesses.append(imagePreprocess)
+    allProcesses.append(laneKeepingProcess)
+    allProcesses.append(laneDebugProcess)
     allProcesses.append(imageShow)
 
 
