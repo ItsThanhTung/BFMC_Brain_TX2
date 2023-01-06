@@ -59,9 +59,6 @@ class CameraReceiverProcess(WorkerProcess):
         """
         super(CameraReceiverProcess,self).__init__(inPs, outPs)
 
-        
-
-        # self.imgSize    = (960, 1280)
         self.imgSize    = (240, 320, 3)
     # ===================================== RUN ==========================================
     def run(self):
@@ -88,16 +85,13 @@ class CameraReceiverProcess(WorkerProcess):
     def _init_threads(self):
         """Initialize the read thread to receive and display the frames.
         """
-        readTh = Thread(name = 'StreamReceivingThread',target = self._read_stream)
+        readTh = Thread(name='StreamReceivingThread',target = self._read_stream, args= (self.outPs,))
         self.threads.append(readTh)
 
     # ===================================== READ STREAM ==================================
-    def _read_stream(self):
+    def _read_stream(self, outPs):
         """Read the image from input stream, decode it and display it with the CV2 library.
         """
-        result = cv2.VideoWriter('output.avi', 
-                    cv2.VideoWriter_fourcc(*'MJPG'),
-                    10, (240, 320))
         try:
             while True:
 
@@ -110,15 +104,13 @@ class CameraReceiverProcess(WorkerProcess):
                 image = cv2.imdecode(image, 1)
                 image = np.reshape(image, self.imgSize)
                 image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
-
-                # ----------------------- show images -------------------
-                cv2.imshow('Image', image) 
-                result.write(image)
                 
-                cv2.waitKey(1)
+                stamp = time.time()
+                for outP in outPs:
+                    outP.send([[stamp], image])
+
         except:
             pass
         finally:
-            result.release()
             self.connection.close()
             self.server_socket.close()
