@@ -45,18 +45,26 @@ from src.hardware.serialhandler.SerialHandlerProcess        import SerialHandler
 from src.utils.camerastreamer.CameraStreamerProcess         import CameraStreamerProcess
 from src.utils.remotecontrol.RemoteControlReceiverProcess   import RemoteControlReceiverProcess
 
-# =============================== CONFIG =================================================
-enableStream        =  True
-enableCameraSpoof   =  False 
-enableRc            =  True
 
-# =============================== INITIALIZING PROCESSES =================================
-allProcesses = list()
+# lane keeping imports
+from src.image_processing.LaneKeepingProcess import LaneKeepingProcess
+from src.image_processing.imageShowProcess import imageShowProcess
+from src.image_processing.ImagePreprocessing import ImagePreprocessingProcess
+from src.image_processing.LaneDebuggingProcess import LaneDebuginggProcess
 
-# =============================== HARDWARE ===============================================
-if enableStream:
+if __name__ == '__main__':
+    # =============================== CONFIG =================================================
+    enableStream        =  False
+    enableCameraSpoof   =  False 
+    enableRc            =  False
+
+    enableDebugLane = True
+
+    # =============================== INITIALIZING PROCESSES =================================
+    allProcesses = list()
+
+    # =============================== HARDWARE ===============================================
     camStR, camStS = Pipe(duplex = False)           # camera  ->  streamer
-
     if enableCameraSpoof:
         camSpoofer = CameraSpooferProcess([],[camStS],'vid')
         allProcesses.append(camSpoofer)
@@ -64,52 +72,74 @@ if enableStream:
     else:
         camProc = CameraProcess([],[camStS])
         allProcesses.append(camProc)
+    
 
-    streamProc = CameraStreamerProcess([camStR], [])
-    allProcesses.append(streamProc)
+    imagePreprocessShowR, imagePreprocessShowS = Pipe(duplex = False)           # laneKeeping  ->  imageShow
+    imagePreprocessR, imagePreprocessS = Pipe(duplex = False)           # laneKeeping  ->  imageShow
+    laneDebugR, laneDebugS = Pipe(duplex = False) 
+    laneDebugShowR, laneDebugShowS = Pipe(duplex = False) 
 
-
-# =============================== DATA ===================================================
-#LocSys client process
-# LocStR, LocStS = Pipe(duplex = False)           # LocSys  ->  brain
-# from data.localisationsystem.locsys import LocalisationSystemProcess
-# LocSysProc = LocalisationSystemProcess([], [LocStS])
-# allProcesses.append(LocSysProc)
-
-
-
-# =============================== CONTROL =================================================
-if enableRc:
-    rcShR, rcShS   = Pipe(duplex = False)           # rc      ->  serial handler
-
-    # serial handler process
-    shProc = SerialHandlerProcess([rcShR], [])
-    allProcesses.append(shProc)
-
-    rcProc = RemoteControlReceiverProcess([],[rcShS])
-    allProcesses.append(rcProc)
+    imagePreprocess = ImagePreprocessingProcess([camStR], [imagePreprocessS, imagePreprocessShowS])
+    laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [laneDebugS], True)
+    imageShow = imageShowProcess([laneDebugShowR, imagePreprocessShowR], [])
+    
+    laneDebugProcess = LaneDebuginggProcess([laneDebugR], [laneDebugShowS])
+    
+    allProcesses.append(imagePreprocess)
+    allProcesses.append(laneKeepingProcess)
+    allProcesses.append(imageShow)
+    allProcesses.append(laneDebugProcess)
 
 
-# ===================================== START PROCESSES ==================================
-print("Starting the processes!",allProcesses)
-for proc in allProcesses:
-    proc.daemon = True
-    proc.start()
+    if enableStream:
+        streamProc = CameraStreamerProcess([camStR], [])
+        allProcesses.append(streamProc)
 
 
-# ===================================== STAYING ALIVE ====================================
-blocker = Event()  
 
-try:
-    blocker.wait()
-except KeyboardInterrupt:
-    print("\nCatching a KeyboardInterruption exception! Shutdown all processes.\n")
+    # =============================== DATA ===================================================
+    #LocSys client process
+    # LocStR, LocStS = Pipe(duplex = False)           # LocSys  ->  brain
+    # from data.localisationsystem.locsys import LocalisationSystemProcess
+    # LocSysProc = LocalisationSystemProcess([], [LocStS])
+    # allProcesses.append(LocSysProc)
+
+
+
+    # =============================== CONTROL =================================================
+    if enableRc:
+        rcShR, rcShS   = Pipe(duplex = False)           # rc      ->  serial handler
+
+        # serial handler process
+        shProc = SerialHandlerProcess([rcShR], [])
+        allProcesses.append(shProc)
+
+        rcProc = RemoteControlReceiverProcess([],[rcShS])
+        allProcesses.append(rcProc)
+
+
+    # ===================================== START PROCESSES ==================================
+    print("Starting the processes!",allProcesses)
     for proc in allProcesses:
-        if hasattr(proc,'stop') and callable(getattr(proc,'stop')):
-            print("Process with stop",proc)
-            proc.stop()
-            proc.join()
-        else:
-            print("Process witouth stop",proc)
-            proc.terminate()
-            proc.join()
+        proc.daemon = True
+        proc.start()
+
+
+
+
+    # ===================================== STAYING ALIVE ====================================
+    blocker = Event()  
+
+    try:
+        blocker.wait()
+    except KeyboardInterrupt:
+        print("\nCatching a KeyboardInterruption exception! Shutdown all processes.\n")
+        for proc in allProcesses:
+            if hasattr(proc,'stop') and callable(getattr(proc,'stop')):
+                print("Process with stop",proc)
+                proc.stop()
+                proc.join()
+            else:
+                print("Process witouth stop",proc)
+                proc.terminate()
+                proc.join()

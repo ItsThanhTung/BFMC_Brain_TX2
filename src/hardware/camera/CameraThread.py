@@ -91,7 +91,7 @@ class CameraThread(ThreadWithStop):
         # from picamera import PiCamera
 
         # camera
-        self.camera = cv2.VideoCapture('/dev/video0')
+        self.camera = cv2.VideoCapture(0) # r'D:\bosch\original\Brain\case2.avi')
 
         # camera settings
         # self.camera.resolution      =   (1280,960)
@@ -130,6 +130,7 @@ class CameraThread(ThreadWithStop):
             # data  = np.frombuffer(data, dtype=np.uint8)
             # data  = np.reshape(data, (480, 640, 3))
             ret, data = self.camera.read()
+            data = cv2.resize(data, (320, 240))
             # cv2.imshow("data", data)
             # cv2.waitKey(1)
             stamp = time.time()

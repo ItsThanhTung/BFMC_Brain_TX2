@@ -61,7 +61,8 @@ class CameraReceiverProcess(WorkerProcess):
 
         
 
-        self.imgSize    = (480,640,3)
+        # self.imgSize    = (960, 1280)
+        self.imgSize    = (240, 320, 3)
     # ===================================== RUN ==========================================
     def run(self):
         """Apply the initializers and start the threads. 
@@ -94,6 +95,9 @@ class CameraReceiverProcess(WorkerProcess):
     def _read_stream(self):
         """Read the image from input stream, decode it and display it with the CV2 library.
         """
+        result = cv2.VideoWriter('output.avi', 
+                    cv2.VideoWriter_fourcc(*'MJPG'),
+                    10, (240, 320))
         try:
             while True:
 
@@ -103,15 +107,18 @@ class CameraReceiverProcess(WorkerProcess):
 
                 # ----------------------- read image -----------------------
                 image = np.frombuffer(bts, np.uint8)
-                image = cv2.imdecode(image, cv2.IMREAD_COLOR)
+                image = cv2.imdecode(image, 1)
                 image = np.reshape(image, self.imgSize)
                 image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 
                 # ----------------------- show images -------------------
                 cv2.imshow('Image', image) 
+                result.write(image)
+                
                 cv2.waitKey(1)
         except:
             pass
         finally:
+            result.release()
             self.connection.close()
             self.server_socket.close()
