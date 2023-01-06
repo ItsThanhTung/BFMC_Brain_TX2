@@ -138,11 +138,10 @@ class LaneDebuginggProcess(WorkerProcess):
                 angle_visualized_image = cv2.putText(angle_visualized_image, str(int(angle)), (50, 50), cv2.FONT_HERSHEY_SIMPLEX, \
                     1, 255, 1, cv2.LINE_AA)
 
+                visualize_image = np.vstack([filtered_right_lines_image, filtered_left_lines_image, angle_visualized_image])
                 for out in outP:
-                    out.send({"angle_visualized_image" : angle_visualized_image,
-                            "filtered_right_lines_image" : filtered_right_lines_image,
-                            "filtered_left_lines_image" : filtered_left_lines_image})
-                
+                    out.send({"visualize_image" : visualize_image})
+
             except Exception as e:
                 print("Lane Debugging error:")
                 print(e)
