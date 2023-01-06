@@ -82,8 +82,8 @@ class LaneKeepingProcess(WorkerProcess):
             mask = np.zeros_like(canny)
 
             region_of_interest_vertices = np.array([[   (0, height-1),
-                                                        (0.3*width, height * 0.45),
-                                                        (0.7*width, height * 0.45),
+                                                        (0.3*width, height * 0.55),
+                                                        (0.7*width, height * 0.55),
                                                         (width - 1, height-1)]], np.int32)
 
             cv2.fillPoly(mask, region_of_interest_vertices, 255)
@@ -105,9 +105,9 @@ class LaneKeepingProcess(WorkerProcess):
                         if abs(line[2] - line[0]) > image_size[1] * 0.075: 
                             horizontal_lines.append(line)
                     else:
-                        if min(line[0], line[2]) <= middle_y * 0.45 and slope < 0:  # or min(line[0], line[2]) <= middle_y * 0.3:
+                        if min(line[0], line[2]) <= middle_y * 0.45: #and slope < 0:  # or min(line[0], line[2]) <= middle_y * 0.3:
                             left_lines.append(line)
-                        elif (max(line[0], line[2]) > middle_y * 0.55) and slope > 0: #or max(line[0], line[2]) > middle_y * 0.7:
+                        elif (max(line[0], line[2]) > middle_y * 0.55): # and slope > 0: #or max(line[0], line[2]) > middle_y * 0.7:
                             right_lines.append(line)
             
             return np.array(left_lines), np.array(right_lines), np.array(horizontal_lines)
@@ -232,7 +232,7 @@ class LaneKeepingProcess(WorkerProcess):
             return ratio * max_speed
 
         roi_edge_image = region_of_interest(edge_image)
-        lines = cv2.HoughLinesP(roi_edge_image, rho=9, theta=np.pi/60, threshold=50, lines=np.array([]), minLineLength= 4, maxLineGap=2)
+        lines = cv2.HoughLinesP(roi_edge_image, rho=9, theta=np.pi/60, threshold=50, lines=np.array([]), minLineLength= 15, maxLineGap=2)
         left_lines, right_lines, _ = filter_lines(lines, roi_edge_image.shape)
 
         filtered_left_lines = is_length_enough(left_lines, roi_edge_image.shape)
