@@ -103,8 +103,7 @@ class CameraReceiverProcess(WorkerProcess):
                 image = np.frombuffer(bts, np.uint8)
                 image = cv2.imdecode(image, 1)
                 image = np.reshape(image, self.imgSize)
-                image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
-                
+            
                 stamp = time.time()
                 for outP in outPs:
                     outP.send({"image": image})
