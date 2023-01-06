@@ -289,10 +289,11 @@ class LaneKeepingProcess(WorkerProcess):
                 # new_angle = self.pid(angle)
                 print(angle)
                 # setSpeed(outP[0], float(speed * 0.35))
-                # setAngle(outP[0] , float(angle))
+                setSpeed(outP[0], float(0))
+                setAngle(outP[0] , float(angle))
 
                 if self.debug:
-                    outP[0].send(debug_data)
+                    outP[1].send(debug_data)
 
             except Exception as e:
                 print("Lane keeping error:")
