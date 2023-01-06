@@ -107,7 +107,7 @@ class CameraReceiverProcess(WorkerProcess):
                 
                 stamp = time.time()
                 for outP in outPs:
-                    outP.send([[stamp], image])
+                    outP.send({"image": image})
 
         except:
             pass

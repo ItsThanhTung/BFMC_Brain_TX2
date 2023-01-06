@@ -90,7 +90,8 @@ class ImagePreprocessingProcess(WorkerProcess):
         while True:
             try:
                 # Obtain image
-                stamps, img = inP.recv()
+                data = inP.recv()
+                img = data["image"]
 
                 # img = cv2.resize(img, (320, 240))
                 new_combined_binary, sybinary, image_ff = thresholding(img)
