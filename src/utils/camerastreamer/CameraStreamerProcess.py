@@ -108,7 +108,8 @@ class CameraStreamerProcess(WorkerProcess):
 
         while True:
             try:
-                stamps, image = inP.recv()
+                data = inP.recv()
+                image = data["image"]
                  
                 result, image = cv2.imencode('.jpg', image, encode_param)
                 data   =  image.tobytes()
