@@ -141,15 +141,14 @@ def thresholding(frame):
     grayImg = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     _, image_ff = cv2.threshold(grayImg, 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
 
-    combined_binary[((image_ff == 255) & (sxbinary == 255)) 
+    combined_binary[((adaptive == 255) & (sxbinary == 255)) 
                     | ((sxbinary == 255) & (r_binary == 255))] = 255
 
     adaptive = cv2.adaptiveThreshold(grayImg, 255,\
                         cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 45, -70)
     
     new_combined_binary = combined_binary
-    new_combined_binary[((combined_binary == 255) & (image_ff == 255)) 
-                    | ((combined_binary == 255) & (adaptive == 255))] = 255
+    new_combined_binary[((combined_binary == 255) & (adaptive == 255))] = 255
 
     new_combined_binary = cv2.dilate(new_combined_binary, np.ones((3, 3), np.uint8)) 
 
