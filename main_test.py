@@ -53,7 +53,7 @@ from src.image_processing.LaneDebuggingProcess import LaneDebuginggProcess
 
 if __name__ == '__main__':
     # =============================== CONFIG =================================================
-    enableStream        =  False
+    enableStream        =  True
     enableRc            =  False
 
 
@@ -70,22 +70,24 @@ if __name__ == '__main__':
 
     imagePreprocessShowR, imagePreprocessShowS = Pipe(duplex = False)           # preprocess  ->  imageShow
     imagePreprocessR, imagePreprocessS = Pipe(duplex = False)                     # preprocess  ->  laneKeeping
+    imagePreprocessStreamR, imagePreprocessStreamS = Pipe(duplex = False)           # preprocess  ->  stream
+
     laneDebugR, laneDebugS = Pipe(duplex = False)                                  # laneKeeping -> laneDebug
     laneDebugShowR, laneDebugShowS = Pipe(duplex = False)                           # laneDebug -> imageShow
 
-    imagePreprocess = ImagePreprocessingProcess([camStR], [imagePreprocessShowS, imagePreprocessS])
+    imagePreprocess = ImagePreprocessingProcess([camStR], [imagePreprocessS], imagePreprocessStreamS, enableStream)
     laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [laneDebugS], True)
-    laneDebugProcess = LaneDebuginggProcess([laneDebugR], [laneDebugShowS])
-    imageShow = imageShowProcess([imagePreprocessShowR, laneDebugShowR], [])
+    laneDebugProcess = LaneDebuginggProcess([laneDebugR], [])
+    # imageShow = imageShowProcess([imagePreprocessShowR, laneDebugShowR], [])
     
     allProcesses.append(imagePreprocess)
     allProcesses.append(laneKeepingProcess)
     allProcesses.append(laneDebugProcess)
-    allProcesses.append(imageShow)
+    # allProcesses.append(imageShow)
 
 
     if enableStream:
-        streamProc = CameraStreamerProcess([camStR], [])
+        streamProc = CameraStreamerProcess([imagePreprocessStreamR], [])
         allProcesses.append(streamProc)
 
 

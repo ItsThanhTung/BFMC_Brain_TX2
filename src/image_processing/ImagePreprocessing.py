@@ -32,16 +32,21 @@ import time
 import numpy as np
 import math
 
-from threading import Thread
+from threading import Thread, Lock
 
 import cv2
 
 from src.templates.workerprocess import WorkerProcess
 
+from queue import Queue
+from collections import deque
+
 
 class ImagePreprocessingProcess(WorkerProcess):
+    image_stream_queue = Queue(maxsize=5)
+    image_lock = Lock()
     # ===================================== INIT =========================================
-    def __init__(self, inPs, outPs):
+    def __init__(self, inPs, outPs, debugP = None, debug=False):
         """Process used for sending images over the network to a targeted IP via UDP protocol 
         (no feedback required). The image is compressed before sending it. 
 
@@ -56,6 +61,12 @@ class ImagePreprocessingProcess(WorkerProcess):
         """
 
         super(ImagePreprocessingProcess,self).__init__( inPs, outPs)
+
+        self.image = None
+        # self.image_stream_queue = Queue(maxsize=5)
+        self.debug = debug
+        self.debugP = debugP
+
         
     # ===================================== RUN ==========================================
     def run(self):
@@ -69,41 +80,77 @@ class ImagePreprocessingProcess(WorkerProcess):
         """
         if self._blocker.is_set():
             return
-        imagePreprocessTh = Thread(name='ImagePreprocessingThread',target = self._run, args= (self.inPs[0], self.outPs))
+        
+        imageReadTh = Thread(name='ImageReadThread',target = self._read_image, args= (self.inPs[0],))
+        imagePreprocessTh = Thread(name='ImagePreprocessingThread',target = self._run_image_preprocessing, args= (self.outPs,))
+    
+
+        if self.debug:
+            imageStreamTh = Thread(name='ImageStreamThread',target = self._stream_image, args= (self.debugP,))
+            imageStreamTh.daemon = True
+            self.threads.append(imageStreamTh)
+
+            
         imagePreprocessTh.daemon = True
+        imageReadTh.daemon = True
+        self.threads.append(imageReadTh)
         self.threads.append(imagePreprocessTh)
+        
 
     # def laneKeeping(self, frame, old_angle, old_state):
-        
-
-    def _run(self, inP, outP):
-        """Obtains image, applies the required image processing and computes the steering angle value. 
-        
-        Parameters
-        ----------
-        inP  : Pipe
-            Input pipe to read the frames from other process.
-        outP : Pipe
-            Output pipe to send the steering angle value to other process.
-
-        """
-        while True:
+    
+    def _read_image(self, inP):
+         while True:
             try:
-                # Obtain image
                 data = inP.recv()
-                img = data["image"]
-
-                # img = cv2.resize(img, (320, 240))
-                new_combined_binary, sybinary, image_ff = thresholding(img)
-                # image_ff = cv2.Canny(image_ff, 50, 150)
-                for out in outP:
-                    out.send({"original_image": img, 
-                                "new_combined_binary" : new_combined_binary, 
-                                "sybinary" : sybinary, 
-                                "image_ff" : image_ff})
+                self.image_lock.acquire()
+                self.image = data["image"]
+                self.image_lock.release()
 
             except Exception as e:
-                print("Image Preprocessing error:")
+                print("Image Preprocessing - read image thread error:")
+                print(e)
+
+    def _stream_image(self, outP):
+        while True:
+            try:
+                image = self.image_stream_queue.get()
+                outP.send({"image": image})
+
+            
+            except Exception as e:
+                print("Image Preprocessing - stream image thread error:")
+                print(e)
+            
+
+
+    def _run_image_preprocessing(self, outPs):
+        while True:
+            try:
+                self.image_lock.acquire()
+                if self.image is not None:
+                    image = self.image.copy()
+                    self.image_lock.release()
+
+                    if self.debug:
+                        if not self.image_stream_queue.full():
+                            self.image_stream_queue.put(image)
+                        else:
+                            print("Image Preprocessing - preprocess image thread full Queue")
+                
+                    new_combined_binary, sybinary, image_ff = thresholding(image)
+
+                    for outP in outPs:
+                        outP.send({"original_image": image, 
+                                    "new_combined_binary" : new_combined_binary, 
+                                    "sybinary" : sybinary, 
+                                    "image_ff" : image_ff})
+                
+                else:
+                    self.image_lock.release()
+
+            except Exception as e:
+                print("Image Preprocessing - preprocess image thread error:")
                 print(e)
 
     
