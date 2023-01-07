@@ -103,7 +103,7 @@ class LaneDebuginggProcess(WorkerProcess):
                 left_average_fit, right_average_fit = data["fit_data"]
 
 
-                lines_image = np.zeros_like(image_size)
+                lines_image = np.zeros(image_size)
                 if lines is not None:
                     lines_image = display_lines(lines_image, [line[0] for line in lines], 255)
 
@@ -140,7 +140,8 @@ class LaneDebuginggProcess(WorkerProcess):
 
                 visualize_image = np.vstack([filtered_right_lines_image, filtered_left_lines_image, angle_visualized_image])
                 for out in outP:
-                    out.send({"visualize_image" : visualize_image})
+                    out.send({"lines_image" : lines_image,
+                            "visualize_image" : visualize_image})
 
             except Exception as e:
                 print("Lane Debugging error:")

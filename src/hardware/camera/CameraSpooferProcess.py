@@ -37,7 +37,7 @@ from src.templates.workerprocess import WorkerProcess
 class CameraSpooferProcess(WorkerProcess):
 
     #================================ INIT ===============================================
-    def __init__(self, inPs,outPs, videoDir, ext = '.h264'):
+    def __init__(self, inPs,outQueue, videoDir, ext = '.avi'):
         """Processed used for spoofing a camera/ publishing a video stream from a folder 
         with videos
         
@@ -52,13 +52,13 @@ class CameraSpooferProcess(WorkerProcess):
         ext : str, optional
             the extension of the file, by default '.h264'
         """
-        super(CameraSpooferProcess,self).__init__(inPs,outPs)
+        super(CameraSpooferProcess,self).__init__(inPs,outQueue)
 
         # params
-        self.videoSize = (640,480)
+        self.videoSize = (320,240)
         
         self.videoDir = videoDir
-        self.videos = self.open_files(self.videoDir, ext = ext)
+        self.videos = videoDir # self.open_files(self.videoDir, ext = ext)
 
     
     # ===================================== INIT VIDEOS ==================================
@@ -110,10 +110,9 @@ class CameraSpooferProcess(WorkerProcess):
                         frame = cv2.resize(frame, self.videoSize)
                         
                         for p in self.outPs:
-                            p.send([[stamp], frame])
+                            p.send({"image": frame})
                                
                     else:
                         break
-
                 cap.release()
 

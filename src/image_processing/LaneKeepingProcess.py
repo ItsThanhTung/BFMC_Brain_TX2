@@ -82,8 +82,8 @@ class LaneKeepingProcess(WorkerProcess):
             mask = np.zeros_like(canny)
 
             region_of_interest_vertices = np.array([[   (0, height-1),
-                                                        (0.3*width, height * 0.55),
-                                                        (0.7*width, height * 0.55),
+                                                        (0.3*width, height * 0.45),
+                                                        (0.7*width, height * 0.45),
                                                         (width - 1, height-1)]], np.int32)
 
             cv2.fillPoly(mask, region_of_interest_vertices, 255)
@@ -283,7 +283,6 @@ class LaneKeepingProcess(WorkerProcess):
                 # Obtain image
                 data = inP.recv()
                 # Apply image processing
-
                 edge_image = data["new_combined_binary"]
             
                 speed, angle, state, debug_data = self.laneKeeping(edge_image, old_angle, state) 
