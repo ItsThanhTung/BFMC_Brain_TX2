@@ -38,8 +38,6 @@ from multiprocessing import Pipe, Process, Event
 
 # hardware imports
 from src.hardware.camera.CameraProcess                      import CameraProcess
-from src.hardware.camera.CameraSpooferProcess               import CameraSpooferProcess
-from src.utils.camerastreamer.CameraReceiverProcess         import CameraReceiverProcess
 from src.hardware.serialhandler.SerialHandlerProcess        import SerialHandlerProcess
 
 # utility imports
@@ -48,9 +46,7 @@ from src.utils.camerastreamer.CameraStreamerProcess         import CameraStreame
 
 # lane keeping imports
 from src.image_processing.LaneKeepingProcess import LaneKeepingProcess
-from src.image_processing.imageShowProcess import imageShowProcess
 from src.image_processing.ImagePreprocessingProcess import ImagePreprocessingProcess
-from src.image_processing.LaneDebuggingProcess import LaneDebuginggProcess
 
 if __name__ == '__main__':
     # =============================== CONFIG =================================================
