@@ -1,5 +1,7 @@
 import math
 import numpy as np
+import json
+
 
 def gauss(x, x0, sigma):
             return  (1/(math.pi * sigma ** 2) ** 0.5) * np.exp(-(x - x0) ** 2 / (2 * sigma ** 2))
@@ -38,3 +40,10 @@ def EnablePID (outP , Enable = True):
         "activate": Enable
     }
     outP.send(data)
+
+def load_config_file(config_file):
+    with open(config_file, "r") as jsonfile:
+        data = json.load(jsonfile) # Reading the file
+        print("Read successful")
+        jsonfile.close()
+    return data

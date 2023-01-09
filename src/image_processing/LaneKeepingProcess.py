@@ -26,15 +26,9 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
 
-import socket
-import struct
-import time
 import numpy as np
-import math
 
 from threading import Thread
-
-import cv2
 from simple_pid import PID
 
 from src.templates.workerprocess import WorkerProcess

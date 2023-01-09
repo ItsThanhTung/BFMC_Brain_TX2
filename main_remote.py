@@ -51,14 +51,11 @@ from src.image_processing.imageShowProcess import imageShowProcess
 from src.image_processing.ImagePreprocessingProcess import ImagePreprocessingProcess
 from src.image_processing.LaneDebuggingProcess import LaneDebuginggProcess
 
-import json
+# opt import
+from src.utils.utils_function import load_config_file
 
 if __name__ == '__main__':
-    with open("test.json", "r") as jsonfile:
-        data = json.load(jsonfile) # Reading the file
-        print("Read successful")
-        jsonfile.close()
-    opt = data
+    opt = load_config_file("main_remote.json")
     # =============================== CONFIG =================================================
     enableStream        =  False
     enableCameraSpoof   =  True 
