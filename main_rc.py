@@ -39,11 +39,11 @@ from multiprocessing import Pipe, Process, Event
 # hardware imports
 from src.hardware.camera.CameraProcess                      import CameraProcess
 from src.hardware.camera.CameraSpooferProcess               import CameraSpooferProcess
+from src.utils.camerastreamer.CameraReceiverProcess         import CameraReceiverProcess
 from src.hardware.serialhandler.SerialHandlerProcess        import SerialHandlerProcess
 
 # utility imports
 from src.utils.camerastreamer.CameraStreamerProcess         import CameraStreamerProcess
-from src.utils.remotecontrol.RemoteControlReceiverProcess   import RemoteControlReceiverProcess
 
 
 # lane keeping imports
@@ -55,47 +55,37 @@ from src.image_processing.LaneDebuggingProcess import LaneDebuginggProcess
 if __name__ == '__main__':
     # =============================== CONFIG =================================================
     enableStream        =  True
-    enableCameraSpoof   =  False 
     enableRc            =  False
 
-    enableDebugLane = True
+
 
     # =============================== INITIALIZING PROCESSES =================================
     allProcesses = list()
 
     # =============================== HARDWARE ===============================================
-    camStR, camStS = Pipe(duplex = False)                               # camera  ->  streamer
-    camLaneR, camLaneS = Pipe(duplex = False)                           # camera  ->  lanePreprocess
+    camStR, camStS = Pipe(duplex = False)           # camera  ->  streamer
+    camProc = CameraProcess([],[camStS])
+    allProcesses.append(camProc)
+
+    
     rcShR, rcShS   = Pipe(duplex = False)                               # laneKeeping  ->  Serial
-    imagePreprocessR, imagePreprocessS = Pipe(duplex = False)           # lanePreprocess  ->  laneKeeping
+    imagePreprocessShowR, imagePreprocessShowS = Pipe(duplex = False)           # preprocess  ->  imageShow
+    imagePreprocessR, imagePreprocessS = Pipe(duplex = False)                     # preprocess  ->  laneKeeping
+    imagePreprocessStreamR, imagePreprocessStreamS = Pipe(duplex = False)           # preprocess  ->  stream
 
-    if enableCameraSpoof:
-        camSpoofer = CameraSpooferProcess([],[camStS],'vid')
-        allProcesses.append(camSpoofer)
 
-    else:
-        if enableStream:
-            camProc = CameraProcess([],[camStS, camLaneS])
-            allProcesses.append(camProc)
-        else:
-            camProc = CameraProcess([],[camLaneS])
-            allProcesses.append(camProc)
-    
-
-    imagePreprocess = ImagePreprocessingProcess([camLaneR], [imagePreprocessS])
+    imagePreprocess = ImagePreprocessingProcess([camStR], [imagePreprocessS], imagePreprocessStreamS, enableStream)
     laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [rcShS], False)
-    
-    # rc      ->  serial handler
-    # serial handler process
     shProc = SerialHandlerProcess([rcShR], [])
-
-    allProcesses.append(shProc)
+    
     allProcesses.append(imagePreprocess)
     allProcesses.append(laneKeepingProcess)
+    allProcesses.append(shProc)
+
 
 
     if enableStream:
-        streamProc = CameraStreamerProcess([camStR], [])
+        streamProc = CameraStreamerProcess([imagePreprocessStreamR], [])
         allProcesses.append(streamProc)
 
 
