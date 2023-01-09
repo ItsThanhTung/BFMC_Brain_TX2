@@ -1,7 +1,7 @@
 import math
 import numpy as np
 import json
-
+import cv2
 
 def gauss(x, x0, sigma):
             return  (1/(math.pi * sigma ** 2) ** 0.5) * np.exp(-(x - x0) ** 2 / (2 * sigma ** 2))
@@ -47,3 +47,15 @@ def load_config_file(config_file):
         print("Read successful")
         jsonfile.close()
     return data
+
+
+def get_point(fit, y):
+    return int((y - fit[1])/fit[0])
+
+
+def display_lines(img, lines, color=(255,0,0)):
+    if lines is not None:
+        for line in lines:
+            x1, y1, x2, y2 = line
+            img = cv2.line(img,(x1,y1),(x2,y2),color, 1)
+    return img
