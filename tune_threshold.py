@@ -1,13 +1,14 @@
 import cv2
 import numpy as np
 
-from src.image_processing.ImagePreprocessing import ImagePreprocessing
+from src.image_processing.LaneDebugging import LaneDebugging
+from src.image_processing.LaneKeeping import LaneKeeping
 from src.utils.utils_function import load_config_file
 
 opt = load_config_file("main_remote.json")
 
-imagePreprocessor = ImagePreprocessing(opt)
-
+LaneDebugger = LaneDebugging()
+LaneKeeper = LaneKeeping(opt, True)
 vid = cv2.VideoCapture(r'D:\bosch\original\Brain\case7.avi')
 
 def get_sobel_image(sobel_image, threshold):
@@ -104,7 +105,14 @@ while vid.isOpened():
 
         new_combined_binary, sybinary, image_ff = process_image(frame, sobel_x_thres, sobel_y_thres, \
                                                                 red_thres, adaptive_block_size, adaptive_offset, 3)
+
+        speed, angle, state, debug_data = LaneKeeper.lane_keeping(new_combined_binary)
+        lines_image, visualize_image = LaneDebugger.visualize(debug_data)
+
+
         cv2.imshow("frame", frame)
+        cv2.imshow("lines_image", lines_image)
+        cv2.imshow("visualize_image", visualize_image)
         cv2.imshow("preprocessed_image", new_combined_binary)
 
         if cv2.waitKey(100) & 0xFF == ord('q'):
