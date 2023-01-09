@@ -121,27 +121,29 @@ class LaneDebuginggProcess(WorkerProcess):
                 filtered_right_lines_image = display_lines(filtered_right_lines_image, filtered_right_lines, 255)
 
                 angle_visualized_image = np.zeros(image_size)
-
                 if left_average_fit is not None:
                     x1 = get_point(left_average_fit, image_size[0])
                     x2 = get_point(left_average_fit, image_size[0] * 0.5)
 
                     angle_visualized_image = cv2.line(angle_visualized_image, (x1, image_size[0]), (x2, int(image_size[0]* 0.5)), 255, 2)
-
                 if right_average_fit is not None:
                     x1 = get_point(right_average_fit, image_size[0])
                     x2 = get_point(right_average_fit, image_size[0] * 0.5)
                     angle_visualized_image = cv2.line(angle_visualized_image, (x1, image_size[0]), (x2, int(image_size[0] * 0.5)), 255, 2)
 
 
-                angle_visualized_image = cv2.line(angle_visualized_image, error_point, (int(image_size[1] * 0.5), image_size[0]), 125, 2)
+                if error_point[0] != None:
+                    angle_visualized_image = cv2.line(angle_visualized_image, error_point, (int(image_size[1] * 0.5), image_size[0]), 125, 2)
+                    
                 angle_visualized_image = cv2.putText(angle_visualized_image, str(int(angle)), (50, 50), cv2.FONT_HERSHEY_SIMPLEX, \
                     1, 255, 1, cv2.LINE_AA)
 
                 visualize_image = np.vstack([filtered_right_lines_image, filtered_left_lines_image, angle_visualized_image])
+
                 for out in outP:
                     out.send({"lines_image" : lines_image,
                             "visualize_image" : visualize_image})
+
 
             except Exception as e:
                 print("Lane Debugging error:")
