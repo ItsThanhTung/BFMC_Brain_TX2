@@ -49,7 +49,7 @@ from src.utils.remotecontrol.RemoteControlReceiverProcess   import RemoteControl
 # lane keeping imports
 from src.image_processing.LaneKeepingProcess import LaneKeepingProcess
 from src.image_processing.imageShowProcess import imageShowProcess
-from src.image_processing.ImagePreprocessing import ImagePreprocessingProcess
+from src.image_processing.ImagePreprocessingProcess import ImagePreprocessingProcess
 from src.image_processing.LaneDebuggingProcess import LaneDebuginggProcess
 
 if __name__ == '__main__':

@@ -1,0 +1,14 @@
+{
+    "LANE_PREPROCESSING": {
+        "sobel_x_thres": [70, 255],
+        "sobel_y_thres": [131, 250],
+        "red_thres" : [150, 255],
+        "adaptive_block_size" : 45,
+        "adaptive_offset" : -70,
+        "dilate_kernel" : 3
+    },
+
+    "LANE_KEEPING": {
+        "thres3": true
+    }
+}

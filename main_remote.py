@@ -48,13 +48,20 @@ from src.utils.camerastreamer.CameraStreamerProcess         import CameraStreame
 # lane keeping imports
 from src.image_processing.LaneKeepingProcess import LaneKeepingProcess
 from src.image_processing.imageShowProcess import imageShowProcess
-from src.image_processing.ImagePreprocessing import ImagePreprocessingProcess
+from src.image_processing.ImagePreprocessingProcess import ImagePreprocessingProcess
 from src.image_processing.LaneDebuggingProcess import LaneDebuginggProcess
 
+import json
+
 if __name__ == '__main__':
+    with open("test.json", "r") as jsonfile:
+        data = json.load(jsonfile) # Reading the file
+        print("Read successful")
+        jsonfile.close()
+    opt = data
     # =============================== CONFIG =================================================
     enableStream        =  False
-    enableCameraSpoof   =  False 
+    enableCameraSpoof   =  True 
     enableRc            =  False
 
 
@@ -65,7 +72,7 @@ if __name__ == '__main__':
     # =============================== HARDWARE ===============================================
     camStR, camStS = Pipe(duplex = False)           # camera  ->  streamer
     if enableCameraSpoof:
-        camSpoofer = CameraSpooferProcess([],[camStS],'vid')
+        camSpoofer = CameraSpooferProcess([],[camStS],[r'D:\bosch\original\Brain\case8.avi'])
         allProcesses.append(camSpoofer)
 
     else:
@@ -78,7 +85,7 @@ if __name__ == '__main__':
     laneDebugR, laneDebugS = Pipe(duplex = False)                                  # laneKeeping -> laneDebug
     laneDebugShowR, laneDebugShowS = Pipe(duplex = False)                           # laneDebug -> imageShow
 
-    imagePreprocess = ImagePreprocessingProcess([camStR], [imagePreprocessShowS, imagePreprocessS])
+    imagePreprocess = ImagePreprocessingProcess([camStR], [imagePreprocessShowS, imagePreprocessS], opt)
     laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [laneDebugS], True)
     laneDebugProcess = LaneDebuginggProcess([laneDebugR], [laneDebugShowS])
     imageShow = imageShowProcess([imagePreprocessShowR, laneDebugShowR], [])
