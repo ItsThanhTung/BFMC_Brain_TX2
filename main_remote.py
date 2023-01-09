@@ -86,7 +86,7 @@ if __name__ == '__main__':
     laneDebugShowR, laneDebugShowS = Pipe(duplex = False)                           # laneDebug -> imageShow
 
     imagePreprocess = ImagePreprocessingProcess([camStR], [imagePreprocessShowS, imagePreprocessS], opt)
-    laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [laneDebugS], True)
+    laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [laneDebugS], opt, debug=True)
     laneDebugProcess = LaneDebuginggProcess([laneDebugR], [laneDebugShowS])
     imageShow = imageShowProcess([imagePreprocessShowR, laneDebugShowR], [])
     

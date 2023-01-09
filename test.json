@@ -9,6 +9,8 @@
     },
 
     "LANE_KEEPING": {
-        "thres3": true
+        "roi": {"left" : 0.3, "right" : 0.7, "upper" : 0.45},
+        "filter_lines" : {"hslope" : 0.075, "left_bound" : 0.45, "right_bound" : 0.55},
+        "limited_length" : {"x" : 0.05, "y" : 0.1}
     }
 }
