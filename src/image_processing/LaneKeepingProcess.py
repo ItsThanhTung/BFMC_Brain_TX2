@@ -100,6 +100,7 @@ class LaneKeepingProcess(WorkerProcess):
 
                 # new_angle = self.pid(angle)
                 # setSpeed(outP[0], float(speed * 0.35))
+                print(angle)
                 if not self.debug: 
                     setSpeed(outP[0], float(0))
                     setAngle(outP[0] , float(angle))

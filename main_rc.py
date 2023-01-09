@@ -32,8 +32,6 @@
 import sys
 sys.path.append('.')
 
-import time
-import signal
 from multiprocessing import Pipe, Process, Event 
 
 # hardware imports
@@ -48,12 +46,14 @@ from src.utils.camerastreamer.CameraStreamerProcess         import CameraStreame
 from src.image_processing.LaneKeepingProcess import LaneKeepingProcess
 from src.image_processing.ImagePreprocessingProcess import ImagePreprocessingProcess
 
+from src.utils.utils_function import load_config_file
+
 if __name__ == '__main__':
     # =============================== CONFIG =================================================
     enableStream        =  True
     enableRc            =  False
 
-
+    opt = load_config_file("main_rc.json")
 
     # =============================== INITIALIZING PROCESSES =================================
     allProcesses = list()
@@ -70,8 +70,8 @@ if __name__ == '__main__':
     imagePreprocessStreamR, imagePreprocessStreamS = Pipe(duplex = False)           # preprocess  ->  stream
 
 
-    imagePreprocess = ImagePreprocessingProcess([camStR], [imagePreprocessS], imagePreprocessStreamS, enableStream)
-    laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [rcShS], False)
+    imagePreprocess = ImagePreprocessingProcess([camStR], [imagePreprocessS], opt, imagePreprocessStreamS, enableStream)
+    laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [rcShS], opt, False)
     shProc = SerialHandlerProcess([rcShR], [])
     
     allProcesses.append(imagePreprocess)
