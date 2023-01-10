@@ -40,7 +40,7 @@ from src.utils.utils_function import setSpeed, setAngle, EnablePID
 class LaneKeepingProcess(WorkerProcess):
     pid = PID(Kp = 1.0, Ki = 1.45, Kd = 0.15, output_limits = [-23, 23])
     # ===================================== INIT =========================================
-    def __init__(self, inPs, outPs, opt, debug=False):
+    def __init__(self, inPs, outPs, opt, debugP=None, debug=False):
         """Process used for sending images over the network to a targeted IP via UDP protocol 
         (no feedback required). The image is compressed before sending it. 
 
@@ -56,6 +56,7 @@ class LaneKeepingProcess(WorkerProcess):
 
         self.opt = opt
         self.debug = debug
+        self.debugP = debugP
         super(LaneKeepingProcess,self).__init__( inPs, outPs, debug)
         
     # ===================================== RUN ==========================================
@@ -70,12 +71,12 @@ class LaneKeepingProcess(WorkerProcess):
         """
         if self._blocker.is_set():
             return
-        laneTh = Thread(name='LaneKeepingThread',target = self._run, args= (self.inPs[0], self.outPs))
+        laneTh = Thread(name='LaneKeepingThread',target = self._run, args= (self.inPs[0], self.outPs,))
         laneTh.daemon = True
         self.threads.append(laneTh)
 
 
-    def _run(self, inP, outP):
+    def _run(self, inP, outPs):
         """Obtains image, applies the required image processing and computes the steering angle value. 
         
         Parameters
@@ -86,9 +87,9 @@ class LaneKeepingProcess(WorkerProcess):
             Output pipe to send the steering angle value to other process.
 
         """
-        # EnablePID(outP[0])
-        if not self.debug: 
-            EnablePID(outP[0])
+        for outP in outPs:
+            EnablePID(outP)
+
         LaneKeeper = LaneKeeping(self.opt, self.debug)
 
         while True:
@@ -96,16 +97,17 @@ class LaneKeepingProcess(WorkerProcess):
                 # Obtain image
                 data = inP.recv()
                 edge_image = data["new_combined_binary"]
-                speed, angle, state, debug_data = LaneKeeper.lane_keeping(edge_image) 
+                speed, angle, state, debug_data = LaneKeeper.lane_keeping_v2(edge_image) 
 
                 # new_angle = self.pid(angle)
                 # setSpeed(outP[0], float(speed * 0.35))
                 print(angle)
-                if not self.debug: 
-                    setSpeed(outP[0], float(0))
-                    setAngle(outP[0] , float(angle))
-                else:
-                    outP[0].send(debug_data)
+                for outP in outPs:
+                    setSpeed(outP, float(0))
+                    setAngle(outP , float(angle))
+
+                if self.debug: 
+                    self.debugP.send(debug_data)
 
             except Exception as e:
                 print("Lane keeping error:", e)

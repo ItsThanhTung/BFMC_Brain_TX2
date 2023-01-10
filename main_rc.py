@@ -71,7 +71,7 @@ if __name__ == '__main__':
 
 
     imagePreprocess = ImagePreprocessingProcess([camStR], [imagePreprocessS], opt, imagePreprocessStreamS, enableStream)
-    laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [rcShS], opt, False)
+    laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [rcShS], opt, None, False)
     shProc = SerialHandlerProcess([rcShR], [])
     
     allProcesses.append(imagePreprocess)

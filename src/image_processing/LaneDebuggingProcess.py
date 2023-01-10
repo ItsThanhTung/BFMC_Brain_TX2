@@ -87,11 +87,10 @@ class LaneDebuginggProcess(WorkerProcess):
             try:
                 # Obtain image
                 data = inP.recv()
-                lines_image, visualize_image = LaneDebugger.visualize(data)
+                visualize_image = LaneDebugger.visualize_v2(data)
 
                 for out in outP:
-                    out.send({"lines_image" : lines_image,
-                            "visualize_image" : visualize_image})
+                    out.send({"visualize_image" : visualize_image})
 
 
             except Exception as e:

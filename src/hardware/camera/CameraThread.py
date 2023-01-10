@@ -122,13 +122,6 @@ class CameraThread(ThreadWithStop):
 
         while self._running:
             
-            # yield self._stream
-            # self._stream.seek(0)
-            # data = self._stream.read()
-
-            # # read and reshape from bytes to np.array
-            # data  = np.frombuffer(data, dtype=np.uint8)
-            # data  = np.reshape(data, (480, 640, 3))
             ret, data = self.camera.read()
             data = cv2.resize(data, (320, 240))
             # cv2.imshow("data", data)

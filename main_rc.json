@@ -1,8 +1,8 @@
 {
   "LANE_PREPROCESSING": {
-    "sobel_x_thres": [88, 255],
+    "sobel_x_thres": [70, 255],
     "sobel_y_thres": [131, 250],
-    "red_thres": [145, 255],
+    "red_thres": [85, 255],
     "adaptive_block_size": 41,
     "adaptive_offset": -50,
     "dilate_kernel": 3

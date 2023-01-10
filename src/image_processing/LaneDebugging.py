@@ -29,7 +29,7 @@
 import numpy as np
 import cv2
 
-from src.utils.utils_function import display_lines, get_point
+from src.utils.utils_function import display_lines, get_point, display_points
 
 class LaneDebugging:
     # ===================================== INIT =========================================
@@ -86,3 +86,34 @@ class LaneDebugging:
         visualize_image = np.vstack([filtered_right_lines_image, filtered_left_lines_image, angle_visualized_image])
 
         return lines_image, visualize_image
+
+    def visualize_v2(self, data):
+        angle = data["angle"]
+        left_points = data["left_points"] 
+        right_points = data["right_points"] 
+        left_point = data["left_point"] 
+        right_point = data["right_point"] 
+        middle_point = data["middle_point"] 
+        image_size = data["image_size"]
+
+        visualize_image = np.zeros(image_size)
+        left_points_image = np.zeros(image_size)
+        if len(left_points) != 0:
+            left_points_image = display_points(left_points, left_points_image)
+            visualize_image = display_points(left_points, visualize_image)
+
+        right_points_image = np.zeros(image_size)
+        if len(right_points) != 0:
+            right_points_image = display_points(right_points, right_points_image)
+            visualize_image = display_points(right_points, visualize_image)
+        
+
+        visualize_image = cv2.line(visualize_image, left_point, right_point, 255, 1)
+        visualize_image = cv2.line(visualize_image, (160, 240), middle_point, 255, 1)
+
+        visualize_image = cv2.putText(visualize_image, str(int(angle)), (50, 50), cv2.FONT_HERSHEY_SIMPLEX, \
+            1, 255, 1, cv2.LINE_AA)
+
+        visualize_image = np.vstack([right_points_image, left_points_image, visualize_image])
+
+        return visualize_image

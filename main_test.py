@@ -56,7 +56,7 @@ from src.utils.utils_function import load_config_file
 
 if __name__ == '__main__':
     # =============================== CONFIG =================================================
-    enableStream        =  False
+    enableStream        =  True
     enableRc            =  False
 
     opt = load_config_file("main_rc.json")
@@ -66,29 +66,29 @@ if __name__ == '__main__':
 
     # =============================== HARDWARE ===============================================
     camStR, camStS = Pipe(duplex = False)           # camera  ->  streamer
-    # camSpoofer = CameraSpooferProcess([],[camStS],[r'D:\bosch\original\Brain\case8.avi'])
+    # camSpoofer = CameraSpooferProcess([],[camStS],[r'D:\bosch\lane_keeping\video.avi'])
     camProc = CameraProcess([],[camStS])
     allProcesses.append(camProc)
 
     
 
-    imagePreprocessShowR, imagePreprocessShowS = Pipe(duplex = False)           # preprocess  ->  imageShow
+    # imagePreprocessShowR, imagePreprocessShowS = Pipe(duplex = False)           # preprocess  ->  imageShow
     imagePreprocessR, imagePreprocessS = Pipe(duplex = False)                     # preprocess  ->  laneKeeping
     imagePreprocessStreamR, imagePreprocessStreamS = Pipe(duplex = False)           # preprocess  ->  stream
 
-    laneDebugR, laneDebugS = Pipe(duplex = False)                                  # laneKeeping -> laneDebug
-    laneDebugShowR, laneDebugShowS = Pipe(duplex = False)                           # laneDebug -> imageShow
+    # laneDebugR, laneDebugS = Pipe(duplex = False)                                  # laneKeeping -> laneDebug
+    # laneDebugShowR, laneDebugShowS = Pipe(duplex = False)                           # laneDebug -> imageShow
 
 
-    imagePreprocess = ImagePreprocessingProcess([camStR], [imagePreprocessS, imagePreprocessShowS], opt, imagePreprocessStreamS, enableStream)
-    laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [laneDebugS], opt, True)
-    laneDebugProcess = LaneDebuginggProcess([laneDebugR], [laneDebugShowS])
-    imageShow = imageShowProcess([imagePreprocessShowR, laneDebugShowR], [])
+    imagePreprocess = ImagePreprocessingProcess([camStR], [imagePreprocessS], opt, imagePreprocessStreamS, enableStream)
+    laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [], opt, None, False)
+    # laneDebugProcess = LaneDebuginggProcess([laneDebugR], [laneDebugShowS])
+    # imageShow = imageShowProcess([imagePreprocessShowR, laneDebugShowR], [])
     
     allProcesses.append(imagePreprocess)
     allProcesses.append(laneKeepingProcess)
-    allProcesses.append(laneDebugProcess)
-    allProcesses.append(imageShow)
+    # allProcesses.append(laneDebugProcess)
+    # allProcesses.append(imageShow)
 
 
     if enableStream:
