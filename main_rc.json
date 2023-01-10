@@ -1,27 +1,26 @@
 {
-    "LANE_PREPROCESSING": {
-      "sobel_x_thres": [70, 255],
-      "sobel_y_thres": [131, 250],
-      "red_thres": [150, 255],
-      "adaptive_block_size": 45,
-      "adaptive_offset": -70,
-      "dilate_kernel": 3
+  "LANE_PREPROCESSING": {
+    "sobel_x_thres": [120, 255],
+    "sobel_y_thres": [131, 250],
+    "red_thres": [127, 255],
+    "adaptive_block_size": 50,
+    "adaptive_offset": -70,
+    "dilate_kernel": 3
+  },
+  "LANE_KEEPING": {
+    "roi": {
+      "left": 0.3,
+      "right": 0.7,
+      "upper": 0.45
     },
-    "LANE_KEEPING": {
-      "roi": {
-        "left": 0.3,
-        "right": 0.7,
-        "upper": 0.45
-      },
-      "filter_lines": {
-        "hslope": 0.075,
-        "left_bound": 0.45,
-        "right_bound": 0.55
-      },
-      "limited_length": {
-        "x": 0.05,
-        "y": 0.1
-      }
+    "filter_lines": {
+      "hslope": 0.075,
+      "left_bound": 0.45,
+      "right_bound": 0.55
+    },
+    "limited_length": {
+      "x": 0.05,
+      "y": 0.1
     }
   }
-  
+}
