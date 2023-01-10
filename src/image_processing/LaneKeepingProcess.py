@@ -87,6 +87,7 @@ class LaneKeepingProcess(WorkerProcess):
             Output pipe to send the steering angle value to other process.
 
         """
+
         for outP in outPs:
             EnablePID(outP)
 
