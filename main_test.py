@@ -51,20 +51,24 @@ from src.image_processing.imageShowProcess import imageShowProcess
 from src.image_processing.ImagePreprocessingProcess import ImagePreprocessingProcess
 from src.image_processing.LaneDebuggingProcess import LaneDebuginggProcess
 
+from src.utils.utils_function import load_config_file
+
+
 if __name__ == '__main__':
     # =============================== CONFIG =================================================
-    enableStream        =  True
+    enableStream        =  False
     enableRc            =  False
 
-
+    opt = load_config_file("main_rc.json")
 
     # =============================== INITIALIZING PROCESSES =================================
     allProcesses = list()
 
     # =============================== HARDWARE ===============================================
     camStR, camStS = Pipe(duplex = False)           # camera  ->  streamer
-    camSpoofer = CameraSpooferProcess([],[camStS],[r'D:\bosch\original\Brain\case8.avi'])
-    allProcesses.append(camSpoofer)
+    # camSpoofer = CameraSpooferProcess([],[camStS],[r'D:\bosch\original\Brain\case8.avi'])
+    camProc = CameraProcess([],[camStS])
+    allProcesses.append(camProc)
 
     
 
@@ -75,15 +79,16 @@ if __name__ == '__main__':
     laneDebugR, laneDebugS = Pipe(duplex = False)                                  # laneKeeping -> laneDebug
     laneDebugShowR, laneDebugShowS = Pipe(duplex = False)                           # laneDebug -> imageShow
 
-    imagePreprocess = ImagePreprocessingProcess([camStR], [imagePreprocessS], imagePreprocessStreamS, enableStream)
-    laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [laneDebugS], True)
-    laneDebugProcess = LaneDebuginggProcess([laneDebugR], [])
-    # imageShow = imageShowProcess([imagePreprocessShowR, laneDebugShowR], [])
+
+    imagePreprocess = ImagePreprocessingProcess([camStR], [imagePreprocessS, imagePreprocessShowS], opt, imagePreprocessStreamS, enableStream)
+    laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [laneDebugS], opt, True)
+    laneDebugProcess = LaneDebuginggProcess([laneDebugR], [laneDebugShowS])
+    imageShow = imageShowProcess([imagePreprocessShowR, laneDebugShowR], [])
     
     allProcesses.append(imagePreprocess)
     allProcesses.append(laneKeepingProcess)
     allProcesses.append(laneDebugProcess)
-    # allProcesses.append(imageShow)
+    allProcesses.append(imageShow)
 
 
     if enableStream:

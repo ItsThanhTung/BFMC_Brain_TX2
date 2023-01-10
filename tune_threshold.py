@@ -9,7 +9,7 @@ opt = load_config_file("main_remote.json")
 
 LaneDebugger = LaneDebugging()
 LaneKeeper = LaneKeeping(opt, True)
-vid = cv2.VideoCapture(r'D:\bosch\original\Brain\case7.avi')
+vid = cv2.VideoCapture(0)
 
 def get_sobel_image(sobel_image, threshold):
     abs_sobel_image = np.absolute(sobel_image)
@@ -88,6 +88,7 @@ while vid.isOpened():
     ret, frame = vid.read()
 
     if ret:
+        frame = cv2.resize(frame, (320, 240))
         sobel_x_thres = [int(cv2.getTrackbarPos('lower_value','sobelx')), \
                         int(cv2.getTrackbarPos('upper_value','sobelx'))]
 
@@ -115,7 +116,7 @@ while vid.isOpened():
         cv2.imshow("visualize_image", visualize_image)
         cv2.imshow("preprocessed_image", new_combined_binary)
 
-        if cv2.waitKey(100) & 0xFF == ord('q'):
+        if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
     

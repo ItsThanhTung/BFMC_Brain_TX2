@@ -72,9 +72,9 @@ class LaneKeeping:
                     if abs(line[2] - line[0]) > image_size[1] * self.opt["filter_lines"]["hslope"]: 
                         horizontal_lines.append(line)
                 else:
-                    if min(line[0], line[2]) <= middle_y * self.opt["filter_lines"]["left_bound"]: #and slope < 0:  # or min(line[0], line[2]) <= middle_y * 0.3:
+                    if max(line[0], line[2]) <= middle_y * self.opt["filter_lines"]["left_bound"]: #and slope < 0:  # or min(line[0], line[2]) <= middle_y * 0.3:
                         left_lines.append(line)
-                    elif (max(line[0], line[2]) > middle_y * self.opt["filter_lines"]["right_bound"]): # and slope > 0: #or max(line[0], line[2]) > middle_y * 0.7:
+                    elif (min(line[0], line[2]) > middle_y * self.opt["filter_lines"]["right_bound"]): # and slope > 0: #or max(line[0], line[2]) > middle_y * 0.7:
                         right_lines.append(line)
         
         return np.array(left_lines), np.array(right_lines), np.array(horizontal_lines)
@@ -198,7 +198,7 @@ class LaneKeeping:
 
     def lane_keeping(self, edge_image):
         roi_edge_image = self.region_of_interest(edge_image)
-        lines = cv2.HoughLinesP(roi_edge_image, rho=9, theta=np.pi/60, threshold=50, lines=np.array([]), minLineLength= 15, maxLineGap=2)
+        lines = cv2.HoughLinesP(roi_edge_image, rho=4, theta=np.pi/60, threshold=50, lines=np.array([]), minLineLength= 10, maxLineGap=10)
         left_lines, right_lines, _ = self.filter_lines(lines, roi_edge_image.shape)
 
         filtered_left_lines = self.is_length_enough(left_lines, roi_edge_image.shape)

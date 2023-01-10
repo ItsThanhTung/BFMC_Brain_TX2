@@ -58,7 +58,7 @@ if __name__ == '__main__':
     opt = load_config_file("main_remote.json")
     # =============================== CONFIG =================================================
     enableStream        =  False
-    enableCameraSpoof   =  True 
+    enableCameraSpoof   =  False 
     enableRc            =  False
 
 
