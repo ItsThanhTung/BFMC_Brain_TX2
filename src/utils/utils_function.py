@@ -33,11 +33,27 @@ def setAngle (outP , Angle:float):
     }
     outP.send(data)
 
+def Brake (outP , Angle = 0):
+    data = {
+        "action": '3',
+        "brake (steerAngle)": Angle
+    }
+    outP.send(data)
 
 def EnablePID (outP , Enable = True):
     data = {
         "action": '4',
         "activate": Enable
+    }
+    outP.send(data)
+
+def MoveDistance (outP , Distance, Speed):
+    if(np.abs(Distance) > 1):
+        print("UTIL Move ERR: Distance out of Range")
+    data = {
+        "action": '7',
+        "distance": Distance,
+        "speed": Speed
     }
     outP.send(data)
 
