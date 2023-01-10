@@ -408,7 +408,7 @@ class LaneKeeping:
                     angle = 90 +  angle
             else:
                 angle = 0
-            angle = angle * 0.5
+            angle = angle * 0.35
             
         angle = np.clip(angle, -23, 23)
         speed = calculate_speed(angle, max_speed = 100)

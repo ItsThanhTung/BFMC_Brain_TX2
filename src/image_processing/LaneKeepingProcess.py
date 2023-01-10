@@ -104,7 +104,7 @@ class LaneKeepingProcess(WorkerProcess):
                 # setSpeed(outP[0], float(speed * 0.35))
                 print(angle)
                 for outP in outPs:
-                    setSpeed(outP, float(0))
+                    setSpeed(outP, float(30))
                     setAngle(outP , float(angle))
 
                 if self.debug: 
