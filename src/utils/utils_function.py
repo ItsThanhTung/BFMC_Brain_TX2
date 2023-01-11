@@ -18,7 +18,7 @@ def calculate_speed(angle, max_speed=0.3):
     return ratio * max_speed
 
 
-def setSpeed (outP, Speed:float):
+def setSpeed(outP, Speed:float):
     data = {
         "action": '1',
         "speed": Speed/100
@@ -26,28 +26,28 @@ def setSpeed (outP, Speed:float):
     outP.send(data)
 
 
-def setAngle (outP , Angle:float):
+def setAngle(outP , Angle:float):
     data = {
         "action": '2',
         "steerAngle": Angle
     }
     outP.send(data)
 
-def Brake (outP , Angle = 0):
+def Brake(outP , Angle = 0):
     data = {
         "action": '3',
         "brake (steerAngle)": Angle
     }
     outP.send(data)
 
-def EnablePID (outP , Enable = True):
+def EnablePID(outP , Enable = True):
     data = {
         "action": '4',
         "activate": Enable
     }
     outP.send(data)
 
-def MoveDistance (outP , Distance, Speed):
+def MoveDistance(outP , Distance, Speed):
     if(np.abs(Distance) > 1):
         print("UTIL Move ERR: Distance out of Range")
     data = {
