@@ -60,7 +60,7 @@ if __name__ == '__main__':
 
     # =============================== HARDWARE ===============================================
     camStR, camStS = Pipe(duplex = False)           # camera  ->  streamer
-    camProc = CameraProcess([],[camStS])
+    camProc = CameraProcess([],[camStS], opt["CAM_PATH"])
     allProcesses.append(camProc)
 
     
@@ -81,7 +81,7 @@ if __name__ == '__main__':
 
 
     if enableStream:
-        streamProc = CameraStreamerProcess([imagePreprocessStreamR], [])
+        streamProc = CameraStreamerProcess([imagePreprocessStreamR], [], opt["IP_ADDRESS"])
         allProcesses.append(streamProc)
 
 

@@ -1,28 +1,29 @@
 {
-    "LANE_PREPROCESSING": {
-      "sobel_x_thres": [70, 255],
-      "sobel_y_thres": [131, 250],
-      "red_thres": [85, 255],
-      "adaptive_block_size": 41,
-      "adaptive_offset": -50,
-      "dilate_kernel": 3
+  "LANE_PREPROCESSING": {
+    "sobel_x_thres": [70, 255],
+    "sobel_y_thres": [131, 250],
+    "red_thres": [85, 255],
+    "adaptive_block_size": 41,
+    "adaptive_offset": -50,
+    "dilate_kernel": 3
+  },
+  "LANE_KEEPING": {
+    "roi": {
+      "left": 0.3,
+      "right": 0.7,
+      "upper": 0.45
     },
-    "LANE_KEEPING": {
-      "roi": {
-        "left": 0.3,
-        "right": 0.7,
-        "upper": 0.45
-      },
-      "middle_point" : {"longest_distance" : 30},
-      "anchor_step" : -1,
-      "step" : -3,
-      "x_ratio" : 0.8,
-      "y_ratio" : 0.2,
-      "y_dist" : 20,
-      "x_dist" : 50,
-      "min_length" : 50,
-      "middle_point_ratio" : 0.25,
-      "angle_scale_ratio" : 0.35
-    }
-  }
-  
+    "middle_point": { "longest_distance": 30 },
+    "anchor_step": -1,
+    "step": -3,
+    "x_ratio": 0.8,
+    "y_ratio": 0.2,
+    "y_dist": 20,
+    "x_dist": 50,
+    "min_length": 50,
+    "middle_point_ratio": 0.25,
+    "angle_scale_ratio": 0.35
+  },
+  "CAM_PATH": "0",
+  "IP_ADDRESS": "127.0.0.1"
+}

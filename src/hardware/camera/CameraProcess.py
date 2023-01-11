@@ -31,7 +31,7 @@ from src.hardware.camera.CameraThread       import CameraThread
 
 class CameraProcess(WorkerProcess):
     #================================ CAMERA PROCESS =====================================
-    def __init__(self, inPs, outPs, daemon = True):
+    def __init__(self, inPs, outPs, cam_path, daemon = True):
         """Process that start the raspicam and pipes it to the output pipe, to another process.
 
         Parameters
@@ -43,6 +43,7 @@ class CameraProcess(WorkerProcess):
         daemon : bool, optional
             daemon process flag, by default True
         """
+        self.cam_path = cam_path
         super(CameraProcess,self).__init__( inPs, outPs, daemon = True)
 
     # ===================================== RUN ==========================================
@@ -55,5 +56,5 @@ class CameraProcess(WorkerProcess):
     def _init_threads(self):
         """Create the Camera Publisher thread and add to the list of threads.
         """
-        camTh = CameraThread(self.outPs) 
+        camTh = CameraThread(self.cam_path, self.outPs) 
         self.threads.append(camTh)

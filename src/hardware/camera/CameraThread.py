@@ -38,7 +38,7 @@ from src.templates.threadwithstop import ThreadWithStop
 class CameraThread(ThreadWithStop):
     
     #================================ CAMERA =============================================
-    def __init__(self, outPs):
+    def __init__(self, cam_path, outPs):
         """The purpose of this thread is to setup the camera parameters and send the result to the CameraProcess. 
         It is able also to record videos and save them locally. You can do so by setting the self.RecordMode = True.
         
@@ -58,6 +58,8 @@ class CameraThread(ThreadWithStop):
         
         #output 
         self.outPs        =   outPs
+
+        self.cam_path = cam_path
 
     #================================ RUN ================================================
     def run(self):
@@ -91,7 +93,7 @@ class CameraThread(ThreadWithStop):
         # from picamera import PiCamera
 
         # camera
-        self.camera = cv2.VideoCapture('/dev/video0') # r'D:\bosch\original\Brain\case2.avi')
+        self.camera = cv2.VideoCapture(self.cam_path)
 
         # camera settings
         # self.camera.resolution      =   (1280,960)

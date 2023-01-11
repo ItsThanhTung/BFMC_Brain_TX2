@@ -39,7 +39,7 @@ from src.templates.workerprocess import WorkerProcess
 
 class CameraStreamerProcess(WorkerProcess):
     # ===================================== INIT =========================================
-    def __init__(self, inPs, outPs):
+    def __init__(self, inPs, outPs, ip_address):
         """Process used for sending images over the network to a targeted IP via UDP protocol 
         (no feedback required). The image is compressed before sending it. 
 
@@ -53,6 +53,7 @@ class CameraStreamerProcess(WorkerProcess):
             List of output pipes (not used at the moment)
         """
         super(CameraStreamerProcess,self).__init__( inPs, outPs)
+        self.ip_address = ip_address
         
     # ===================================== RUN ==========================================
     def run(self):
@@ -75,7 +76,7 @@ class CameraStreamerProcess(WorkerProcess):
     def _init_socket(self):
         """Initialize the socket client. 
         """
-        self.serverIp   =  '192.168.31.37' # PC ip
+        self.serverIp   =  self.ip_address # PC ip
         self.port       =  2244            # com port
 
         self.client_socket = socket.socket()
