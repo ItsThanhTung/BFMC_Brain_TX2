@@ -47,6 +47,8 @@ from src.image_processing.LaneKeepingProcess import LaneKeepingProcess
 from src.image_processing.ImagePreprocessingProcess import ImagePreprocessingProcess
 from src.perception.DecisionMakingProcess import DecisionMakingProcess
 
+from src.image_processing.InterceptDetectionProcess import InterceptDetectionProcess
+
 from src.utils.utils_function import load_config_file
 
 if __name__ == '__main__':
@@ -66,20 +68,31 @@ if __name__ == '__main__':
 
     
     rcShR, rcShS   = Pipe(duplex = False)                                               # laneKeeping  ->  Serial
+
     imagePreprocessR, imagePreprocessS = Pipe(duplex = False)                           # preprocess   ->  LaneKeeping
     imagePreprocessStreamR, imagePreprocessStreamS = Pipe(duplex = False)               # preprocess   ->  Stream
+    imagePreprocessInterceptR, imagePreprocessInterceptS = Pipe(duplex = False)         # preprocess   ->  Intercept detection
+
     laneKeepingDecisionR, laneKeepingDecisionS = Pipe(duplex = False)                   # lane keeping ->  Decision making
 
+    interceptDecisionR, interceptDecisionS = Pipe(duplex = False)                       # Intercept detection ->  Decision making
 
-    imagePreprocess = ImagePreprocessingProcess([camStR], [imagePreprocessS], opt, imagePreprocessStreamS, enableStream)
+    imagePreprocess = ImagePreprocessingProcess([camStR], [imagePreprocessS, imagePreprocessInterceptS], \
+                                                                opt, imagePreprocessStreamS, enableStream)
+
     laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [laneKeepingDecisionS], opt, None, False)
-    decisionMakingProcess = DecisionMakingProcess({"LANE_KEEPING" : laneKeepingDecisionR}, {"SERIAL" : rcShS}, opt, debug=False)
+    decisionMakingProcess = DecisionMakingProcess({"LANE_KEEPING" : laneKeepingDecisionR, "INTERCEPT_DETECTION" : interceptDecisionR}, \
+                                                                                                    {"SERIAL" : rcShS}, opt, debug=False)
+
+    interceptDetectionProcess = InterceptDetectionProcess({"IMAGE_PREPROCESSING" : imagePreprocessInterceptR}, {"DECISION_MAKING" : interceptDecisionS}, \
+                                                            opt, debugP=None, debug=False)           
 
     shProc = SerialHandlerProcess([rcShR], [])
     
     allProcesses.append(imagePreprocess)
     allProcesses.append(laneKeepingProcess)
     allProcesses.append(decisionMakingProcess)
+    allProcesses.append(interceptDetectionProcess)
     allProcesses.append(shProc)
 
 
