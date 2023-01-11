@@ -59,7 +59,7 @@ if __name__ == '__main__':
     enableStream        =  True
     enableRc            =  False
 
-    opt = load_config_file("main_rc.json")
+    opt = load_config_file("main_test.json")
 
     # =============================== INITIALIZING PROCESSES =================================
     allProcesses = list()
