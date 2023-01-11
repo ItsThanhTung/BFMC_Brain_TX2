@@ -71,12 +71,12 @@ class LaneKeepingProcess(WorkerProcess):
         """
         if self._blocker.is_set():
             return
-        laneTh = Thread(name='LaneKeepingThread',target = self._run, args= (self.inPs[0], self.outPs,))
+        laneTh = Thread(name='LaneKeepingThread',target = self._run, args= (self.inPs[0], self.outPs[0]))
         laneTh.daemon = True
         self.threads.append(laneTh)
 
 
-    def _run(self, inP, outPs):
+    def _run(self, inP, outP):
         """Obtains image, applies the required image processing and computes the steering angle value. 
         
         Parameters
@@ -88,11 +88,7 @@ class LaneKeepingProcess(WorkerProcess):
 
         """
 
-        for outP in outPs:
-            EnablePID(outP)
-
         LaneKeeper = LaneKeeping(self.opt, self.debug)
-
         while True:
             try:
                 # Obtain image
@@ -102,10 +98,9 @@ class LaneKeepingProcess(WorkerProcess):
 
                 # new_angle = self.pid(angle)
                 # setSpeed(outP[0], float(speed * 0.35))
-                print(angle)
-                for outP in outPs:
-                    setSpeed(outP, float(30))
-                    setAngle(outP , float(angle))
+
+                outP.send({"speed" : speed,
+                           "angle" : angle})
 
                 if self.debug: 
                     self.debugP.send(debug_data)

@@ -50,6 +50,7 @@ from src.image_processing.LaneKeepingProcess import LaneKeepingProcess
 from src.image_processing.imageShowProcess import imageShowProcess
 from src.image_processing.ImagePreprocessingProcess import ImagePreprocessingProcess
 from src.image_processing.LaneDebuggingProcess import LaneDebuginggProcess
+from src.perception.DecisionMakingProcess import DecisionMakingProcess
 
 # opt import
 from src.utils.utils_function import load_config_file
@@ -81,9 +82,11 @@ if __name__ == '__main__':
     imagePreprocessR, imagePreprocessS = Pipe(duplex = False)                     # preprocess  ->  laneKeeping
     laneDebugR, laneDebugS = Pipe(duplex = False)                                  # laneKeeping -> laneDebug
     laneDebugShowR, laneDebugShowS = Pipe(duplex = False)                           # laneDebug -> imageShow
+    laneKeepingDecisionR, laneKeepingDecisionS = Pipe(duplex = False)               # lane keeping - decision making
 
     imagePreprocess = ImagePreprocessingProcess([camStR], [imagePreprocessShowS, imagePreprocessS], opt)
-    laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [], opt, laneDebugS, debug=True)
+    laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [laneKeepingDecisionS], opt, laneDebugS, debug=True)
+    decisionMakingProcess = DecisionMakingProcess({"LANE_KEEPING" : laneKeepingDecisionR}, [], opt, debug=True)
     laneDebugProcess = LaneDebuginggProcess([laneDebugR], [laneDebugShowS])
     imageShow = imageShowProcess([imagePreprocessShowR, laneDebugShowR], [])
     
@@ -91,6 +94,7 @@ if __name__ == '__main__':
     allProcesses.append(laneKeepingProcess)
     allProcesses.append(laneDebugProcess)
     allProcesses.append(imageShow)
+    allProcesses.append(decisionMakingProcess)
 
 
     if enableStream:
