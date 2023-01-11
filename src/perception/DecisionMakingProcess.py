@@ -2,7 +2,7 @@ from threading import Thread, Lock
 from src.templates.workerprocess import WorkerProcess
 from src.utils.utils_function import setSpeed, setAngle, EnablePID
 
-
+import time
 class DecisionMakingProcess(WorkerProcess):
     # ===================================== INIT =========================================
     data_lane_keeping_lock = Lock()
@@ -26,6 +26,7 @@ class DecisionMakingProcess(WorkerProcess):
         self.angle_lane_keeping = 0 
 
         self.debug = debug
+        self.prev_angle = 0
 
         
     # ===================================== RUN ==========================================
@@ -65,8 +66,8 @@ class DecisionMakingProcess(WorkerProcess):
                 print(e)
 
     def _run_decision_making(self):
-        if not self.debug:
-            EnablePID(self.outPs["SERIAL"])
+        # if not self.debug:
+        #     EnablePID(self.outPs["SERIAL"])
         while True:
             try:
                 self.data_lane_keeping_lock.acquire()
@@ -74,10 +75,11 @@ class DecisionMakingProcess(WorkerProcess):
                 angle_lane_keeping = self.angle_lane_keeping
                 self.data_lane_keeping_lock.release()
 
-                print("angle_lane_keeping: ", angle_lane_keeping)
-                if not self.debug:
-                    setSpeed(self.outPs["SERIAL"], float(30))
-                    setAngle(self.outPs["SERIAL"] , float(angle_lane_keeping))
+                if self.prev_angle != angle_lane_keeping:
+                    if not self.debug:
+                        # setSpeed(self.outPs["SERIAL"], float(35))
+                        setAngle(self.outPs["SERIAL"] , float(angle_lane_keeping))
+                        self.prev_angle = angle_lane_keeping
 
 
             except Exception as e:

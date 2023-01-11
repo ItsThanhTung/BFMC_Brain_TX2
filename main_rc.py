@@ -73,13 +73,13 @@ if __name__ == '__main__':
 
     imagePreprocess = ImagePreprocessingProcess([camStR], [imagePreprocessS], opt, imagePreprocessStreamS, enableStream)
     laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [laneKeepingDecisionS], opt, None, False)
-    decisionMakingProcess = DecisionMakingProcess({"LANE_KEEPING" : laneKeepingDecisionR}, {"SERIAL" : rcShS}, opt, debug=True)
+    decisionMakingProcess = DecisionMakingProcess({"LANE_KEEPING" : laneKeepingDecisionR}, {"SERIAL" : rcShS}, opt, debug=False)
 
     shProc = SerialHandlerProcess([rcShR], [])
     
     allProcesses.append(imagePreprocess)
     allProcesses.append(laneKeepingProcess)
-    allProcesses.append(DecisionMakingProcess)
+    allProcesses.append(decisionMakingProcess)
     allProcesses.append(shProc)
 
 
