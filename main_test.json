@@ -25,5 +25,11 @@
     "angle_scale_ratio": 0.35
   },
   "CAM_PATH": "0",
-  "IP_ADDRESS": "127.0.0.1"
+  "IP_ADDRESS": "127.0.0.1",
+
+  "INTERCEPT_DETECTION": {
+    "crop_ratio": 0.7,
+    "minimum_points" : 1,
+    "tolerance": 3
+  }
 }

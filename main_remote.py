@@ -51,6 +51,7 @@ from src.image_processing.imageShowProcess import imageShowProcess
 from src.image_processing.ImagePreprocessingProcess import ImagePreprocessingProcess
 from src.image_processing.LaneDebuggingProcess import LaneDebuginggProcess
 from src.perception.DecisionMakingProcess import DecisionMakingProcess
+from src.image_processing.InterceptDetectionProcess import InterceptDetectionProcess
 
 # opt import
 from src.utils.utils_function import load_config_file
@@ -70,24 +71,38 @@ if __name__ == '__main__':
     # =============================== HARDWARE ===============================================
     camStR, camStS = Pipe(duplex = False)           # camera  ->  streamer
     if enableCameraSpoof:
-        camSpoofer = CameraSpooferProcess([],[camStS],[r'D:\bosch\original\Brain\case8.avi'])
-        allProcesses.append(camSpoofer)
+        # camProc = CameraProcess([],[camStS], opt["CAM_PATH"])
+        camProc = CameraSpooferProcess([],[camStS],[opt["CAM_PATH"]])
+        allProcesses.append(camProc)
 
     else:
         camProc = CameraReceiverProcess([],[camStS])
         allProcesses.append(camProc)
     
 
-    imagePreprocessShowR, imagePreprocessShowS = Pipe(duplex = False)                   # preprocess   ->  ImageShow
-    imagePreprocessR, imagePreprocessS = Pipe(duplex = False)                           # preprocess   ->  LaneKeeping
-    laneDebugR, laneDebugS = Pipe(duplex = False)                                       # laneKeeping  ->  LaneDebug
-    laneDebugShowR, laneDebugShowS = Pipe(duplex = False)                               # laneDebug    ->  ImageShow
-    laneKeepingDecisionR, laneKeepingDecisionS = Pipe(duplex = False)                   # lane keeping ->  Decision making
+    imagePreprocessShowR, imagePreprocessShowS = Pipe(duplex = False)                   # preprocess          ->  ImageShow
+    imagePreprocessR, imagePreprocessS = Pipe(duplex = False)                           # preprocess          ->  LaneKeeping
+    imagePreprocessInterceptR, imagePreprocessInterceptS = Pipe(duplex = False)         # preprocess          ->  Intercept detection
 
-    imagePreprocess = ImagePreprocessingProcess([camStR], [imagePreprocessShowS, imagePreprocessS], opt)
+    laneDebugR, laneDebugS = Pipe(duplex = False)                                       # laneKeeping         ->  LaneDebug
+    laneKeepingDecisionR, laneKeepingDecisionS = Pipe(duplex = False)                   # lane keeping        ->  Decision making
+
+    laneDebugShowR, laneDebugShowS = Pipe(duplex = False)                               # laneDebug           ->  ImageShow
+    interceptDecisionR, interceptDecisionS = Pipe(duplex = False)                       # Intercept detection ->  Decision making
+    interceptDecisionDebugR, interceptDecisionDebugS = Pipe(duplex = False)             # Intercept detection ->  LaneDebug
+
+    imagePreprocess = ImagePreprocessingProcess([camStR], [imagePreprocessShowS, imagePreprocessS, imagePreprocessInterceptS], opt)
     laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [laneKeepingDecisionS], opt, laneDebugS, debug=True)
-    decisionMakingProcess = DecisionMakingProcess({"LANE_KEEPING" : laneKeepingDecisionR}, [], opt, debug=True)
-    laneDebugProcess = LaneDebuginggProcess([laneDebugR], [laneDebugShowS])
+
+    decisionMakingProcess = DecisionMakingProcess({"LANE_KEEPING" : laneKeepingDecisionR, "INTERCEPT_DETECTION" : interceptDecisionR}, \
+                                                                                                                    [], opt, debug=True)
+
+    interceptDetectionProcess = InterceptDetectionProcess({"IMAGE_PREPROCESSING" : imagePreprocessInterceptR}, {"DECISION_MAKING" : interceptDecisionS}, \
+                                                            opt, debugP = interceptDecisionDebugS, debug=True)
+
+
+    laneDebugProcess = LaneDebuginggProcess({"LANE_KEEPING" : laneDebugR, "INTERCEPT_DETECTION" : interceptDecisionDebugR}, [laneDebugShowS])
+
     imageShow = imageShowProcess([imagePreprocessShowR, laneDebugShowR], [])
     
     allProcesses.append(imagePreprocess)
@@ -95,6 +110,7 @@ if __name__ == '__main__':
     allProcesses.append(laneDebugProcess)
     allProcesses.append(imageShow)
     allProcesses.append(decisionMakingProcess)
+    allProcesses.append(interceptDetectionProcess)
 
 
     if enableStream:

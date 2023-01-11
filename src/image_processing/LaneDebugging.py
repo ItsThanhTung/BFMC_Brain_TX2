@@ -36,58 +36,7 @@ class LaneDebugging:
     def __init__(self):
         pass
 
-    def visualize(self, data):
-        angle = data["angle"]
-        image_size = data["image_size"]
-        lines = data["lines"]
-        left_lines = data["left_lines"]
-        right_lines = data["right_lines"]
-        filtered_left_lines = data["filtered_left_lines"]
-        filtered_right_lines = data["filtered_right_lines"]
-        error_point = data["error_point"]
-        left_average_fit, right_average_fit = data["fit_data"]
-
-
-        lines_image = np.zeros(image_size)
-        if lines is not None:
-            lines_image = display_lines(lines_image, [line[0] for line in lines], 255)
-
-
-        left_lines_image = np.zeros(image_size)
-        left_lines_image = display_lines(left_lines_image, left_lines, 255)
-        
-        right_lines_image = np.zeros(image_size)
-        right_lines_image = display_lines(right_lines_image, right_lines, 255)
-
-        filtered_left_lines_image = np.zeros(image_size)
-        filtered_left_lines_image = display_lines(filtered_left_lines_image, filtered_left_lines, 255)
-
-        filtered_right_lines_image = np.zeros(image_size)
-        filtered_right_lines_image = display_lines(filtered_right_lines_image, filtered_right_lines, 255)
-
-        angle_visualized_image = np.zeros(image_size)
-        if left_average_fit is not None:
-            x1 = get_point(left_average_fit, image_size[0])
-            x2 = get_point(left_average_fit, image_size[0] * 0.5)
-
-            angle_visualized_image = cv2.line(angle_visualized_image, (x1, image_size[0]), (x2, int(image_size[0]* 0.5)), 255, 2)
-        if right_average_fit is not None:
-            x1 = get_point(right_average_fit, image_size[0])
-            x2 = get_point(right_average_fit, image_size[0] * 0.5)
-            angle_visualized_image = cv2.line(angle_visualized_image, (x1, image_size[0]), (x2, int(image_size[0] * 0.5)), 255, 2)
-
-
-        if error_point[0] != None:
-            angle_visualized_image = cv2.line(angle_visualized_image, error_point, (int(image_size[1] * 0.5), image_size[0]), 125, 2)
-            
-        angle_visualized_image = cv2.putText(angle_visualized_image, str(int(angle)), (50, 50), cv2.FONT_HERSHEY_SIMPLEX, \
-            1, 255, 1, cv2.LINE_AA)
-
-        visualize_image = np.vstack([filtered_right_lines_image, filtered_left_lines_image, angle_visualized_image])
-
-        return lines_image, visualize_image
-
-    def visualize_v2(self, data):
+    def visualize_lane_keeping(self, data):
         angle = data["angle"]
         left_points = data["left_points"] 
         right_points = data["right_points"] 
@@ -116,4 +65,14 @@ class LaneDebugging:
 
         visualize_image = np.vstack([right_points_image, left_points_image, visualize_image])
 
-        return visualize_image
+        return {"lane_keeping_visualize_image" : visualize_image}
+
+    def visualize_intercept_detection(self, data):
+        image_size = data["image_size"]
+        max_points = data["max_points"]
+
+        point_image = np.zeros(image_size)
+        point_image = display_points(max_points, point_image)
+        return {"point_image" : point_image}
+              
+

@@ -47,10 +47,9 @@ from src.utils.camerastreamer.CameraStreamerProcess         import CameraStreame
 
 # lane keeping imports
 from src.image_processing.LaneKeepingProcess import LaneKeepingProcess
-from src.image_processing.imageShowProcess import imageShowProcess
 from src.image_processing.ImagePreprocessingProcess import ImagePreprocessingProcess
-from src.image_processing.LaneDebuggingProcess import LaneDebuginggProcess
 from src.perception.DecisionMakingProcess import DecisionMakingProcess
+from src.image_processing.InterceptDetectionProcess import InterceptDetectionProcess
 
 from src.utils.utils_function import load_config_file
 
@@ -75,19 +74,25 @@ if __name__ == '__main__':
 
     imagePreprocessR, imagePreprocessS = Pipe(duplex = False)                       # Preprocess  ->  LaneKeeping
     imagePreprocessStreamR, imagePreprocessStreamS = Pipe(duplex = False)           # Preprocess  ->  Stream
+    imagePreprocessInterceptR, imagePreprocessInterceptS = Pipe(duplex = False)     # preprocess  ->  Intercept detection
+
     laneKeepingDecisionR, laneKeepingDecisionS = Pipe(duplex = False)               # Lane keeping ->  Decision making
 
+    interceptDecisionR, interceptDecisionS = Pipe(duplex = False)                   # Intercept detection ->  Decision making
 
-
-    imagePreprocess = ImagePreprocessingProcess([camStR], [imagePreprocessS], opt, imagePreprocessStreamS, enableStream)
+    imagePreprocess = ImagePreprocessingProcess([camStR], [imagePreprocessS, imagePreprocessInterceptS], opt, imagePreprocessStreamS, enableStream)
     laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [laneKeepingDecisionS], opt, None, debug=False)
 
-    decisionMakingProcess = DecisionMakingProcess({"LANE_KEEPING" : laneKeepingDecisionR}, [], opt, debug=True)
+    decisionMakingProcess = DecisionMakingProcess({"LANE_KEEPING" : laneKeepingDecisionR, "INTERCEPT_DETECTION" : interceptDecisionR}, \
+                                                                                                                    [], opt, debug=True)
 
+    interceptDetectionProcess = InterceptDetectionProcess({"IMAGE_PREPROCESSING" : imagePreprocessInterceptR}, {"DECISION_MAKING" : interceptDecisionS}, \
+                                                            opt, debugP=None, debug=False)                                                                                                                   
     
     allProcesses.append(imagePreprocess)
     allProcesses.append(laneKeepingProcess)
     allProcesses.append(decisionMakingProcess)
+    allProcesses.append(interceptDetectionProcess)
 
 
 

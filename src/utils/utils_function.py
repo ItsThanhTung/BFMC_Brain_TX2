@@ -83,3 +83,67 @@ def display_points(points, image):
             image = cv2.circle(image, point, 1, 255, 2)
     
     return image
+
+
+def connect_lines_y_axis(lines, tolerance=0):
+    min_index = np.argsort(lines[:, 1])
+
+    sorted_lines = lines[min_index]
+
+    min_y = sorted_lines[0, 1]
+    max_y = sorted_lines[0, 3]
+    max_length = max_y - min_y
+    current_max_lines = [sorted_lines[0]]
+    max_lines = current_max_lines
+    
+    for line in sorted_lines[1:]:
+        line_min_y = min(line[1], line[3])
+        line_max_y = max(line[1], line[3])
+        if line_min_y < max_y + tolerance:
+            if line_max_y > max_y:
+                max_y = line_max_y
+                current_max_lines.append(line)
+                if max_y - min_y > max_length:
+                    max_length = max_y - min_y
+                    max_lines = current_max_lines
+            
+        else:
+            min_y = line_min_y
+            max_y = line_max_y
+            current_max_lines = [line]
+            if max_y - min_y > max_length:
+                max_length =  max_y - min_y
+                max_lines = current_max_lines
+
+    return np.array(max_lines), max_length
+
+
+def connect_lines_x_axis(lines, tolerance=0):
+    min_index = np.argsort(lines[:, 0])
+
+    sorted_lines = lines[min_index]
+
+    min_x = sorted_lines[0, 0]
+    max_x = sorted_lines[0, 2]
+    max_length = max_x - min_x
+    current_max_lines = [sorted_lines[0]]
+    max_lines = current_max_lines
+
+    for line in sorted_lines[1:]:
+        if line[0] < max_x + tolerance:
+            if line[2] > max_x:
+                max_x = line[2]
+                current_max_lines.append(line)
+                if max_x - min_x > max_length:
+                    max_length = max_x - min_x
+                    max_lines = current_max_lines
+            
+        else:
+            min_x = line[0]
+            max_x = line[2]
+            current_max_lines = [line]
+            if max_x - min_x > max_length:
+                max_length =  max_x - min_x
+                max_lines = current_max_lines
+
+    return np.array(max_lines), max_length

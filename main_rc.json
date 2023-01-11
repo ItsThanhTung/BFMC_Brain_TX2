@@ -27,5 +27,11 @@
     "angle_scale_ratio": 0.35
   },
   "CAM_PATH": "/dev/video0",
-  "IP_ADDRESS": "192.168.31.37"
+  "IP_ADDRESS": "192.168.31.37",
+
+  "INTERCEPT_DETECTION": {
+    "crop_ratio": 0.7,
+    "minimum_points" : 1,
+    "tolerance": 3
+  }
 }

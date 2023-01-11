@@ -6,6 +6,7 @@ import time
 class DecisionMakingProcess(WorkerProcess):
     # ===================================== INIT =========================================
     data_lane_keeping_lock = Lock()
+    data_intercept_detection_lock = Lock()
     def __init__(self, inPs, outPs, opt, debug):
         """Process used for sending images over the network to a targeted IP via UDP protocol 
         (no feedback required). The image is compressed before sending it. 
@@ -25,6 +26,9 @@ class DecisionMakingProcess(WorkerProcess):
         self.speed_lane_keeping = 0 
         self.angle_lane_keeping = 0 
 
+        self.max_intercept_length = 0
+        self.intercept_gap = float("inf")
+
         self.debug = debug
         self.prev_angle = 0
 
@@ -43,12 +47,15 @@ class DecisionMakingProcess(WorkerProcess):
             return
         
         readDataLaneKeepingTh = Thread(name='ReadDataLaneKeeping',target = self._read_data_lane_keeping)            
+        readDataInterceptDetectionTh = Thread(name='ReadDataInterceptDetection',target = self._read_data_intercept_detection)     
         decisionMakingTh = Thread(name='DecisionMaking',target = self._run_decision_making)     
 
         decisionMakingTh.daemon = True
         readDataLaneKeepingTh.daemon = True
+        readDataInterceptDetectionTh.daemon = True
         self.threads.append(decisionMakingTh)
         self.threads.append(readDataLaneKeepingTh)
+        self.threads.append(readDataInterceptDetectionTh)
         
     def _read_data_lane_keeping(self):
          while True:
@@ -65,6 +72,19 @@ class DecisionMakingProcess(WorkerProcess):
                 print("Decision Making - read data lane keeping thread error:")
                 print(e)
 
+    def _read_data_intercept_detection(self):
+         while True:
+            try:
+                max_intercept_length, intercept_gap = self.inPs["INTERCEPT_DETECTION"].recv()
+                self.data_intercept_detection_lock.acquire()
+                self.max_intercept_length = max_intercept_length
+                self.intercept_gap = intercept_gap
+                self.data_intercept_detection_lock.release()
+
+            except Exception as e:
+                print("Decision Making - read data intercept detection thread error:")
+                print(e)
+
     def _run_decision_making(self):
         # if not self.debug:
         #     EnablePID(self.outPs["SERIAL"])
@@ -75,6 +95,14 @@ class DecisionMakingProcess(WorkerProcess):
                 angle_lane_keeping = self.angle_lane_keeping
                 self.data_lane_keeping_lock.release()
 
+                self.data_intercept_detection_lock.acquire()
+                max_intercept_length = self.max_intercept_length
+                intercept_gap = self.intercept_gap
+                self.data_intercept_detection_lock.release()
+
+                if max_intercept_length != 0:
+                    print("max_intercept_length: ", max_intercept_length, " intercept_gap: ", intercept_gap)
+                    
                 if self.prev_angle != angle_lane_keeping:
                     if not self.debug:
                         # setSpeed(self.outPs["SERIAL"], float(35))

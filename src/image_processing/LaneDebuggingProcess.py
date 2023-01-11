@@ -66,12 +66,12 @@ class LaneDebuginggProcess(WorkerProcess):
         """
         if self._blocker.is_set():
             return
-        laneDebugTh = Thread(name='LaneDebuggingThread',target = self._run, args= (self.inPs[0], self.outPs))
+        laneDebugTh = Thread(name='LaneDebuggingThread',target = self._run)
         laneDebugTh.daemon = True
         self.threads.append(laneDebugTh)
 
 
-    def _run(self, inP, outP):
+    def _run(self):
         """Obtains image, applies the required image processing and computes the steering angle value. 
         
         Parameters
@@ -86,11 +86,16 @@ class LaneDebuginggProcess(WorkerProcess):
         while True:
             try:
                 # Obtain image
-                data = inP.recv()
-                visualize_image = LaneDebugger.visualize_v2(data)
+                data_lane_keeping = self.inPs["LANE_KEEPING"].recv()
+                data_intercept_detection = self.inPs["INTERCEPT_DETECTION"].recv()
+                lane_keeping_visualize_image = LaneDebugger.visualize_lane_keeping(data_lane_keeping)
 
-                for out in outP:
-                    out.send({"visualize_image" : visualize_image})
+                intercept_visualize_image = LaneDebugger.visualize_intercept_detection(data_intercept_detection)
+
+                lane_keeping_visualize_image.update(intercept_visualize_image)
+
+                for out in self.outPs:
+                    out.send(lane_keeping_visualize_image)
 
 
             except Exception as e:
