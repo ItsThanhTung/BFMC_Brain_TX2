@@ -45,6 +45,7 @@ from src.utils.camerastreamer.CameraStreamerProcess         import CameraStreame
 # lane keeping imports
 from src.image_processing.LaneKeepingProcess import LaneKeepingProcess
 from src.image_processing.ImagePreprocessingProcess import ImagePreprocessingProcess
+from src.perception.DecisionMakingProcess import DecisionMakingProcess
 
 from src.utils.utils_function import load_config_file
 
@@ -59,25 +60,27 @@ if __name__ == '__main__':
     allProcesses = list()
 
     # =============================== HARDWARE ===============================================
-    camStR, camStS = Pipe(duplex = False)           # camera  ->  streamer
+    camStR, camStS = Pipe(duplex = False)                                               # camera  ->  streamer
     camProc = CameraProcess([],[camStS], opt["CAM_PATH"])
     allProcesses.append(camProc)
 
     
-    rcShR, rcShS   = Pipe(duplex = False)                               # laneKeeping  ->  Serial
-    imagePreprocessShowR, imagePreprocessShowS = Pipe(duplex = False)           # preprocess  ->  imageShow
-    imagePreprocessR, imagePreprocessS = Pipe(duplex = False)                     # preprocess  ->  laneKeeping
-    imagePreprocessStreamR, imagePreprocessStreamS = Pipe(duplex = False)           # preprocess  ->  stream
+    rcShR, rcShS   = Pipe(duplex = False)                                               # laneKeeping  ->  Serial
+    imagePreprocessR, imagePreprocessS = Pipe(duplex = False)                           # preprocess   ->  LaneKeeping
+    imagePreprocessStreamR, imagePreprocessStreamS = Pipe(duplex = False)               # preprocess   ->  Stream
+    laneKeepingDecisionR, laneKeepingDecisionS = Pipe(duplex = False)                   # lane keeping ->  Decision making
 
 
     imagePreprocess = ImagePreprocessingProcess([camStR], [imagePreprocessS], opt, imagePreprocessStreamS, enableStream)
-    laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [rcShS], opt, None, False)
+    laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [laneKeepingDecisionS], opt, None, False)
+    decisionMakingProcess = DecisionMakingProcess({"LANE_KEEPING" : laneKeepingDecisionR}, {"SERIAL" : rcShS}, opt, debug=True)
+
     shProc = SerialHandlerProcess([rcShR], [])
     
     allProcesses.append(imagePreprocess)
     allProcesses.append(laneKeepingProcess)
+    allProcesses.append(DecisionMakingProcess)
     allProcesses.append(shProc)
-
 
 
     if enableStream:
@@ -100,8 +103,6 @@ if __name__ == '__main__':
     for proc in allProcesses:
         proc.daemon = True
         proc.start()
-
-
 
 
     # ===================================== STAYING ALIVE ====================================

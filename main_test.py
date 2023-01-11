@@ -73,13 +73,10 @@ if __name__ == '__main__':
 
     
 
-    # imagePreprocessShowR, imagePreprocessShowS = Pipe(duplex = False)           # preprocess  ->  imageShow
-    imagePreprocessR, imagePreprocessS = Pipe(duplex = False)                     # preprocess  ->  laneKeeping
-    imagePreprocessStreamR, imagePreprocessStreamS = Pipe(duplex = False)           # preprocess  ->  stream
+    imagePreprocessR, imagePreprocessS = Pipe(duplex = False)                       # Preprocess  ->  LaneKeeping
+    imagePreprocessStreamR, imagePreprocessStreamS = Pipe(duplex = False)           # Preprocess  ->  Stream
+    laneKeepingDecisionR, laneKeepingDecisionS = Pipe(duplex = False)               # Lane keeping ->  Decision making
 
-    laneKeepingDecisionR, laneKeepingDecisionS = Pipe(duplex = False)
-    # laneDebugR, laneDebugS = Pipe(duplex = False)                                  # laneKeeping -> laneDebug
-    # laneDebugShowR, laneDebugShowS = Pipe(duplex = False)                           # laneDebug -> imageShow
 
 
     imagePreprocess = ImagePreprocessingProcess([camStR], [imagePreprocessS], opt, imagePreprocessStreamS, enableStream)

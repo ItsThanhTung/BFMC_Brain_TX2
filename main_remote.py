@@ -78,11 +78,11 @@ if __name__ == '__main__':
         allProcesses.append(camProc)
     
 
-    imagePreprocessShowR, imagePreprocessShowS = Pipe(duplex = False)           # preprocess  ->  imageShow
-    imagePreprocessR, imagePreprocessS = Pipe(duplex = False)                     # preprocess  ->  laneKeeping
-    laneDebugR, laneDebugS = Pipe(duplex = False)                                  # laneKeeping -> laneDebug
-    laneDebugShowR, laneDebugShowS = Pipe(duplex = False)                           # laneDebug -> imageShow
-    laneKeepingDecisionR, laneKeepingDecisionS = Pipe(duplex = False)               # lane keeping - decision making
+    imagePreprocessShowR, imagePreprocessShowS = Pipe(duplex = False)                   # preprocess   ->  ImageShow
+    imagePreprocessR, imagePreprocessS = Pipe(duplex = False)                           # preprocess   ->  LaneKeeping
+    laneDebugR, laneDebugS = Pipe(duplex = False)                                       # laneKeeping  ->  LaneDebug
+    laneDebugShowR, laneDebugShowS = Pipe(duplex = False)                               # laneDebug    ->  ImageShow
+    laneKeepingDecisionR, laneKeepingDecisionS = Pipe(duplex = False)                   # lane keeping ->  Decision making
 
     imagePreprocess = ImagePreprocessingProcess([camStR], [imagePreprocessShowS, imagePreprocessS], opt)
     laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [laneKeepingDecisionS], opt, laneDebugS, debug=True)
