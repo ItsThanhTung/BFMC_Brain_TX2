@@ -56,177 +56,6 @@ class LaneKeeping:
         return masked_image
 
 
-    def filter_lines(self, lines, image_size):
-        left_lines = []
-        right_lines = []
-        horizontal_lines = []
-        
-        if lines is not None:
-            middle_y = image_size[1]
-
-            for line in lines:
-                line = line[0]
-                fit = np.polyfit([line[0],line[2]+1], [line[1],line[3]+1], 1)
-                slope = fit[0]
-
-                if np.abs(slope) < 0.3:
-                    if abs(line[2] - line[0]) > image_size[1] * self.opt["filter_lines"]["hslope"]: 
-                        horizontal_lines.append(line)
-                else:
-                    if max(line[0], line[2]) <= middle_y * self.opt["filter_lines"]["left_bound"]: #and slope < 0:  # or min(line[0], line[2]) <= middle_y * 0.3:
-                        left_lines.append(line)
-                    elif (min(line[0], line[2]) > middle_y * self.opt["filter_lines"]["right_bound"]): # and slope > 0: #or max(line[0], line[2]) > middle_y * 0.7:
-                        right_lines.append(line)
-        
-        return np.array(left_lines), np.array(right_lines), np.array(horizontal_lines)
-
-
-    def is_length_enough(self, lines, img_size):
-        if lines.shape[0] == 0:
-            return lines
-
-        max_x = max(np.max(lines[:,0]), np.max(lines[:,2]))
-        min_x = min(np.min(lines[:,0]), np.min(lines[:,2]))
-
-        max_y = max(np.max(lines[:,1]), np.max(lines[:,3]))
-        min_y = min(np.min(lines[:,1]), np.min(lines[:,3]))
-
-        if np.abs(max_x - min_x) > self.opt["limited_length"]["x"] * img_size[1] \
-                and np.abs(max_y - min_y) > self.opt["limited_length"]["y"] * img_size[0]:
-            return lines
-
-        else:
-            return np.array([])
-
-    
-    def average_slope_intercept(self, lines):
-        fit_point = []
-        dist = []
-
-        for line in lines:
-            x1, y1, x2, y2 = line
-            fit = np.polyfit([x1,x2+1], [y1,y2+1], 1)
-            distance = ((y2-y1) **2 + (x2-x1)**2)**0.5
-            slope = fit[0]
-            intercept = fit[1]
-            fit_point.append((slope, intercept))
-            dist.append(distance)
-
-        if len(fit_point) > 0:
-            fit_average  = np.average(fit_point, weights= dist,axis=0)
-        else:
-            fit_average = None
-
-        return fit_average
-
-
-    def get_farest_point(self, lines):
-        if lines is not None:
-            all_x_point = []
-            for line in lines:
-                _, y1, _, y2 = line
-                all_x_point.append(min(y1, y2))
-            return min(all_x_point) if len(all_x_point) != 0 else 0
-        
-        return 0
-
-    
-    def get_point(self, y, fit):
-        if fit is not None:
-            slope = fit[0]
-            intercept = fit[1]
-            x = int((y - intercept)/slope)
-            return [x, y]
-        
-        return None
-
-
-    def calculate_angle(self, left_lines, right_lines, image_size):
-        h = image_size[0]
-        w = image_size[1]
-        fit_average_left = self.average_slope_intercept(left_lines)
-        fit_average_right = self.average_slope_intercept(right_lines)
-
-        farest_point_left = self.get_farest_point(left_lines)
-        farest_point_right = self.get_farest_point(right_lines)
-
-        min_farest_point = max(farest_point_left, farest_point_right)
-        left_point = self.get_point(min_farest_point, fit_average_left)
-        right_point = self.get_point(min_farest_point, fit_average_right)
-        middle_point = None
-
-        if left_point is None and right_point is not None:
-            if self.prev_state == 1:
-                print('right  - left')
-                angle = 23
-                state = self.prev_state
-            else:
-                state = -1
-                print("left")
-                middle_point = (right_point[0] + 0) //2
-                angle = -23
-
-        elif left_point is not None and right_point is None:
-            if self.prev_state == -1:
-                print('left  - right')
-                angle = -23
-                state = self.prev_state
-            else:
-                state = 1
-                middle_point = (left_point[0] + w - 1) //2
-                angle = 23
-        
-        elif left_point is None and right_point is None:
-            state = self.prev_state
-            angle = self.prev_angle
-
-        else:
-            state = 0
-            middle_point = (left_point[0] + right_point[0]) //2
-            dx = w//2 - middle_point
-            if dx != 0:
-                dy = h - min_farest_point
-                angle =  math.atan(dy/dx) * 180 / math.pi
-                if angle >= 0:
-                    angle = - (90 - angle)
-                else:
-                    angle = 90 +  angle
-            else:
-                angle = 0
-
-        return angle, state, [middle_point, min_farest_point], [fit_average_left, fit_average_right]
-
-
-    def lane_keeping(self, edge_image):
-        roi_edge_image = self.region_of_interest(edge_image)
-        lines = cv2.HoughLinesP(roi_edge_image, rho=4, theta=np.pi/60, threshold=50, lines=np.array([]), minLineLength= 10, maxLineGap=10)
-        left_lines, right_lines, _ = self.filter_lines(lines, roi_edge_image.shape)
-
-        filtered_left_lines = self.is_length_enough(left_lines, roi_edge_image.shape)
-        filtered_right_lines = self.is_length_enough(right_lines, roi_edge_image.shape)
-
-        angle, state, error_point, fit_data = self.calculate_angle(filtered_left_lines, filtered_right_lines, roi_edge_image.shape)
-        angle = np.clip(angle, -23, 23)
-        speed = calculate_speed(angle, max_speed = 100)
-
-        self.prev_state  = state
-        self.angle  = angle
-
-        if self.debug:
-            debug_data = {"angle": angle,
-                          "image_size": roi_edge_image.shape,
-                          "lines" : lines,
-                          "left_lines" : left_lines,
-                          "right_lines" : right_lines,
-                          "filtered_left_lines" : filtered_left_lines,
-                          "filtered_right_lines" : filtered_right_lines,
-                          "error_point" : error_point,
-                          "fit_data" : fit_data}
-            
-            return speed, angle, state, debug_data
-
-        return speed, angle, state, None
-
     def convert_line_to_point(self, lines):
         if lines.shape[0] == 0:
             return None
@@ -239,56 +68,53 @@ class LaneKeeping:
             return np.array(points)
 
 
-    def find_anchor(self, white_pixel_idx):
-        white_pixel_idx = white_pixel_idx[np.argsort(white_pixel_idx[::, 0])]
-
-        return white_pixel_idx[::-1]
-
-    def get_middle_point(self, points, get_closet=False):
+    def get_middle_point(self, points):
         if len(points) > 0:
             points = np.array(points)
             mean_x = np.mean(points[:, 0])
-            anchor_idx = np.argmin(np.abs(mean_x - points[:, 0]))
+            anchor_idx = np.argmin(np.abs(mean_x - points[:, 0]))                           # find close point to the mean
 
-            middle_point = points[anchor_idx, :]
-
-            
-            middle_points = points[np.abs(middle_point[0] - points[:, 0]) < 30]
-            middle_point = np.mean(middle_points, axis = 0, dtype=np.int32) 
-            if get_closet:
-                return middle_point, middle_points
-            return middle_point, None
+            middle_point = points[anchor_idx, :]                                
+            middle_points = points[np.abs(middle_point[0] - points[:, 0]) < 30]             # For point have the distance to the mean point > 30, discard it
+            middle_point = np.mean(middle_points, axis = 0, dtype=np.int32)                 # The middle point is calculated by the mean of the remaining point
+            return middle_point, middle_points
         
         else:
             return None, None
 
     def find_left_right_lanes(self, roi_edge_image):
-        white_pixel_idx = np.argwhere(roi_edge_image == 255)[:, ::-1]
-        white_pixel_idx  = self.find_anchor(white_pixel_idx)
-        
-        white_map = defaultdict(list)
-        for point in white_pixel_idx:
-            white_map[point[1]].append(point)
+        image_height = roi_edge_image.shape[0]
+        image_width = roi_edge_image.shape[1]
 
-        left_anchor = []
-        right_anchor = []
-        for anchor_height in range(239, 0, -1):
+        white_pixel_idx = np.argwhere(roi_edge_image == 255)[:, ::-1]                       # Get index of all white pixel
+        white_pixel_idx  = white_pixel_idx[np.argsort(white_pixel_idx[::, 0])][::-1]        # sort all index in descending order of image's height
+        
+        white_map = defaultdict(list)                                                       # Create dict map where key: point_x[0] value                                    
+        for point in white_pixel_idx:                                                       # value is the list of all pixel have the same point_x[0] 
+            white_map[point[1]].append(point)                                               # [point_1, point_2, point_3,...]
+
+        left_anchor = []                                                                    # The lowest pixel of left lane
+        right_anchor = []                                                                   # The lowest pixel of right lane
+
+        # Find the anchor of left or right line/ depend on which lane is lower
+        for anchor_height in range(image_height-1, 0, self.opt["anchor_step"]):
             if white_map[anchor_height] != []:
                 points = white_map[anchor_height]
                 for point in points:
-                    if point[0] < 160:
+                    if point[0] < image_width//2:                      
                         left_anchor.append(point)
-                    elif point[0] > 160:
+                    elif point[0] > image_width//2:
                         right_anchor.append(point)
                         
                 if len(left_anchor) > 0 or len(right_anchor) > 0:
                     break
         
+        # For all achor points that have the same height (point[0]), we find the middle point (point[1])
         left_anchor, _ = self.get_middle_point(left_anchor)
         right_anchor, _ = self.get_middle_point(right_anchor)
 
-        if left_anchor is None:
-            left_anchor = [-1, anchor_height]
+        if left_anchor is None:                                                             # If we could not find left or right point, init the dummy point
+            left_anchor = [-1, anchor_height]               
 
         if right_anchor is None:
             right_anchor = [320, anchor_height]
@@ -296,7 +122,10 @@ class LaneKeeping:
         left_points = []
         right_points = []
 
-        for height in range(anchor_height -1, 120, -3):
+        # From anchor height, we traverse back to the top of the image
+        # we separate left and right point based on the distance to left anchor and right anchor.
+
+        for height in range(anchor_height -1, 120, self.opt["step"]):
             if white_map[height] != []:
                 if right_anchor[0] == 320:
                     right_anchor[1] = height
@@ -309,26 +138,30 @@ class LaneKeeping:
                 current_right_anchor = []
 
                 for point in points:
-                    left_offset = abs(point[0] - left_anchor[0]) * 0.8 + abs(point[1] - left_anchor[1]) * 0.2
-                    right_offset = abs(point[0] - right_anchor[0]) * 0.8 + abs(point[1] - right_anchor[1]) * 0.2
+                    # calculate the distance to the left anchor and to the right anchor
+                    left_offset = abs(point[0] - left_anchor[0]) * self.opt["x_ratio"] \
+                                    + abs(point[1] - left_anchor[1]) * self.opt["y_ratio"]    
+                    
+                    right_offset = abs(point[0] - right_anchor[0]) * self.opt["x_ratio"] \
+                                    + abs(point[1] - right_anchor[1]) * self.opt["y_ratio"]
 
-                    if left_offset < right_offset and abs(point[1] - left_anchor[1]) < 20:
-                        if left_anchor[0] != -1 and abs(point[0] - left_anchor[0]) < 50:
+                    if left_offset < right_offset and abs(point[1] - left_anchor[1]) < self.opt["y_dist"]:
+                        if left_anchor[0] != -1 and abs(point[0] - left_anchor[0]) < self.opt["x_dist"]:                # if anchor is not dummy anchor, we compare x_axis
                             current_left_anchor.append(point)
                         else:
                             current_left_anchor.append(point)
 
-                    elif left_offset > right_offset and abs(point[1] - right_anchor[1]) < 20:
-                        if right_anchor[0] != 320 and abs(point[0] - right_anchor[0]) < 50:
+                    elif left_offset > right_offset and abs(point[1] - right_anchor[1]) < self.opt["y_dist"]:
+                        if right_anchor[0] != 320 and abs(point[0] - right_anchor[0]) < self.opt["x_dist"]:             # if anchor is not dummy anchor, we compare x_axis
                             current_right_anchor.append(point)
                         else:
                             current_right_anchor.append(point)
 
-                left_middle_point, left_middle_points = self.get_middle_point(current_left_anchor, True)
-                right_middle_point, right_middle_points = self.get_middle_point(current_right_anchor, True)
+                # find the middle point
+                left_middle_point, left_middle_points = self.get_middle_point(current_left_anchor)
+                right_middle_point, right_middle_points = self.get_middle_point(current_right_anchor)
 
-
-                ## update 
+                # update the new anchor point for left and right lane 
                 if left_middle_point is not None:
                     left_anchor = left_middle_point
                     for point in left_middle_points:
@@ -341,64 +174,80 @@ class LaneKeeping:
 
         return np.array(left_points), np.array(right_points)
 
-    def fit_2d(self, fit, pointX):
+
+    def fit_2d(self, fit, pointX):                                                          # F(x) = ax^2 + bx + c, fit = [a, b, c]
         pointY =  int(fit[2] + fit[1] * pow(pointX, 1) + fit[0] * pow(pointX, 2))
         return pointY
+    
 
-    def lane_keeping_v2(self, edge_image):
+    def lane_keeping(self, edge_image):
         image_size = edge_image.shape
         h = image_size[0]
         w = image_size[1]
 
         roi_edge_image = self.region_of_interest(edge_image)
-        left_points, right_points = self.find_left_right_lanes(roi_edge_image)
-
-        left_point_x, left_point_y = 0, 0
+        left_points, right_points = self.find_left_right_lanes(roi_edge_image)              # Get left lane and right lane
+        
+        # Init dummy variables
+        left_point_x, left_point_y = 0, 0           
         right_point_x, right_point_y = 0, w - 1
         point_y = 0
         
-        if len(left_points) != 0:
+        if len(left_points) != 0:                                                           # If there is a left lane
             left_points = np.array(left_points)
-            if abs(np.max(left_points[:, 1]) - np.min(left_points[:, 1])) > 50:
-                left_points = left_points
-            else:
-                left_points = []
 
-        if len(right_points) != 0:
-            right_points = np.array(right_points)
-            if abs(np.max(right_points[:, 1]) - np.min(right_points[:, 1])) > 50:
-                right_points = right_points
+            # If the height of lane is enough
+            if abs(np.max(left_points[:, 1]) - np.min(left_points[:, 1])) > self.opt["min_length"]:             
+                left_points = left_points                                                   # Keep the left lane
             else:
-                right_points = []
+                left_points = []                                                            # Else remove short left lane
 
-        if len(left_points) == 0 and len(right_points) == 0:
-            state = self.prev_state
+        if len(right_points) != 0:                                                          # If there is a right lane
+            right_points = np.array(right_points)                       
+
+            # If the height of lane is enough
+            if abs(np.max(right_points[:, 1]) - np.min(right_points[:, 1])) > self.opt["min_length"]:           
+                right_points = right_points                                                 # Keep the right lane
+            else:
+                right_points = []                                                           # Else remove short right lane
+
+        if len(left_points) == 0 and len(right_points) == 0:                                # If there is no lane
+            state = self.prev_state                                                         # Remain the same angle and the same state
             angle = self.prev_angle
             middle_point_x = w//2
 
-        elif len(left_points) == 0 and len(right_points) != 0:
-            state = -1
-            angle = -23
+        elif len(left_points) == 0 and len(right_points) != 0:                              # If there is only right lane
+            state = -1                                                                      # Turn max angle to the left                   
+            angle = -23                                                                     # Assign state = -1 means missing left lane   
             middle_point_x = 0
         
-        elif len(left_points) != 0 and len(right_points) == 0:
-            state = 1
-            angle = 23
+        elif len(left_points) != 0 and len(right_points) == 0:                              # If there is only left lane
+            state = 1                                                                       # Turn max angle to the right   
+            angle = 23                                                                      # Assign state = 1 means missing right lane   
             middle_point_x = w-1
         
         else:
-            state = 0
-            left_line = np.polyfit(left_points[:,1], left_points[:, 0], 2)
-            left_point_y = int(abs(np.max(left_points[:, 1]) - np.min(left_points[:, 1])) * 0.25 + np.min(left_points[:, 1]))
-            right_line = np.polyfit(right_points[:,1], right_points[:, 0], 2)
-            right_point_y = int(abs(np.max(right_points[:, 1]) - np.min(right_points[:, 1])) * 0.25 + np.min(right_points[:, 1]))
+            state = 0                                                                       # If there are 2 lanes, Assign state = 0 means fully visible
+            left_line = np.polyfit(left_points[:,1], left_points[:, 0], 2)                  # Find the 2d polynomial function for all left point
+            
+            # Get 1st quartile point between max height pixel and min height pixel in left lane
+            left_point_y = int(abs(np.max(left_points[:, 1]) - np.min(left_points[:, 1])) * self.opt["middle_point_ratio"] \
+                                                                                                + np.min(left_points[:, 1]))
 
+            right_line = np.polyfit(right_points[:,1], right_points[:, 0], 2)               # Find the 2d polynomial function for all right point
+            # Get 1st quartile point between max height pixel and min height pixel in left lane
+            right_point_y = int(abs(np.max(right_points[:, 1]) - np.min(right_points[:, 1])) * self.opt["middle_point_ratio"] \
+                                                                                                + np.min(right_points[:, 1]))
+
+            # Get the middle height between left_point_y and right_point_y
             point_y = int((left_point_y  + right_point_y)/2)
+
+            # Find the x value of 2 1st quartile point from left, right, and the middle point
             left_point_x = self.fit_2d(left_line, left_point_y)
             right_point_x = self.fit_2d(right_line, right_point_y)
             middle_point_x = int((left_point_x + right_point_x)/2)
 
-            dx = w//2 - middle_point_x
+            dx = w//2 - middle_point_x                                                      # Calculate error angle 
             if dx != 0:
                 dy = h - point_y
                 angle =  math.atan(dy/dx) * 180 / math.pi
@@ -408,10 +257,11 @@ class LaneKeeping:
                     angle = 90 +  angle
             else:
                 angle = 0
-            angle = angle * 0.35
+
+            angle = angle * self.opt["angle_scale_ratio"]                                   # Scale angle to the small value to maintain the stability    
             
-        angle = np.clip(angle, -23, 23)
-        speed = calculate_speed(angle, max_speed = 100)
+        angle = np.clip(angle, -23, 23)                                                     
+        speed = calculate_speed(angle, max_speed = 100)                                     # Calculate speed using gaussian function
 
         if self.debug:
             debug_data = {"angle": angle,

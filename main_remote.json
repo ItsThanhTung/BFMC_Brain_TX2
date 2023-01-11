@@ -13,14 +13,15 @@
       "right": 0.7,
       "upper": 0.45
     },
-    "filter_lines": {
-      "hslope": 0.075,
-      "left_bound": 0.5,
-      "right_bound": 0.5
-    },
-    "limited_length": {
-      "x": 0.05,
-      "y": 0.1
-    }
+    "middle_point" : {"longest_distance" : 30},
+    "anchor_step" : -1,
+    "step" : -3,
+    "x_ratio" : 0.8,
+    "y_ratio" : 0.2,
+    "y_dist" : 20,
+    "x_dist" : 50,
+    "min_length" : 50,
+    "middle_point_ratio" : 0.25,
+    "angle_scale_ratio" : 0.35
   }
 }

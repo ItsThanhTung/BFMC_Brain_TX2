@@ -27,7 +27,7 @@ while vid.isOpened():
     if ret:
         frame = cv2.resize(frame, (320, 240))
         new_combined_binary, sybinary, image_ff = ImagePreprocessor.process_image(frame)
-        speed, angle, state, debug_data = LaneKeeper.lane_keeping_v2(new_combined_binary)
+        speed, angle, state, debug_data = LaneKeeper.lane_keeping(new_combined_binary)
 
         left_points = debug_data["left_points"] 
         right_points = debug_data["right_points"] 

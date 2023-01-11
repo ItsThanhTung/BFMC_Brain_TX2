@@ -66,9 +66,9 @@ if __name__ == '__main__':
 
     # =============================== HARDWARE ===============================================
     camStR, camStS = Pipe(duplex = False)           # camera  ->  streamer
-    # camSpoofer = CameraSpooferProcess([],[camStS],[r'D:\bosch\lane_keeping\video.avi'])
-    camProc = CameraProcess([],[camStS])
-    allProcesses.append(camProc)
+    camSpoofer = CameraSpooferProcess([],[camStS],[r'D:\bosch\lane_keeping\video.avi'])
+    # camProc = CameraProcess([],[camStS])
+    allProcesses.append(camSpoofer)
 
     
 

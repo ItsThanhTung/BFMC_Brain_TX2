@@ -98,7 +98,7 @@ class LaneKeepingProcess(WorkerProcess):
                 # Obtain image
                 data = inP.recv()
                 edge_image = data["new_combined_binary"]
-                speed, angle, state, debug_data = LaneKeeper.lane_keeping_v2(edge_image) 
+                speed, angle, state, debug_data = LaneKeeper.lane_keeping(edge_image) 
 
                 # new_angle = self.pid(angle)
                 # setSpeed(outP[0], float(speed * 0.35))
