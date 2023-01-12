@@ -30,6 +30,7 @@ import io
 import numpy as np
 import time
 import cv2
+import imutils
 
 
 from src.templates.threadwithstop import ThreadWithStop
@@ -126,7 +127,8 @@ class CameraThread(ThreadWithStop):
             
             ret, data = self.camera.read()
             data = cv2.resize(data, (320, 240))
-            # cv2.imshow("data", data)
+            data = imutils.rotate(data, -5)
+            # cv2.ims=how("data", data)
             # cv2.waitKey(1)
 
             # output image and time stamp

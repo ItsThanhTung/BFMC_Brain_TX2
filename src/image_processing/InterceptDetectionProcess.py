@@ -84,7 +84,6 @@ class InterceptDetectionProcess(WorkerProcess):
                 data = self.inPs["IMAGE_PREPROCESSING"].recv()
                 image = data["sybinary"]
                 max_intercept_length, debug_data = intercept_detector.detect(image)
-                print("hererere")
                 self.outPs["DECISION_MAKING"].send(max_intercept_length)
 
                 if self.debug:

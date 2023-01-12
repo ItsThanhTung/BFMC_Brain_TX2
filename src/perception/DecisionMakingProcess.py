@@ -31,6 +31,7 @@ class DecisionMakingProcess(WorkerProcess):
 
         self.debug = debug
         self.prev_angle = 0
+        self.is_stop = False
 
         
     # ===================================== RUN ==========================================
@@ -86,8 +87,8 @@ class DecisionMakingProcess(WorkerProcess):
                 print(e)
 
     def _run_decision_making(self):
-        # if not self.debug:
-        #     EnablePID(self.outPs["SERIAL"])
+        #if not self.debug:
+        EnablePID(self.outPs["SERIAL"])
         while True:
             try:
                 self.data_lane_keeping_lock.acquire()
@@ -100,12 +101,16 @@ class DecisionMakingProcess(WorkerProcess):
                 intercept_gap = self.intercept_gap
                 self.data_intercept_detection_lock.release()
 
-                if max_intercept_length != 0:
+                if (max_intercept_length >= 140 and intercept_gap < 30) or self.is_stop:
+                    self.is_stop = True
+                    setSpeed(self.outPs["SERIAL"], float(0))
+                    setAngle(self.outPs["SERIAL"] , float(0))
                     print("max_intercept_length: ", max_intercept_length, " intercept_gap: ", intercept_gap)
                     
-                if self.prev_angle != angle_lane_keeping:
+                if not self.is_stop and self.prev_angle != angle_lane_keeping:
                     if not self.debug:
-                        # setSpeed(self.outPs["SERIAL"], float(35))
+                        print(angle_lane_keeping)
+                        setSpeed(self.outPs["SERIAL"], float(20))
                         setAngle(self.outPs["SERIAL"] , float(angle_lane_keeping))
                         self.prev_angle = angle_lane_keeping
 
