@@ -28,7 +28,7 @@
 
 from threading import Thread
 from src.hardware.serialhandler.messageconverter    import MessageConverter
-
+import time
 class WriteThread(Thread):
     # ===================================== INIT =========================================
     def __init__(self, inP, serialCom, logFile):
@@ -57,7 +57,8 @@ class WriteThread(Thread):
             command = self.inP.recv()
             # Unpacking the dictionary into action and values
             command_msg = self.messageConverter.get_command(**command)
+            timestamp = time.time()
             self.serialCom.write(command_msg.encode('ascii'))
-            self.logFile.write(command_msg)
+            self.logFile.write(timestamp + command_msg.encode('ascii'))
 
 
