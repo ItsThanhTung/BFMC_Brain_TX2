@@ -18,7 +18,7 @@
     "step": -3,
     "x_ratio": 0.8,
     "y_ratio": 0.2,
-    "y_dist": 20,
+    "y_dist": 30,
     "x_dist": 50,
     "min_length": 50,
     "middle_point_ratio": 0.25,
@@ -28,7 +28,7 @@
   "IP_ADDRESS": "127.0.0.1",
 
   "INTERCEPT_DETECTION": {
-    "crop_ratio": 0.7,
+    "crop_ratio": 0.6,
     "minimum_points" : 1,
     "tolerance": 3
   }
