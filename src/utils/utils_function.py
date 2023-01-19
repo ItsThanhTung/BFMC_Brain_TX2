@@ -48,6 +48,7 @@ def EnablePID(outP , Enable = True):
     outP.send(data)
 
 def MoveDistance(outP , Distance, Speed):
+    print("run distance")
     if(np.abs(Distance) > 1):
         print("UTIL Move ERR: Distance out of Range")
     data = {

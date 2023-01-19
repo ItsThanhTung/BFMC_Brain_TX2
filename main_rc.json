@@ -1,8 +1,8 @@
 {
   "LANE_PREPROCESSING": {
-    "sobel_x_thres": [70, 255],
-    "sobel_y_thres": [131, 250],
-    "red_thres": [85, 255],
+    "sobel_x_thres": [50, 255],
+    "sobel_y_thres": [110, 250],
+    "red_thres": [60, 255],
     "adaptive_block_size": 41,
     "adaptive_offset": -50,
     "dilate_kernel": 3
@@ -30,8 +30,8 @@
   "IP_ADDRESS": "192.168.31.37",
 
   "INTERCEPT_DETECTION": {
-    "crop_ratio": 0.7,
+    "crop_ratio": 0.5,
     "minimum_points" : 1,
-    "tolerance": 3
+    "tolerance": 5
   }
 }

@@ -1,6 +1,6 @@
 from threading import Thread, Lock
 from src.templates.workerprocess import WorkerProcess
-from src.utils.utils_function import setSpeed, setAngle, EnablePID
+from src.utils.utils_function import setSpeed, setAngle, EnablePID, MoveDistance
 
 import time
 class DecisionMakingProcess(WorkerProcess):
@@ -87,8 +87,8 @@ class DecisionMakingProcess(WorkerProcess):
                 print(e)
 
     def _run_decision_making(self):
-        #if not self.debug:
-        EnablePID(self.outPs["SERIAL"])
+        if not self.debug:
+            EnablePID(self.outPs["SERIAL"])
         while True:
             try:
                 self.data_lane_keeping_lock.acquire()
@@ -101,18 +101,25 @@ class DecisionMakingProcess(WorkerProcess):
                 intercept_gap = self.intercept_gap
                 self.data_intercept_detection_lock.release()
 
-                if (max_intercept_length >= 140 and intercept_gap < 30) or self.is_stop:
-                    self.is_stop = True
-                    setSpeed(self.outPs["SERIAL"], float(0))
-                    setAngle(self.outPs["SERIAL"] , float(0))
-                    print("max_intercept_length: ", max_intercept_length, " intercept_gap: ", intercept_gap)
+                # print("max_intercept_length: ", max_intercept_length, " intercept_gap: ", intercept_gap)
+                if (max_intercept_length >= 150 and intercept_gap < 40) or self.is_stop:
+                    if not self.is_stop:
+                        print('stop')
+                        self.is_stop = True
+                        setSpeed(self.outPs["SERIAL"], float(0))
+                        setAngle(self.outPs["SERIAL"] , float(22))
+                        
+                        # MoveDistance(self.outPs["SERIAL"] , 0.5, 0.5)
+                    # print("max_intercept_length: ", max_intercept_length, " intercept_gap: ", intercept_gap)
                     
-                if not self.is_stop and self.prev_angle != angle_lane_keeping:
+                if not self.is_stop: # and self.prev_angle != angle_lane_keeping:
                     if not self.debug:
+                        angle_lane_keeping = int(angle_lane_keeping)
                         print(angle_lane_keeping)
-                        setSpeed(self.outPs["SERIAL"], float(20))
+                        setSpeed(self.outPs["SERIAL"], float(0.5*speed_lane_keeping))
                         setAngle(self.outPs["SERIAL"] , float(angle_lane_keeping))
                         self.prev_angle = angle_lane_keeping
+                time.sleep(0.1)
 
 
             except Exception as e:

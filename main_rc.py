@@ -53,7 +53,7 @@ from src.utils.utils_function import load_config_file
 
 if __name__ == '__main__':
     # =============================== CONFIG =================================================
-    enableStream        =  True
+    enableStream        =  False
     enableRc            =  False
 
     opt = load_config_file("main_rc.json")
