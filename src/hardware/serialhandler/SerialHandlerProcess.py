@@ -72,10 +72,13 @@ class SerialHandlerProcess(WorkerProcess):
         """ Initializes the read and the write thread.
         """
         # read write thread        
-        readTh  = ReadThread(self.serialCom,self.historyFile)
-        self.threads.append(readTh)
-        writeTh = WriteThread(self.inPs[0], self.serialCom, self.historyFile)
-        self.threads.append(writeTh)
+        self.readTh  = ReadThread(self.serialCom,self.historyFile)
+        self.threads.append(self.readTh)
+        self.writeTh = WriteThread(self.inPs[0], self.serialCom, self.historyFile)
+        self.threads.append(self.writeTh)
+    
+    def SubscribeTopic(self, TopicID, outP, subscribing = True):
+        self.readTh.subscribe(subscribing, TopicID, outP)
     
 
     
