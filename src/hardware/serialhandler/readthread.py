@@ -57,7 +57,8 @@ class ReadThread(ThreadWithStop):
                 if read_chr=='@':
                     self.isResponse=True
                     if len(self.buff)!=0:
-                        self.__checkSubscriber(self.buff)
+                        # self.__checkSubscriber(self.buff)
+                        pass
                     self.buff=""
                 elif read_chr=='\r':   
                     self.isResponse=False
@@ -79,7 +80,8 @@ class ReadThread(ThreadWithStop):
         f_response : string
             The response received from the other device without the key. 
         """
-        l_key=f_response[1:5]
+        l_key=f_response[1]
+        # print("resp ",f_response)
         if l_key in self.__subscribers:
             subscribers = self.__subscribers[l_key]
             for outP in subscribers:
@@ -112,4 +114,9 @@ class ReadThread(ThreadWithStop):
                 else:
                     raise ValueError("pipe %s wasn't subscribed to key %s"%(outP,f_key))
             else:
-                raise ValueError("doesn't exist any subscriber with key %s"%(f_key))    
+                raise ValueError("doesn't exist any subscriber with key %s"%(f_key))  
+        print("Subscriber ", self.__subscribers)
+        print("Type ", type(self.__subscribers))
+        for key in self.__subscribers:
+            print("Key ", key)
+            print("Key Type ",type(key))
