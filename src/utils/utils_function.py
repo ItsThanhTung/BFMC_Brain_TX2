@@ -26,7 +26,7 @@ def setSpeed(outP, Speed:float):
     outP.send(data)
 
 
-def setAngle(outP , Angle:float):
+def setAngle(outP, Angle:float):
     data = {
         "action": '2',
         "steerAngle": Angle
@@ -58,7 +58,7 @@ def MoveDistance(outP , Distance, Speed):
     outP.send(data)
 
 def GetTravelledDistance(inP):
-    return inP.rcv()
+    return inP.rcev()
 
 def load_config_file(config_file):
     with open(config_file, "r") as jsonfile:

@@ -25,6 +25,7 @@
 # CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
+import crc8
 
 class MessageConverter:
     """Creates the message to be sent over the serial communication
@@ -81,19 +82,27 @@ class MessageConverter:
         listKwargs = MessageConverter.commands[action][0]
 
         command = '#' + action + ':'
+        crc_inp = action
 
         for key in listKwargs:
             value = kwargs.get(key)
             valType = type(value)
-
+            valarr = None
             if valType == float:
                 if enhPrec:
-                    command += '{0:.6f};'.format(value)
+                    valarr = '{0:.6f};'.format(value)
                 else:
-                    command += '{0:.2f};'.format(value)
+                    valarr += '{0:.2f};'.format(value)
             elif valType == bool:
-                command += '{0:d};'.format(value)   
-                         
+                valarr = '{0:d};'.format(value)
+            command += valarr
+            crc_inp += valarr
+        
+        # str= '10.2;'
+        hash = crc8.crc8()
+        hash.update(crc_inp.encode('ascii'))
+        crc = hash.hexdigest()
+        print(crc)
         command += ';\r\n'
         return command
 

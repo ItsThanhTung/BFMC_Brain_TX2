@@ -1,4 +1,4 @@
-from src.utils.utils_function import MoveDistance, setAngle, EnablePID
+from src.utils.utils_function import MoveDistance, setAngle, EnablePID, GetTravelledDistance
 from src.hardware.serialhandler.SerialHandlerProcess import SerialHandlerProcess
 from multiprocessing import Pipe, Process, Event 
 import time
@@ -34,4 +34,4 @@ while True:
     time.sleep(0.05)
     MoveDistance(rcShS , Distance, 0.5)
     while True:
-
+        print("Travelled Distance ", GetTravelledDistance(DistR))
