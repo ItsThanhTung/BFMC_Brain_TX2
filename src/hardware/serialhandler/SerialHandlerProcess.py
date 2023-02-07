@@ -35,6 +35,7 @@ from src.hardware.serialhandler.writethread import WriteThread
 
 
 class SerialHandlerProcess(WorkerProcess):
+
     # ===================================== INIT =========================================
     def __init__(self,inPs, outPs):
         """The functionality of this process is to redirectionate the commands from the RemoteControlReceiverProcess (or other process) to the 
@@ -54,6 +55,9 @@ class SerialHandlerProcess(WorkerProcess):
         # devFile = '/dev/ttyACM0'
         logFile = 'historyFile.txt'
         
+        # self.readTh = None
+        # self.writeTh = None
+
         # comm init       
         self.serialCom = serial.Serial(devFile,115200,timeout=0.1)
         self.serialCom.flushInput()
@@ -61,7 +65,10 @@ class SerialHandlerProcess(WorkerProcess):
 
         # log file init
         self.historyFile = FileHandler(logFile)
-        
+    
+        self.__readTh  = ReadThread(self.serialCom,self.historyFile)
+        self.__writeTh = WriteThread(self.inPs[0], self.serialCom, self.historyFile)
+
     
     def run(self):
         super(SerialHandlerProcess,self).run()
@@ -72,21 +79,9 @@ class SerialHandlerProcess(WorkerProcess):
     def _init_threads(self):
         """ Initializes the read and the write thread.
         """
-        # read write thread        
-        self.readTh  = ReadThread(self.serialCom,self.historyFile)
-        self.threads.append(self.readTh)
-        self.writeTh = WriteThread(self.inPs[0], self.serialCom, self.historyFile)
-        self.threads.append(self.writeTh)
+        self.threads.append(self.__readTh)
+        self.threads.append(self.__writeTh)
+
     
     def SubscribeTopic(self, TopicID, outP, subscribing = True):
-        self.readTh.subscribe(subscribing, TopicID, outP)
-    
-
-    
-
-    
-
-
-
-
-
+        self.__readTh.subscribe(subscribing, TopicID, outP)

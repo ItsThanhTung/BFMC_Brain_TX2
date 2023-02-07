@@ -1,4 +1,4 @@
-from src.utils.utils_function import MoveDistance, setAngle, EnablePID, GetTravelledDistance
+from src.utils.utils_function import MoveDistance, setAngle, EnablePID, GetDistanceStatus
 from src.hardware.serialhandler.SerialHandlerProcess import SerialHandlerProcess
 from multiprocessing import Pipe, Process, Event 
 import time
@@ -6,14 +6,18 @@ rcShR, rcShS = Pipe(duplex = False)                                             
 DistR, DistS = Pipe (duplex = False)     #Pipe Rcv Runned Data
 
 shProc = SerialHandlerProcess([rcShR], [])
-shProc.SubscribeTopic('7', DistS)
 
 allProcesses = [shProc]
+
+shProc.SubscribeTopic('7', DistS)
 
 print("Starting the processes!",allProcesses)
 for proc in allProcesses:
     proc.daemon = True
     proc.start()
+
+time.sleep(1)
+
 
 EnablePID(rcShS)
 # time.sleep(0.05)
@@ -33,5 +37,10 @@ while True:
     setAngle(rcShS , angle)
     time.sleep(0.05)
     MoveDistance(rcShS , Distance, 0.5)
+    
     while True:
-        print("Travelled Distance ", GetTravelledDistance(DistR))
+        Status, message = GetDistanceStatus(DistR)
+        print("Status ", Status)
+        print("Message ", message)
+        if(Status == 2) : 
+            break
