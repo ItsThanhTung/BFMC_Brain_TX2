@@ -1,12 +1,12 @@
 import time
-# from src.image_processing.traffic_sign.detection import Yolo
+from src.image_processing.traffic_sign.detection import Yolo
 from threading import Thread, Condition
-from src.templates.workerprocess import WorkerProcess
+from src.templates.torch_workerprocess import Torch_WorkerProcess
 from queue import Queue
 import numpy as np
 
 
-class ObjectDetectionProcess(WorkerProcess):
+class ObjectDetectionProcess(Torch_WorkerProcess):
     image_stream_queue = Queue(maxsize=5)
     object_image_condition = Condition()
     read_image_condition = Condition()
@@ -25,7 +25,7 @@ class ObjectDetectionProcess(WorkerProcess):
             List of output pipes (not used at the moment)
         """
         
-        # self.detector = Yolo()
+        self.detector = Yolo()
         super(ObjectDetectionProcess,self).__init__( inPs, outPs)
 
         self.image = None
@@ -116,7 +116,7 @@ class ObjectDetectionProcess(WorkerProcess):
                             print("Object Detection - object image thread full Queue")
                     visualized_image = np.zeros((480, 640))
                     results = [1, 2, 3, 4]
-                    # visualized_image, results = self.detector.detect(image)
+                    visualized_image, results = self.detector.detect(image)
                     self.object_image_condition.acquire()
                     self.visualized_image = visualized_image
                     self.results = results

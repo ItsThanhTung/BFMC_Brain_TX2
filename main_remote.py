@@ -55,9 +55,11 @@ from src.image_processing.InterceptDetectionProcess import InterceptDetectionPro
 from src.image_processing.ObjectDetectionProcess import ObjectDetectionProcess
 
 # opt import
+from torch.multiprocessing import set_start_method
 from src.utils.utils_function import load_config_file
 
 if __name__ == '__main__':
+    set_start_method('spawn')
     opt = load_config_file("main_remote.json")
     # =============================== CONFIG =================================================
     enableCameraSpoof   =  True 
