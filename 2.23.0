@@ -1,0 +1,11 @@
+Collecting requests
+  Using cached requests-2.27.1-py2.py3-none-any.whl (63 kB)
+Collecting charset-normalizer~=2.0.0
+  Using cached charset_normalizer-2.0.12-py3-none-any.whl (39 kB)
+Requirement already satisfied: certifi>=2017.4.17 in c:\users\asus\anaconda3\envs\bosch\lib\site-packages (from requests) (2021.5.30)
+Collecting urllib3<1.27,>=1.21.1
+  Downloading urllib3-1.26.14-py2.py3-none-any.whl (140 kB)
+Collecting idna<4,>=2.5
+  Using cached idna-3.4-py3-none-any.whl (61 kB)
+Installing collected packages: urllib3, idna, charset-normalizer, requests
+Successfully installed charset-normalizer-2.0.12 idna-3.4 requests-2.27.1 urllib3-1.26.14

@@ -52,6 +52,7 @@ from src.image_processing.ImagePreprocessingProcess import ImagePreprocessingPro
 from src.image_processing.LaneDebuggingProcess import LaneDebuginggProcess
 from src.perception.DecisionMakingProcess import DecisionMakingProcess
 from src.image_processing.InterceptDetectionProcess import InterceptDetectionProcess
+from src.image_processing.ObjectDetectionProcess import ObjectDetectionProcess
 
 # opt import
 from src.utils.utils_function import load_config_file
@@ -59,24 +60,21 @@ from src.utils.utils_function import load_config_file
 if __name__ == '__main__':
     opt = load_config_file("main_remote.json")
     # =============================== CONFIG =================================================
-    enableStream        =  False
     enableCameraSpoof   =  True 
-    enableRc            =  False
-
-
 
     # =============================== INITIALIZING PROCESSES =================================
     allProcesses = list()
 
     # =============================== HARDWARE ===============================================
-    camStR, camStS = Pipe(duplex = False)           # camera  ->  streamer
+    camLaneStR, camLaneStS = Pipe(duplex = False)           # camera  ->  streamer
+    camObjectStR, camObjectStS = Pipe(duplex = False)           # camera  ->  streamer
     if enableCameraSpoof:
         # camProc = CameraProcess([],[camStS], opt["CAM_PATH"])
-        camProc = CameraSpooferProcess([],[camStS],[opt["CAM_PATH"]])
+        camProc = CameraSpooferProcess([], {"PREPROCESS_IMAGE" : camLaneStS, "OBJECT_IMAGE" : camObjectStS}, [opt["CAM_PATH"]])
         allProcesses.append(camProc)
 
     else:
-        camProc = CameraReceiverProcess([],[camStS])
+        camProc = CameraReceiverProcess([],[camLaneStS])
         allProcesses.append(camProc)
     
 
@@ -91,12 +89,17 @@ if __name__ == '__main__':
     interceptDecisionR, interceptDecisionS = Pipe(duplex = False)                       # Intercept detection ->  Decision making
     interceptDecisionDebugR, interceptDecisionDebugS = Pipe(duplex = False)             # Intercept detection ->  LaneDebug
 
-    imagePreprocess = ImagePreprocessingProcess([camStR], {"IMAGE_SHOW" : imagePreprocessShowS, "LANE_KEEPING" : imagePreprocessS, \
+    imageObjectShowR, imageObjectShowS = Pipe(duplex = False)                           # object detection    ->  ImageShow
+    objectDecisionR, objectDecisionS = Pipe(duplex = False)                             # object detection    ->  Decision making
+
+    objectDetectionProcess = ObjectDetectionProcess({"OBJECT_IMAGE" : camObjectStR}, {"IMAGE_SHOW" : imageObjectShowS, "DECISION_MAKING" : objectDecisionS})
+
+    imagePreprocess = ImagePreprocessingProcess({"LANE_IMAGE" : camLaneStR}, {"IMAGE_SHOW" : imagePreprocessShowS, "LANE_KEEPING" : imagePreprocessS, \
                                                         "INTERCEPT_DETECTION" : imagePreprocessInterceptS}, opt)
     laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [laneKeepingDecisionS], opt, laneDebugS, debug=True)
 
-    decisionMakingProcess = DecisionMakingProcess({"LANE_KEEPING" : laneKeepingDecisionR, "INTERCEPT_DETECTION" : interceptDecisionR}, \
-                                                                                                                    [], opt, debug=True)
+    decisionMakingProcess = DecisionMakingProcess({"LANE_KEEPING" : laneKeepingDecisionR, "INTERCEPT_DETECTION" : interceptDecisionR, \
+                                                                "OBJECT_DETECTION" : objectDecisionR}, [], opt, debug=True)
 
     interceptDetectionProcess = InterceptDetectionProcess({"IMAGE_PREPROCESSING" : imagePreprocessInterceptR}, {"DECISION_MAKING" : interceptDecisionS}, \
                                                             opt, debugP = interceptDecisionDebugS, debug=True)
@@ -106,17 +109,14 @@ if __name__ == '__main__':
 
     imageShow = imageShowProcess([imagePreprocessShowR, laneDebugShowR], [])
     
+
     allProcesses.append(imagePreprocess)
     allProcesses.append(laneKeepingProcess)
     allProcesses.append(laneDebugProcess)
     allProcesses.append(imageShow)
     allProcesses.append(decisionMakingProcess)
     allProcesses.append(interceptDetectionProcess)
-
-
-    if enableStream:
-        streamProc = CameraStreamerProcess([camStR], [])
-        allProcesses.append(streamProc)
+    allProcesses.append(objectDetectionProcess)
 
 
 
@@ -134,8 +134,6 @@ if __name__ == '__main__':
     for proc in allProcesses:
         proc.daemon = True
         proc.start()
-
-
 
 
     # ===================================== STAYING ALIVE ====================================

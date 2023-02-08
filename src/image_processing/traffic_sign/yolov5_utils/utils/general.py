@@ -29,8 +29,8 @@ import torch
 import torchvision
 import yaml
 
-from utils.downloads import gsutil_getsize
-from utils.metrics import box_iou, fitness
+from src.image_processing.traffic_sign.yolov5_utils.utils.downloads import gsutil_getsize
+from src.image_processing.traffic_sign.yolov5_utils.utils.metrics import box_iou, fitness
 
 # Settings
 FILE = Path(__file__).resolve()

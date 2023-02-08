@@ -55,7 +55,8 @@ class CameraSpooferProcess(WorkerProcess):
         super(CameraSpooferProcess,self).__init__(inPs,outQueue)
 
         # params
-        self.videoSize = (320,240)
+        self.lane_image_size = (320,240)
+        self.object_image_size = (640,480)
         
         self.videoDir = videoDir
         self.videos = videoDir # self.open_files(self.videoDir, ext = ext)
@@ -107,11 +108,11 @@ class CameraSpooferProcess(WorkerProcess):
                     ret, frame = cap.read()
                     stamp = time.time()
                     if ret: 
-                        frame = cv2.resize(frame, self.videoSize)
-                        
-                        for p in self.outPs:
-                            p.send({"image": frame})
-                               
+                        lane_image = cv2.resize(frame, self.lane_image_size)
+                        object_image = cv2.resize(frame, self.object_image_size)
+                        self.outPs["PREPROCESS_IMAGE"].send({"image": lane_image})
+                        self.outPs["OBJECT_IMAGE"].send({"image": object_image})
+
                     else:
                         break
                 cap.release()

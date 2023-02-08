@@ -1,47 +1,20 @@
-
-
-import argparse
-import os
-import sys
-from pathlib import Path
-import cv2
-import time
 import numpy as np
-from utils.augmentations import letterbox
-from utils.plots import Annotator, colors, save_one_box
-import threading
-import queue
-from models.experimental import attempt_load
-from pathlib import Path
-import cv2
-import numpy as np
-from utils.augmentations import letterbox
 import torch
-import threading
-import queue
-from utils.torch_utils import select_device
-from models.common import DetectMultiBackend
-import argparse
-import os
-import sys
-from pathlib import Path
-import cv2
-import numpy as np
-from utils.augmentations import letterbox
-import torch
-import threading
-import queue
-from utils.general import non_max_suppression,scale_coords
 
-from utils.plots import Annotator, colors
+from src.image_processing.traffic_sign.yolov5_utils.utils.augmentations import letterbox
+from src.image_processing.traffic_sign.yolov5_utils.utils.plots import Annotator, colors, save_one_box
+from src.image_processing.traffic_sign.yolov5_utils.models.experimental import attempt_load
+from src.image_processing.traffic_sign.yolov5_utils.utils.torch_utils import select_device
+from src.image_processing.traffic_sign.yolov5_utils.models.common import DetectMultiBackend
+from src.image_processing.traffic_sign.yolov5_utils.utils.general import non_max_suppression,scale_coords
+from src.image_processing.traffic_sign.yolov5_utils.utils.plots import Annotator, colors
 
 
 class Yolo(object):
-    def __init__(self, source='',imgsize= (480,640), weights='./yolov5_utils/sign.pt', device='0',conf_thres=0.1, iou_thres=0.45,max_det=1000): 
+    def __init__(self, source='',imgsize= (480,640), weights='./src/image_processing/traffic_sign/yolov5_utils/sign.pt', device='0',conf_thres=0.1, iou_thres=0.45,max_det=1000): 
         self.img_size = imgsize
-        self.cap = cv2.VideoCapture(0)
         self.device = select_device(device)
-        self.model = self.model = DetectMultiBackend(weights, device=self.device, dnn=False, data='./yolov5_utils/data/coco128.yaml')
+        self.model = self.model = DetectMultiBackend(weights, device=self.device, dnn=False, data='./src/image_processing/traffic_sign/yolov5_utils/data/coco128.yaml')
         self.names=['car', 'crosswalk', 'highway_entry', 'highway_exit', 'no_entry', 'onewayroad', 'parking', 'pedestrian', 'priority', 'roadblock', 'roundabout', 'stop', 'trafficlight']
         self.conf_thres=conf_thres
         self.iou_thres=iou_thres
@@ -71,10 +44,10 @@ class Yolo(object):
                     c = int(cls)  # integer class
                     label = f'{self.names[c]} {conf:.2f}'
                     annotator.box_label(xyxy, label, color=colors(c, True))
-                    result=(xyxy, conf, self.names[c])
+                    result = (xyxy, conf, self.names[c])
                     results.append(result)
             img_resized = annotator.result()
-        return img_resized,results
+        return img_resized, results
 
     def preprocess(self,img0):
         img_resized = letterbox(img0, self.img_size, stride=self.stride, auto=False)[0]
@@ -82,13 +55,3 @@ class Yolo(object):
         img = np.ascontiguousarray(img)
         return img_resized,img
     
-    def image_loader(self):
-        # print("here")
-        ret, frame = self.cap.read()
-        # frame=cv2.resize(frame,(704,576))
-        if ret == True:
-            return frame
-        self._running=False
-        return None
-
-

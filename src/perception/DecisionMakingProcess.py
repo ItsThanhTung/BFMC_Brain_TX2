@@ -9,6 +9,7 @@ class DecisionMakingProcess(WorkerProcess):
     # ===================================== INIT =========================================
     data_lane_keeping_lock = Lock()
     data_intercept_detection_lock = Lock()
+    data_object_detection_lock = Lock()
     historyFile = FileHandler("carControlHistory.txt")
 
     def __init__(self, inPs, outPs, opt, debug):
@@ -34,6 +35,8 @@ class DecisionMakingProcess(WorkerProcess):
         self.intercept_length = 0
         self.intercept_gap = float("inf")
 
+        self.object_result = None
+
         self.debug = debug
         self.prev_angle = 0
         self.is_intercept = False
@@ -55,14 +58,18 @@ class DecisionMakingProcess(WorkerProcess):
         
         readDataLaneKeepingTh = Thread(name='ReadDataLaneKeeping',target = self._read_data_lane_keeping)            
         readDataInterceptDetectionTh = Thread(name='ReadDataInterceptDetection',target = self._read_data_intercept_detection)     
+        readDataObjectDetectionTh = Thread(name='ReadDataObjectDetection',target = self._read_data_object_detection)     
         decisionMakingTh = Thread(name='DecisionMaking',target = self._run_decision_making)     
 
         decisionMakingTh.daemon = True
         readDataLaneKeepingTh.daemon = True
         readDataInterceptDetectionTh.daemon = True
+        readDataObjectDetectionTh.daemon = True
+
         self.threads.append(decisionMakingTh)
         self.threads.append(readDataLaneKeepingTh)
         self.threads.append(readDataInterceptDetectionTh)
+        self.threads.append(readDataObjectDetectionTh)
         
     def _read_data_lane_keeping(self):
         while True:
@@ -77,6 +84,18 @@ class DecisionMakingProcess(WorkerProcess):
 
             except Exception as e:
                 print("Decision Making - read data lane keeping thread error:")
+                print(e)
+
+    def _read_data_object_detection(self):
+        while True:
+            try:
+                results = self.inPs["OBJECT_DETECTION"].recv()["results"]
+                self.data_object_detection_lock.acquire()
+                self.object_result = results
+                self.data_object_detection_lock.release()
+
+            except Exception as e:
+                print("Decision Making - read data object detection thread error:")
                 print(e)
 
     def _read_data_intercept_detection(self):
@@ -105,6 +124,13 @@ class DecisionMakingProcess(WorkerProcess):
         intercept_gap = self.intercept_gap
         self.data_intercept_detection_lock.release()
         return intercept_length, intercept_gap
+    
+    
+    def read_object_detection_data(self):
+        self.data_object_detection_lock.acquire()
+        object_result = self.object_result
+        self.data_object_detection_lock.release()
+        return object_result
 
     def _run_decision_making(self):
         if not self.debug:
@@ -115,7 +141,9 @@ class DecisionMakingProcess(WorkerProcess):
             try:
                 speed_lane_keeping, angle_lane_keeping = self.read_lane_keeping_data()
                 intercept_length, intercept_gap = self.read_intercept_detection_data()
+                object_result = self.read_object_detection_data()
 
+                print(object_result)
                 is_intercept, intercept_log = interceptionHandler.is_intercept(intercept_length, intercept_gap)                
                 self.historyFile.write(intercept_log)
 

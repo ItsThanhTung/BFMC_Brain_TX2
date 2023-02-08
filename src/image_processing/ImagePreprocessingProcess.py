@@ -77,19 +77,19 @@ class ImagePreprocessingProcess(WorkerProcess):
         if self._blocker.is_set():
             return
         
-        imageReadTh = Thread(name='ImageReadThread',target = self._read_image, args= (self.inPs[0],))
+        imageReadTh = Thread(name='ImageReadThread',target = self._read_image, args= (self.inPs["LANE_IMAGE"],))
         imagePreprocessTh = Thread(name='ImagePreprocessingThread',target = self._run_image_preprocessing)
 
         sendImageLaneKeepingTh = Thread(name='SendImageLaneKeeping',target = self._send_image_lane_keeping, args= (self.outPs["LANE_KEEPING"],))
         sendImageInterceptDetectionTh = Thread(name='SendImageInterceptDetection',target = self._send_image_intercept_detection, args= (self.outPs["INTERCEPT_DETECTION"],))
-        sendImageShowTh = Thread(name='SendImageShow',target = self._send_image_show, args= (self.outPs["IMAGE_SHOW"],))
-    
-
+        
         if self.debug:
             imageStreamTh = Thread(name='ImageStreamThread',target = self._stream_image, args= (self.debugP,))
             imageStreamTh.daemon = True
             self.threads.append(imageStreamTh)
-
+        else:
+            sendImageShowTh = Thread(name='SendImageShow',target = self._send_image_show, args= (self.outPs["IMAGE_SHOW"],))
+            self.threads.append(sendImageShowTh)
             
         imagePreprocessTh.daemon = True
         imageReadTh.daemon = True
@@ -97,7 +97,6 @@ class ImagePreprocessingProcess(WorkerProcess):
         self.threads.append(imagePreprocessTh)
         self.threads.append(sendImageLaneKeepingTh)
         self.threads.append(sendImageInterceptDetectionTh)
-        self.threads.append(sendImageShowTh)
         
     
     def _read_image(self, inP):

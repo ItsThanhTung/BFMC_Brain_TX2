@@ -8,8 +8,8 @@ import numpy as np
 import torch
 import torch.nn as nn
 
-from models.common import Conv
-from utils.downloads import attempt_download
+from src.image_processing.traffic_sign.yolov5_utils.models.common import Conv
+from src.image_processing.traffic_sign.yolov5_utils.utils.downloads import attempt_download
 
 
 class CrossConv(nn.Module):
