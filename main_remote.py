@@ -92,10 +92,10 @@ if __name__ == '__main__':
     imageObjectShowR, imageObjectShowS = Pipe(duplex = False)                           # object detection    ->  ImageShow
     objectDecisionR, objectDecisionS = Pipe(duplex = False)                             # object detection    ->  Decision making
 
-    objectDetectionProcess = ObjectDetectionProcess({"OBJECT_IMAGE" : camObjectStR}, {"IMAGE_SHOW" : imageObjectShowS, "DECISION_MAKING" : objectDecisionS})
+    objectDetectionProcess = ObjectDetectionProcess({"OBJECT_IMAGE" : camObjectStR}, {"IMAGE_SHOW" : imageObjectShowS, "DECISION_MAKING" : objectDecisionS}, True)
 
     imagePreprocess = ImagePreprocessingProcess({"LANE_IMAGE" : camLaneStR}, {"IMAGE_SHOW" : imagePreprocessShowS, "LANE_KEEPING" : imagePreprocessS, \
-                                                        "INTERCEPT_DETECTION" : imagePreprocessInterceptS}, opt)
+                                                        "INTERCEPT_DETECTION" : imagePreprocessInterceptS}, opt, True)
     laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [laneKeepingDecisionS], opt, laneDebugS, debug=True)
 
     decisionMakingProcess = DecisionMakingProcess({"LANE_KEEPING" : laneKeepingDecisionR, "INTERCEPT_DETECTION" : interceptDecisionR, \
@@ -107,7 +107,7 @@ if __name__ == '__main__':
 
     laneDebugProcess = LaneDebuginggProcess({"LANE_KEEPING" : laneDebugR, "INTERCEPT_DETECTION" : interceptDecisionDebugR}, [laneDebugShowS])
 
-    imageShow = imageShowProcess([imagePreprocessShowR, laneDebugShowR], [])
+    imageShow = imageShowProcess([imagePreprocessShowR, laneDebugShowR, imageObjectShowR], [])
     
 
     allProcesses.append(imagePreprocess)

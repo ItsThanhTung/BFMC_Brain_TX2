@@ -3,13 +3,15 @@ import time
 from threading import Thread, Condition
 from src.templates.workerprocess import WorkerProcess
 from queue import Queue
+import numpy as np
+
 
 class ObjectDetectionProcess(WorkerProcess):
     image_stream_queue = Queue(maxsize=5)
     object_image_condition = Condition()
     read_image_condition = Condition()
     # ===================================== INIT =========================================
-    def __init__(self, inPs, outPs, debugP = None, debug=False):
+    def __init__(self, inPs, outPs, is_show, debugP = None, debug=False):
         """Process used for sending images over the network to a targeted IP via UDP protocol 
         (no feedback required). The image is compressed before sending it. 
 
@@ -32,6 +34,8 @@ class ObjectDetectionProcess(WorkerProcess):
 
         self.debug = debug
         self.debugP = debugP
+
+        self.is_show = is_show
 
         
     # ===================================== RUN ==========================================
@@ -57,10 +61,10 @@ class ObjectDetectionProcess(WorkerProcess):
             imageStreamTh.daemon = True
             self.threads.append(imageStreamTh)
 
-        # else:
-        #     sendImageShowTh = Thread(name='SendImageShow',target = self._send_image_show, args= (self.outPs["IMAGE_SHOW"],))
-        #     sendImageShowTh.daemon = True
-        #     self.threads.append(sendImageShowTh)
+        if self.is_show:
+            sendImageShowTh = Thread(name='SendImageShow',target = self._send_image_show, args= (self.outPs["IMAGE_SHOW"],))
+            sendImageShowTh.daemon = True
+            self.threads.append(sendImageShowTh)
 
             
         runDetectionTh.daemon = True
@@ -110,7 +114,7 @@ class ObjectDetectionProcess(WorkerProcess):
                             self.image_stream_queue.put(image)
                         else:
                             print("Object Detection - object image thread full Queue")
-                    visualized_image = None
+                    visualized_image = np.zeros((480, 640))
                     results = [1, 2, 3, 4]
                     # visualized_image, results = self.detector.detect(image)
                     self.object_image_condition.acquire()

@@ -38,7 +38,7 @@ class ImagePreprocessingProcess(WorkerProcess):
     preprocess_image_condition = Condition()
     read_image_condition = Condition()
     # ===================================== INIT =========================================
-    def __init__(self, inPs, outPs, opt, debugP = None, debug=False):
+    def __init__(self, inPs, outPs, opt, is_show, debugP = None, debug=False):
         """Process used for sending images over the network to a targeted IP via UDP protocol 
         (no feedback required). The image is compressed before sending it. 
 
@@ -62,6 +62,8 @@ class ImagePreprocessingProcess(WorkerProcess):
         self.debug = debug
         self.debugP = debugP
         self.opt = opt
+
+        self.is_show = is_show
 
         
     # ===================================== RUN ==========================================
@@ -87,9 +89,9 @@ class ImagePreprocessingProcess(WorkerProcess):
             imageStreamTh = Thread(name='ImageStreamThread',target = self._stream_image, args= (self.debugP,))
             imageStreamTh.daemon = True
             self.threads.append(imageStreamTh)
-        # else:
-        #     sendImageShowTh = Thread(name='SendImageShow',target = self._send_image_show, args= (self.outPs["IMAGE_SHOW"],))
-        #     self.threads.append(sendImageShowTh)
+        if self.is_show:
+            sendImageShowTh = Thread(name='SendImageShow',target = self._send_image_show, args= (self.outPs["IMAGE_SHOW"],))
+            self.threads.append(sendImageShowTh)
             
         imagePreprocessTh.daemon = True
         imageReadTh.daemon = True
