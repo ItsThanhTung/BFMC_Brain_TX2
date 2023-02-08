@@ -60,7 +60,7 @@ if __name__ == '__main__':
     opt = load_config_file("main_remote.json")
     # =============================== CONFIG =================================================
     enableStream        =  False
-    enableCameraSpoof   =  False 
+    enableCameraSpoof   =  True 
     enableRc            =  False
 
 
@@ -91,7 +91,8 @@ if __name__ == '__main__':
     interceptDecisionR, interceptDecisionS = Pipe(duplex = False)                       # Intercept detection ->  Decision making
     interceptDecisionDebugR, interceptDecisionDebugS = Pipe(duplex = False)             # Intercept detection ->  LaneDebug
 
-    imagePreprocess = ImagePreprocessingProcess([camStR], [imagePreprocessShowS, imagePreprocessS, imagePreprocessInterceptS], opt)
+    imagePreprocess = ImagePreprocessingProcess([camStR], {"IMAGE_SHOW" : imagePreprocessShowS, "LANE_KEEPING" : imagePreprocessS, \
+                                                        "INTERCEPT_DETECTION" : imagePreprocessInterceptS}, opt)
     laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [laneKeepingDecisionS], opt, laneDebugS, debug=True)
 
     decisionMakingProcess = DecisionMakingProcess({"LANE_KEEPING" : laneKeepingDecisionR, "INTERCEPT_DETECTION" : interceptDecisionR}, \

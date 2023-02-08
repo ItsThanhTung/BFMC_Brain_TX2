@@ -77,11 +77,8 @@ if __name__ == '__main__':
 
     interceptDecisionR, interceptDecisionS = Pipe(duplex = False)                       # Intercept detection ->  Decision making
 
-    distR, distS = Pipe (duplex = False)     # nucleo distance -> distance feedback
-
-
-    imagePreprocess = ImagePreprocessingProcess([camStR], [imagePreprocessS, imagePreprocessInterceptS], \
-                                                                opt, imagePreprocessStreamS, enableStream)
+    imagePreprocess = ImagePreprocessingProcess([camStR], {"LANE_KEEPING" : imagePreprocessS, "INTERCEPT_DETECTION" : imagePreprocessInterceptS},\
+                                                                opt , imagePreprocessStreamS, enableStream)
 
     laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [laneKeepingDecisionS], opt, None, False)
     decisionMakingProcess = DecisionMakingProcess({"LANE_KEEPING" : laneKeepingDecisionR, "INTERCEPT_DETECTION" : interceptDecisionR}, \

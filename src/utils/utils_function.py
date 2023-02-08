@@ -26,7 +26,7 @@ def setSpeed(outP, Speed:float):
     outP.send(data)
 
 
-def setAngle(outP , Angle:float):
+def setAngle(outP, Angle:float):
     data = {
         "action": '2',
         "steerAngle": Angle
