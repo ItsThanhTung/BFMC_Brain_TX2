@@ -27,13 +27,13 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
 
 import sys
-sys.path.append('.')
+sys.path.append('/home/ceec/BFMC_Brain_TX2')
 
 import threading
 import signal
 import time
 
-from src.hardware.IMU import imu
+from src.hardware.IMU import imuHandler
 
 def exit_handler(signum, frame):
 	IMU.stop()
@@ -42,10 +42,13 @@ def exit_handler(signum, frame):
 
 def main():
 	global IMU
-	signal.signal(signal.SIGTERM, exit_handler)
-	IMU = imu()
-	while True:
-		IMU.start()
-
+	signal.signal(signal.SIGINT, exit_handler)
+	IMU = imuHandler.IMUHandler()
+	IMU.start()
+	IMU.set_yaw()
+	for i in range(10000):
+		print(IMU.get_yaw())
+		time.sleep(0.1)
+	IMU.stop()
 if __name__ == "__main__":
 	main()
