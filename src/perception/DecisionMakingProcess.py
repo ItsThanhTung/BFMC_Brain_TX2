@@ -1,6 +1,6 @@
 from threading import Thread, Lock
 from src.templates.workerprocess import WorkerProcess
-from src.utils.utils_function import setSpeed, setAngle, EnablePID, MoveDistance
+from src.utils.utils_function import setSpeed, setAngle, EnablePID, MoveDistance, GetDistanceStatus
 
 import time
 class DecisionMakingProcess(WorkerProcess):
@@ -101,13 +101,43 @@ class DecisionMakingProcess(WorkerProcess):
                 intercept_gap = self.intercept_gap
                 self.data_intercept_detection_lock.release()
 
-                # print("max_intercept_length: ", max_intercept_length, " intercept_gap: ", intercept_gap)
-                if (max_intercept_length >= 150 and intercept_gap < 40) or self.is_stop:
+                print("max_intercept_length: ", max_intercept_length, " intercept_gap: ", intercept_gap)
+                if (max_intercept_length >= 100 and intercept_gap < 40) or self.is_stop:
                     if not self.is_stop:
                         print('stop')
-                        self.is_stop = True
+                        self.is_stop = False
                         setSpeed(self.outPs["SERIAL"], float(0))
-                        setAngle(self.outPs["SERIAL"] , float(22))
+                        setAngle(self.outPs["SERIAL"] , float(15))
+                        time.sleep(3)
+                        setAngle(self.outPs["SERIAL"] , float(15))
+                        print("Move 1")
+                        MoveDistance(self.outPs["SERIAL"] , Distance=0.2, Speed=0.5)
+
+
+                        while True:
+                            Status, message = GetDistanceStatus(self.outPs["SERIAL_DISTANCE"])
+                            print("Status 1", Status)
+                            print("Message 1", message)
+                            
+                            if Status == 2: 
+                                break
+                            elif Status < 0 :
+                                print("SEND AGAIN")
+                                MoveDistance(self.outPs["SERIAL"] , Distance=0.2, Speed=0.5)
+
+                        print("Move 2")
+                        setAngle(self.outPs["SERIAL"] , float(23))
+                        MoveDistance(self.outPs["SERIAL"] , Distance=0.6, Speed=0.5)
+
+                        while True:
+                            Status, message = GetDistanceStatus(self.outPs["SERIAL_DISTANCE"])
+                            print("Status 2", Status)
+                            print("Message 2", message)
+                            if Status == 2: 
+                                break
+                            elif Status < 0 :
+                                print("SEND AGAIN")
+                                MoveDistance(self.outPs["SERIAL"] , Distance=0.6, Speed=0.5)
                         
                         # MoveDistance(self.outPs["SERIAL"] , 0.5, 0.5)
                     # print("max_intercept_length: ", max_intercept_length, " intercept_gap: ", intercept_gap)
@@ -115,11 +145,15 @@ class DecisionMakingProcess(WorkerProcess):
                 if not self.is_stop: # and self.prev_angle != angle_lane_keeping:
                     if not self.debug:
                         angle_lane_keeping = int(angle_lane_keeping)
-                        print(angle_lane_keeping)
-                        setSpeed(self.outPs["SERIAL"], float(0.5*speed_lane_keeping))
+                        # print(speed_lane_keeping, angle_lane_keeping)
+                        
+                        # setSpeed(self.outPs["SERIAL"], float(0))
+                        # setAngle(self.outPs["SERIAL"] , float(0))
+                        
+                        setSpeed(self.outPs["SERIAL"], float(0.5 * 100))
                         setAngle(self.outPs["SERIAL"] , float(angle_lane_keeping))
                         self.prev_angle = angle_lane_keeping
-                time.sleep(0.1)
+                time.sleep(0.05)
 
 
             except Exception as e:

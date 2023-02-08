@@ -58,11 +58,15 @@ def MoveDistance(outP , Distance, Speed):
     }
     outP.send(data)
 
-def GetDistanceStatus(inP):
+def GetDistanceStatus(inP, timeout = 0.1):
     Status = -2
     Mess = ""
-
-    buff = inP.recv()
+    if inP.poll(timeout):
+        buff = inP.recv()
+        print("buff", buff)
+    else:
+        print("Receive Timeout")
+        return -3, "Receive Timeout"
     # print("Buff ", buff)
     Packet = buff[3:-2].split(";", 1)
     # print("Packet ", Packet)
