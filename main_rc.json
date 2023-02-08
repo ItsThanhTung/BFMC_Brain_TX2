@@ -11,7 +11,7 @@
     "roi": {
       "left": 0.3,
       "right": 0.7,
-      "upper": 0.45
+      "upper": 0.3
     },
     "middle_point": {
       "longest_distance": 30
@@ -24,14 +24,14 @@
     "x_dist": 50,
     "min_length": 50,
     "middle_point_ratio": 0.25,
-    "angle_scale_ratio": 0.35
+    "angle_scale_ratio": 0.25
   },
   "CAM_PATH": "/dev/video0",
-  "IP_ADDRESS": "192.168.31.37",
+  "IP_ADDRESS": "192.168.0.100",
 
   "INTERCEPT_DETECTION": {
-    "crop_ratio": 0.5,
+    "crop_ratio": 0.85,
     "minimum_points" : 1,
-    "tolerance": 5
+    "tolerance": 2
   }
 }
