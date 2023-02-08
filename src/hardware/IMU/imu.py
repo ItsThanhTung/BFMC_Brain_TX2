@@ -36,7 +36,7 @@ import threading
 
 class imu(threading.Thread):
     def __init__(self): 
-        threading.Thread.__init__(self)
+        threading.Thread.__init__(self,daemon=False)
         self.running = True
 
         self.SETTINGS_FILE = "RTIMULib"
