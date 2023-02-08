@@ -61,6 +61,7 @@ class Yolo(object):
         with torch.no_grad():            
             pred = self.model(img, augment=False, visualize=False)
         pred = non_max_suppression(pred, self.conf_thres, self.iou_thres, None, False, max_det=self.max_det)
+        results=[]
         for i, det in enumerate(pred):  # per image
             annotator = Annotator(img_resized, line_width=3, example=str(self.names))
             det=det.cpu().detach().numpy()
@@ -70,8 +71,10 @@ class Yolo(object):
                     c = int(cls)  # integer class
                     label = f'{self.names[c]} {conf:.2f}'
                     annotator.box_label(xyxy, label, color=colors(c, True))
+                    result=(xyxy, conf, self.names[c])
+                    results.append(result)
             img_resized = annotator.result()
-        return img_resized
+        return img_resized,results
 
     def preprocess(self,img0):
         img_resized = letterbox(img0, self.img_size, stride=self.stride, auto=False)[0]
