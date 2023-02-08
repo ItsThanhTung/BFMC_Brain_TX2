@@ -2,3 +2,5 @@ docs/
 .vscode/
 __pycache__
 **/*.pyc
+historyFile.txt
+carControlHistory.txt
