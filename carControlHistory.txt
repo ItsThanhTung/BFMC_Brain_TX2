@@ -1,0 +1,161 @@
+Intercept Handler - intercept length: 0 - intercept gap: inf
+LANE KEEPING - speed: 0 - angle: 0
+Intercept Handler - intercept length: 60 - intercept gap: 45
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 79 - intercept gap: 21
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 78 - intercept gap: 40
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 90 - intercept gap: 46
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 78 - intercept gap: 17
+LANE KEEPING - speed: 99.83421234632695 - angle: -1
+Intercept Handler - intercept length: 97 - intercept gap: 38
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 76 - intercept gap: 45
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 80 - intercept gap: 46
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 81 - intercept gap: 46
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 78 - intercept gap: 44
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 58 - intercept gap: 46
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 61 - intercept gap: 46
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 97 - intercept gap: 42
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 154 - intercept gap: 37
+Turn Right
+LANE KEEPING - speed: 99.73388430281378 - angle: 2
+Intercept Handler - intercept length: 42 - intercept gap: 30
+LANE KEEPING - speed: 96.37444683075103 - angle: 8
+Intercept Handler - intercept length: 98 - intercept gap: 21
+LANE KEEPING - speed: 99.90065206925819 - angle: 1
+Intercept Handler - intercept length: 101 - intercept gap: 38
+LANE KEEPING - speed: 99.13669754629223 - angle: 4
+Intercept Handler - intercept length: 81 - intercept gap: 46
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 79 - intercept gap: 46
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 78 - intercept gap: 45
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 77 - intercept gap: 45
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 60 - intercept gap: 46
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 54 - intercept gap: 39
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 81 - intercept gap: 46
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 99 - intercept gap: 44
+LANE KEEPING - speed: 93.63710907643063 - angle: 12
+Intercept Handler - intercept length: 68 - intercept gap: 20
+LANE KEEPING - speed: 99.09946772983331 - angle: 4
+Intercept Handler - intercept length: 59 - intercept gap: 35
+LANE KEEPING - speed: 96.41579114615583 - angle: 8
+Intercept Handler - intercept length: 76 - intercept gap: 46
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 82 - intercept gap: 46
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 79 - intercept gap: 44
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 78 - intercept gap: 45
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 60 - intercept gap: 46
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 52 - intercept gap: 42
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 116 - intercept gap: 43
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 91 - intercept gap: 44
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 14 - intercept gap: 4
+LANE KEEPING - speed: 99.28137798068828 - angle: 3
+Intercept Handler - intercept length: 106 - intercept gap: 35
+LANE KEEPING - speed: 80.32653298563167 - angle: -23
+Intercept Handler - intercept length: 92 - intercept gap: 44
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 85 - intercept gap: 46
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 79 - intercept gap: 46
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 78 - intercept gap: 45
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 50 - intercept gap: 35
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 58 - intercept gap: 44
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 74 - intercept gap: 45
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 65 - intercept gap: 28
+LANE KEEPING - speed: 99.58046516666127 - angle: 2
+Intercept Handler - intercept length: 16 - intercept gap: 24
+LANE KEEPING - speed: 99.09946772983331 - angle: 4
+Intercept Handler - intercept length: 69 - intercept gap: 40
+LANE KEEPING - speed: 96.41579114615583 - angle: 8
+Intercept Handler - intercept length: 92 - intercept gap: 44
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 82 - intercept gap: 46
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 82 - intercept gap: 46
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 78 - intercept gap: 45
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 57 - intercept gap: 46
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 61 - intercept gap: 46
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 25 - intercept gap: 32
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 91 - intercept gap: 41
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 70 - intercept gap: 14
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 90 - intercept gap: 38
+LANE KEEPING - speed: 80.32653298563167 - angle: -23
+Intercept Handler - intercept length: 80 - intercept gap: 46
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 77 - intercept gap: 42
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 79 - intercept gap: 46
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 78 - intercept gap: 44
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 78 - intercept gap: 45
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 60 - intercept gap: 46
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 58 - intercept gap: 44
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 77 - intercept gap: 26
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 25 - intercept gap: 42
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 91 - intercept gap: 44
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 48 - intercept gap: 27
+LANE KEEPING - speed: 99.45750885773265 - angle: 3
+Intercept Handler - intercept length: 106 - intercept gap: 35
+LANE KEEPING - speed: 80.32653298563167 - angle: -23
+Intercept Handler - intercept length: 49 - intercept gap: 13
+LANE KEEPING - speed: 80.32653298563167 - angle: -23
+Intercept Handler - intercept length: 82 - intercept gap: 46
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 80 - intercept gap: 46
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 78 - intercept gap: 45
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 78 - intercept gap: 45
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 50 - intercept gap: 35
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 56 - intercept gap: 42
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 57 - intercept gap: 38
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 57 - intercept gap: 38
+LANE KEEPING - speed: 80.32653298563167 - angle: 23
+Intercept Handler - intercept length: 57 - intercept gap: 38
+LANE KEEPING - speed: 80.32653298563167 - angle: 23

@@ -26,14 +26,10 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
 
-
-import numpy as np
-
 from threading import Thread
 
 from src.templates.workerprocess import WorkerProcess
 from src.image_processing.InterceptDetection import InterceptDetection
-
 
 
 class InterceptDetectionProcess(WorkerProcess):

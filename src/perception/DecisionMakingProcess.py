@@ -9,6 +9,8 @@ class DecisionMakingProcess(WorkerProcess):
     # ===================================== INIT =========================================
     data_lane_keeping_lock = Lock()
     data_intercept_detection_lock = Lock()
+    historyFile = FileHandler("carControlHistory.txt")
+
     def __init__(self, inPs, outPs, opt, debug):
         """Process used for sending images over the network to a targeted IP via UDP protocol 
         (no feedback required). The image is compressed before sending it. 
@@ -22,6 +24,7 @@ class DecisionMakingProcess(WorkerProcess):
         outPs : list(Pipe) 
             List of output pipes (not used at the moment)
         """
+        
 
         super(DecisionMakingProcess,self).__init__( inPs, outPs)
         self.opt = opt
@@ -34,10 +37,8 @@ class DecisionMakingProcess(WorkerProcess):
         self.debug = debug
         self.prev_angle = 0
         self.is_intercept = False
-
-        logFile = 'carControlHistory.txt'
-        self.historyFile = FileHandler(logFile)
         
+ 
     # ===================================== RUN ==========================================
     def run(self):
         """Apply the initializing methods and start the threads.
@@ -115,35 +116,36 @@ class DecisionMakingProcess(WorkerProcess):
                 speed_lane_keeping, angle_lane_keeping = self.read_lane_keeping_data()
                 intercept_length, intercept_gap = self.read_intercept_detection_data()
 
-                print("intercept_length: ", intercept_length, " intercept_gap: ", intercept_gap)
+                is_intercept, intercept_log = interceptionHandler.is_intercept(intercept_length, intercept_gap)                
+                self.historyFile.write(intercept_log)
 
-                if (intercept_length >= 130 and intercept_gap < 40) or self.is_intercept:
+                if is_intercept or self.is_intercept:                            
                     if not self.is_intercept:
-                        print('intercept')
                         self.is_intercept = True
-                        setSpeed(self.outPs["SERIAL"], float(0))
-                        setAngle(self.outPs["SERIAL"] , float(22))
-                        
-                        # MoveDistance(self.outPs["SERIAL"] , 0.5, 0.5)
-                    # print("max_intercept_length: ", max_intercept_length, " intercept_gap: ", intercept_gap)
-                    
-                if not self.is_stop: # and self.prev_angle != angle_lane_keeping:
+                        if not self.debug:
+                            intercept_handler_log = interceptionHandler.turn_right(self.debug, self.outPs["SERIAL"])
+                        else:
+                            intercept_handler_log = interceptionHandler.turn_right(self.debug)
+                            self.historyFile.write(intercept_handler_log)
+                
+                self.historyFile.write("LANE KEEPING - speed: " + str(speed_lane_keeping) + " - angle: " + str(int(angle_lane_keeping)) + "\n")
+                if not self.is_intercept: # and self.prev_angle != angle_lane_keeping:
                     if not self.debug:
-                        angle_lane_keeping = int(angle_lane_keeping)
-                        # print(speed_lane_keeping, angle_lane_keeping)
-                        
-                        # setSpeed(self.outPs["SERIAL"], float(0))
-                        # setAngle(self.outPs["SERIAL"] , float(0))
-                        
+                        angle_lane_keeping = int(angle_lane_keeping)                       
+                    
                         setSpeed(self.outPs["SERIAL"], float(0.5 * 100))
                         setAngle(self.outPs["SERIAL"] , float(angle_lane_keeping))
                         self.prev_angle = angle_lane_keeping
+
                 time.sleep(0.05)
 
 
             except Exception as e:
                 print("Decision Making - decision making thread error:")
                 print(e)
+                self.historyFile.write("Decision Making - decision making thread error:")
+                self.historyFile.write(str(e))
+                
         
     
 
