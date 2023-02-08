@@ -70,7 +70,7 @@ if __name__ == '__main__':
 
     
     rcShR, rcShS   = Pipe(duplex = False)                                               # laneKeeping  ->  Serial
-    distSerialR, distSerialS  = Pipe(duplex = False)                                               # laneKeeping  ->  Serial
+    distSerialR, distSerialS  = Pipe(duplex = False)                                    # laneKeeping  ->  Serial
 
     imagePreprocessR, imagePreprocessS = Pipe(duplex = False)                           # preprocess   ->  LaneKeeping
     imagePreprocessStreamR, imagePreprocessStreamS = Pipe(duplex = False)               # preprocess   ->  Stream
