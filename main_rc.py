@@ -101,7 +101,7 @@ if __name__ == '__main__':
     allProcesses.append(laneKeepingProcess)
     allProcesses.append(decisionMakingProcess)
     allProcesses.append(interceptDetectionProcess)
-    allProcesses.append(ObjectDetectionProcess)
+    allProcesses.append(objectDetectionProcess)
     allProcesses.append(shProc)
 
 
