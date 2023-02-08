@@ -1,6 +1,8 @@
 from threading import Thread, Lock
 from src.templates.workerprocess import WorkerProcess
 from src.utils.utils_function import setSpeed, setAngle, EnablePID, MoveDistance
+from src.hardware.serialhandler.filehandler import FileHandler
+from src.perception.InterceptionHandler import InterceptionHandler
 
 import time
 class DecisionMakingProcess(WorkerProcess):
@@ -26,19 +28,22 @@ class DecisionMakingProcess(WorkerProcess):
         self.speed_lane_keeping = 0 
         self.angle_lane_keeping = 0 
 
-        self.max_intercept_length = 0
+        self.intercept_length = 0
         self.intercept_gap = float("inf")
 
         self.debug = debug
         self.prev_angle = 0
-        self.is_stop = False
+        self.is_intercept = False
 
+        logFile = 'carControlHistory.txt'
+        self.historyFile = FileHandler(logFile)
         
     # ===================================== RUN ==========================================
     def run(self):
         """Apply the initializing methods and start the threads.
         """
         super(DecisionMakingProcess,self).run()
+        self.historyFile.close()
 
     # ===================================== INIT THREADS =================================
     def _init_threads(self):
@@ -59,7 +64,7 @@ class DecisionMakingProcess(WorkerProcess):
         self.threads.append(readDataInterceptDetectionTh)
         
     def _read_data_lane_keeping(self):
-         while True:
+        while True:
             try:
                 data = self.inPs["LANE_KEEPING"].recv()
                 speed = data["speed"]
@@ -74,11 +79,11 @@ class DecisionMakingProcess(WorkerProcess):
                 print(e)
 
     def _read_data_intercept_detection(self):
-         while True:
+        while True:
             try:
-                max_intercept_length, intercept_gap = self.inPs["INTERCEPT_DETECTION"].recv()
+                intercept_length, intercept_gap = self.inPs["INTERCEPT_DETECTION"].recv()
                 self.data_intercept_detection_lock.acquire()
-                self.max_intercept_length = max_intercept_length
+                self.intercept_length = intercept_length
                 self.intercept_gap = intercept_gap
                 self.data_intercept_detection_lock.release()
 
@@ -86,33 +91,40 @@ class DecisionMakingProcess(WorkerProcess):
                 print("Decision Making - read data intercept detection thread error:")
                 print(e)
 
+    def read_lane_keeping_data(self):
+        self.data_lane_keeping_lock.acquire()
+        speed_lane_keeping = self.speed_lane_keeping
+        angle_lane_keeping = self.angle_lane_keeping
+        self.data_lane_keeping_lock.release()
+        return speed_lane_keeping, angle_lane_keeping
+    
+    def read_intercept_detection_data(self):
+        self.data_intercept_detection_lock.acquire()
+        intercept_length = self.intercept_length
+        intercept_gap = self.intercept_gap
+        self.data_intercept_detection_lock.release()
+        return intercept_length, intercept_gap
+
     def _run_decision_making(self):
         if not self.debug:
             EnablePID(self.outPs["SERIAL"])
+
+        interceptionHandler = InterceptionHandler()
         while True:
             try:
-                self.data_lane_keeping_lock.acquire()
-                speed_lane_keeping = self.speed_lane_keeping
-                angle_lane_keeping = self.angle_lane_keeping
-                self.data_lane_keeping_lock.release()
+                speed_lane_keeping, angle_lane_keeping = self.read_lane_keeping_data()
+                intercept_length, intercept_gap = self.read_intercept_detection_data()
 
-                self.data_intercept_detection_lock.acquire()
-                max_intercept_length = self.max_intercept_length
-                intercept_gap = self.intercept_gap
-                self.data_intercept_detection_lock.release()
+                print("intercept_length: ", intercept_length, " intercept_gap: ", intercept_gap)
 
-                # print("max_intercept_length: ", max_intercept_length, " intercept_gap: ", intercept_gap)
-                if (max_intercept_length >= 150 and intercept_gap < 40) or self.is_stop:
-                    if not self.is_stop:
-                        print('stop')
-                        self.is_stop = True
+                if (intercept_length >= 130 and intercept_gap < 40) or self.is_intercept:
+                    if not self.is_intercept:
+                        print('intercept')
+                        self.is_intercept = True
                         setSpeed(self.outPs["SERIAL"], float(0))
                         setAngle(self.outPs["SERIAL"] , float(22))
                         
-                        # MoveDistance(self.outPs["SERIAL"] , 0.5, 0.5)
-                    # print("max_intercept_length: ", max_intercept_length, " intercept_gap: ", intercept_gap)
-                    
-                if not self.is_stop: # and self.prev_angle != angle_lane_keeping:
+                if not self.is_intercept: 
                     if not self.debug:
                         angle_lane_keeping = int(angle_lane_keeping)
                         print(angle_lane_keeping)
