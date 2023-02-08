@@ -126,15 +126,17 @@ class CameraThread(ThreadWithStop):
         while self._running:
             
             ret, data = self.camera.read()
-            data = cv2.resize(data, (320, 240))
-            data = imutils.rotate(data, -5)
+            print(data.shape)
+            lane_image = cv2.resize(data, (320, 240))
+            lane_image = imutils.rotate(lane_image, -5)
             # cv2.ims=how("data", data)
             # cv2.waitKey(1)
 
             # output image and time stamp
             # Note: The sending process can be blocked, when doesn't exist any consumer process and it reaches the limit size.
-            for outP in self.outPs:
-                outP.send({"image": data})
+
+            self.outPs["LANE_IMAGE"].send({"image": lane_image})
+            self.outPs["OBJECT_IMAGE"].send({"image": data})
     
 
 

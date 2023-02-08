@@ -48,6 +48,7 @@ from src.image_processing.ImagePreprocessingProcess import ImagePreprocessingPro
 from src.perception.DecisionMakingProcess import DecisionMakingProcess
 
 from src.image_processing.InterceptDetectionProcess import InterceptDetectionProcess
+from src.image_processing.ObjectDetectionProcess import ObjectDetectionProcess
 
 from src.utils.utils_function import load_config_file
 
@@ -62,12 +63,14 @@ if __name__ == '__main__':
     allProcesses = list()
 
     # =============================== HARDWARE ===============================================
-    camStR, camStS = Pipe(duplex = False)                                               # camera  ->  streamer
-    camProc = CameraProcess([],[camStS], opt["CAM_PATH"])
+    camLaneStR, camLaneStS = Pipe(duplex = False)           # camera  ->  streamer
+    camObjectStR, camObjectStS = Pipe(duplex = False)           # camera  ->  streamer
+    camProc = CameraProcess([],{"LANE_IMAGE" : camLaneStS, "OBJECT_IMAGE" : camObjectStS}, opt["CAM_PATH"])
     allProcesses.append(camProc)
 
     
     rcShR, rcShS   = Pipe(duplex = False)                                               # laneKeeping  ->  Serial
+    distSerialR, distSerialS  = Pipe(duplex = False)                                               # laneKeeping  ->  Serial
 
     imagePreprocessR, imagePreprocessS = Pipe(duplex = False)                           # preprocess   ->  LaneKeeping
     imagePreprocessStreamR, imagePreprocessStreamS = Pipe(duplex = False)               # preprocess   ->  Stream
@@ -77,24 +80,28 @@ if __name__ == '__main__':
 
     interceptDecisionR, interceptDecisionS = Pipe(duplex = False)                       # Intercept detection ->  Decision making
 
-    imagePreprocess = ImagePreprocessingProcess([camStR], {"LANE_KEEPING" : imagePreprocessS, "INTERCEPT_DETECTION" : imagePreprocessInterceptS},\
-                                                                opt , imagePreprocessStreamS, enableStream)
+    objectDecisionR, objectDecisionS = Pipe(duplex = False)                             # object detection    ->  Decision making
 
+    objectDetectionProcess = ObjectDetectionProcess({"OBJECT_IMAGE" : camObjectStR}, {"DECISION_MAKING" : objectDecisionS})
+    imagePreprocess = ImagePreprocessingProcess([camLaneStR], {"LANE_KEEPING" : imagePreprocessS, "INTERCEPT_DETECTION" : imagePreprocessInterceptS},\
+                                                                opt , imagePreprocessStreamS, enableStream)
+                                             
     laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [laneKeepingDecisionS], opt, None, False)
-    decisionMakingProcess = DecisionMakingProcess({"LANE_KEEPING" : laneKeepingDecisionR, "INTERCEPT_DETECTION" : interceptDecisionR}, \
-                                                                                                    {"SERIAL" : rcShS, "SERIAL_DISTANCE": distR}, opt, debug=False)
+    decisionMakingProcess = DecisionMakingProcess({"LANE_KEEPING" : laneKeepingDecisionR, "INTERCEPT_DETECTION" : interceptDecisionR, "OBJECT_DETECTION" : objectDecisionR}, \
+                                                                                                    {"SERIAL" : rcShS, "SERIAL_DISTANCE": distSerialR}, opt, debug=False)
 
     interceptDetectionProcess = InterceptDetectionProcess({"IMAGE_PREPROCESSING" : imagePreprocessInterceptR}, {"DECISION_MAKING" : interceptDecisionS}, \
                                                             opt, debugP=None, debug=False)           
 
     shProc = SerialHandlerProcess([rcShR], [])
 
-    shProc.SubscribeTopic('7', distS)     # subcribe distance topic
+    shProc.SubscribeTopic('7', distSerialS)     # subcribe distance topic
     
     allProcesses.append(imagePreprocess)
     allProcesses.append(laneKeepingProcess)
     allProcesses.append(decisionMakingProcess)
     allProcesses.append(interceptDetectionProcess)
+    allProcesses.append(ObjectDetectionProcess)
     allProcesses.append(shProc)
 
 
