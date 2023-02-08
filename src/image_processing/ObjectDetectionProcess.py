@@ -57,10 +57,10 @@ class ObjectDetectionProcess(WorkerProcess):
             imageStreamTh.daemon = True
             self.threads.append(imageStreamTh)
 
-        else:
-            sendImageShowTh = Thread(name='SendImageShow',target = self._send_image_show, args= (self.outPs["IMAGE_SHOW"],))
-            sendImageShowTh.daemon = True
-            self.threads.append(sendImageShowTh)
+        # else:
+        #     sendImageShowTh = Thread(name='SendImageShow',target = self._send_image_show, args= (self.outPs["IMAGE_SHOW"],))
+        #     sendImageShowTh.daemon = True
+        #     self.threads.append(sendImageShowTh)
 
             
         runDetectionTh.daemon = True

@@ -83,7 +83,7 @@ if __name__ == '__main__':
     objectDecisionR, objectDecisionS = Pipe(duplex = False)                             # object detection    ->  Decision making
 
     objectDetectionProcess = ObjectDetectionProcess({"OBJECT_IMAGE" : camObjectStR}, {"DECISION_MAKING" : objectDecisionS})
-    imagePreprocess = ImagePreprocessingProcess([camLaneStR], {"LANE_KEEPING" : imagePreprocessS, "INTERCEPT_DETECTION" : imagePreprocessInterceptS},\
+    imagePreprocess = ImagePreprocessingProcess({"LANE_IMAGE" : camLaneStR}, {"LANE_KEEPING" : imagePreprocessS, "INTERCEPT_DETECTION" : imagePreprocessInterceptS},\
                                                                 opt , imagePreprocessStreamS, enableStream)
                                              
     laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [laneKeepingDecisionS], opt, None, False)

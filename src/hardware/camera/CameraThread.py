@@ -126,7 +126,6 @@ class CameraThread(ThreadWithStop):
         while self._running:
             
             ret, data = self.camera.read()
-            print(data.shape)
             lane_image = cv2.resize(data, (320, 240))
             lane_image = imutils.rotate(lane_image, -5)
             # cv2.ims=how("data", data)

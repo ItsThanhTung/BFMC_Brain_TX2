@@ -87,9 +87,9 @@ class ImagePreprocessingProcess(WorkerProcess):
             imageStreamTh = Thread(name='ImageStreamThread',target = self._stream_image, args= (self.debugP,))
             imageStreamTh.daemon = True
             self.threads.append(imageStreamTh)
-        else:
-            sendImageShowTh = Thread(name='SendImageShow',target = self._send_image_show, args= (self.outPs["IMAGE_SHOW"],))
-            self.threads.append(sendImageShowTh)
+        # else:
+        #     sendImageShowTh = Thread(name='SendImageShow',target = self._send_image_show, args= (self.outPs["IMAGE_SHOW"],))
+        #     self.threads.append(sendImageShowTh)
             
         imagePreprocessTh.daemon = True
         imageReadTh.daemon = True
