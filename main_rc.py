@@ -82,12 +82,14 @@ if __name__ == '__main__':
 
     laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [laneKeepingDecisionS], opt, None, False)
     decisionMakingProcess = DecisionMakingProcess({"LANE_KEEPING" : laneKeepingDecisionR, "INTERCEPT_DETECTION" : interceptDecisionR}, \
-                                                                                                    {"SERIAL" : rcShS}, opt, debug=False)
+                                                                                                    {"SERIAL" : rcShS, "SERIAL_DISTANCE": distR}, opt, debug=False)
 
     interceptDetectionProcess = InterceptDetectionProcess({"IMAGE_PREPROCESSING" : imagePreprocessInterceptR}, {"DECISION_MAKING" : interceptDecisionS}, \
                                                             opt, debugP=None, debug=False)           
 
     shProc = SerialHandlerProcess([rcShR], [])
+
+    shProc.SubscribeTopic('7', distS)     # subcribe distance topic
     
     allProcesses.append(imagePreprocess)
     allProcesses.append(laneKeepingProcess)

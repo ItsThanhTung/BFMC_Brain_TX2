@@ -124,14 +124,21 @@ class DecisionMakingProcess(WorkerProcess):
                         setSpeed(self.outPs["SERIAL"], float(0))
                         setAngle(self.outPs["SERIAL"] , float(22))
                         
-                if not self.is_intercept: 
+                        # MoveDistance(self.outPs["SERIAL"] , 0.5, 0.5)
+                    # print("max_intercept_length: ", max_intercept_length, " intercept_gap: ", intercept_gap)
+                    
+                if not self.is_stop: # and self.prev_angle != angle_lane_keeping:
                     if not self.debug:
                         angle_lane_keeping = int(angle_lane_keeping)
-                        print(angle_lane_keeping)
-                        setSpeed(self.outPs["SERIAL"], float(0.5*speed_lane_keeping))
+                        # print(speed_lane_keeping, angle_lane_keeping)
+                        
+                        # setSpeed(self.outPs["SERIAL"], float(0))
+                        # setAngle(self.outPs["SERIAL"] , float(0))
+                        
+                        setSpeed(self.outPs["SERIAL"], float(0.5 * 100))
                         setAngle(self.outPs["SERIAL"] , float(angle_lane_keeping))
                         self.prev_angle = angle_lane_keeping
-                time.sleep(0.1)
+                time.sleep(0.05)
 
 
             except Exception as e:
