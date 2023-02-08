@@ -1,5 +1,5 @@
 import sys
-sys.path.append('./yolov5')
+sys.path.append('./yolov5_utils')
 from Detection import Yolo
 import cv2
 import time

@@ -37,11 +37,11 @@ from utils.plots import Annotator, colors
 
 
 class Yolo(object):
-    def __init__(self, source='',imgsize= (480,640), weights='./yolov5/sign.pt', device='0',conf_thres=0.1, iou_thres=0.45,max_det=1000): 
+    def __init__(self, source='',imgsize= (480,640), weights='./yolov5_utils/sign.pt', device='0',conf_thres=0.1, iou_thres=0.45,max_det=1000): 
         self.img_size = imgsize
         self.cap = cv2.VideoCapture(0)
         self.device = select_device(device)
-        self.model = self.model = DetectMultiBackend(weights, device=self.device, dnn=False, data='./yolov5/data/coco128.yaml')
+        self.model = self.model = DetectMultiBackend(weights, device=self.device, dnn=False, data='./yolov5_utils/data/coco128.yaml')
         self.names=['car', 'crosswalk', 'highway_entry', 'highway_exit', 'no_entry', 'onewayroad', 'parking', 'pedestrian', 'priority', 'roadblock', 'roundabout', 'stop', 'trafficlight']
         self.conf_thres=conf_thres
         self.iou_thres=iou_thres
