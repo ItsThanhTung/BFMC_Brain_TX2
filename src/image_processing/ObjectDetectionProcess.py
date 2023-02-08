@@ -1,5 +1,5 @@
 import time
-from src.image_processing.traffic_sign.detection import Yolo
+# from src.image_processing.traffic_sign.detection import Yolo
 from threading import Thread, Condition
 from src.templates.workerprocess import WorkerProcess
 from queue import Queue
