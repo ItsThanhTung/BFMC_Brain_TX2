@@ -57,9 +57,30 @@ from src.image_processing.ObjectDetectionProcess import ObjectDetectionProcess
 # opt import
 from src.utils.utils_function import load_config_file
 import torch
-
+from src.image_processing.traffic_sign.detection import Yolo
 torch.multiprocessing.set_start_method('spawn', force=True)
+import multiprocessing
+
+# def detection(camObjectStR,detector):
+#     print("loading.......................................")
+    
+    
+#     while True:
+#         with c_object:
+#             c_object.wait()
+#         with c_object:
+#             while object_image.qsize()>0:
+#                 image=object_image.get()
+#                 _= detector.detect(image)
+#                 # print(".",image.shape)  
+
+
 if __name__ == '__main__':
+    detector=Yolo()
+    object_image = multiprocessing.Queue()
+    c_object = multiprocessing.Condition()
+
+    
     opt = load_config_file("main_remote.json")
     # =============================== CONFIG =================================================
     enableCameraSpoof   =  True 
@@ -73,6 +94,8 @@ if __name__ == '__main__':
     if enableCameraSpoof:
         # camProc = CameraProcess([],[camStS], opt["CAM_PATH"])
         camProc = CameraSpooferProcess([], {"PREPROCESS_IMAGE" : camLaneStS, "OBJECT_IMAGE" : camObjectStS}, [opt["CAM_PATH"]])
+        object_image=camProc.object_image
+        c_object=camProc.c_object
         allProcesses.append(camProc)
 
     else:
@@ -94,7 +117,7 @@ if __name__ == '__main__':
     imageObjectShowR, imageObjectShowS = Pipe(duplex = False)                           # object detection    ->  ImageShow
     objectDecisionR, objectDecisionS = Pipe(duplex = False)                             # object detection    ->  Decision making
 
-    objectDetectionProcess = ObjectDetectionProcess({"OBJECT_IMAGE" : camObjectStR}, {"IMAGE_SHOW" : imageObjectShowS, "DECISION_MAKING" : objectDecisionS}, True)
+    # objectDetectionProcess = ObjectDetectionProcess({"OBJECT_IMAGE" : camObjectStR}, {"IMAGE_SHOW" : imageObjectShowS, "DECISION_MAKING" : objectDecisionS}, True)
 
     imagePreprocess = ImagePreprocessingProcess({"LANE_IMAGE" : camLaneStR}, {"IMAGE_SHOW" : imagePreprocessShowS, "LANE_KEEPING" : imagePreprocessS, \
                                                         "INTERCEPT_DETECTION" : imagePreprocessInterceptS}, opt, True)
@@ -118,7 +141,10 @@ if __name__ == '__main__':
     allProcesses.append(imageShow)
     allProcesses.append(decisionMakingProcess)
     allProcesses.append(interceptDetectionProcess)
-    allProcesses.append(objectDetectionProcess)
+    # allProcesses.append(objectDetectionProcess)
+
+
+
 
 
 
@@ -140,9 +166,12 @@ if __name__ == '__main__':
 
     # ===================================== STAYING ALIVE ====================================
     blocker = Event()  
-
+    # detection(camObjectStR,detector,object_image,c_object)
+    detector.detection_loop(object_image,c_object,imageObjectShowS,objectDecisionS)
+    
     try:
         blocker.wait()
+
     except KeyboardInterrupt:
         print("\nCatching a KeyboardInterruption exception! Shutdown all processes.\n")
         for proc in allProcesses:
@@ -154,3 +183,5 @@ if __name__ == '__main__':
                 print("Process witouth stop",proc)
                 proc.terminate()
                 proc.join()
+
+    

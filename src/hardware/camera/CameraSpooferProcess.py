@@ -33,6 +33,7 @@ import time
 from threading       import Thread
 
 from src.templates.workerprocess import WorkerProcess
+import multiprocessing
 
 class CameraSpooferProcess(WorkerProcess):
 
@@ -59,7 +60,9 @@ class CameraSpooferProcess(WorkerProcess):
         self.object_image_size = (640,480)
         
         self.videoDir = videoDir
-        self.videos = videoDir # self.open_files(self.videoDir, ext = ext)
+        self.videos = videoDir 
+        self.object_image = multiprocessing.Queue(maxsize=2)
+        self.c_object = multiprocessing.Condition()
 
     
     # ===================================== INIT VIDEOS ==================================
@@ -103,7 +106,6 @@ class CameraSpooferProcess(WorkerProcess):
         while True:
             for video in videos:
                 cap         =   cv2.VideoCapture(video)
-                
                 while True:
                     ret, frame = cap.read()
                     stamp = time.time()
@@ -111,7 +113,13 @@ class CameraSpooferProcess(WorkerProcess):
                         lane_image = cv2.resize(frame, self.lane_image_size)
                         object_image = cv2.resize(frame, self.object_image_size)
                         self.outPs["PREPROCESS_IMAGE"].send({"image": lane_image})
-                        self.outPs["OBJECT_IMAGE"].send({"image": object_image})
+
+                        with self.c_object:
+                            if self.object_image.full():
+                                self.object_image.get()
+                            self.object_image.put(object_image)
+                            self.c_object.notify_all()
+                        
 
                     else:
                         break

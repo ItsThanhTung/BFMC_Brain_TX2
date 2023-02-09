@@ -24,7 +24,7 @@ class ObjectDetectionProcess(Torch_WorkerProcess):
             List of output pipes (not used at the moment)
         """
         
-        self.detector = Yolo()
+        # self.detector = Yolo()
         super(ObjectDetectionProcess,self).__init__( inPs, outPs)
 
         self.image = None
@@ -115,7 +115,7 @@ class ObjectDetectionProcess(Torch_WorkerProcess):
                             print("Object Detection - object image thread full Queue")
                     visualized_image = np.zeros((480, 640))
                     results = [1, 2, 3, 4]
-                    visualized_image, results = self.detector.detect(image)
+                    # visualized_image, results = self.detector.detect(image)
                     self.object_image_condition.acquire()
                     self.visualized_image = visualized_image
                     self.results = results
