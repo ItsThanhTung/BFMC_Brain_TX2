@@ -14,7 +14,6 @@ class ObjectDetectionProcess(Torch_WorkerProcess):
     def __init__(self, inPs, outPs, is_show, debugP = None, debug=False):
         """Process used for sending images over the network to a targeted IP via UDP protocol 
         (no feedback required). The image is compressed before sending it. 
-
         Used for visualizing your raspicam images on remote PC.
         
         Parameters
@@ -174,7 +173,3 @@ class ObjectDetectionProcess(Torch_WorkerProcess):
                 print("Object detection - send result thread error:")
                 print(e)
 
-
-            
-
-   
