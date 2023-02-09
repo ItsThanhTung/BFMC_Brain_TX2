@@ -24,7 +24,7 @@
     "middle_point_ratio": 0.25,
     "angle_scale_ratio": 0.35
   },
-  "CAM_PATH": "test_y_edge_case.avi",
+  "CAM_PATH": "/dev/video0",
   "IP_ADDRESS": "127.0.0.1",
 
   "INTERCEPT_DETECTION": {

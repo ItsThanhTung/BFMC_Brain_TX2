@@ -38,7 +38,7 @@ import multiprocessing
 class CameraSpooferProcess(WorkerProcess):
 
     #================================ INIT ===============================================
-    def __init__(self, inPs,outQueue, videoDir, ext = '.avi'):
+    def __init__(self, object_image_queue, object_condition, inPs,outQueue, videoDir, ext = '.avi'):
         """Processed used for spoofing a camera/ publishing a video stream from a folder 
         with videos
         
@@ -61,8 +61,8 @@ class CameraSpooferProcess(WorkerProcess):
         
         self.videoDir = videoDir
         self.videos = videoDir 
-        self.object_image = multiprocessing.Queue(maxsize=2)
-        self.c_object = multiprocessing.Condition()
+        self.object_image_queue = object_image_queue
+        self.object_condition = object_condition
 
     
     # ===================================== INIT VIDEOS ==================================
@@ -114,11 +114,11 @@ class CameraSpooferProcess(WorkerProcess):
                         object_image = cv2.resize(frame, self.object_image_size)
                         self.outPs["PREPROCESS_IMAGE"].send({"image": lane_image})
 
-                        with self.c_object:
-                            if self.object_image.full():
-                                self.object_image.get()
-                            self.object_image.put(object_image)
-                            self.c_object.notify_all()
+                        with self.object_condition:
+                            if self.object_image_queue.full():
+                                self.object_image_queue.get()
+                            self.object_image_queue.put(object_image)
+                            self.object_condition.notify_all()
                         
 
                     else:

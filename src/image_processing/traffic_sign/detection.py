@@ -7,11 +7,16 @@ from src.image_processing.traffic_sign.yolov5_utils.models.experimental import a
 from src.image_processing.traffic_sign.yolov5_utils.utils.torch_utils import select_device
 from src.image_processing.traffic_sign.yolov5_utils.models.common import DetectMultiBackend
 from src.image_processing.traffic_sign.yolov5_utils.utils.general import non_max_suppression,scale_coords
-# from src.image_processing.traffic_sign.yolov5_utils.utils.plots import Annotator, colors
+from src.image_processing.traffic_sign.yolov5_utils.utils.plots import Annotator, colors
 
 
 class Yolo(object):
-    def __init__(self, source='',imgsize= (480,640), weights='./src/image_processing/traffic_sign/yolov5_utils/sn.engine', device='0',conf_thres=0.1, iou_thres=0.45,max_det=1000): 
+    def __init__(self, isTensorRt, source='',imgsize= (480,640), device='0',conf_thres=0.1, iou_thres=0.45,max_det=1000): 
+        if isTensorRt: 
+            weights='./src/image_processing/traffic_sign/yolov5_utils/sign.engine'
+        else: 
+            weights='./src/image_processing/traffic_sign/yolov5_utils/sign.pt'
+            
         self.img_size = imgsize
         self.device = select_device(device)
         self.model = DetectMultiBackend(weights, device=self.device, dnn=False, data='./src/image_processing/traffic_sign/yolov5_utils/data/coco128.yaml')
@@ -36,30 +41,31 @@ class Yolo(object):
         pred = non_max_suppression(pred, self.conf_thres, self.iou_thres, None, False, max_det=self.max_det)
         results=[]
         for i, det in enumerate(pred):  # per image
-            # annotator = Annotator(img_resized, line_width=3, example=str(self.names))
+            annotator = Annotator(img_resized, line_width=3, example=str(self.names))
             det=det.cpu().detach().numpy()
             if len(det):
                 # det[:, :4] = scale_coords(im.shape, det[:, :4], im0.shape).round()
                 for (*xyxy, conf, cls) in reversed(det): 
                     c = int(cls)  # integer class
                     label = f'{self.names[c]} {conf:.2f}'
-                    # annotator.box_label(xyxy, label, color=colors(c, True))
+                    annotator.box_label(xyxy, label, color=colors(c, True))
                     result = (xyxy, conf, self.names[c])
                     results.append(result)
-            # img_resized = annotator.result()
+            img_resized = annotator.result()
         return img_resized, results
 
-    def detection_loop(self,object_image,c_object,imageObjectShowS,objectDecisionS):
+    def detection_loop(self, object_image_queue, object_condition, objectDecisionS, isShow = True, imageObjectShowS = None):
         while True:
-            with c_object:
-                c_object.wait()
-            while object_image.qsize()>0:
-                image=object_image.get()
+            with object_condition:
+                object_condition.wait()
+            while object_image_queue.qsize() > 0:
+                image = object_image_queue.get()
                 image,results = self.detect(image)
 
-                imageObjectShowS.send({"image": image})
                 objectDecisionS.send({"results" : results})
-            
+                
+                if isShow == True:        
+                    imageObjectShowS.send({"image": image})
 
     def preprocess(self,img0):
         img_resized = letterbox(img0, self.img_size, stride=self.stride, auto=False)[0]

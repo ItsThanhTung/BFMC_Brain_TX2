@@ -48,11 +48,18 @@ from src.image_processing.ImagePreprocessingProcess import ImagePreprocessingPro
 from src.perception.DecisionMakingProcess import DecisionMakingProcess
 
 from src.image_processing.InterceptDetectionProcess import InterceptDetectionProcess
-from src.image_processing.ObjectDetectionProcess import ObjectDetectionProcess
 
 from src.utils.utils_function import load_config_file
 
+from src.image_processing.traffic_sign.detection import Yolo
+import multiprocessing
+
 if __name__ == '__main__':
+    # =========================== Object Detection ===========================================
+    object_detector = Yolo(False)
+    object_image_queue = multiprocessing.Queue(maxsize=1)
+    object_condition = multiprocessing.Condition()
+
     # =============================== CONFIG =================================================
     enableStream        =  False
     enableRc            =  False
@@ -65,7 +72,8 @@ if __name__ == '__main__':
     # =============================== HARDWARE ===============================================
     camLaneStR, camLaneStS = Pipe(duplex = False)           # camera  ->  streamer
     camObjectStR, camObjectStS = Pipe(duplex = False)           # camera  ->  streamer
-    camProc = CameraProcess([],{"LANE_IMAGE" : camLaneStS, "OBJECT_IMAGE" : camObjectStS}, opt["CAM_PATH"])
+    camProc = CameraProcess(object_image_queue, object_condition, \
+                            [],{"PREPROCESS_IMAGE" : camLaneStS, "OBJECT_IMAGE" : camObjectStS}, opt["CAM_PATH"])
     allProcesses.append(camProc)
 
     
@@ -82,7 +90,7 @@ if __name__ == '__main__':
 
     objectDecisionR, objectDecisionS = Pipe(duplex = False)                             # object detection    ->  Decision making
 
-    objectDetectionProcess = ObjectDetectionProcess({"OBJECT_IMAGE" : camObjectStR}, {"DECISION_MAKING" : objectDecisionS})
+    # objectDetectionProcess = ObjectDetectionProcess({"OBJECT_IMAGE" : camObjectStR}, {"DECISION_MAKING" : objectDecisionS})
     imagePreprocess = ImagePreprocessingProcess({"LANE_IMAGE" : camLaneStR}, {"LANE_KEEPING" : imagePreprocessS, "INTERCEPT_DETECTION" : imagePreprocessInterceptS},\
                                                                 opt , imagePreprocessStreamS, enableStream)
                                              
@@ -101,7 +109,6 @@ if __name__ == '__main__':
     allProcesses.append(laneKeepingProcess)
     allProcesses.append(decisionMakingProcess)
     allProcesses.append(interceptDetectionProcess)
-    allProcesses.append(objectDetectionProcess)
     allProcesses.append(shProc)
 
 
@@ -129,6 +136,9 @@ if __name__ == '__main__':
 
     # ===================================== STAYING ALIVE ====================================
     blocker = Event()  
+    
+    object_detector.detection_loop(object_image_queue, object_condition, \
+                            objectDecisionS, False, None)
 
     try:
         blocker.wait()
