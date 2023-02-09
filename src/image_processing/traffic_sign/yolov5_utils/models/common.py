@@ -24,7 +24,7 @@ from torch.cuda import amp
 from src.image_processing.traffic_sign.yolov5_utils.utils.datasets import exif_transpose, letterbox
 from src.image_processing.traffic_sign.yolov5_utils.utils.general import (LOGGER, check_requirements, check_suffix, check_version, colorstr, increment_path,
                            make_divisible, non_max_suppression, scale_coords, xywh2xyxy, xyxy2xywh)
-from src.image_processing.traffic_sign.yolov5_utils.utils.plots import Annotator, colors, save_one_box
+from src.image_processing.traffic_sign.yolov5_utils.utils.plots import colors, save_one_box
 from src.image_processing.traffic_sign.yolov5_utils.utils.torch_utils import copy_attr, time_sync
 
 
@@ -274,6 +274,13 @@ class Concat(nn.Module):
     def forward(self, x):
         return torch.cat(x, self.d)
 
+class Binding():
+    def __init__(self, name, dtype, shape, data, ptr):
+        self.name=name
+        self.dtype=dtype
+        self.shape=shape
+        self.data=data
+        self.ptr=ptr
 
 class DetectMultiBackend(nn.Module):
     # YOLOv5 MultiBackend class for python inference on various backends
@@ -301,20 +308,54 @@ class DetectMultiBackend(nn.Module):
             with open(data, errors='ignore') as f:
                 names = yaml.safe_load(f)['names']  # class names
 
-        # if pt:  # PyTorch
-        model = attempt_load(weights if isinstance(weights, list) else w, map_location=device)
-        stride = max(int(model.stride.max()), 32)  # model stride
-        names = model.module.names if hasattr(model, 'module') else model.names  # get class names
-        self.model = model  # explicitly assign for to(), cpu(), cuda(), half()
-        
+        if pt:  # PyTorch
+            model = attempt_load(weights if isinstance(weights, list) else w, map_location=device)
+            stride = max(int(model.stride.max()), 32)  # model stride
+            names = model.module.names if hasattr(model, 'module') else model.names  # get class names
+            self.model = model  # explicitly assign for to(), cpu(), cuda(), half()
+
+        elif engine:  # TensorRT
+            LOGGER.info(f'Loading {w} for TensorRT inference...')
+            import tensorrt as trt  # https://developer.nvidia.com/nvidia-tensorrt-download
+            check_version(trt.__version__, '7.0.0', hard=True)  # require tensorrt>=7.0.0
+            # Bindings = namedtuple('Bindings', ('name', 'dtype', 'shape', 'data', 'ptr'))
+            # print("Binding :",Binding)
+            logger = trt.Logger(trt.Logger.INFO)
+            with open(w, 'rb') as f, trt.Runtime(logger) as runtime:
+                model = runtime.deserialize_cuda_engine(f.read())
+            self.bindings = OrderedDict()
+            arrs=[]
+            for index in range(model.num_bindings):
+                name = model.get_binding_name(index)
+                dtype = trt.nptype(model.get_binding_dtype(index))
+                shape = tuple(model.get_binding_shape(index))
+                data = torch.from_numpy(np.empty(shape, dtype=np.dtype(dtype))).to(device)
+                binding=Binding(name, dtype, shape, data, int(data.data_ptr()))
+                self.bindings[name] = binding
+            self.binding_addrs = OrderedDict((n, d.ptr) for n, d in self.bindings.items())
+            self.context = model.create_execution_context()
+            # batch_size = self.bindings['images'].shape[0]
+
+        self.engine=engine
+        self.pt=pt
+        # self.__dict__.update(locals())  # assign all variables to self
 
     def forward(self, im, augment=False, visualize=False, val=False):
         # YOLOv5 MultiBackend inference
         b, ch, h, w = im.shape  # batch, channel, height, width
-        # if self.pt or self.jit:  # PyTorch
-        y = self.model(im, augment=augment, visualize=visualize)
-        return y if val else y[0]
+        if self.pt :  # PyTorch
+            y = self.model(im, augment=augment, visualize=visualize)
+            return y if val else y[0]
 
+        elif self.engine:  # TensorRT
+            # assert im.shape == self.bindings['images'].shape, (im.shape, self.bindings['images'].shape)
+            self.binding_addrs['images'] = int(im.data_ptr())
+            self.context.execute_v2(list(self.binding_addrs.values()))
+            y = self.bindings['output'].data
+
+
+        y = torch.tensor(y) if isinstance(y, np.ndarray) else y
+        return (y, []) if val else y
 
     def warmup(self, imgsz=(1, 3, 640, 640), half=False):
         # Warmup model by running inference once

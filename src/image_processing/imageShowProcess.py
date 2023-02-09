@@ -83,10 +83,10 @@ class imageShowProcess(WorkerProcess):
                 # Obtain image
                 for inp in inPs:
                     visualized_images = inp.recv()
-                    for name in visualized_images:
-                        cv2.imshow(name, visualized_images[name])
+                    # for name in visualized_images:
+                        # cv2.imshow(name, visualized_images[name])
                 
-                cv2.waitKey(1)
+                # cv2.waitKey(1)
 
             except Exception as e:
                 print("Image show error:")
