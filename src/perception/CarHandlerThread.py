@@ -98,7 +98,7 @@ class CarHandlerThread(ThreadWithStop):
 
             Status, Mess = self._shRecv(self.__shInPs["SPEED"])
             if Status == 0:
-                if Mess == "ACK":
+                if Mess["data"] == "ACK":
                     return 0, "OK"
 
         return Status, Mess
@@ -117,7 +117,7 @@ class CarHandlerThread(ThreadWithStop):
 
             Status, Mess = self._shRecv(self.__shInPs["STEER"])
             if Status == 0:
-                if Mess == "ACK":
+                if Mess["data"] == "ACK":
                     return 0, "OK"
         return Status, Mess
 
@@ -136,7 +136,7 @@ class CarHandlerThread(ThreadWithStop):
 
             Status, Mess = self._shRecv(self.__shInPs["STEER"])
             if Status == 0:
-                if Mess == "ACK":
+                if Mess["data"] == "ACK":
                     return 0, "OK"
         return Status, Mess
 
