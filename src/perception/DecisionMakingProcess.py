@@ -4,7 +4,11 @@ from src.utils.utils_function import setSpeed, setAngle, EnablePID, MoveDistance
 from src.hardware.serialhandler.filehandler import FileHandler
 from src.perception.InterceptionHandler import InterceptionHandler
 
+from src.hardware.IMU.imuHandler import IMUHandler
+
 import time
+import numpy as np
+
 class DecisionMakingProcess(WorkerProcess):
     # ===================================== INIT =========================================
     data_lane_keeping_lock = Lock()
@@ -40,6 +44,8 @@ class DecisionMakingProcess(WorkerProcess):
         self.debug = debug
         self.prev_angle = 0
         self.is_intercept = False
+        
+        self.imu_handler = IMUHandler()
         
  
     # ===================================== RUN ==========================================
@@ -146,27 +152,35 @@ class DecisionMakingProcess(WorkerProcess):
                 print(object_result)
                 is_intercept, intercept_log = interceptionHandler.is_intercept(intercept_length, intercept_gap)                
                 self.historyFile.write(intercept_log)
-
-                if is_intercept or self.is_intercept:                            
-                    if not self.is_intercept:
-                        self.is_intercept = True
-                        if not self.debug:
-                            intercept_handler_log = interceptionHandler.turn_right(self.debug, self.outPs["SERIAL"])
-                        else:
-                            intercept_handler_log = interceptionHandler.turn_right(self.debug)
-                            self.historyFile.write(intercept_handler_log)
                 
-                self.historyFile.write("LANE KEEPING - speed: " + str(speed_lane_keeping) + " - angle: " + str(int(angle_lane_keeping)) + "\n")
+                if is_intercept:
+                    self.historyFile.write("IMU START\n")
+                    self.imu_handler.set_yaw()
+                    self.is_intercept = True
+
+                if self.is_intercept :                            
+                    if not self.debug:
+                        imu_angle = self.imu_handler.get_yaw()
+                        intercept_handler_log, isFinish = interceptionHandler.turn_right(imu_angle, self.debug, self.outPs["SERIAL"])
+                        self.is_intercept = not isFinish
+                    else:
+                        intercept_handler_log, isFinish = interceptionHandler.turn_right(imu_angle, self.debug)
+                        self.is_intercept = not isFinish
+                        self.historyFile.write(intercept_handler_log)
+                
                 if not self.is_intercept: # and self.prev_angle != angle_lane_keeping:
                     if not self.debug:
-                        angle_lane_keeping = int(angle_lane_keeping)                       
+                        angle_lane_keeping = int(angle_lane_keeping)    
+                        
+                        if np.abs(self.prev_angle - angle_lane_keeping) > 10:
+                            self.historyFile.write("******************* OFF ANGLE ***************************\n")
                     
                         setSpeed(self.outPs["SERIAL"], float(0.5 * 100))
                         setAngle(self.outPs["SERIAL"] , float(angle_lane_keeping))
+                        self.historyFile.write("LANE KEEPING - speed: " + str(speed_lane_keeping) + " - angle: " + str(int(angle_lane_keeping)) + "\n")
                         self.prev_angle = angle_lane_keeping
 
                 time.sleep(0.05)
-
 
             except Exception as e:
                 print("Decision Making - decision making thread error:")

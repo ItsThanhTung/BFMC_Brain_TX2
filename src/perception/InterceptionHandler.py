@@ -13,24 +13,31 @@ class InterceptionHandler:
         return False, self.log_messagge(False, intercept_length, intercept_gap)
 
 
-    def turn_right(self, debug, outP=None):
+    def turn_right(self, imu_angle, debug, outP=None):
         if not debug:
-            setSpeed(outP, float(0))
-            setAngle(outP , float(22))
-            return self.log_messagge(True)
+            if imu_angle < 90:
+                setSpeed(outP, float(0))
+                setAngle(outP , float(22))
+                return self.log_messagge(True, imu_angle), False
+            else:
+                return "FINISH TURN RIGHT\n", True
         else:
-            return "Turn Right\n"
+            return "FINISH TURN RIGHT\n", True
 
-    def turn_left(self, debug, outP=None):
+    def turn_left(self, imu_angle, debug, outP=None):
         if not debug:
-            setSpeed(outP, float(0))
-            setAngle(outP , float(22))
-            return self.log_messagge(True)
+            if imu_angle > -90:
+                setSpeed(outP, float(0))
+                setAngle(outP , float(22))
+                return self.log_messagge(True, imu_angle), False
+            else:
+                return "FINISH TURN LEFT\n", True
         else:
-            return "Turn left\n"
+            return "FINISH TURN LEFT\n", True
 
-    def log_messagge(self, is_handle, intercept_length=0, intercept_gap=0):
+    def log_messagge(self, is_handle, imu_angle, intercept_length=0, intercept_gap=0):
         if is_handle:
-            return "Intercept Handler - Run angle: " + str(22) + " - speed: " + str(0) + "\n"
+            return "Intercept Handler - IMU angle: ", str(imu_angle), " - Run angle: " + str(22) + " - speed: " + str(0) + "\n"
+        
         return "Intercept Handler - intercept length: " + str(intercept_length) + " - intercept gap: " + str(intercept_gap) + "\n"
             
