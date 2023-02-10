@@ -17,7 +17,6 @@ def main():
 	global IMU
 	signal.signal(signal.SIGINT, exit_handler)
 	IMU = IMUHandler()
-	IMU.start()
 	sleep(1)
 	IMU.set_yaw()
  
