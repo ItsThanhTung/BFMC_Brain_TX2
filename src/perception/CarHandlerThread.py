@@ -11,7 +11,7 @@ class CarHandlerThread(ThreadWithStop):
 
     shInPs: Connection Serial Input Pipes List
     type: Connection InPipe Lists
-    values: Pipes of action 1,2,4,7
+    values: Pipes of action 1,2,4,5,7
 
     shOutP: SerialHandler OutPipe
     values: Connection OutPipe
@@ -58,7 +58,7 @@ class CarHandlerThread(ThreadWithStop):
     
     def enablePID(self, Enable = True):
         data = {
-        "action": '2',
+        "action": '4',
         "activate": Enable
         }
         Status = 0
@@ -87,7 +87,7 @@ class CarHandlerThread(ThreadWithStop):
     def setSpeed(self, speed):
         data = {
         "action": '1',
-        "speed": speed/100
+        "speed": float(speed/100)
         }
         Status = 0
         Mess = "OK"
@@ -106,7 +106,7 @@ class CarHandlerThread(ThreadWithStop):
     def setAngle(self, value):
         data = {
         "action": '2',
-        "steerAngle": value
+        "steerAngle": float(value)
         }
         Status = 0
         Mess = "OK"

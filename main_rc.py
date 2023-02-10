@@ -77,17 +77,43 @@ if __name__ == '__main__':
 
     interceptDecisionR, interceptDecisionS = Pipe(duplex = False)                       # Intercept detection ->  Decision making
 
+    # Serial Handler Pipe Connection SerialHandler -> Decision ACK
+    shSetSpdR, shSetSpdS = Pipe(duplex= False)
+    shSteerR, shSteerS = Pipe(duplex= False)
+    shEnPIDR, shEnPIDS = Pipe(duplex= False)
+    shGetSpdR, shGetSpdS = Pipe(duplex= False)
+    shDistR, shDistS = Pipe(duplex= False)
+    shInps = {
+        "SETSPEED": shSetSpdR,
+        "STEER": shSteerR,
+        "EnPID": shEnPIDR,
+        "GETSPEED": shSetSpdR,
+        "DIST": shDistR
+    }
+
+    
+    
+
+    #Create Process
     imagePreprocess = ImagePreprocessingProcess([camStR], [imagePreprocessS, imagePreprocessInterceptS], \
                                                                 opt, imagePreprocessStreamS, enableStream)
 
     laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [laneKeepingDecisionS], opt, None, False)
     decisionMakingProcess = DecisionMakingProcess({"LANE_KEEPING" : laneKeepingDecisionR, "INTERCEPT_DETECTION" : interceptDecisionR}, \
-                                                                                                    {"SERIAL" : rcShS}, opt, debug=False)
+                                                                                                    {"SERIAL" : rcShS}, shInps , opt, debug=False)
 
     interceptDetectionProcess = InterceptDetectionProcess({"IMAGE_PREPROCESSING" : imagePreprocessInterceptR}, {"DECISION_MAKING" : interceptDecisionS}, \
                                                             opt, debugP=None, debug=False)           
 
-    shProc = SerialHandlerProcess([rcShR], [])
+    #SerialHandler Process
+    shOutPs = {
+        "1": shSetSpdS,
+        "2": shSteerS,
+        "4": shEnPIDS, 
+        "5": shGetSpdS,
+        "7": shDistS
+    }
+    shProc = SerialHandlerProcess([rcShR], shOutPs)
     
     allProcesses.append(imagePreprocess)
     allProcesses.append(laneKeepingProcess)

@@ -1,13 +1,14 @@
 from threading import Thread, Lock
 from src.templates.workerprocess import WorkerProcess
 from src.utils.utils_function import setSpeed, setAngle, EnablePID, MoveDistance
+from src.perception.CarHandlerThread import CarHandlerThread
 
 import time
 class DecisionMakingProcess(WorkerProcess):
     # ===================================== INIT =========================================
     data_lane_keeping_lock = Lock()
     data_intercept_detection_lock = Lock()
-    def __init__(self, inPs, outPs, opt, debug):
+    def __init__(self, inPs, outPs, serInPs, opt, debug):
         """Process used for sending images over the network to a targeted IP via UDP protocol 
         (no feedback required). The image is compressed before sending it. 
 
@@ -33,7 +34,8 @@ class DecisionMakingProcess(WorkerProcess):
         self.prev_angle = 0
         self.is_stop = False
 
-        
+        self.__CarHandlerTh = CarHandlerThread(serInPs, self.outPs["SERIAL"])
+
     # ===================================== RUN ==========================================
     def run(self):
         """Apply the initializing methods and start the threads.
@@ -54,9 +56,14 @@ class DecisionMakingProcess(WorkerProcess):
         decisionMakingTh.daemon = True
         readDataLaneKeepingTh.daemon = True
         readDataInterceptDetectionTh.daemon = True
+
+
         self.threads.append(decisionMakingTh)
         self.threads.append(readDataLaneKeepingTh)
         self.threads.append(readDataInterceptDetectionTh)
+
+        self.__CarHandlerTh.daemon = True
+        self.threads.append(self.__CarHandlerTh)
         
     def _read_data_lane_keeping(self):
          while True:
@@ -88,7 +95,8 @@ class DecisionMakingProcess(WorkerProcess):
 
     def _run_decision_making(self):
         if not self.debug:
-            EnablePID(self.outPs["SERIAL"])
+            status, mess = self.__CarHandlerTh.enablePID()
+            print("EnPID Status", mess)
         while True:
             try:
                 self.data_lane_keeping_lock.acquire()
@@ -106,8 +114,13 @@ class DecisionMakingProcess(WorkerProcess):
                     if not self.is_stop:
                         print('stop')
                         self.is_stop = True
-                        setSpeed(self.outPs["SERIAL"], float(0))
-                        setAngle(self.outPs["SERIAL"] , float(22))
+                        # setSpeed(self.outPs["SERIAL"], float(0))
+                        # setAngle(self.outPs["SERIAL"] , float(22))
+
+                        status, mess = self.__CarHandlerTh.setAngle(22)
+                        print("setAngle Status", mess)
+                        status, mess = self.__CarHandlerTh.setSpeed(0)
+                        print("setSpeed Status", mess)
                         
                         # MoveDistance(self.outPs["SERIAL"] , 0.5, 0.5)
                     # print("max_intercept_length: ", max_intercept_length, " intercept_gap: ", intercept_gap)
@@ -116,8 +129,14 @@ class DecisionMakingProcess(WorkerProcess):
                     if not self.debug:
                         angle_lane_keeping = int(angle_lane_keeping)
                         print(angle_lane_keeping)
-                        setSpeed(self.outPs["SERIAL"], float(0.5*speed_lane_keeping))
-                        setAngle(self.outPs["SERIAL"] , float(angle_lane_keeping))
+                        # setSpeed(self.outPs["SERIAL"], float(0.5*speed_lane_keeping))
+                        # setAngle(self.outPs["SERIAL"] , float(angle_lane_keeping))
+
+                        status, mess = self.__CarHandlerTh.setAngle(angle_lane_keeping)
+                        print("setAngle Status", mess)
+                        status, mess = self.__CarHandlerTh.setSpeed(float(0.5*speed_lane_keeping))
+                        print("setSpeed Status", mess)
+
                         self.prev_angle = angle_lane_keeping
                 time.sleep(0.1)
 

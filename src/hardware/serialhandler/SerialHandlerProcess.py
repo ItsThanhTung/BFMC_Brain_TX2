@@ -69,6 +69,9 @@ class SerialHandlerProcess(WorkerProcess):
         self.__readTh  = ReadThread(self.serialCom,self.historyFile)
         self.__writeTh = WriteThread(self.inPs[0], self.serialCom, self.historyFile)
 
+        for key, outP in self.__readTh.items():
+            self.__readTh.subscribe(True, key, outP)
+
     
     def run(self):
         super(SerialHandlerProcess,self).run()
