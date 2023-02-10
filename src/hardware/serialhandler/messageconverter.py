@@ -102,8 +102,8 @@ class MessageConverter:
         hash = crc8.crc8()
         hash.update(crc_inp.encode('ascii'))
         crc = hash.hexdigest()
-        print(crc)
         command +=':'+crc +';;\r\n'
+        print(command)
         return command
 
     # ===================================== VERIFY COMMAND ===============================
