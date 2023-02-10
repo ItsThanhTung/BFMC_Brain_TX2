@@ -48,7 +48,8 @@ class DecisionMakingProcess(WorkerProcess):
         
         self.imu_handler = IMUHandler()
         
- 
+        self.is_sign = False
+        self.count_sign_step = 0
 
         self.__CarHandlerTh = CarHandlerThread(serInPs, self.outPs["SERIAL"], enablePID= False)
         self.__CarHandlerTh.daemon = True
@@ -153,51 +154,74 @@ class DecisionMakingProcess(WorkerProcess):
 
         interceptionHandler = InterceptionHandler()
         while True:
-            if True:
+            try:
                 speed_lane_keeping, angle_lane_keeping = self.read_lane_keeping_data()
                 intercept_length, intercept_gap = self.read_intercept_detection_data()
                 object_result = self.read_object_detection_data()
-
-                print(object_result)
+                if object_result is not None and len(object_result) > 0:
+                    if object_result[0][1] > 0.8 and self.is_sign == False:
+                        print(object_result[0][0])
+                        print(object_result[0][2])
+                        status, messSpd = self.__CarHandlerTh.setSpeed(0)
+                        status, messAng = self.__CarHandlerTh.setAngle(0)
+                        self.is_sign  = True
+                        time.sleep(1)
+                        continue
+                # print("intercept_length: ", intercept_length, "  angle: ", angle_lane_keeping)
                 is_intercept, intercept_log = interceptionHandler.is_intercept(intercept_length, intercept_gap)                
                 self.historyFile.write(intercept_log)
                 
-                if is_intercept:
+                if is_intercept and not self.is_intercept:
+                    self.historyFile.write("INTERCEPT DETECTION \n")
                     self.historyFile.write("IMU START\n")
+                    print("INTERCEPT detection")
                     self.imu_handler.set_yaw()
                     self.is_intercept = True
+                    status, messSpd = self.__CarHandlerTh.setSpeed(0)
+                    status, messAng = self.__CarHandlerTh.setAngle(0)
+                    time.sleep(3)
+
 
                 if self.is_intercept :                            
                     if not self.debug:
                         imu_angle = self.imu_handler.get_yaw()
-                        intercept_handler_log, isFinish = interceptionHandler.turn_right(imu_angle, self.debug, self.__CarHandlerTh)
+                        print("imu_angle: ", imu_angle)
+                        intercept_handler_log, isFinish = interceptionHandler.turn_left(imu_angle, self.debug, self.__CarHandlerTh)
+                        # intercept_handler_log, isFinish = interceptionHandler.turn_right(imu_angle, self.debug, self.__CarHandlerTh)
                         self.is_intercept = not isFinish
                     else:
                         intercept_handler_log, isFinish = interceptionHandler.turn_right(imu_angle, self.debug)
                         self.is_intercept = not isFinish
                         self.historyFile.write(intercept_handler_log)
-                
+                # print(angle_lane_keeping)
                 if not self.is_intercept: # and self.prev_angle != angle_lane_keeping:
                     if not self.debug:
+                        if self.is_sign:
+                            self.count_sign_step += 1
+                            print("count_sign_step: ", self.count_sign_step)
+                            if self.count_sign_step  > 100:
+                                self.is_sign = False
+                                self.count_sign_step = 0
+                            
                         angle_lane_keeping = int(angle_lane_keeping)    
                         
                         if np.abs(self.prev_angle - angle_lane_keeping) > 10:
                             self.historyFile.write("******************* OFF ANGLE ***************************\n")
 
-                        status, messSpd = self.__CarHandlerTh.setSpeed(50)
+                        status, messSpd = self.__CarHandlerTh.setSpeed(30)
                         status, messAng = self.__CarHandlerTh.setAngle(angle_lane_keeping)
                         self.historyFile.write("LANE KEEPING - speed: " + str(speed_lane_keeping) + " " + messSpd\
                                                         + " - angle: " + str(int(angle_lane_keeping)) + " " + messAng + "\n")
                         
                         self.prev_angle = angle_lane_keeping
 
-                time.sleep(0.05)
+                # time.sleep(0.05)
 
-            # except Exception as e:
-            #     print("Decision Making - decision making thread error:")
-            #     print(e)
-            #     self.historyFile.write("Decision Making - decision making thread error:")
-            #     self.historyFile.write(str(e))
+            except Exception as e:
+                print("Decision Making - decision making thread error:")
+                print(e)
+                self.historyFile.write("Decision Making - decision making thread error:")
+                self.historyFile.write(str(e))
                 
         
     

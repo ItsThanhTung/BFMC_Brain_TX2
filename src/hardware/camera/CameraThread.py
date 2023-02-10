@@ -137,7 +137,6 @@ class CameraThread(ThreadWithStop):
 
             # output image and time stamp
             # Note: The sending process can be blocked, when doesn't exist any consumer process and it reaches the limit size.
-
             self.outPs["PREPROCESS_IMAGE"].send({"image": lane_image})
             
             # self.outPs["OBJECT_IMAGE"].send({"image": data})

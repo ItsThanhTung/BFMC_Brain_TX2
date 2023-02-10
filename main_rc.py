@@ -57,7 +57,7 @@ import multiprocessing
 if __name__ == '__main__':
     # =========================== Object Detection ===========================================
     object_detector = Yolo(True)
-    object_image_queue = multiprocessing.Queue(maxsize=1)
+    object_image_queue = multiprocessing.Queue(maxsize=3)
     object_condition = multiprocessing.Condition()
 
     # =============================== CONFIG =================================================
@@ -125,8 +125,7 @@ if __name__ == '__main__':
         "5": shGetSpdS,
         "7": shDistS
     }
-    print("shInps ",shInps )
-    print("shOutPs ",shOutPs )
+
     shProc = SerialHandlerProcess([rcShR], shOutPs)
     
     allProcesses.append(imagePreprocess)

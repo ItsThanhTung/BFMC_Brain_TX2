@@ -111,7 +111,6 @@ class CarHandlerThread(ThreadWithStop):
         return Status, Mess["data"]
             
     def setAngle(self, value):
-        value = 0
         data = {
         "action": '2',
         "steerAngle": float(value)

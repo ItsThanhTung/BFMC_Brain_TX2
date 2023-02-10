@@ -13,9 +13,9 @@ from src.image_processing.traffic_sign.yolov5_utils.utils.general import non_max
 class Yolo(object):
     def __init__(self, isTensorRt, source='',imgsize= (480,640), device='0',conf_thres=0.1, iou_thres=0.45,max_det=1000): 
         if isTensorRt: 
-            weights='./src/image_processing/traffic_sign/yolov5_utils/sign2.engine'
+            weights='sign2.engine'
         else: 
-            weights='./src/image_processing/traffic_sign/yolov5_utils/sign2.pt'
+            weights='sign2.pt'
             
         self.img_size = imgsize
         self.device = select_device(device)
