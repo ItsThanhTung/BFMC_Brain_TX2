@@ -6,3 +6,4 @@ historyFile.txt
 carControlHistory.txt
 *.avi
 *.engine
+*.pt
