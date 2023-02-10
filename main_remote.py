@@ -50,7 +50,7 @@ from src.image_processing.LaneKeepingProcess import LaneKeepingProcess
 from src.image_processing.imageShowProcess import imageShowProcess
 from src.image_processing.ImagePreprocessingProcess import ImagePreprocessingProcess
 from src.image_processing.LaneDebuggingProcess import LaneDebuginggProcess
-from src.perception.DecisionMakingProcess import DecisionMakingProcess
+# from src.perception.DecisionMakingProcess import DecisionMakingProcess
 from src.image_processing.InterceptDetectionProcess import InterceptDetectionProcess
 
 
@@ -123,8 +123,8 @@ if __name__ == '__main__':
                                                         "INTERCEPT_DETECTION" : imagePreprocessInterceptS}, opt, True)
     laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [laneKeepingDecisionS], opt, laneDebugS, debug=True)
 
-    decisionMakingProcess = DecisionMakingProcess({"LANE_KEEPING" : laneKeepingDecisionR, "INTERCEPT_DETECTION" : interceptDecisionR, \
-                                                                "OBJECT_DETECTION" : objectDecisionR}, [], opt, debug=True)
+    # decisionMakingProcess = DecisionMakingProcess({"LANE_KEEPING" : laneKeepingDecisionR, "INTERCEPT_DETECTION" : interceptDecisionR, \
+    #                                                             "OBJECT_DETECTION" : objectDecisionR}, [], opt, debug=True)
 
     interceptDetectionProcess = InterceptDetectionProcess({"IMAGE_PREPROCESSING" : imagePreprocessInterceptR}, {"DECISION_MAKING" : interceptDecisionS}, \
                                                             opt, debugP = interceptDecisionDebugS, debug=True)
@@ -139,7 +139,7 @@ if __name__ == '__main__':
     allProcesses.append(laneKeepingProcess)
     allProcesses.append(laneDebugProcess)
     allProcesses.append(imageShow)
-    allProcesses.append(decisionMakingProcess)
+    # allProcesses.append(decisionMakingProcess)
     allProcesses.append(interceptDetectionProcess)
  
  
