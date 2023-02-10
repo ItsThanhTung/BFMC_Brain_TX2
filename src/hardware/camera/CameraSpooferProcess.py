@@ -33,11 +33,12 @@ import time
 from threading       import Thread
 
 from src.templates.workerprocess import WorkerProcess
+import multiprocessing
 
 class CameraSpooferProcess(WorkerProcess):
 
     #================================ INIT ===============================================
-    def __init__(self, inPs,outQueue, videoDir, ext = '.avi'):
+    def __init__(self, object_image_queue, object_condition, inPs,outQueue, videoDir, ext = '.avi'):
         """Processed used for spoofing a camera/ publishing a video stream from a folder 
         with videos
         
@@ -59,7 +60,9 @@ class CameraSpooferProcess(WorkerProcess):
         self.object_image_size = (640,480)
         
         self.videoDir = videoDir
-        self.videos = videoDir # self.open_files(self.videoDir, ext = ext)
+        self.videos = videoDir 
+        self.object_image_queue = object_image_queue
+        self.object_condition = object_condition
 
     
     # ===================================== INIT VIDEOS ==================================
@@ -103,7 +106,6 @@ class CameraSpooferProcess(WorkerProcess):
         while True:
             for video in videos:
                 cap         =   cv2.VideoCapture(video)
-                
                 while True:
                     ret, frame = cap.read()
                     stamp = time.time()
@@ -111,7 +113,13 @@ class CameraSpooferProcess(WorkerProcess):
                         lane_image = cv2.resize(frame, self.lane_image_size)
                         object_image = cv2.resize(frame, self.object_image_size)
                         self.outPs["PREPROCESS_IMAGE"].send({"image": lane_image})
-                        self.outPs["OBJECT_IMAGE"].send({"image": object_image})
+
+                        with self.object_condition:
+                            if self.object_image_queue.full():
+                                self.object_image_queue.get()
+                            self.object_image_queue.put(object_image)
+                            self.object_condition.notify_all()
+                        
 
                     else:
                         break

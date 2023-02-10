@@ -1,12 +1,12 @@
 import time
-# from src.image_processing.traffic_sign.detection import Yolo
+from src.image_processing.traffic_sign.detection import Yolo
 from threading import Thread, Condition
-from src.templates.workerprocess import WorkerProcess
+from src.templates.torch_workerprocess import Torch_WorkerProcess
 from queue import Queue
 import numpy as np
 
 
-class ObjectDetectionProcess(WorkerProcess):
+class ObjectDetectionProcess(Torch_WorkerProcess):
     image_stream_queue = Queue(maxsize=5)
     object_image_condition = Condition()
     read_image_condition = Condition()
@@ -14,7 +14,6 @@ class ObjectDetectionProcess(WorkerProcess):
     def __init__(self, inPs, outPs, is_show, debugP = None, debug=False):
         """Process used for sending images over the network to a targeted IP via UDP protocol 
         (no feedback required). The image is compressed before sending it. 
-
         Used for visualizing your raspicam images on remote PC.
         
         Parameters
@@ -174,7 +173,3 @@ class ObjectDetectionProcess(WorkerProcess):
                 print("Object detection - send result thread error:")
                 print(e)
 
-
-            
-
-   

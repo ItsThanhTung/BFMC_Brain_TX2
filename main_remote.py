@@ -52,12 +52,37 @@ from src.image_processing.ImagePreprocessingProcess import ImagePreprocessingPro
 from src.image_processing.LaneDebuggingProcess import LaneDebuginggProcess
 from src.perception.DecisionMakingProcess import DecisionMakingProcess
 from src.image_processing.InterceptDetectionProcess import InterceptDetectionProcess
-from src.image_processing.ObjectDetectionProcess import ObjectDetectionProcess
+
 
 # opt import
 from src.utils.utils_function import load_config_file
 
+# object detection import
+from src.image_processing.traffic_sign.detection import Yolo
+import multiprocessing
+
+# def detection(camObjectStR,detector):
+#     print("loading.......................................")
+    
+    
+#     while True:
+#         with c_object:
+#             c_object.wait()
+#         with c_object:
+#             while object_image.qsize()>0:
+#                 image=object_image.get()
+#                 _= detector.detect(image)
+#                 # print(".",image.shape)  
+
+
 if __name__ == '__main__':
+    
+    # =========================== Object Detection ===========================================
+    object_detector = Yolo(False)
+    object_image_queue = multiprocessing.Queue(maxsize=1)
+    object_condition = multiprocessing.Condition()
+
+    
     opt = load_config_file("main_remote.json")
     # =============================== CONFIG =================================================
     enableCameraSpoof   =  True 
@@ -69,8 +94,10 @@ if __name__ == '__main__':
     camLaneStR, camLaneStS = Pipe(duplex = False)           # camera  ->  streamer
     camObjectStR, camObjectStS = Pipe(duplex = False)           # camera  ->  streamer
     if enableCameraSpoof:
-        # camProc = CameraProcess([],[camStS], opt["CAM_PATH"])
-        camProc = CameraSpooferProcess([], {"PREPROCESS_IMAGE" : camLaneStS, "OBJECT_IMAGE" : camObjectStS}, [opt["CAM_PATH"]])
+        # camProc = CameraProcess(object_image_queue, object_condition, \
+        #                     [],{"PREPROCESS_IMAGE" : camLaneStS, "OBJECT_IMAGE" : camObjectStS}, opt["CAM_PATH"])
+        camProc = CameraSpooferProcess(object_image_queue, object_condition, \
+                        [], {"PREPROCESS_IMAGE" : camLaneStS, "OBJECT_IMAGE" : camObjectStS}, [opt["CAM_PATH"]])
         allProcesses.append(camProc)
 
     else:
@@ -91,8 +118,6 @@ if __name__ == '__main__':
 
     imageObjectShowR, imageObjectShowS = Pipe(duplex = False)                           # object detection    ->  ImageShow
     objectDecisionR, objectDecisionS = Pipe(duplex = False)                             # object detection    ->  Decision making
-
-    objectDetectionProcess = ObjectDetectionProcess({"OBJECT_IMAGE" : camObjectStR}, {"IMAGE_SHOW" : imageObjectShowS, "DECISION_MAKING" : objectDecisionS}, True)
 
     imagePreprocess = ImagePreprocessingProcess({"LANE_IMAGE" : camLaneStR}, {"IMAGE_SHOW" : imagePreprocessShowS, "LANE_KEEPING" : imagePreprocessS, \
                                                         "INTERCEPT_DETECTION" : imagePreprocessInterceptS}, opt, True)
@@ -116,10 +141,8 @@ if __name__ == '__main__':
     allProcesses.append(imageShow)
     allProcesses.append(decisionMakingProcess)
     allProcesses.append(interceptDetectionProcess)
-    allProcesses.append(objectDetectionProcess)
-
-
-
+ 
+ 
     # =============================== DATA ===================================================
     #LocSys client process
     # LocStR, LocStS = Pipe(duplex = False)           # LocSys  ->  brain
@@ -138,9 +161,13 @@ if __name__ == '__main__':
 
     # ===================================== STAYING ALIVE ====================================
     blocker = Event()  
-
+  
+    object_detector.detection_loop(object_image_queue, object_condition, \
+                            objectDecisionS, True, imageObjectShowS)
+    
     try:
         blocker.wait()
+
     except KeyboardInterrupt:
         print("\nCatching a KeyboardInterruption exception! Shutdown all processes.\n")
         for proc in allProcesses:
@@ -152,3 +179,5 @@ if __name__ == '__main__':
                 print("Process witouth stop",proc)
                 proc.terminate()
                 proc.join()
+
+    

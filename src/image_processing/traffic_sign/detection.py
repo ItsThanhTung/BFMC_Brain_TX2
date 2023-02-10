@@ -2,7 +2,7 @@ import numpy as np
 import torch
 
 from src.image_processing.traffic_sign.yolov5_utils.utils.augmentations import letterbox
-from src.image_processing.traffic_sign.yolov5_utils.utils.plots import Annotator, colors, save_one_box
+from src.image_processing.traffic_sign.yolov5_utils.utils.plots import colors, save_one_box
 from src.image_processing.traffic_sign.yolov5_utils.models.experimental import attempt_load
 from src.image_processing.traffic_sign.yolov5_utils.utils.torch_utils import select_device
 from src.image_processing.traffic_sign.yolov5_utils.models.common import DetectMultiBackend
@@ -11,10 +11,15 @@ from src.image_processing.traffic_sign.yolov5_utils.utils.plots import Annotator
 
 
 class Yolo(object):
-    def __init__(self, source='',imgsize= (480,640), weights='./src/image_processing/traffic_sign/yolov5_utils/sign.pt', device='0',conf_thres=0.1, iou_thres=0.45,max_det=1000): 
+    def __init__(self, isTensorRt, source='',imgsize= (480,640), device='0',conf_thres=0.1, iou_thres=0.45,max_det=1000): 
+        if isTensorRt: 
+            weights='./src/image_processing/traffic_sign/yolov5_utils/sign.engine'
+        else: 
+            weights='./src/image_processing/traffic_sign/yolov5_utils/sign.pt'
+            
         self.img_size = imgsize
         self.device = select_device(device)
-        self.model = self.model = DetectMultiBackend(weights, device=self.device, dnn=False, data='./src/image_processing/traffic_sign/yolov5_utils/data/coco128.yaml')
+        self.model = DetectMultiBackend(weights, device=self.device, dnn=False, data='./src/image_processing/traffic_sign/yolov5_utils/data/coco128.yaml')
         self.names=['car', 'crosswalk', 'highway_entry', 'highway_exit', 'no_entry', 'onewayroad', 'parking', 'pedestrian', 'priority', 'roadblock', 'roundabout', 'stop', 'trafficlight']
         self.conf_thres=conf_thres
         self.iou_thres=iou_thres
@@ -48,6 +53,19 @@ class Yolo(object):
                     results.append(result)
             img_resized = annotator.result()
         return img_resized, results
+
+    def detection_loop(self, object_image_queue, object_condition, objectDecisionS, isShow = True, imageObjectShowS = None):
+        while True:
+            with object_condition:
+                object_condition.wait()
+            while object_image_queue.qsize() > 0:
+                image = object_image_queue.get()
+                image,results = self.detect(image)
+
+                objectDecisionS.send({"results" : results})
+                
+                if isShow == True:        
+                    imageObjectShowS.send({"image": image})
 
     def preprocess(self,img0):
         img_resized = letterbox(img0, self.img_size, stride=self.stride, auto=False)[0]
