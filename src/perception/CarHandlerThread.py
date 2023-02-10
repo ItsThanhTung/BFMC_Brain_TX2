@@ -25,6 +25,7 @@ class CarHandlerThread(ThreadWithStop):
     sendAttempTimes: Attemp to send when not receive Ack or receive error
     values: int, minimum attemp times = 1
     """
+        super(CarHandlerThread,self).__init__()
         self.__shOutP = shOutP
         self.__shInPs = shInPs
         self.__AckTimeout = AckTimeout
@@ -42,7 +43,7 @@ class CarHandlerThread(ThreadWithStop):
     
     def run(self):
         readers=[]
-        readers.append(self.__shInPs["MOVE"])
+        readers.append(self.__shInPs["DIST"])
         readers.append(self.__shInPs["GETSPEED"])
         while(self._running):
             for inP in wait(readers):
@@ -80,6 +81,7 @@ class CarHandlerThread(ThreadWithStop):
     def _shRecv(self, inP, timeout = 0.01):
         if inP.poll(timeout) :
             Data = inP.recv()
+            print(Data)
             return 0, Data
         else:
             return -1, "Receive Timeout"
@@ -96,7 +98,7 @@ class CarHandlerThread(ThreadWithStop):
             if self.__AckTimeout < 0:
                 return 0, "OK"
 
-            Status, Mess = self._shRecv(self.__shInPs["SPEED"])
+            Status, Mess = self._shRecv(self.__shInPs["SETSPEED"])
             if Status == 0:
                 if Mess["data"] == "ACK":
                     return 0, "OK"

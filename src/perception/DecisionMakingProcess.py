@@ -35,6 +35,8 @@ class DecisionMakingProcess(WorkerProcess):
         self.is_stop = False
 
         self.__CarHandlerTh = CarHandlerThread(serInPs, self.outPs["SERIAL"])
+        self.__CarHandlerTh.daemon = True
+        self.threads.append(self.__CarHandlerTh)
 
     # ===================================== RUN ==========================================
     def run(self):
@@ -62,8 +64,7 @@ class DecisionMakingProcess(WorkerProcess):
         self.threads.append(readDataLaneKeepingTh)
         self.threads.append(readDataInterceptDetectionTh)
 
-        self.__CarHandlerTh.daemon = True
-        self.threads.append(self.__CarHandlerTh)
+
         
     def _read_data_lane_keeping(self):
          while True:
@@ -98,7 +99,8 @@ class DecisionMakingProcess(WorkerProcess):
             status, mess = self.__CarHandlerTh.enablePID()
             print("EnPID Status", mess)
         while True:
-            try:
+            # try:
+            if True:
                 self.data_lane_keeping_lock.acquire()
                 speed_lane_keeping = self.speed_lane_keeping
                 angle_lane_keeping = self.angle_lane_keeping
@@ -134,16 +136,17 @@ class DecisionMakingProcess(WorkerProcess):
 
                         status, mess = self.__CarHandlerTh.setAngle(angle_lane_keeping)
                         print("setAngle Status", mess)
-                        status, mess = self.__CarHandlerTh.setSpeed(float(0.5*speed_lane_keeping))
+                        status, mess = self.__CarHandlerTh.setSpeed(0.5*speed_lane_keeping)
                         print("setSpeed Status", mess)
 
                         self.prev_angle = angle_lane_keeping
                 time.sleep(0.1)
 
 
-            except Exception as e:
-                print("Decision Making - decision making thread error:")
-                print(e)
+            # except Exception as e:
+            #     print("Decision Making - decision making thread error:")
+            #     print(e)
+            #     print(e)
         
     
 

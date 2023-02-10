@@ -77,6 +77,8 @@ class ImagePreprocessingProcess(WorkerProcess):
         if self._blocker.is_set():
             return
         
+
+        print("fasdasdfasddf: ", self.outPs)
         imageReadTh = Thread(name='ImageReadThread',target = self._read_image, args= (self.inPs[0],))
         imagePreprocessTh = Thread(name='ImagePreprocessingThread',target = self._run_image_preprocessing)
 

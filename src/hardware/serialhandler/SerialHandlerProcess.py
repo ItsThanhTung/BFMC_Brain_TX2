@@ -51,8 +51,8 @@ class SerialHandlerProcess(WorkerProcess):
         """
         super(SerialHandlerProcess,self).__init__(inPs, outPs)
 
-        devFile = 'COM3'
-        # devFile = '/dev/ttyACM0'
+        # devFile = 'COM3'
+        devFile = '/dev/ttyACM0'
         logFile = 'historyFile.txt'
         
         # self.readTh = None
@@ -69,7 +69,7 @@ class SerialHandlerProcess(WorkerProcess):
         self.__readTh  = ReadThread(self.serialCom,self.historyFile)
         self.__writeTh = WriteThread(self.inPs[0], self.serialCom, self.historyFile)
 
-        for key, outP in self.__readTh.items():
+        for key, outP in outPs.items():
             self.__readTh.subscribe(True, key, outP)
 
     
