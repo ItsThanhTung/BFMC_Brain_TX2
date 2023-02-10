@@ -2,12 +2,12 @@ import numpy as np
 import torch
 
 from src.image_processing.traffic_sign.yolov5_utils.utils.augmentations import letterbox
-from src.image_processing.traffic_sign.yolov5_utils.utils.plots import colors, save_one_box
+# from src.image_processing.traffic_sign.yolov5_utils.utils.plots import colors, save_one_box
 from src.image_processing.traffic_sign.yolov5_utils.models.experimental import attempt_load
 from src.image_processing.traffic_sign.yolov5_utils.utils.torch_utils import select_device
 from src.image_processing.traffic_sign.yolov5_utils.models.common import DetectMultiBackend
 from src.image_processing.traffic_sign.yolov5_utils.utils.general import non_max_suppression,scale_coords
-from src.image_processing.traffic_sign.yolov5_utils.utils.plots import Annotator, colors
+# from src.image_processing.traffic_sign.yolov5_utils.utils.plots import Annotator, colors
 
 
 class Yolo(object):
@@ -41,17 +41,17 @@ class Yolo(object):
         pred = non_max_suppression(pred, self.conf_thres, self.iou_thres, None, False, max_det=self.max_det)
         results=[]
         for i, det in enumerate(pred):  # per image
-            annotator = Annotator(img_resized, line_width=3, example=str(self.names))
+            # annotator = Annotator(img_resized, line_width=3, example=str(self.names))
             det=det.cpu().detach().numpy()
             if len(det):
                 # det[:, :4] = scale_coords(im.shape, det[:, :4], im0.shape).round()
                 for (*xyxy, conf, cls) in reversed(det): 
                     c = int(cls)  # integer class
                     label = f'{self.names[c]} {conf:.2f}'
-                    annotator.box_label(xyxy, label, color=colors(c, True))
+                    # annotator.box_label(xyxy, label, color=colors(c, True))
                     result = (xyxy, conf, self.names[c])
                     results.append(result)
-            img_resized = annotator.result()
+            # img_resized = annotator.result()
         return img_resized, results
 
     def detection_loop(self, object_image_queue, object_condition, objectDecisionS, isShow = True, imageObjectShowS = None):

@@ -26,7 +26,7 @@
     "middle_point_ratio": 0.25,
     "angle_scale_ratio": 0.25
   },
-  "CAM_PATH": "/dev/video0",
+  "CAM_PATH": "/dev/video1",
   "IP_ADDRESS": "192.168.0.100",
 
   "INTERCEPT_DETECTION": {

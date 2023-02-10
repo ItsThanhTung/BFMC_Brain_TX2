@@ -92,7 +92,7 @@ class MessageConverter:
                 if enhPrec:
                     valarr = '{0:.6f};'.format(value)
                 else:
-                    valarr += '{0:.2f};'.format(value)
+                    valarr = '{0:.2f};'.format(value)
             elif valType == bool:
                 valarr = '{0:d};'.format(value)
             command += valarr
@@ -103,7 +103,7 @@ class MessageConverter:
         # hash.update(crc_inp.encode('ascii'))
         # crc = hash.hexdigest()
         # print(crc)
-        command +=':'+crc +';;\r\n'
+        # command +=':' + crc +';;\r\n'
         return command
 
     # ===================================== VERIFY COMMAND ===============================
