@@ -5,3 +5,4 @@ __pycache__
 historyFile.txt
 carControlHistory.txt
 *.avi
+*.engine
