@@ -1,7 +1,7 @@
 from src.templates.threadwithstop import ThreadWithStop
 from multiprocessing.connection import wait
 class CarHandlerThread(ThreadWithStop):
-    def __init__(self, shInPs, shOutP, enablePID = True, AckTimeout = 0.01, sendAttempTimes:int = 2):
+    def __init__(self, shInPs, shOutP, enablePID = True, AckTimeout = 0.1, sendAttempTimes:int = 2):
         """
     
     Car Handler Thread object
@@ -65,28 +65,29 @@ class CarHandlerThread(ThreadWithStop):
         "activate": Enable
         }
         Status = 0
-        Mess = "OK"
+        Mess = {
+            "data":"OK"
+        }
         for i in range(self.__sendAttemp):
             self._shSend(self.__shOutP, data)
             if self.__AckTimeout < 0:
                 return 0, "OK"
 
-            Status, Mess = self._shRecv(self.__shInPs["EnPID"])
+            Status, Mess = self._shRecv(self.__shInPs["ENPID"])
             if Status == 0:
-                if Mess == "ACK":
+                if Mess == "ack;;":
                     return 0, "OK"
-        return Status, Mess
+        return Status, Mess["data"]
 
     def _shSend(self, outP, Data):
         outP.send(Data)
 
-    def _shRecv(self, inP, timeout = 0.01):
+    def _shRecv(self, inP, timeout = 0.1):
         if inP.poll(timeout) :
             Data = inP.recv()
-            print(Data)
             return 0, Data
         else:
-            return -1, "Receive Timeout"
+            return -1, {"data":"Receive Timeout"}
 
     def setSpeed(self, speed):
         data = {
@@ -94,7 +95,9 @@ class CarHandlerThread(ThreadWithStop):
         "speed": float(speed/100)
         }
         Status = 0
-        Mess = "OK"
+        Mess = {
+            "data":"OK"
+        }
         for i in range(self.__sendAttemp):
             self._shSend(self.__shOutP, data)
             if self.__AckTimeout < 0:
@@ -102,18 +105,21 @@ class CarHandlerThread(ThreadWithStop):
 
             Status, Mess = self._shRecv(self.__shInPs["SETSPEED"])
             if Status == 0:
-                if Mess["data"] == "ACK":
+                if Mess["data"] == "ack;;":
                     return 0, "OK"
 
-        return Status, Mess
+        return Status, Mess["data"]
             
     def setAngle(self, value):
+        value = 0
         data = {
         "action": '2',
         "steerAngle": float(value)
         }
         Status = 0
-        Mess = "OK"
+        Mess = {
+            "data":"OK"
+        }
         for i in range(self.__sendAttemp):
             self._shSend(self.__shOutP, data)
             if self.__AckTimeout < 0:
@@ -121,9 +127,9 @@ class CarHandlerThread(ThreadWithStop):
 
             Status, Mess = self._shRecv(self.__shInPs["STEER"])
             if Status == 0:
-                if Mess["data"] == "ACK":
+                if Mess["data"] == "ack;;":
                     return 0, "OK"
-        return Status, Mess
+        return Status, Mess["data"]
 
     def moveDistance(self, distance, speed):
         data = {
@@ -132,7 +138,9 @@ class CarHandlerThread(ThreadWithStop):
         "speed": speed
         }
         Status = 0
-        Mess = "OK"
+        Mess = {
+            "data":"OK"
+        }
         for i in range(self.__sendAttemp):
             self._shSend(self.__shOutP, data)
             if self.__AckTimeout < 0:
@@ -140,9 +148,9 @@ class CarHandlerThread(ThreadWithStop):
 
             Status, Mess = self._shRecv(self.__shInPs["STEER"])
             if Status == 0:
-                if Mess["data"] == "ACK":
+                if Mess["data"] == "ack;;":
                     return 0, "OK"
-        return Status, Mess
+        return Status, Mess["data"]
 
     def getDistanceStatus(self):
         return self.__RunnedDistance

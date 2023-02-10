@@ -103,7 +103,7 @@ class MessageConverter:
         hash.update(crc_inp.encode('ascii'))
         crc = hash.hexdigest()
         command +=':'+crc +';;\r\n'
-        print(command)
+        # print("Converted "command)
         return command
 
     # ===================================== VERIFY COMMAND ===============================

@@ -98,8 +98,8 @@ if __name__ == '__main__':
     shInps = {
         "SETSPEED": shSetSpdR,
         "STEER": shSteerR,
-        "EnPID": shEnPIDR,
-        "GETSPEED": shSetSpdR,
+        "ENPID": shEnPIDR,
+        "GETSPEED": shGetSpdR,
         "DIST": shDistR
     }
 
@@ -125,6 +125,8 @@ if __name__ == '__main__':
         "5": shGetSpdS,
         "7": shDistS
     }
+    print("shInps ",shInps )
+    print("shOutPs ",shOutPs )
     shProc = SerialHandlerProcess([rcShR], shOutPs)
     
     allProcesses.append(imagePreprocess)

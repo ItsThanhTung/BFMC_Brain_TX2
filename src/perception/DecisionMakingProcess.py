@@ -153,7 +153,7 @@ class DecisionMakingProcess(WorkerProcess):
 
         interceptionHandler = InterceptionHandler()
         while True:
-            try:
+            if True:
                 speed_lane_keeping, angle_lane_keeping = self.read_lane_keeping_data()
                 intercept_length, intercept_gap = self.read_intercept_detection_data()
                 object_result = self.read_object_detection_data()
@@ -188,15 +188,16 @@ class DecisionMakingProcess(WorkerProcess):
                         status, messAng = self.__CarHandlerTh.setAngle(angle_lane_keeping)
                         self.historyFile.write("LANE KEEPING - speed: " + str(speed_lane_keeping) + " " + messSpd\
                                                         + " - angle: " + str(int(angle_lane_keeping)) + " " + messAng + "\n")
+                        
                         self.prev_angle = angle_lane_keeping
 
                 time.sleep(0.05)
 
-            except Exception as e:
-                print("Decision Making - decision making thread error:")
-                print(e)
-                self.historyFile.write("Decision Making - decision making thread error:")
-                self.historyFile.write(str(e))
+            # except Exception as e:
+            #     print("Decision Making - decision making thread error:")
+            #     print(e)
+            #     self.historyFile.write("Decision Making - decision making thread error:")
+            #     self.historyFile.write(str(e))
                 
         
     

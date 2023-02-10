@@ -1,152 +1,284 @@
-Intercept Handler - intercept length: inf - intercept gap: 0
-LANE KEEPING - speed: 0 - angle: 0
-Intercept Handler - intercept length: inf - intercept gap: 0
-LANE KEEPING - speed: 0 - angle: 0
-Intercept Handler - intercept length: inf - intercept gap: 0
-LANE KEEPING - speed: 0 - angle: 0
-Intercept Handler - intercept length: inf - intercept gap: 0
-LANE KEEPING - speed: 0 - angle: 0
-Intercept Handler - intercept length: inf - intercept gap: 0
-LANE KEEPING - speed: 0 - angle: 0
-Intercept Handler - intercept length: inf - intercept gap: 0
-LANE KEEPING - speed: 0 - angle: 0
-Intercept Handler - intercept length: inf - intercept gap: 0
-LANE KEEPING - speed: 0 - angle: 0
-Intercept Handler - intercept length: inf - intercept gap: 0
-LANE KEEPING - speed: 0 - angle: 0
-Intercept Handler - intercept length: inf - intercept gap: 0
-LANE KEEPING - speed: 0 - angle: 0
-Intercept Handler - intercept length: inf - intercept gap: 0
-LANE KEEPING - speed: 0 - angle: 0
-Intercept Handler - intercept length: inf - intercept gap: 0
-LANE KEEPING - speed: 0 - angle: 0
-Intercept Handler - intercept length: inf - intercept gap: 0
-LANE KEEPING - speed: 0 - angle: 0
-Intercept Handler - intercept length: inf - intercept gap: 0
-LANE KEEPING - speed: 0 - angle: 0
-Intercept Handler - intercept length: inf - intercept gap: 0
-LANE KEEPING - speed: 0 - angle: 0
-Intercept Handler - intercept length: inf - intercept gap: 0
-LANE KEEPING - speed: 0 - angle: 0
-Intercept Handler - intercept length: inf - intercept gap: 0
-******************* OFF ANGLE ***************************
-LANE KEEPING - speed: 80.32653298563167 - angle: -23
-Intercept Handler - intercept length: inf - intercept gap: 0
-LANE KEEPING - speed: 80.32653298563167 - angle: -23
-Intercept Handler - intercept length: inf - intercept gap: 0
-LANE KEEPING - speed: 80.32653298563167 - angle: -23
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 0 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 0 OK - angle: 0 Packet Error
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 0 Packet Error - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 0 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 0 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 100.0 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 100.0 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 100.0 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 100.0 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 100.0 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 100.0 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 100.0 OK - angle: 0 Receive Timeout
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 100.0 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 100.0 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 100.0 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 100.0 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 100.0 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 100.0 Receive Timeout - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 100.0 OK - angle: 0 OK
 Intercept Handler - intercept length: 0 - intercept gap: 0
 ******************* OFF ANGLE ***************************
-LANE KEEPING - speed: 99.53849987719883 - angle: 3
+LANE KEEPING - speed: 80.32653298563167 Receive Timeout - angle: 23 OK
 Intercept Handler - intercept length: 0 - intercept gap: 0
-LANE KEEPING - speed: 99.53849987719883 - angle: 3
-Intercept Handler - intercept length: 1 - intercept gap: 0
-LANE KEEPING - speed: 98.55003868376086 - angle: 5
-Intercept Handler - intercept length: 1 - intercept gap: 0
-LANE KEEPING - speed: 99.53849987719883 - angle: 3
-Intercept Handler - intercept length: 1 - intercept gap: 0
-LANE KEEPING - speed: 99.53849987719883 - angle: 3
-Intercept Handler - intercept length: 1 - intercept gap: 0
-LANE KEEPING - speed: 99.99596280841364 - angle: 0
-Intercept Handler - intercept length: 3 - intercept gap: 0
-LANE KEEPING - speed: 99.99596280841364 - angle: 0
-Intercept Handler - intercept length: 2 - intercept gap: 0
-LANE KEEPING - speed: 99.42144942772887 - angle: 3
-Intercept Handler - intercept length: 5 - intercept gap: 0
-LANE KEEPING - speed: 97.55100407583164 - angle: 7
-Intercept Handler - intercept length: 8 - intercept gap: 0
-LANE KEEPING - speed: 97.55100407583164 - angle: 7
-Intercept Handler - intercept length: 8 - intercept gap: 0
-LANE KEEPING - speed: 99.50036704011221 - angle: 3
-Intercept Handler - intercept length: 8 - intercept gap: 0
-LANE KEEPING - speed: 99.76276911898341 - angle: 2
-Intercept Handler - intercept length: 8 - intercept gap: 0
-LANE KEEPING - speed: 99.94970332356499 - angle: -1
-Intercept Handler - intercept length: 9 - intercept gap: 0
-LANE KEEPING - speed: 99.94970332356499 - angle: -1
-Intercept Handler - intercept length: 9 - intercept gap: 0
-LANE KEEPING - speed: 99.82464280236387 - angle: 1
-Intercept Handler - intercept length: 10 - intercept gap: 0
-LANE KEEPING - speed: 99.79707342862544 - angle: 2
-Intercept Handler - intercept length: 9 - intercept gap: 0
-LANE KEEPING - speed: 99.79707342862544 - angle: 2
-Intercept Handler - intercept length: 2 - intercept gap: 0
-LANE KEEPING - speed: 99.96300849461551 - angle: 0
-Intercept Handler - intercept length: 2 - intercept gap: 0
-LANE KEEPING - speed: 99.96300849461551 - angle: 0
-Intercept Handler - intercept length: 2 - intercept gap: 0
-LANE KEEPING - speed: 99.79185503750723 - angle: 2
-Intercept Handler - intercept length: 23 - intercept gap: 0
-LANE KEEPING - speed: 99.79185503750723 - angle: 2
-Intercept Handler - intercept length: 23 - intercept gap: 0
-LANE KEEPING - speed: 99.93894122942511 - angle: 1
-Intercept Handler - intercept length: 23 - intercept gap: 0
-LANE KEEPING - speed: 99.82992540309274 - angle: 1
-Intercept Handler - intercept length: 22 - intercept gap: 0
-LANE KEEPING - speed: 99.82992540309274 - angle: 1
-Intercept Handler - intercept length: 23 - intercept gap: 0
-LANE KEEPING - speed: 99.90377043181972 - angle: 1
-Intercept Handler - intercept length: 23 - intercept gap: 0
-LANE KEEPING - speed: 99.90377043181972 - angle: 1
-Intercept Handler - intercept length: 23 - intercept gap: 0
-LANE KEEPING - speed: 99.998803028916 - angle: 0
-Intercept Handler - intercept length: 23 - intercept gap: 0
-LANE KEEPING - speed: 99.998803028916 - angle: 0
-Intercept Handler - intercept length: 23 - intercept gap: 0
-LANE KEEPING - speed: 99.88140849168231 - angle: 1
-Intercept Handler - intercept length: 23 - intercept gap: 0
-LANE KEEPING - speed: 99.88140849168231 - angle: 1
-Intercept Handler - intercept length: 22 - intercept gap: 0
-LANE KEEPING - speed: 99.88140849168231 - angle: 1
-Intercept Handler - intercept length: 23 - intercept gap: 0
-LANE KEEPING - speed: 99.88140849168231 - angle: 1
-Intercept Handler - intercept length: 23 - intercept gap: 0
-LANE KEEPING - speed: 99.62360437924744 - angle: 2
-Intercept Handler - intercept length: 3 - intercept gap: 0
-LANE KEEPING - speed: 99.88140849168231 - angle: 1
-Intercept Handler - intercept length: 23 - intercept gap: 0
-LANE KEEPING - speed: 99.90377043181972 - angle: 1
-Intercept Handler - intercept length: 23 - intercept gap: 0
-LANE KEEPING - speed: 99.90377043181972 - angle: 1
-Intercept Handler - intercept length: 23 - intercept gap: 0
-LANE KEEPING - speed: 99.90377043181972 - angle: 1
-Intercept Handler - intercept length: 23 - intercept gap: 0
-LANE KEEPING - speed: 99.90377043181972 - angle: 1
-Intercept Handler - intercept length: 23 - intercept gap: 0
-LANE KEEPING - speed: 99.90377043181972 - angle: 1
-Intercept Handler - intercept length: 23 - intercept gap: 0
-LANE KEEPING - speed: 99.92384581344609 - angle: 1
-Intercept Handler - intercept length: 23 - intercept gap: 0
-LANE KEEPING - speed: 99.90377043181972 - angle: 1
-Intercept Handler - intercept length: 23 - intercept gap: 0
-LANE KEEPING - speed: 99.90377043181972 - angle: 1
-Intercept Handler - intercept length: 23 - intercept gap: 0
-LANE KEEPING - speed: 99.8008601681037 - angle: 2
-Intercept Handler - intercept length: 23 - intercept gap: 0
-LANE KEEPING - speed: 99.8008601681037 - angle: 2
-Intercept Handler - intercept length: 23 - intercept gap: 0
-LANE KEEPING - speed: 99.85678453389465 - angle: 1
-Intercept Handler - intercept length: 23 - intercept gap: 0
-LANE KEEPING - speed: 99.95705069104716 - angle: 0
-Intercept Handler - intercept length: 23 - intercept gap: 0
-LANE KEEPING - speed: 99.95705069104716 - angle: 0
-Intercept Handler - intercept length: 3 - intercept gap: 0
-LANE KEEPING - speed: 99.97014325265977 - angle: 0
-Intercept Handler - intercept length: 22 - intercept gap: 0
-LANE KEEPING - speed: 99.3836939071716 - angle: 3
-Intercept Handler - intercept length: 23 - intercept gap: 0
-LANE KEEPING - speed: 99.3836939071716 - angle: 3
-Intercept Handler - intercept length: 23 - intercept gap: 0
-LANE KEEPING - speed: 99.58202617328249 - angle: 2
-Intercept Handler - intercept length: 22 - intercept gap: 0
-LANE KEEPING - speed: 99.58202617328249 - angle: 2
-Intercept Handler - intercept length: 23 - intercept gap: 0
-LANE KEEPING - speed: 99.88140849168231 - angle: 1
-Intercept Handler - intercept length: 23 - intercept gap: 0
-LANE KEEPING - speed: 99.90377043181972 - angle: 1
-Intercept Handler - intercept length: 23 - intercept gap: 0
-LANE KEEPING - speed: 99.98923537735531 - angle: 0
-Intercept Handler - intercept length: 22 - intercept gap: 0
-LANE KEEPING - speed: 99.98923537735531 - angle: 0
-Intercept Handler - intercept length: 23 - intercept gap: 0
-LANE KEEPING - speed: 99.99521346922273 - angle: 0
+LANE KEEPING - speed: 80.32653298563167 OK - angle: 23 CRC Error
+Intercept Handler - intercept length: 0 - intercept gap: 0
+IMU START
+Intercept Handler - intercept length: 0 - intercept gap: 0
+IMU START
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+Intercept Handler - intercept length: 0 - intercept gap: 0
+******************* OFF ANGLE ***************************
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 Receive Timeout - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 Receive Timeout - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 Receive Timeout - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 Packet Error - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 Packet Error - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 Receive Timeout - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 CRC Error
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 Receive Timeout
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 Receive Timeout - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 Packet Error - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 CRC Error
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 CRC Error - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 Packet Error
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 Packet Error
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 Packet Error - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 Receive Timeout
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 Receive Timeout - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
+Intercept Handler - intercept length: 0 - intercept gap: 0
+LANE KEEPING - speed: 99.99208951874273 OK - angle: 0 OK
