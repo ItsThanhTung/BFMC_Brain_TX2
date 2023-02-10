@@ -56,7 +56,7 @@ import multiprocessing
 
 if __name__ == '__main__':
     # =========================== Object Detection ===========================================
-    object_detector = Yolo(False)
+    object_detector = Yolo(True)
     object_image_queue = multiprocessing.Queue(maxsize=1)
     object_condition = multiprocessing.Condition()
 
