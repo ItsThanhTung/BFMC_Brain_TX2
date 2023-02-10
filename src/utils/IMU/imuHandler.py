@@ -27,17 +27,19 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
 
 import sys
-sys.path.append('/home/ceec/BFMC_Brain_TX2')
+sys.path.append('/home/ceec/imu/BFMC_Brain_TX2')
 
 import threading
 import signal
 import time
-
+import matplotlib.pyplot as plt
 from src.hardware.IMU import imuHandler
-
+import numpy as np
+yaw_arr=[]
 def exit_handler(signum, frame):
 	IMU.stop()
 	IMU.join()
+	np.save('yaw.npy',yaw_arr)
 	sys.exit(0)
 
 def main():
@@ -45,10 +47,15 @@ def main():
 	signal.signal(signal.SIGINT, exit_handler)
 	IMU = imuHandler.IMUHandler()
 	IMU.start()
+	imu_interval = IMU.get_interval()
 	IMU.set_yaw()
-	for i in range(10000):
+
+	while True:
+		yaw_arr.append(IMU.get_yaw())
+		print(yaw_arr[-1])
 		print(IMU.get_yaw())
 		time.sleep(0.1)
-	IMU.stop()
+	
+	# IMU.stop()
 if __name__ == "__main__":
 	main()
