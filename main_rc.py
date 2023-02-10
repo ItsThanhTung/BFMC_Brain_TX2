@@ -89,6 +89,21 @@ if __name__ == '__main__':
     interceptDecisionR, interceptDecisionS = Pipe(duplex = False)                       # Intercept detection ->  Decision making
 
     objectDecisionR, objectDecisionS = Pipe(duplex = False)                             # object detection    ->  Decision making
+    # Serial Handler Pipe Connection SerialHandler -> Decision ACK
+    shSetSpdR, shSetSpdS = Pipe(duplex= False)
+    shSteerR, shSteerS = Pipe(duplex= False)
+    shEnPIDR, shEnPIDS = Pipe(duplex= False)
+    shGetSpdR, shGetSpdS = Pipe(duplex= False)
+    shDistR, shDistS = Pipe(duplex= False)
+    shInps = {
+        "SETSPEED": shSetSpdR,
+        "STEER": shSteerR,
+        "EnPID": shEnPIDR,
+        "GETSPEED": shSetSpdR,
+        "DIST": shDistR
+    }
+
+
 
     # objectDetectionProcess = ObjectDetectionProcess({"OBJECT_IMAGE" : camObjectStR}, {"DECISION_MAKING" : objectDecisionS})
     imagePreprocess = ImagePreprocessingProcess({"LANE_IMAGE" : camLaneStR}, {"LANE_KEEPING" : imagePreprocessS, "INTERCEPT_DETECTION" : imagePreprocessInterceptS},\
@@ -96,14 +111,21 @@ if __name__ == '__main__':
                                              
     laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [laneKeepingDecisionS], opt, None, False)
     decisionMakingProcess = DecisionMakingProcess({"LANE_KEEPING" : laneKeepingDecisionR, "INTERCEPT_DETECTION" : interceptDecisionR, "OBJECT_DETECTION" : objectDecisionR}, \
-                                                                                                    {"SERIAL" : rcShS, "SERIAL_DISTANCE": distSerialR}, opt, debug=False)
+                                                                                                    {"SERIAL" : rcShS, "SERIAL_DISTANCE": distSerialR}, shInps, opt, debug=False)
+
 
     interceptDetectionProcess = InterceptDetectionProcess({"IMAGE_PREPROCESSING" : imagePreprocessInterceptR}, {"DECISION_MAKING" : interceptDecisionS}, \
                                                             opt, debugP=None, debug=False)           
 
-    shProc = SerialHandlerProcess([rcShR], [])
-
-    shProc.SubscribeTopic('7', distSerialS)     # subcribe distance topic
+    #SerialHandler Process
+    shOutPs = {
+        "1": shSetSpdS,
+        "2": shSteerS,
+        "4": shEnPIDS, 
+        "5": shGetSpdS,
+        "7": shDistS
+    }
+    shProc = SerialHandlerProcess([rcShR], shOutPs)
     
     allProcesses.append(imagePreprocess)
     allProcesses.append(laneKeepingProcess)

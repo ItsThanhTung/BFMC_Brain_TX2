@@ -13,31 +13,32 @@ class InterceptionHandler:
         return False, self.log_messagge(False, intercept_length, intercept_gap)
 
 
-    def turn_right(self, imu_angle, debug, outP=None):
+    def turn_right(self, imu_angle, debug, CarHandler=None):
         if not debug:
             if imu_angle < 90:
-                setSpeed(outP, float(0))
-                setAngle(outP , float(22))
-                return self.log_messagge(True, imu_angle), False
+                status, mess_speed = CarHandler.setSpeed(50)
+                status, mess_angle = CarHandler.setAngle(22)
+                return self.log_messagge(True, imu_angle, mess_speed, mess_angle), False
             else:
                 return "FINISH TURN RIGHT\n", True
         else:
             return "FINISH TURN RIGHT\n", True
 
-    def turn_left(self, imu_angle, debug, outP=None):
+    def turn_left(self, imu_angle, debug, CarHandler=None):
         if not debug:
             if imu_angle > -90:
-                setSpeed(outP, float(0))
-                setAngle(outP , float(22))
-                return self.log_messagge(True, imu_angle), False
+                status, mess_speed = CarHandler.setSpeed(50)
+                status, mess_angle = CarHandler.setAngle(-22)
+                return self.log_messagge(True, imu_angle, mess_speed, mess_angle), False
             else:
                 return "FINISH TURN LEFT\n", True
         else:
             return "FINISH TURN LEFT\n", True
 
-    def log_messagge(self, is_handle, imu_angle, intercept_length=0, intercept_gap=0):
+    def log_messagge(self, is_handle, imu_angle, mess_speed = "", mess_angle = "", intercept_length=0, intercept_gap=0):
         if is_handle:
-            return "Intercept Handler - IMU angle: ", str(imu_angle), " - Run angle: " + str(22) + " - speed: " + str(0) + "\n"
+            return "Intercept Handler - IMU angle: ", str(imu_angle), " - Run angle: " + str(22) \
+                + " " + mess_angle + " - speed: " + str(50) + " " + mess_speed + "\n"
         
         return "Intercept Handler - intercept length: " + str(intercept_length) + " - intercept gap: " + str(intercept_gap) + "\n"
             

@@ -5,6 +5,7 @@ from src.hardware.serialhandler.filehandler import FileHandler
 from src.perception.InterceptionHandler import InterceptionHandler
 
 from src.hardware.IMU.imuHandler import IMUHandler
+from src.perception.CarHandlerThread import CarHandlerThread
 
 import time
 import numpy as np
@@ -16,7 +17,7 @@ class DecisionMakingProcess(WorkerProcess):
     data_object_detection_lock = Lock()
     historyFile = FileHandler("carControlHistory.txt")
 
-    def __init__(self, inPs, outPs, opt, debug):
+    def __init__(self, inPs, outPs, serInPs, opt, debug):
         """Process used for sending images over the network to a targeted IP via UDP protocol 
         (no feedback required). The image is compressed before sending it. 
 
@@ -48,6 +49,11 @@ class DecisionMakingProcess(WorkerProcess):
         self.imu_handler = IMUHandler()
         
  
+
+        self.__CarHandlerTh = CarHandlerThread(serInPs, self.outPs["SERIAL"], enablePID= False)
+        self.__CarHandlerTh.daemon = True
+        self.threads.append(self.__CarHandlerTh)
+
     # ===================================== RUN ==========================================
     def run(self):
         """Apply the initializing methods and start the threads.
@@ -72,11 +78,14 @@ class DecisionMakingProcess(WorkerProcess):
         readDataInterceptDetectionTh.daemon = True
         readDataObjectDetectionTh.daemon = True
 
+
         self.threads.append(decisionMakingTh)
         self.threads.append(readDataLaneKeepingTh)
         self.threads.append(readDataInterceptDetectionTh)
         self.threads.append(readDataObjectDetectionTh)
-        
+
+
+
     def _read_data_lane_keeping(self):
         while True:
             try:
@@ -140,7 +149,7 @@ class DecisionMakingProcess(WorkerProcess):
 
     def _run_decision_making(self):
         if not self.debug:
-            EnablePID(self.outPs["SERIAL"])
+            status, messSpd = self.__CarHandlerTh.enablePID()
 
         interceptionHandler = InterceptionHandler()
         while True:
@@ -161,7 +170,7 @@ class DecisionMakingProcess(WorkerProcess):
                 if self.is_intercept :                            
                     if not self.debug:
                         imu_angle = self.imu_handler.get_yaw()
-                        intercept_handler_log, isFinish = interceptionHandler.turn_right(imu_angle, self.debug, self.outPs["SERIAL"])
+                        intercept_handler_log, isFinish = interceptionHandler.turn_right(imu_angle, self.debug, self.__CarHandlerTh)
                         self.is_intercept = not isFinish
                     else:
                         intercept_handler_log, isFinish = interceptionHandler.turn_right(imu_angle, self.debug)
@@ -174,10 +183,11 @@ class DecisionMakingProcess(WorkerProcess):
                         
                         if np.abs(self.prev_angle - angle_lane_keeping) > 10:
                             self.historyFile.write("******************* OFF ANGLE ***************************\n")
-                    
-                        setSpeed(self.outPs["SERIAL"], float(0.5 * 100))
-                        setAngle(self.outPs["SERIAL"] , float(angle_lane_keeping))
-                        self.historyFile.write("LANE KEEPING - speed: " + str(speed_lane_keeping) + " - angle: " + str(int(angle_lane_keeping)) + "\n")
+
+                        status, messSpd = self.__CarHandlerTh.setSpeed(50)
+                        status, messAng = self.__CarHandlerTh.setAngle(angle_lane_keeping)
+                        self.historyFile.write("LANE KEEPING - speed: " + str(speed_lane_keeping) + " " + messSpd\
+                                                        + " - angle: " + str(int(angle_lane_keeping)) + " " + messAng + "\n")
                         self.prev_angle = angle_lane_keeping
 
                 time.sleep(0.05)
