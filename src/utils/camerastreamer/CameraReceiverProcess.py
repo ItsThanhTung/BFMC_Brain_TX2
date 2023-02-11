@@ -46,7 +46,7 @@ from src.templates.workerprocess import WorkerProcess
 
 class CameraReceiverProcess(WorkerProcess):
     # ===================================== INIT =========================================
-    def __init__(self, inPs, outPs):
+    def __init__(self, inPs, outPs, imgSize, port):
         """Process used for debugging. Can be used as a direct frame analyzer, instead of using the VNC
         It receives the images from the raspberry and displays them.
 
@@ -58,8 +58,8 @@ class CameraReceiverProcess(WorkerProcess):
             List of output pipes
         """
         super(CameraReceiverProcess,self).__init__(inPs, outPs)
-
-        self.imgSize    = (240, 320, 3)
+        self.port       =   port
+        self.imgSize    = imgSize
     # ===================================== RUN ==========================================
     def run(self):
         """Apply the initializers and start the threads. 
