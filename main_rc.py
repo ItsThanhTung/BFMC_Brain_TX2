@@ -69,6 +69,8 @@ if __name__ == '__main__':
     is_show = False
 
     opt = load_config_file("main_rc.json")
+    
+    cam_opt = opt["REMOTE"] if is_remote else opt["RC"]
 
     # =============================== INITIALIZING PROCESSES =================================
     allProcesses = list()
@@ -76,8 +78,9 @@ if __name__ == '__main__':
     # =============================== HARDWARE ===============================================
     camLaneStR, camLaneStS = Pipe(duplex = False)           # camera  ->  streamer
     camObjectStR, camObjectStS = Pipe(duplex = False)           # camera  ->  streamer
+    
     camProc = CameraProcess(object_image_queue, object_condition, \
-                            [],{"PREPROCESS_IMAGE" : camLaneStS, "OBJECT_IMAGE" : camObjectStS}, opt["CAM_PATH"])
+                            [],{"PREPROCESS_IMAGE" : camLaneStS, "OBJECT_IMAGE" : camObjectStS}, cam_opt["CAM_PATH"])
     allProcesses.append(camProc)
 
     
