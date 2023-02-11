@@ -48,17 +48,17 @@ class Yolo(object):
         pred = non_max_suppression(pred, self.conf_thres, self.iou_thres, None, False, max_det=self.max_det)
         results=[]
         for i, det in enumerate(pred):  # per image
-            # annotator = Annotator(img_resized, line_width=3, example=str(self.names))
+            annotator = Annotator(img_resized, line_width=3, example=str(self.names))
             det=det.cpu().detach().numpy()
             if len(det):
                 # det[:, :4] = scale_coords(im.shape, det[:, :4], im0.shape).round()
                 for (*xyxy, conf, cls) in reversed(det): 
                     c = int(cls)  # integer class
                     label = f'{self.names[c]} {conf:.2f}'
-                    # annotator.box_label(xyxy, label, color=colors(c, True))
+                    annotator.box_label(xyxy, label, color=colors(c, True))
                     result = (xyxy, conf, self.names[c])
                     results.append(result)
-            # img_resized = annotator.result()
+            img_resized = annotator.result()
         return img_resized, results
     
     def read_image(self):
@@ -90,9 +90,8 @@ class Yolo(object):
                 visualized_image, results = self.detect(image)
                 
                 print(results)
-                
-                if self.outP == True:        
-                    self.outP.send({"image": visualized_image})
+                   
+                self.outP.send({"image": visualized_image})
                     
             except Exception as e:
                 print("Object detection detection_loop error:", e)

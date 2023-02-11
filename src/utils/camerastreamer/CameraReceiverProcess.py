@@ -71,7 +71,6 @@ class CameraReceiverProcess(WorkerProcess):
     def _init_socket(self):
         """Initialize the socket server. 
         """
-        self.port       =   2244
         self.serverIp   =   '0.0.0.0'
         
         self.server_socket = socket.socket()
