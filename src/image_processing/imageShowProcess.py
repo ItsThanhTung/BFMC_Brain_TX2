@@ -82,10 +82,11 @@ class imageShowProcess(WorkerProcess):
             try:
                 # Obtain image
                 for inp in inPs:
-                    visualized_images = inp.recv()
-                    for name in visualized_images:
-                        cv2.imshow(name, visualized_images[name])
-                
+                    if inp is not None:
+                        visualized_images = inp.recv()
+                        for name in visualized_images:
+                            cv2.imshow(name, visualized_images[name])
+                    
                 cv2.waitKey(1)
 
             except Exception as e:
