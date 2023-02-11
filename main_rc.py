@@ -62,10 +62,10 @@ if __name__ == '__main__':
 
     # =============================== CONFIG =================================================
     enableStream             =  True
-    enableLaneStream         =  True
-    enableInterceptStream    =  True
+    enableLaneStream         =  False
+    enableInterceptStream    =  False
     
-    is_remote = True
+    is_remote = False
     is_show = False
 
     opt = load_config_file("main_rc.json")
@@ -132,11 +132,12 @@ if __name__ == '__main__':
     interceptDetectionProcess = InterceptDetectionProcess({"IMAGE_PREPROCESSING" : imagePreprocessInterceptR}, {"DECISION_MAKING" : interceptDecisionS}, \
                                                             opt, debugP=interceptDebugS, debug=enableInterceptStream, is_remote=is_remote)           
     
-    if is_remote:
+    if not is_remote:
         decisionMakingProcess = DecisionMakingProcess({"LANE_KEEPING" : laneKeepingDecisionR, "INTERCEPT_DETECTION" : interceptDecisionR, "OBJECT_DETECTION" : objectDecisionR}, \
                                                         {"SERIAL" : rcShS, "SERIAL_DISTANCE": distSerialR}, shInps, opt, debug=False)
     
-    
+        allProcesses.append(decisionMakingProcess)
+        
     # SerialHandler Process
     shOutPs = {
         "1": shSetSpdS,
@@ -150,7 +151,6 @@ if __name__ == '__main__':
     
     allProcesses.append(imagePreprocess)
     allProcesses.append(laneKeepingProcess)
-    allProcesses.append(decisionMakingProcess)
     allProcesses.append(interceptDetectionProcess)
     allProcesses.append(shProc)
     
