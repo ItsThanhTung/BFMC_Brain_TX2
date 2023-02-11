@@ -53,15 +53,16 @@ from src.utils.utils_function import load_config_file
 
 from src.image_processing.traffic_sign.detection import Yolo
 import multiprocessing
+from threading import Thread
 
 if __name__ == '__main__':
     # =========================== Object Detection ===========================================
-    # object_detector = Yolo(True)
-    object_image_queue = multiprocessing.Queue(maxsize=3)
-    object_condition = multiprocessing.Condition()
+    camObjectStR, camObjectStS = Pipe(duplex = False)                                   # camera  ->  streamer
+    objectDecisionR, objectDecisionS = Pipe(duplex = False)                             # object detection    ->  Decision making
+    object_detector = Yolo(camObjectStR, objectDecisionS, None, False, True)
 
     # =============================== CONFIG =================================================
-    enableStream             =  True
+    enableStream             =  False
     enableLaneStream         =  False
     enableInterceptStream    =  False
     
@@ -77,10 +78,8 @@ if __name__ == '__main__':
 
     # =============================== HARDWARE ===============================================
     camLaneStR, camLaneStS = Pipe(duplex = False)           # camera  ->  streamer
-    camObjectStR, camObjectStS = Pipe(duplex = False)           # camera  ->  streamer
     
-    camProc = CameraProcess(object_image_queue, object_condition, \
-                            [],{"PREPROCESS_IMAGE" : camLaneStS, "OBJECT_IMAGE" : camObjectStS}, cam_opt["CAM_PATH"])
+    camProc = CameraProcess([],{"PREPROCESS_IMAGE" : camLaneStS, "OBJECT_IMAGE" : camObjectStS}, cam_opt["CAM_PATH"])
     allProcesses.append(camProc)
 
     
@@ -95,7 +94,6 @@ if __name__ == '__main__':
 
     interceptDecisionR, interceptDecisionS = Pipe(duplex = False)                       # Intercept detection ->  Decision making
 
-    objectDecisionR, objectDecisionS = Pipe(duplex = False)                             # object detection    ->  Decision making
     
     # Serial Handler Pipe Connection SerialHandler -> Decision ACK
     shSetSpdR, shSetSpdS = Pipe(duplex= False)
@@ -190,9 +188,11 @@ if __name__ == '__main__':
 
     # ===================================== STAYING ALIVE ====================================
     blocker = Event()  
+    object_cam_read_th = Thread(target = object_detector.read_image)
+    object_detector_th = Thread(target = object_detector.detection_loop)
     
-    # object_detector.detection_loop(object_image_queue, object_condition, \
-    #                         objectDecisionS, False, None)
+    object_cam_read_th.start()
+    object_detector_th.start()
 
     try:
         blocker.wait()
@@ -203,7 +203,15 @@ if __name__ == '__main__':
                 print("Process with stop",proc)
                 proc.stop()
                 proc.join()
+                object_cam_read_th.stop()
+                object_detector_th.stop()
+                object_cam_read_th.join()
+                object_detector_th.join()
             else:
                 print("Process witouth stop",proc)
                 proc.terminate()
                 proc.join()
+                object_cam_read_th.stop()
+                object_detector_th.stop()
+                object_cam_read_th.join()
+                object_detector_th.join()

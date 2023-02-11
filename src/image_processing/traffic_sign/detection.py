@@ -9,9 +9,12 @@ from src.image_processing.traffic_sign.yolov5_utils.models.common import DetectM
 from src.image_processing.traffic_sign.yolov5_utils.utils.general import non_max_suppression,scale_coords
 # from src.image_processing.traffic_sign.yolov5_utils.utils.plots import Annotator, colors
 
+from multiprocessing import Condition
 
 class Yolo(object):
-    def __init__(self, isTensorRt, source='',imgsize= (480,640), device='0',conf_thres=0.1, iou_thres=0.45,max_det=1000): 
+    def __init__(self, streamP, outP, imageShowP, is_show, isTensorRt, source='',\
+                        imgsize= (480,640), device='0',conf_thres=0.1, iou_thres=0.45,max_det=1000): 
+        
         if isTensorRt: 
             weights='sign2.engine'
         else: 
@@ -27,6 +30,12 @@ class Yolo(object):
         self._running = False 
         self.stride=64
         self.delay=True
+        self.image = None
+        self.streamP = streamP
+        self.image_condition = Condition()
+        self.outP = outP
+        self.is_show = is_show
+        self.imageShowP = imageShowP
     
     def detect(self,img0):
         # img0=self.image_loader()
@@ -53,19 +62,38 @@ class Yolo(object):
                     results.append(result)
             # img_resized = annotator.result()
         return img_resized, results
-
-    def detection_loop(self, object_image_queue, object_condition, objectDecisionS, isShow = True, imageObjectShowS = None):
+    
+    def read_image(self):
         while True:
-            with object_condition:
-                object_condition.wait()
-            while object_image_queue.qsize() > 0:
-                image = object_image_queue.get()
-                image,results = self.detect(image)
-
-                objectDecisionS.send({"results" : results})
+            try:
+                data = self.streamP.recv()["image"]
+                self.image_condition.acquire()
+                self.image = data
+                self.image_condition.notify()
+                self.image_condition.release()
                 
-                if isShow == True:        
-                    imageObjectShowS.send({"image": image})
+            except Exception as e:
+                print("Object detection read_image error:", e)
+
+    def detection_loop(self):
+        while True:
+            self.image_condition.acquire()
+            if self.image is None:
+                self.image_condition.wait()
+                image = self.image
+                self.image = None
+                self.image_condition.release()
+            else:
+                image = self.image
+                self.image = None
+                self.image_condition.release()
+
+            image,results = self.detect(image)
+
+            self.outP.send({"results" : results})
+            
+            if self.is_show == True:        
+                self.imageShowP.send({"image": image})
 
     def preprocess(self,img0):
         img_resized = letterbox(img0, self.img_size, stride=self.stride, auto=False)[0]

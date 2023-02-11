@@ -40,7 +40,7 @@ from src.templates.threadwithstop import ThreadWithStop
 class CameraThread(ThreadWithStop):
     
     #================================ CAMERA =============================================
-    def __init__(self, object_image_queue, object_condition, cam_path, outPs):
+    def __init__(self, cam_path, outPs):
         """The purpose of this thread is to setup the camera parameters and send the result to the CameraProcess. 
         It is able also to record videos and save them locally. You can do so by setting the self.RecordMode = True.
         
@@ -62,9 +62,6 @@ class CameraThread(ThreadWithStop):
         self.outPs        =   outPs
 
         self.cam_path = cam_path
-        
-        self.object_image_queue = object_image_queue
-        self.object_condition = object_condition
 
     #================================ RUN ================================================
     def run(self):
@@ -132,20 +129,11 @@ class CameraThread(ThreadWithStop):
             ret, data = self.camera.read()
             lane_image = cv2.resize(data, (320, 240))
             lane_image = imutils.rotate(lane_image, -5)
-            # cv2.ims=how("data", data)
-            # cv2.waitKey(1)
 
-            # output image and time stamp
             # Note: The sending process can be blocked, when doesn't exist any consumer process and it reaches the limit size.
             self.outPs["PREPROCESS_IMAGE"].send({"image": lane_image})
-            
-            # self.outPs["OBJECT_IMAGE"].send({"image": data})
-            
-            with self.object_condition:
-                if self.object_image_queue.full():
-                    self.object_image_queue.get()
-                self.object_image_queue.put(data)
-                self.object_condition.notify_all()
+            self.outPs["OBJECT_IMAGE"].send({"image": data})
 
+            
 
 

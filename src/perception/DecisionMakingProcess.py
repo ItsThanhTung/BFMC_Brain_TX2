@@ -158,6 +158,7 @@ class DecisionMakingProcess(WorkerProcess):
                 speed_lane_keeping, angle_lane_keeping = self.read_lane_keeping_data()
                 intercept_length, intercept_gap = self.read_intercept_detection_data()
                 object_result = self.read_object_detection_data()
+                print(object_result)
                 if object_result is not None and len(object_result) > 0:
                     if object_result[0][1] > 0.8 and self.is_sign == False:
                         print(object_result[0][0])
