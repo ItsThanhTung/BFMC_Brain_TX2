@@ -34,7 +34,7 @@ from src.image_processing.InterceptDetection import InterceptDetection
 
 class InterceptDetectionProcess(WorkerProcess):
     # ===================================== INIT =========================================
-    def __init__(self, inPs, outPs, opt, debugP = None, debug=False):
+    def __init__(self, inPs, outPs, opt, debugP = None, debug=False, is_remote=False):
         """Process used for sending images over the network to a targeted IP via UDP protocol 
         (no feedback required). The image is compressed before sending it. 
 
@@ -53,6 +53,7 @@ class InterceptDetectionProcess(WorkerProcess):
         self.debug = debug
         self.debugP = debugP
         self.opt = opt
+        self.is_remote = is_remote
 
         
     # ===================================== RUN ==========================================
@@ -80,7 +81,9 @@ class InterceptDetectionProcess(WorkerProcess):
                 data = self.inPs["IMAGE_PREPROCESSING"].recv()
                 image = data["sybinary"]
                 max_intercept_length, debug_data = intercept_detector.detect(image)
-                self.outPs["DECISION_MAKING"].send(max_intercept_length)
+                
+                if not self.is_remote:
+                    self.outPs["DECISION_MAKING"].send(max_intercept_length)
 
                 if self.debug:
                     self.debugP.send(debug_data)

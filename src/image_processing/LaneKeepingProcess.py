@@ -40,7 +40,7 @@ from src.utils.utils_function import setSpeed, setAngle, EnablePID
 class LaneKeepingProcess(WorkerProcess):
     pid = PID(Kp = 1.0, Ki = 1.45, Kd = 0.15, output_limits = [-23, 23])
     # ===================================== INIT =========================================
-    def __init__(self, inPs, outPs, opt, debugP=None, debug=False):
+    def __init__(self, inPs, outPs, opt, debugP=None, debug=False, is_remote=False):
         """Process used for sending images over the network to a targeted IP via UDP protocol 
         (no feedback required). The image is compressed before sending it. 
 
@@ -57,6 +57,8 @@ class LaneKeepingProcess(WorkerProcess):
         self.opt = opt
         self.debug = debug
         self.debugP = debugP
+        self.is_remote = is_remote
+        
         super(LaneKeepingProcess,self).__init__( inPs, outPs, debug)
         
     # ===================================== RUN ==========================================
@@ -98,8 +100,9 @@ class LaneKeepingProcess(WorkerProcess):
                 # new_angle = self.pid(angle)
                 # setSpeed(outP[0], float(speed * 0.35))
 
-                outP.send({"speed" : speed,
-                           "angle" : angle})
+                if not self.is_remote:
+                    outP.send({"speed" : speed,
+                            "angle" : angle})
 
                 if self.debug: 
                     self.debugP.send(debug_data)

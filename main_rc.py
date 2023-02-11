@@ -64,7 +64,9 @@ if __name__ == '__main__':
     enableStream             =  True
     enableLaneStream         =  True
     enableInterceptStream    =  True
-
+    
+    is_remote = True
+    is_show = False
 
     opt = load_config_file("main_rc.json")
 
@@ -123,16 +125,19 @@ if __name__ == '__main__':
 
 
     imagePreprocess = ImagePreprocessingProcess({"LANE_IMAGE" : camLaneStR}, {"LANE_KEEPING" : imagePreprocessS, "INTERCEPT_DETECTION" : imagePreprocessInterceptS},\
-                                                                opt , False, debugP=imagePreprocessStreamS, debug=enableStream)
+                                                                opt , is_show, debugP=imagePreprocessStreamS, debug=enableStream)
                                              
-    laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [laneKeepingDecisionS], opt, debugP=laneKeepingDebugS, debug=enableLaneStream)
-    decisionMakingProcess = DecisionMakingProcess({"LANE_KEEPING" : laneKeepingDecisionR, "INTERCEPT_DETECTION" : interceptDecisionR, "OBJECT_DETECTION" : objectDecisionR}, \
-                                                                                                    {"SERIAL" : rcShS, "SERIAL_DISTANCE": distSerialR}, shInps, opt, debug=False)
+    laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [laneKeepingDecisionS], opt, debugP=laneKeepingDebugS, debug=enableLaneStream, is_remote=is_remote)
     
     interceptDetectionProcess = InterceptDetectionProcess({"IMAGE_PREPROCESSING" : imagePreprocessInterceptR}, {"DECISION_MAKING" : interceptDecisionS}, \
-                                                            opt, debugP=interceptDebugS, debug=enableInterceptStream)           
-
-    #SerialHandler Process
+                                                            opt, debugP=interceptDebugS, debug=enableInterceptStream, is_remote=is_remote)           
+    
+    if is_remote:
+        decisionMakingProcess = DecisionMakingProcess({"LANE_KEEPING" : laneKeepingDecisionR, "INTERCEPT_DETECTION" : interceptDecisionR, "OBJECT_DETECTION" : objectDecisionR}, \
+                                                        {"SERIAL" : rcShS, "SERIAL_DISTANCE": distSerialR}, shInps, opt, debug=False)
+    
+    
+    # SerialHandler Process
     shOutPs = {
         "1": shSetSpdS,
         "2": shSteerS,
