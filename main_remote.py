@@ -70,9 +70,12 @@ if __name__ == '__main__':
     object_condition = multiprocessing.Condition()
 
     is_remote = True
+    is_show = True
     
     
-    opt = load_config_file("main_remote.json")
+    opt = load_config_file("main_rc.json")
+    cam_opt = opt["REMOTE"] if is_remote else opt["RC"]
+    
     # =============================== CONFIG =================================================
     enableCameraSpoof   =  False 
 
@@ -109,12 +112,11 @@ if __name__ == '__main__':
 
 
     imagePreprocess = ImagePreprocessingProcess({"LANE_IMAGE" : camLaneStR}, {"IMAGE_SHOW" : imagePreprocessShowS, "LANE_KEEPING" : imagePreprocessS, \
-                                                        "INTERCEPT_DETECTION" : imagePreprocessInterceptS}, opt, is_show=True)
+                                                        "INTERCEPT_DETECTION" : imagePreprocessInterceptS}, opt, is_show=is_show)
     laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [None], opt, laneDebugS, debug=True, is_remote=is_remote)
 
     interceptDetectionProcess = InterceptDetectionProcess({"IMAGE_PREPROCESSING" : imagePreprocessInterceptR}, {}, \
                                                             opt, debugP = interceptDecisionDebugS, debug=True, is_remote=is_remote)
-
 
     laneDebugProcess = LaneDebuginggProcess({"LANE_KEEPING" : laneDebugR, "INTERCEPT_DETECTION" : interceptDecisionDebugR}, \
                                         {"LANE_KEEPING" :laneDebugShowS, "INTERCEPT_DETECTION" :interceptDebugShowS}, )
