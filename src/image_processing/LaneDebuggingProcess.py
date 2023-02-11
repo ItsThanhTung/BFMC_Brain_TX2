@@ -86,17 +86,17 @@ class LaneDebuginggProcess(WorkerProcess):
         while True:
             try:
                 # Obtain image
-                data_lane_keeping = self.inPs["LANE_KEEPING"].recv()
-                data_intercept_detection = self.inPs["INTERCEPT_DETECTION"].recv()
-                lane_keeping_visualize_image = LaneDebugger.visualize_lane_keeping(data_lane_keeping)
+                if self.inPs["LANE_KEEPING"] is not None:
+                    data_lane_keeping = self.inPs["LANE_KEEPING"].recv()
+                    lane_keeping_visualize_image = LaneDebugger.visualize_lane_keeping(data_lane_keeping)
+                    
+                    self.outPs["LANE_KEEPING"].send(lane_keeping_visualize_image)
 
-                intercept_visualize_image = LaneDebugger.visualize_intercept_detection(data_intercept_detection)
-
-                lane_keeping_visualize_image.update(intercept_visualize_image)
-
-                for out in self.outPs:
-                    out.send(lane_keeping_visualize_image)
-
+                    
+                if self.inPs["INTERCEPT_DETECTION"] is not None:
+                    data_intercept_detection = self.inPs["INTERCEPT_DETECTION"].recv()
+                    intercept_visualize_image = LaneDebugger.visualize_intercept_detection(data_intercept_detection)
+                    self.outPs["INTERCEPT_DETECTION"].send(intercept_visualize_image)
 
             except Exception as e:
                 print("Lane Debugging error:")

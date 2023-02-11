@@ -52,7 +52,7 @@ from src.image_processing.ImagePreprocessingProcess import ImagePreprocessingPro
 from src.image_processing.LaneDebuggingProcess import LaneDebuginggProcess
 # from src.perception.DecisionMakingProcess import DecisionMakingProcess
 from src.image_processing.InterceptDetectionProcess import InterceptDetectionProcess
-
+from src.utils.datastreamer.DataReceiverProcess import DataReceiverProcess
 
 # opt import
 from src.utils.utils_function import load_config_file
@@ -77,37 +77,50 @@ import multiprocessing
 
 if __name__ == '__main__':
     
-    # =========================== Object Detection ===========================================
-    # object_detector = Yolo(False)
-    object_image_queue = multiprocessing.Queue(maxsize=1)
-    object_condition = multiprocessing.Condition()
+    enableStream             =  True
+    enableLaneStream         =  True
+    enableInterceptStream    =  True
 
-    
-    opt = load_config_file("main_remote.json")
-    # =============================== CONFIG =================================================
-    enableCameraSpoof   =  False 
 
     # =============================== INITIALIZING PROCESSES =================================
     allProcesses = list()
 
     # =============================== HARDWARE ===============================================
-    camLaneStR, camLaneStS = Pipe(duplex = False)           # camera  ->  streamer
-    camObjectStR, camObjectStS = Pipe(duplex = False)           # camera  ->  streamer
-    if enableCameraSpoof:
-        # camProc = CameraProcess(object_image_queue, object_condition, \
-        #                     [],{"PREPROCESS_IMAGE" : camLaneStS, "OBJECT_IMAGE" : camObjectStS}, opt["CAM_PATH"])
-        camProc = CameraSpooferProcess(object_image_queue, object_condition, \
-                        [], {"PREPROCESS_IMAGE" : camLaneStS, "OBJECT_IMAGE" : camObjectStS}, [opt["CAM_PATH"]])
-        allProcesses.append(camProc)
 
-    else:
+
+    if enableStream:
+        camLaneStR, camLaneStS = Pipe(duplex = False)                                       # camera  ->  streamer
         camProc = CameraReceiverProcess([],[camLaneStS])
         allProcesses.append(camProc)
+    else:
+        camLaneStR, camLaneStS = None, None
     
+    if enableLaneStream:
+        laneDebugR, laneDebugS = Pipe(duplex = False)                                       # laneKeeping         ->  LaneDebug
+        dataLaneProc = DataReceiverProcess([], [laneDebugS], port=2255)
+        laneDebugShowR, laneDebugShowS = Pipe(duplex = False)                               # laneDebug           ->  ImageShow
+        allProcesses.append(dataLaneProc)
+    else:
+        laneDebugR, laneDebugS = None, None
+        laneDebugShowR, laneDebugShowS = None, None
+    
+    if enableInterceptStream:
+        interceptDebugR, interceptDebugS = Pipe(duplex = False)                             # laneKeeping         ->  LaneDebug
+        dataInterceptProc = DataReceiverProcess([], [interceptDebugS], port=2266)
+        interceptDebugShowR, interceptDebugShowS = Pipe(duplex = False)                               # laneDebug           ->  ImageShow
+        allProcesses.append(dataInterceptProc)
+    else:
+        interceptDebugR, interceptDebugS = None, None
+        interceptDebugShowR, interceptDebugShowS = None, None
 
-    imageShow = imageShowProcess([camLaneStR], [])
+    
+    laneDebugProcess = LaneDebuginggProcess({"LANE_KEEPING" : laneDebugR, "INTERCEPT_DETECTION" : interceptDebugR},\
+                                                {"LANE_KEEPING": laneDebugShowS, "INTERCEPT_DETECTION" : interceptDebugShowS})
+    
+    imageShow = imageShowProcess([camLaneStR, laneDebugShowR, interceptDebugShowR], [])
     
     allProcesses.append(imageShow)
+    allProcesses.append(laneDebugProcess)
 
  
     # =============================== DATA ===================================================
@@ -128,10 +141,7 @@ if __name__ == '__main__':
 
     # ===================================== STAYING ALIVE ====================================
     blocker = Event()  
-  
-    # object_detector.detection_loop(object_image_queue, object_condition, \
-    #                         objectDecisionS, True, imageObjectShowS)
-    
+
     try:
         blocker.wait()
 
