@@ -62,7 +62,7 @@ if __name__ == '__main__':
     
 
     # =============================== CONFIG =================================================
-    enableStream             =  False
+    enableStream             =  True
     enableStreamObject       =  True
     enableLaneStream         =  False
     enableInterceptStream    =  False
@@ -205,10 +205,12 @@ if __name__ == '__main__':
     # ===================================== STAYING ALIVE ====================================
     blocker = Event()  
     object_cam_read_th = Thread(target = object_detector.read_image)
+    stream_image_th = Thread(target = object_detector.stream_image_th)
     object_detector_th = Thread(target = object_detector.detection_loop)
     
     object_cam_read_th.start()
     object_detector_th.start()
+    stream_image_th.start()
 
     try:
         blocker.wait()
@@ -221,9 +223,11 @@ if __name__ == '__main__':
                 proc.join()
                 object_cam_read_th.join()
                 object_detector_th.join()
+                stream_image_th.join()
             else:
                 print("Process witouth stop",proc)
                 proc.terminate()
                 proc.join()
                 object_cam_read_th.join()
                 object_detector_th.join()
+                stream_image_th.join()

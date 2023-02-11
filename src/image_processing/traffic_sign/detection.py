@@ -30,9 +30,14 @@ class Yolo(object):
         self._running = False 
         self.stride=64
         self.delay=True
+        
+        self.stream_image = None
         self.image = None
         self.streamP = streamP
+        
         self.image_condition = Condition()
+        self.image_stream_condition = Condition()
+        
         self.outP = outP
         self.debug = debug
         self.debugP = debugP
@@ -74,6 +79,26 @@ class Yolo(object):
                 
             except Exception as e:
                 print("Object detection read_image error:", e)
+                
+    def stream_image_th(self):
+        while True:
+            try:
+                self.image_stream_condition.acquire()
+                if self.stream_image is None:
+                    self.image_stream_condition.wait()
+                    stream_image = self.stream_image
+                    self.stream_image = None
+                    self.image_stream_condition.release()
+                else:
+                    stream_image = self.stream_image
+                    self.stream_image = None
+                    self.image_stream_condition.release()
+                    
+                if self.debug == True:        
+                    self.debugP.send({"image": stream_image})
+                
+            except Exception as e:
+                print("Object detection stream_image error:", e)
 
     def detection_loop(self):
         while True:
@@ -88,13 +113,16 @@ class Yolo(object):
                     image = self.image
                     self.image = None
                     self.image_condition.release()
-
+                    
+                if self.debug == True:  
+                    self.image_stream_condition.acquire()
+                    self.stream_image = image
+                    self.image_stream_condition.notify()
+                    self.image_stream_condition.release()
+                    
                 _, results = self.detect(image)
-
                 self.outP.send({"results" : results})
                 
-                if self.debug == True:        
-                    self.debugP.send({"image": image})
                     
             except Exception as e:
                 print("Object detection detection_loop error:", e)
