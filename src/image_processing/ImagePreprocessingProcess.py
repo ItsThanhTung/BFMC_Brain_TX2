@@ -31,10 +31,10 @@ import math
 from threading import Thread, Condition
 from src.templates.workerprocess import WorkerProcess
 from src.image_processing.ImagePreprocessing import ImagePreprocessing
-from queue import Queue
+
 
 class ImagePreprocessingProcess(WorkerProcess):
-    image_stream_queue = Queue(maxsize=5)
+    image_stream_condition = Condition()
     preprocess_image_condition = Condition()
     read_image_condition = Condition()
     # ===================================== INIT =========================================
@@ -55,6 +55,8 @@ class ImagePreprocessingProcess(WorkerProcess):
         super(ImagePreprocessingProcess,self).__init__( inPs, outPs)
 
         self.image = None
+        self.stream_image = None
+        
         self.new_combined_binary = None
         self.sybinary = None
         self.image_ff = None
@@ -118,8 +120,18 @@ class ImagePreprocessingProcess(WorkerProcess):
     def _stream_image(self, outP):
         while True:
             try:
-                image = self.image_stream_queue.get()
-                outP.send({"image": image})
+                self.image_stream_condition.acquire()
+                self.image_stream_condition.wait()
+                
+                if self.stream_image is not None:
+                    stream_image = self.stream_image.copy()
+                    self.image_stream_condition.release()
+                    outP.send({"image": stream_image})
+                
+                else:
+                    self.image_stream_condition.release()
+                
+
         
             except Exception as e:
                 print("Image Preprocessing - stream image thread error:")
@@ -137,10 +149,10 @@ class ImagePreprocessingProcess(WorkerProcess):
                     self.read_image_condition.release()
 
                     if self.debug:
-                        if not self.image_stream_queue.full():
-                            self.image_stream_queue.put(image)
-                        else:
-                            print("Image Preprocessing - preprocess image thread full Queue")
+                        self.image_stream_condition.acquire()
+                        self.stream_image = image
+                        self.image_stream_condition.notify()
+                        self.image_stream_condition.release()
                 
                     new_combined_binary, sybinary, image_ff = image_processor.process_image(image)
                    
