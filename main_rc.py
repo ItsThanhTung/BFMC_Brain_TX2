@@ -69,6 +69,7 @@ if __name__ == '__main__':
     
     is_remote = False
     is_show = False
+    is_stop = True
     
     if enableStreamObject:
         objectDebugStreamR, objectDebugStreamS = Pipe(duplex = False)    
@@ -146,7 +147,7 @@ if __name__ == '__main__':
     
     if not is_remote:
         decisionMakingProcess = DecisionMakingProcess({"LANE_KEEPING" : laneKeepingDecisionR, "INTERCEPT_DETECTION" : interceptDecisionR, "OBJECT_DETECTION" : objectDecisionR}, \
-                                                        {"SERIAL" : rcShS, "SERIAL_DISTANCE": distSerialR}, shInps, opt, debug=False)
+                                                        {"SERIAL" : rcShS, "SERIAL_DISTANCE": distSerialR}, shInps, opt, is_stop=is_stop)
     
         allProcesses.append(decisionMakingProcess)
         
@@ -216,21 +217,23 @@ if __name__ == '__main__':
         blocker.wait()
     except KeyboardInterrupt:
         print("\nCatching a KeyboardInterruption exception! Shutdown all processes.\n")
+        del object_cam_read_th  
+        del object_detector_th  
+        del stream_image_th
         
+        decisionMakingProcess.stop()
+        decisionMakingProcess.join()
+        decisionMakingProcess.turn_off_rc_car()
         for proc in allProcesses:
             if hasattr(proc,'stop') and callable(getattr(proc,'stop')):
                 print("Process with stop",proc)
                 proc.stop()
                 proc.join()
-                object_cam_read_th.join()
-                object_detector_th.join()
-                stream_image_th.join()
             else:
                 print("Process witouth stop",proc)
                 proc.terminate()
                 proc.join()
-                object_cam_read_th.join()
-                object_detector_th.join()
-                stream_image_th.join()
                 
-        decisionMakingProcess.turn_off_rc_car()
+        
+                
+        
