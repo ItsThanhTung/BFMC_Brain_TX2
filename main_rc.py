@@ -159,15 +159,15 @@ if __name__ == '__main__':
     
     
     if enableStream:
-        streamProc = CameraStreamerProcess([imagePreprocessStreamR], [], opt["IP_ADDRESS"])
+        streamProc = CameraStreamerProcess([imagePreprocessStreamR], [], cam_opt["IP_ADDRESS"])
         allProcesses.append(streamProc)
     
     if enableLaneStream:
-        dataLaneStreamerProcess = DataStreamerProcess([laneKeepingDebugR], [], opt["IP_ADDRESS"], 2255)
+        dataLaneStreamerProcess = DataStreamerProcess([laneKeepingDebugR], [], cam_opt["IP_ADDRESS"], 2255)
         allProcesses.append(dataLaneStreamerProcess)
     
     if enableInterceptStream:
-        dataInterceptStreamerProcess = DataStreamerProcess([interceptDebugR], [], opt["IP_ADDRESS"], 2266)
+        dataInterceptStreamerProcess = DataStreamerProcess([interceptDebugR], [], cam_opt["IP_ADDRESS"], 2266)
         allProcesses.append(dataInterceptStreamerProcess)
 
 
