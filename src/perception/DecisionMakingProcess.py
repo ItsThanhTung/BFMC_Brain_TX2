@@ -162,7 +162,8 @@ class DecisionMakingProcess(WorkerProcess):
 
         interceptionHandler = InterceptionHandler()
         while True:
-            try:
+            if True:
+                self.historyFile.write(str(time.time()) + "\n")
                 speed_lane_keeping, angle_lane_keeping = self.read_lane_keeping_data()
                 intercept_length, intercept_gap = self.read_intercept_detection_data()
                 object_result = self.read_object_detection_data()
@@ -178,11 +179,13 @@ class DecisionMakingProcess(WorkerProcess):
                         continue
                 # print("intercept_length: ", intercept_length, "  angle: ", angle_lane_keeping)
                 is_intercept, intercept_log = interceptionHandler.is_intercept(intercept_length, intercept_gap)                
-                self.historyFile.write(intercept_log)
                 
                 if is_intercept and not self.is_intercept:
-                    self.historyFile.write("INTERCEPT DETECTION \n")
-                    self.historyFile.write("IMU START\n")
+                    self.historyFile.write("\n \n ********************************************** \n \n")
+                    self.historyFile.write("\n \t \t INTERCEPT DETECTION \n \n ")
+                    self.historyFile.write("\t \t   IMU START\n")
+                    self.historyFile.write("\n \n ********************************************** \n \n")
+                    
                     print("INTERCEPT detection")
                     self.imu_handler.set_yaw()
                     self.is_intercept = True
@@ -195,6 +198,7 @@ class DecisionMakingProcess(WorkerProcess):
                     imu_angle = self.imu_handler.get_yaw()
                     print("imu_angle: ", imu_angle)
                     intercept_handler_log, isFinish = interceptionHandler.turn_left(imu_angle, self.__CarHandlerTh)
+                    self.historyFile.write("\n" + intercept_handler_log + "\n")
                     # intercept_handler_log, isFinish = interceptionHandler.turn_right(imu_angle, self.__CarHandlerTh)
                     self.is_intercept = not isFinish
 
@@ -210,7 +214,7 @@ class DecisionMakingProcess(WorkerProcess):
                     angle_lane_keeping = int(angle_lane_keeping)    
                     
                     if np.abs(self.prev_angle - angle_lane_keeping) > 10:
-                        self.historyFile.write("******************* OFF ANGLE ***************************\n")
+                        self.historyFile.write("\n \n \n ******************* OFF ANGLE ***************************\n \n \n")
 
                     if not self.is_stop:
                         status, messSpd = self.__CarHandlerTh.setSpeed(30)
@@ -218,16 +222,17 @@ class DecisionMakingProcess(WorkerProcess):
                         status, messSpd = 0, "OK"
                     
                     status, messAng = self.__CarHandlerTh.setAngle(angle_lane_keeping)
-                    self.historyFile.write("LANE KEEPING - speed: " + str(speed_lane_keeping) + " " + messSpd\
-                                                    + " - angle: " + str(int(angle_lane_keeping)) + " " + messAng + "\n")
+
+                    self.historyFile.write(intercept_log + "\t \tLANE KEEPING - \tspeed:\t" + str(speed_lane_keeping) + "\t" + messSpd\
+                                                    + "\t-angle:\t" + str(int(angle_lane_keeping)) + "\t" + messAng + "\n" + "\n")
                     
                     self.prev_angle = angle_lane_keeping
 
-            except Exception as e:
-                print("Decision Making - decision making thread error:")
-                print(e)
-                self.historyFile.write("Decision Making - decision making thread error:")
-                self.historyFile.write(str(e))
+            # except Exception as e:
+            #     print("Decision Making - decision making thread error:")
+            #     print(e)
+            #     self.historyFile.write("Decision Making - decision making thread error:")
+            #     self.historyFile.write(str(e))
                 
         
     
