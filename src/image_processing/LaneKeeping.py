@@ -264,14 +264,14 @@ class LaneKeeping:
         speed = calculate_speed(angle, max_speed = 100)                                     # Calculate speed using gaussian function
 
         if self.debug:
-            debug_data = {"angle": angle,
-                        "image_size": roi_edge_image.shape,
-                        "left_points" : np.array(left_points),
-                        "right_points" : np.array(right_points),
+            debug_data = {"angle": int(angle),
+                        "image_size" : [int(h), int(w)],
+                        "left_points" : [list([int(point[0]), int(point[1])]) for point in left_points],
+                        "right_points" : [list([int(point[0]), int(point[1])]) for point in right_points],
                         "left_point" : [left_point_x, left_point_y],
                         "right_point" : [right_point_x, right_point_y],
                         "middle_point" : [middle_point_x, point_y]}
-            
+        
             return speed, angle, state, debug_data
 
         return speed, angle, state, None

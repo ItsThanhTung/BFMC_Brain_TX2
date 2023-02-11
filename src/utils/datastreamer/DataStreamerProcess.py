@@ -30,15 +30,14 @@ import socket
 import struct
 import time
 import numpy as np
-import pickle
-
+import json
 
 from threading import Thread
 from src.templates.workerprocess import WorkerProcess
 
 class DataStreamerProcess(WorkerProcess):
     # ===================================== INIT =========================================
-    def __init__(self, inPs, outPs, ip_address):
+    def __init__(self, inPs, outPs, ip_address, port):
         """Process used for sending images over the network to a targeted IP via UDP protocol 
         (no feedback required). The image is compressed before sending it. 
 
@@ -53,6 +52,7 @@ class DataStreamerProcess(WorkerProcess):
         """
         super(DataStreamerProcess,self).__init__( inPs, outPs)
         self.ip_address = ip_address
+        self.port = port
         
     # ===================================== RUN ==========================================
     def run(self):
@@ -76,20 +76,17 @@ class DataStreamerProcess(WorkerProcess):
         """Initialize the socket client. 
         """
         self.serverIp   =  self.ip_address # PC ip
-        self.port       =  2255            # com port
-
+        
         self.client_socket = socket.socket()
         self.connection = None
         # Trying repeatedly to connect the camera receiver.
         try:
             while self.connection is None and not self._blocker.is_set():
                 try:
-                    print("CONNECT")
                     self.client_socket.connect((self.serverIp, self.port))
                     self.client_socket.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1)
                     self.connection = self.client_socket.makefile('wb') 
                 except ConnectionRefusedError as error:
-                    print("CONNECT TIME OUT")
                     time.sleep(0.5)
                     pass
         except KeyboardInterrupt:
@@ -110,12 +107,13 @@ class DataStreamerProcess(WorkerProcess):
         while True:
             try:
                 data = inP.recv()
-                 
-                b64_data = pickle.dumps(data)
-                size   =  len(b64_data)
+                json_data = json.dumps(data) 
+        
+                data = bytes(json_data, 'utf-8')
+                size   =  len(data)
             
                 self.connection.write(struct.pack("<L",size))
-                self.connection.write(b64_data)
+                self.connection.write(data)
 
             except Exception as e:
                 print("DataStreamer failed to stream data:",e,"\n")

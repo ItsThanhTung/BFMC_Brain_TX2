@@ -46,7 +46,7 @@ from src.utils.camerastreamer.CameraStreamerProcess         import CameraStreame
 from src.image_processing.LaneKeepingProcess import LaneKeepingProcess
 from src.image_processing.ImagePreprocessingProcess import ImagePreprocessingProcess
 from src.perception.DecisionMakingProcess import DecisionMakingProcess
-
+from src.utils.datastreamer.DataStreamerProcess import DataStreamerProcess
 from src.image_processing.InterceptDetectionProcess import InterceptDetectionProcess
 
 from src.utils.utils_function import load_config_file
@@ -56,13 +56,15 @@ import multiprocessing
 
 if __name__ == '__main__':
     # =========================== Object Detection ===========================================
-    object_detector = Yolo(True)
+    # object_detector = Yolo(True)
     object_image_queue = multiprocessing.Queue(maxsize=3)
     object_condition = multiprocessing.Condition()
 
     # =============================== CONFIG =================================================
-    enableStream        =  False
-    enableRc            =  False
+    enableStream             =  True
+    enableLaneStream         =  True
+    enableInterceptStream    =  True
+
 
     opt = load_config_file("main_rc.json")
 
@@ -81,7 +83,7 @@ if __name__ == '__main__':
     distSerialR, distSerialS  = Pipe(duplex = False)                                    # laneKeeping  ->  Serial
 
     imagePreprocessR, imagePreprocessS = Pipe(duplex = False)                           # preprocess   ->  LaneKeeping
-    imagePreprocessStreamR, imagePreprocessStreamS = Pipe(duplex = False)               # preprocess   ->  Stream
+    
     imagePreprocessInterceptR, imagePreprocessInterceptS = Pipe(duplex = False)         # preprocess   ->  Intercept detection
 
     laneKeepingDecisionR, laneKeepingDecisionS = Pipe(duplex = False)                   # lane keeping ->  Decision making
@@ -89,6 +91,7 @@ if __name__ == '__main__':
     interceptDecisionR, interceptDecisionS = Pipe(duplex = False)                       # Intercept detection ->  Decision making
 
     objectDecisionR, objectDecisionS = Pipe(duplex = False)                             # object detection    ->  Decision making
+    
     # Serial Handler Pipe Connection SerialHandler -> Decision ACK
     shSetSpdR, shSetSpdS = Pipe(duplex= False)
     shSteerR, shSteerS = Pipe(duplex= False)
@@ -102,20 +105,32 @@ if __name__ == '__main__':
         "GETSPEED": shGetSpdR,
         "DIST": shDistR
     }
+    
+    if enableStream:
+        imagePreprocessStreamR, imagePreprocessStreamS = Pipe(duplex = False)               # preprocess   ->  Stream
+    else:
+        imagePreprocessStreamR, imagePreprocessStreamS = None, None
+        
+    if enableLaneStream:
+        laneKeepingDebugR, laneKeepingDebugS = Pipe(duplex = False)                         # lane keeping ->  Decision making
+    else:
+        laneKeepingDebugR, laneKeepingDebugS = None, None
+    
+    if enableInterceptStream:
+        interceptDebugR, interceptDebugS = Pipe(duplex = False)                             # lane keeping ->  Decision making
+    else:
+        interceptDebugR, interceptDebugS = None, None
 
 
-
-    # objectDetectionProcess = ObjectDetectionProcess({"OBJECT_IMAGE" : camObjectStR}, {"DECISION_MAKING" : objectDecisionS})
     imagePreprocess = ImagePreprocessingProcess({"LANE_IMAGE" : camLaneStR}, {"LANE_KEEPING" : imagePreprocessS, "INTERCEPT_DETECTION" : imagePreprocessInterceptS},\
-                                                                opt , False, imagePreprocessStreamS, enableStream)
+                                                                opt , False, debugP=imagePreprocessStreamS, debug=enableStream)
                                              
-    laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [laneKeepingDecisionS], opt, None, False)
+    laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [laneKeepingDecisionS], opt, debugP=laneKeepingDebugS, debug=enableLaneStream)
     decisionMakingProcess = DecisionMakingProcess({"LANE_KEEPING" : laneKeepingDecisionR, "INTERCEPT_DETECTION" : interceptDecisionR, "OBJECT_DETECTION" : objectDecisionR}, \
                                                                                                     {"SERIAL" : rcShS, "SERIAL_DISTANCE": distSerialR}, shInps, opt, debug=False)
-
-
+    
     interceptDetectionProcess = InterceptDetectionProcess({"IMAGE_PREPROCESSING" : imagePreprocessInterceptR}, {"DECISION_MAKING" : interceptDecisionS}, \
-                                                            opt, debugP=None, debug=False)           
+                                                            opt, debugP=interceptDebugS, debug=enableInterceptStream)           
 
     #SerialHandler Process
     shOutPs = {
@@ -133,11 +148,19 @@ if __name__ == '__main__':
     allProcesses.append(decisionMakingProcess)
     allProcesses.append(interceptDetectionProcess)
     allProcesses.append(shProc)
-
-
+    
+    
     if enableStream:
         streamProc = CameraStreamerProcess([imagePreprocessStreamR], [], opt["IP_ADDRESS"])
         allProcesses.append(streamProc)
+    
+    if enableLaneStream:
+        dataLaneStreamerProcess = DataStreamerProcess([laneKeepingDebugR], [], opt["IP_ADDRESS"], 2255)
+        allProcesses.append(dataLaneStreamerProcess)
+    
+    if enableInterceptStream:
+        dataInterceptStreamerProcess = DataStreamerProcess([interceptDebugR], [], opt["IP_ADDRESS"], 2266)
+        allProcesses.append(dataInterceptStreamerProcess)
 
 
 
@@ -160,8 +183,8 @@ if __name__ == '__main__':
     # ===================================== STAYING ALIVE ====================================
     blocker = Event()  
     
-    object_detector.detection_loop(object_image_queue, object_condition, \
-                            objectDecisionS, False, None)
+    # object_detector.detection_loop(object_image_queue, object_condition, \
+    #                         objectDecisionS, False, None)
 
     try:
         blocker.wait()

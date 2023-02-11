@@ -96,8 +96,8 @@ class InterceptDetection:
         
         max_len, gap, max_points = self.find_maximum_connected_line(sybinary)
         if self.debug:
-            debug_data = {"image_size" : sybinary.shape,
-                          "max_points" : max_points}
+            debug_data = {"image_size" : [int(sybinary.shape[0]), int(sybinary.shape[1])],
+                          "max_points" : [[int(point[0]), int(point[1])] for point in max_points]}
 
             return [max_len, gap], debug_data
 
