@@ -147,6 +147,12 @@ class DecisionMakingProcess(WorkerProcess):
         object_result = self.object_result
         self.data_object_detection_lock.release()
         return object_result
+    
+    def turn_off_rc_car(self):
+        status, messSpd = self.__CarHandlerTh.enablePID(False)
+        status, messSpd = self.__CarHandlerTh.setSpeed(0)
+        status, messAng = self.__CarHandlerTh.setAngle(0)
+        return 0
 
     def _run_decision_making(self):
         if not self.debug:
