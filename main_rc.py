@@ -80,7 +80,6 @@ if __name__ == '__main__':
     
 
         
-
     opt = load_config_file("main_rc.json")
     
     cam_opt = opt["REMOTE"] if is_remote else opt["RC"]
