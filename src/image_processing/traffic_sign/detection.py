@@ -12,10 +12,10 @@ from src.image_processing.traffic_sign.yolov5_utils.utils.general import non_max
 from multiprocessing import Condition
 
 class Yolo(object):
-    def __init__(self, streamP, outP, imageShowP, is_show, isTensorRt, source='',\
+    def __init__(self, streamP, outP, debugP, debug, is_tensorRt, source='',\
                         imgsize= (480,640), device='0',conf_thres=0.1, iou_thres=0.45,max_det=1000): 
         
-        if isTensorRt: 
+        if is_tensorRt: 
             weights='sign2.engine'
         else: 
             weights='sign2.pt'
@@ -34,8 +34,8 @@ class Yolo(object):
         self.streamP = streamP
         self.image_condition = Condition()
         self.outP = outP
-        self.is_show = is_show
-        self.imageShowP = imageShowP
+        self.debug = debug
+        self.debugP = debugP
     
     def detect(self,img0):
         # img0=self.image_loader()
@@ -89,12 +89,12 @@ class Yolo(object):
                     self.image = None
                     self.image_condition.release()
 
-                image,results = self.detect(image)
+                _, results = self.detect(image)
 
                 self.outP.send({"results" : results})
                 
-                if self.is_show == True:        
-                    self.imageShowP.send({"image": image})
+                if self.debug == True:        
+                    self.debugP.send({"image": image})
                     
             except Exception as e:
                 print("Object detection detection_loop error:", e)

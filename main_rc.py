@@ -59,15 +59,27 @@ if __name__ == '__main__':
     # =========================== Object Detection ===========================================
     camObjectStR, camObjectStS = Pipe(duplex = False)                                   # camera  ->  streamer
     objectDecisionR, objectDecisionS = Pipe(duplex = False)                             # object detection    ->  Decision making
-    object_detector = Yolo(camObjectStR, objectDecisionS, None, False, True)
+    
 
     # =============================== CONFIG =================================================
     enableStream             =  False
+    enableStreamObject       =  True
     enableLaneStream         =  False
     enableInterceptStream    =  False
     
     is_remote = False
     is_show = False
+    
+    if enableStreamObject:
+        objectDebugStreamR, objectDebugStreamS = Pipe(duplex = False)    
+    else:    
+        objectDebugStreamR, objectDebugStreamS = None, None
+        
+    object_detector = Yolo(camObjectStR, objectDecisionS, objectDebugStreamS, \
+                            debug=enableStreamObject, is_tensorRt = not is_remote)
+    
+
+        
 
     opt = load_config_file("main_rc.json")
     
@@ -157,7 +169,7 @@ if __name__ == '__main__':
     
     
     if enableStream:
-        streamProc = CameraStreamerProcess([imagePreprocessStreamR], [], cam_opt["IP_ADDRESS"])
+        streamProc = CameraStreamerProcess([imagePreprocessStreamR], [], cam_opt["IP_ADDRESS"], 2244)
         allProcesses.append(streamProc)
     
     if enableLaneStream:
@@ -167,6 +179,11 @@ if __name__ == '__main__':
     if enableInterceptStream:
         dataInterceptStreamerProcess = DataStreamerProcess([interceptDebugR], [], cam_opt["IP_ADDRESS"], 2266)
         allProcesses.append(dataInterceptStreamerProcess)
+        
+    if enableStreamObject:
+        streamProc = CameraStreamerProcess([objectDebugStreamR], [], cam_opt["IP_ADDRESS"], 2233)
+        allProcesses.append(streamProc)
+        
 
 
 
