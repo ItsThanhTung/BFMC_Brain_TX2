@@ -77,23 +77,27 @@ class Yolo(object):
 
     def detection_loop(self):
         while True:
-            self.image_condition.acquire()
-            if self.image is None:
-                self.image_condition.wait()
-                image = self.image
-                self.image = None
-                self.image_condition.release()
-            else:
-                image = self.image
-                self.image = None
-                self.image_condition.release()
+            try:
+                self.image_condition.acquire()
+                if self.image is None:
+                    self.image_condition.wait()
+                    image = self.image
+                    self.image = None
+                    self.image_condition.release()
+                else:
+                    image = self.image
+                    self.image = None
+                    self.image_condition.release()
 
-            image,results = self.detect(image)
+                image,results = self.detect(image)
 
-            self.outP.send({"results" : results})
-            
-            if self.is_show == True:        
-                self.imageShowP.send({"image": image})
+                self.outP.send({"results" : results})
+                
+                if self.is_show == True:        
+                    self.imageShowP.send({"image": image})
+                    
+            except Exception as e:
+                print("Object detection detection_loop error:", e)
 
     def preprocess(self,img0):
         img_resized = letterbox(img0, self.img_size, stride=self.stride, auto=False)[0]
