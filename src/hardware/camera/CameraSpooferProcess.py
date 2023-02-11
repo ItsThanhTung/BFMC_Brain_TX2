@@ -38,7 +38,7 @@ import multiprocessing
 class CameraSpooferProcess(WorkerProcess):
 
     #================================ INIT ===============================================
-    def __init__(self, object_image_queue, object_condition, inPs,outQueue, videoDir, ext = '.avi'):
+    def __init__(self, inPs,outQueue, videoDir, ext = '.avi'):
         """Processed used for spoofing a camera/ publishing a video stream from a folder 
         with videos
         
@@ -61,8 +61,6 @@ class CameraSpooferProcess(WorkerProcess):
         
         self.videoDir = videoDir
         self.videos = videoDir 
-        self.object_image_queue = object_image_queue
-        self.object_condition = object_condition
 
     
     # ===================================== INIT VIDEOS ==================================

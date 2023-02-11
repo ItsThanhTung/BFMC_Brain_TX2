@@ -58,16 +58,17 @@ from src.image_processing.InterceptDetectionProcess import InterceptDetectionPro
 from src.utils.utils_function import load_config_file
 
 # object detection import
-from src.image_processing.traffic_sign.detection import Yolo
+from src.image_processing.traffic_sign_remote.detection import Yolo
 import multiprocessing
+from threading import Thread
 
 
 if __name__ == '__main__':
     
     # =========================== Object Detection ===========================================
-    # object_detector = Yolo(False)
-    object_image_queue = multiprocessing.Queue(maxsize=1)
-    object_condition = multiprocessing.Condition()
+    camObjectStR, camObjectStS = Pipe(duplex = False)                                   # camera  ->  streamer
+    imageObjectShowR, imageObjectShowS = Pipe(duplex = False)                           # object detection    ->  ImageShow
+    object_detector = Yolo(camObjectStR, imageObjectShowS, False)
 
     is_remote = True
     is_show = True
@@ -84,17 +85,19 @@ if __name__ == '__main__':
 
     # =============================== HARDWARE ===============================================
     camLaneStR, camLaneStS = Pipe(duplex = False)           # camera  ->  streamer
-    camObjectStR, camObjectStS = Pipe(duplex = False)           # camera  ->  streamer
+    
+    
     if enableCameraSpoof:
         # camProc = CameraProcess(object_image_queue, object_condition, \
         #                     [],{"PREPROCESS_IMAGE" : camLaneStS, "OBJECT_IMAGE" : camObjectStS}, opt["CAM_PATH"])
-        camProc = CameraSpooferProcess(object_image_queue, object_condition, \
-                        [], {"PREPROCESS_IMAGE" : camLaneStS, "OBJECT_IMAGE" : camObjectStS}, [opt["CAM_PATH"]])
+        camProc = CameraSpooferProcess([], {"PREPROCESS_IMAGE" : camLaneStS, "OBJECT_IMAGE" : camObjectStS}, [opt["CAM_PATH"]])
         allProcesses.append(camProc)
 
     else:
-        camProc = CameraReceiverProcess([],[camLaneStS])
+        camProc = CameraReceiverProcess([],[camLaneStS], (240, 320, 3), 2244)
+        camObjectProc = CameraReceiverProcess([],[camObjectStS], (480, 640, 3), 2233)
         allProcesses.append(camProc)
+        allProcesses.append(camObjectProc)
     
 
     imagePreprocessShowR, imagePreprocessShowS = Pipe(duplex = False)                   # preprocess          ->  ImageShow
@@ -108,8 +111,6 @@ if __name__ == '__main__':
     
     interceptDecisionDebugR, interceptDecisionDebugS = Pipe(duplex = False)             # Intercept detection ->  LaneDebug
 
-    # imageObjectShowR, imageObjectShowS = Pipe(duplex = False)                           # object detection    ->  ImageShow
-
 
     imagePreprocess = ImagePreprocessingProcess({"LANE_IMAGE" : camLaneStR}, {"IMAGE_SHOW" : imagePreprocessShowS, "LANE_KEEPING" : imagePreprocessS, \
                                                         "INTERCEPT_DETECTION" : imagePreprocessInterceptS}, opt, is_show=is_show)
@@ -121,7 +122,7 @@ if __name__ == '__main__':
     laneDebugProcess = LaneDebuginggProcess({"LANE_KEEPING" : laneDebugR, "INTERCEPT_DETECTION" : interceptDecisionDebugR}, \
                                         {"LANE_KEEPING" :laneDebugShowS, "INTERCEPT_DETECTION" :interceptDebugShowS}, )
 
-    imageShow = imageShowProcess([imagePreprocessShowR, laneDebugShowR, interceptDebugShowR], [])
+    imageShow = imageShowProcess([imagePreprocessShowR, laneDebugShowR, interceptDebugShowR, imageObjectShowR], [])
     
 
     allProcesses.append(imagePreprocess)
@@ -150,8 +151,11 @@ if __name__ == '__main__':
     # ===================================== STAYING ALIVE ====================================
     blocker = Event()  
   
-    # object_detector.detection_loop(object_image_queue, object_condition, \
-    #                         objectDecisionS, True, imageObjectShowS)
+    object_cam_read_th = Thread(target = object_detector.read_image)
+    object_detector_th = Thread(target = object_detector.detection_loop)
+    
+    object_cam_read_th.start()
+    object_detector_th.start()
     
     try:
         blocker.wait()
@@ -163,9 +167,14 @@ if __name__ == '__main__':
                 print("Process with stop",proc)
                 proc.stop()
                 proc.join()
+                object_cam_read_th.join()
+                object_detector_th.join()
             else:
                 print("Process witouth stop",proc)
                 proc.terminate()
                 proc.join()
+                object_cam_read_th.join()
+                object_detector_th.join()
+
 
     
