@@ -2,7 +2,7 @@ import time
 import numpy as np
 
 import cv2
-
+import imutils
 class ImagePreprocessing():
     def __init__(self, opt):
         self.opt = opt["LANE_PREPROCESSING"]
@@ -17,6 +17,7 @@ class ImagePreprocessing():
         return binary
 
     def process_image(self, frame):
+        frame = imutils.rotate(frame, -5)
         bgr_image = np.copy(frame)
         red_channel = bgr_image[:,:,2]
 
@@ -35,7 +36,7 @@ class ImagePreprocessing():
         combined_binary = np.zeros_like(sxbinary)
 
         grayImg = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        _, image_ff = cv2.threshold(grayImg, 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
+        # _, image_ff = cv2.threshold(grayImg, 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
 
 
         adaptive = cv2.adaptiveThreshold(grayImg, 255,\
@@ -49,4 +50,4 @@ class ImagePreprocessing():
         # new_combined_binary = cv2.dilate(new_combined_binary, \
         #                         np.ones((self.opt["dilate_kernel"], self.opt["dilate_kernel"]), np.uint8)) 
 
-        return new_combined_binary, sybinary, image_ff
+        return new_combined_binary, sybinary, grayImg

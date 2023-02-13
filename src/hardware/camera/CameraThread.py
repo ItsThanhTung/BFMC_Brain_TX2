@@ -30,7 +30,6 @@ import io
 import numpy as np
 import time
 import cv2
-import imutils
 
 
 import multiprocessing
@@ -125,14 +124,13 @@ class CameraThread(ThreadWithStop):
         """
 
         while self._running:
-            
             ret, data = self.camera.read()
             lane_image = cv2.resize(data, (320, 240))
-            lane_image = imutils.rotate(lane_image, -5)
 
             # Note: The sending process can be blocked, when doesn't exist any consumer process and it reaches the limit size.
             self.outPs["PREPROCESS_IMAGE"].send({"image": lane_image})
             self.outPs["OBJECT_IMAGE"].send({"image": data})
+
 
             
 

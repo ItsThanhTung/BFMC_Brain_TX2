@@ -62,8 +62,8 @@ if __name__ == '__main__':
     
 
     # =============================== CONFIG =================================================
-    enableStream             =  True
-    enableStreamObject       =  True
+    enableStream             =  False
+    enableStreamObject       =  False
     enableLaneStream         =  False
     enableInterceptStream    =  False
     

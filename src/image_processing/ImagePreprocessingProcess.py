@@ -27,7 +27,7 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
 import numpy as np
 import math
-
+import time
 from threading import Thread, Condition
 from src.templates.workerprocess import WorkerProcess
 from src.image_processing.ImagePreprocessing import ImagePreprocessing
@@ -124,7 +124,7 @@ class ImagePreprocessingProcess(WorkerProcess):
                 self.image_stream_condition.wait()
                 
                 if self.stream_image is not None:
-                    stream_image = self.stream_image.copy()
+                    stream_image = self.stream_image
                     self.image_stream_condition.release()
                     outP.send({"image": stream_image})
                 
@@ -143,30 +143,32 @@ class ImagePreprocessingProcess(WorkerProcess):
         while True:
             try:
                 self.read_image_condition.acquire()
-                self.read_image_condition.wait()
                 if self.image is not None:
-                    image = self.image.copy()
+                    image = self.image
+                    self.image = None
                     self.read_image_condition.release()
-
-                    if self.debug:
-                        self.image_stream_condition.acquire()
-                        self.stream_image = image
-                        self.image_stream_condition.notify()
-                        self.image_stream_condition.release()
-                
-                    new_combined_binary, sybinary, image_ff = image_processor.process_image(image)
-                   
-                    self.preprocess_image_condition.acquire()
-                    self.original_image = image
-                    self.new_combined_binary = new_combined_binary
-                    self.sybinary = sybinary
-                    self.image_ff = image_ff
-                    self.preprocess_image_condition.notify_all()
-                    self.preprocess_image_condition.release()
-                
                 else:
+                    self.read_image_condition.wait()
+                    image = self.image
+                    self.image = None
                     self.read_image_condition.release()
+                
+                if self.debug:
+                    self.image_stream_condition.acquire()
+                    self.stream_image = image
+                    self.image_stream_condition.notify()
+                    self.image_stream_condition.release()
+                
+                new_combined_binary, sybinary, image_ff = image_processor.process_image(image)
+                self.preprocess_image_condition.acquire()
+                self.original_image = image
+                self.new_combined_binary = new_combined_binary
+                self.sybinary = sybinary
+                self.image_ff = image_ff
+                self.preprocess_image_condition.notify_all()
+                self.preprocess_image_condition.release()
 
+                
             except Exception as e:
                 print("Image Preprocessing - preprocess image thread error:")
                 print(e)
@@ -174,12 +176,12 @@ class ImagePreprocessingProcess(WorkerProcess):
 
     def _send_image_lane_keeping(self, outP):
         while True:
-            try:
+            try:              
                 self.preprocess_image_condition.acquire()
                 self.preprocess_image_condition.wait()
 
                 if self.new_combined_binary is not None:
-                    new_combined_binary = self.new_combined_binary.copy()
+                    new_combined_binary = self.new_combined_binary
                     self.preprocess_image_condition.release()
                     outP.send({"new_combined_binary" : new_combined_binary})
                 else:
@@ -197,7 +199,7 @@ class ImagePreprocessingProcess(WorkerProcess):
                 self.preprocess_image_condition.wait()
 
                 if self.sybinary is not None:
-                    sybinary = self.sybinary.copy()
+                    sybinary = self.sybinary
                     self.preprocess_image_condition.release()
                     outP.send({"sybinary" : sybinary})
                 else:
@@ -215,10 +217,10 @@ class ImagePreprocessingProcess(WorkerProcess):
                 self.preprocess_image_condition.wait()
 
                 if self.new_combined_binary is not None:
-                    new_combined_binary = self.new_combined_binary.copy()
-                    sybinary = self.sybinary.copy()
-                    image_ff = self.image_ff.copy()
-                    original_image = self.original_image.copy()
+                    new_combined_binary = self.new_combined_binary
+                    sybinary = self.sybinary
+                    image_ff = self.image_ff
+                    original_image = self.original_image
                     self.preprocess_image_condition.release()
 
                     outP.send({"original_image" : original_image,
