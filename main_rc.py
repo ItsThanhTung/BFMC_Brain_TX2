@@ -69,7 +69,7 @@ if __name__ == '__main__':
     
     is_remote = False
     is_show = False
-    is_stop = True
+    is_stop = False
     
     if enableStreamObject:
         objectDebugStreamR, objectDebugStreamS = Pipe(duplex = False)    

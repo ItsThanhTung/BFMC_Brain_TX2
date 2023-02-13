@@ -1,7 +1,7 @@
 from src.templates.threadwithstop import ThreadWithStop
 from multiprocessing.connection import wait
 class CarHandlerThread(ThreadWithStop):
-    def __init__(self, shInPs, shOutP, enablePID = True, AckTimeout = 0.1, sendAttempTimes:int = 2):
+    def __init__(self, shInPs, shOutP, enablePID = True, AckTimeout = 0.05, sendAttempTimes:int = 2):
         """
     
     Car Handler Thread object
@@ -89,7 +89,10 @@ class CarHandlerThread(ThreadWithStop):
         else:
             return -1, {"data":"Receive Timeout"}
 
-    def setSpeed(self, speed):
+    def setSpeed(self, speed, send_attempt=None):
+        if send_attempt is None:
+            send_attempt = self.__sendAttemp 
+            
         data = {
         "action": '1',
         "speed": float(speed/100)
@@ -98,7 +101,7 @@ class CarHandlerThread(ThreadWithStop):
         Mess = {
             "data":"OK"
         }
-        for i in range(self.__sendAttemp):
+        for i in range(send_attempt):
             self._shSend(self.__shOutP, data)
             if self.__AckTimeout < 0:
                 return 0, "OK"
@@ -110,7 +113,10 @@ class CarHandlerThread(ThreadWithStop):
 
         return Status, Mess["data"]
             
-    def setAngle(self, value):
+    def setAngle(self, value, send_attempt=None):
+        if send_attempt is None:
+            send_attempt = self.__sendAttemp 
+            
         data = {
         "action": '2',
         "steerAngle": float(value)
@@ -119,7 +125,7 @@ class CarHandlerThread(ThreadWithStop):
         Mess = {
             "data":"OK"
         }
-        for i in range(self.__sendAttemp):
+        for i in range(send_attempt):
             self._shSend(self.__shOutP, data)
             if self.__AckTimeout < 0:
                 return 0, "OK"

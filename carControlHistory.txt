@@ -1,366 +1,588 @@
-1676286632.7248058
+1676287333.098074
+Intercept Handler - intercept length: 0 - intercept gap: inf
+	 	LANE KEEPING - 	speed:	0	OK	-angle:	0	OK
+
+1676287333.126389
+Intercept Handler - intercept length: 0 - intercept gap: inf
+	 	LANE KEEPING - 	speed:	0	OK	-angle:	0	OK
+
+1676287333.134506
+Intercept Handler - intercept length: 0 - intercept gap: inf
+	 	LANE KEEPING - 	speed:	0	OK	-angle:	0	OK
+
+1676287333.1425889
+Intercept Handler - intercept length: 0 - intercept gap: inf
+	 	LANE KEEPING - 	speed:	0	OK	-angle:	0	OK
+
+1676287333.1502569
+Intercept Handler - intercept length: 0 - intercept gap: inf
+	 	LANE KEEPING - 	speed:	0	OK	-angle:	0	OK
+
+1676287333.1581278
+Intercept Handler - intercept length: 0 - intercept gap: inf
+	 	LANE KEEPING - 	speed:	0	OK	-angle:	0	OK
+
+1676287333.166333
+Intercept Handler - intercept length: 0 - intercept gap: inf
+	 	LANE KEEPING - 	speed:	0	OK	-angle:	0	OK
+
+1676287333.1745417
+Intercept Handler - intercept length: 0 - intercept gap: inf
+	 	LANE KEEPING - 	speed:	0	OK	-angle:	0	OK
+
+1676287333.2898035
+Intercept Handler - intercept length: 0 - intercept gap: inf
+	 	LANE KEEPING - 	speed:	0	OK	-angle:	0	OK
+
+1676287333.3040621
+Intercept Handler - intercept length: 0 - intercept gap: inf
+	 	LANE KEEPING - 	speed:	0	OK	-angle:	0	OK
+
+1676287333.3161788
+Intercept Handler - intercept length: 0 - intercept gap: inf
+	 	LANE KEEPING - 	speed:	0	OK	-angle:	0	OK
+
+1676287333.327648
+Intercept Handler - intercept length: 0 - intercept gap: inf
+	 	LANE KEEPING - 	speed:	0	OK	-angle:	0	OK
+
+1676287333.339224
+Intercept Handler - intercept length: 0 - intercept gap: inf
+	 	LANE KEEPING - 	speed:	0	OK	-angle:	0	OK
+
+1676287333.4583917
+Intercept Handler - intercept length: 0 - intercept gap: inf
+	 	LANE KEEPING - 	speed:	0	OK	-angle:	0	OK
+
+1676287333.4793553
 Intercept Handler - intercept length: 0 - intercept gap: inf
 	 	LANE KEEPING - 	speed:	0	OK	-angle:	0	Receive Timeout
 
-1676286632.9275246
+1676287333.6927075
 Intercept Handler - intercept length: 0 - intercept gap: inf
-	 	LANE KEEPING - 	speed:	0	OK	-angle:	0	Receive Timeout
+	 	LANE KEEPING - 	speed:	0	OK	-angle:	0	OK
 
-1676286633.1294487
+1676287333.7015862
 Intercept Handler - intercept length: 0 - intercept gap: inf
-	 	LANE KEEPING - 	speed:	0	OK	-angle:	0	Receive Timeout
+	 	LANE KEEPING - 	speed:	0	OK	-angle:	0	OK
 
-1676286633.3383164
+1676287333.710389
 Intercept Handler - intercept length: 0 - intercept gap: inf
-	 	LANE KEEPING - 	speed:	0	OK	-angle:	0	Receive Timeout
+	 	LANE KEEPING - 	speed:	0	OK	-angle:	0	OK
 
-1676286633.5446935
+1676287333.7196193
 Intercept Handler - intercept length: 0 - intercept gap: inf
-	 	LANE KEEPING - 	speed:	0	OK	-angle:	0	Receive Timeout
-
-1676286633.7466466
-Intercept Handler - intercept length: 85 - intercept gap: 38
-	 	LANE KEEPING - 	speed:	99.4843361261328	OK	-angle:	-3	Receive Timeout
-
-1676286633.9492419
-Intercept Handler - intercept length: 85 - intercept gap: 40
-	 	LANE KEEPING - 	speed:	99.4843361261328	OK	-angle:	-3	Receive Timeout
-
-1676286634.151657
-Intercept Handler - intercept length: 85 - intercept gap: 40
-	 	LANE KEEPING - 	speed:	99.610432149102	OK	-angle:	-2	Receive Timeout
-
-1676286634.3529139
-Intercept Handler - intercept length: 85 - intercept gap: 40
-	 	LANE KEEPING - 	speed:	99.09946772983331	OK	-angle:	-4	Receive Timeout
-
-1676286634.5542643
-Intercept Handler - intercept length: 115 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.18405886190902	OK	-angle:	-4	Receive Timeout
-
-1676286634.756676
-Intercept Handler - intercept length: 150 - intercept gap: 41
-	 	LANE KEEPING - 	speed:	98.82432958457106	OK	-angle:	-5	Receive Timeout
-
-1676286634.9586427
-Intercept Handler - intercept length: 150 - intercept gap: 41
-	 	LANE KEEPING - 	speed:	99.18405886190902	OK	-angle:	-4	Receive Timeout
-
-1676286635.1618364
-Intercept Handler - intercept length: 179 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.94149754840629	OK	-angle:	-1	Receive Timeout
-
-1676286635.3633327
-Intercept Handler - intercept length: 180 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.85084691921305	OK	-angle:	-1	Receive Timeout
-
-1676286635.5645924
-Intercept Handler - intercept length: 151 - intercept gap: 42
-	 	LANE KEEPING - 	speed:	99.94149754840629	OK	-angle:	-1	Receive Timeout
-
-1676286635.7697756
-Intercept Handler - intercept length: 180 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.94149754840629	OK	-angle:	-1	Receive Timeout
-
-1676286635.9709754
-Intercept Handler - intercept length: 150 - intercept gap: 41
-	 	LANE KEEPING - 	speed:	99.85084691921305	OK	-angle:	-1	Receive Timeout
-
-1676286636.172905
-Intercept Handler - intercept length: 179 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.96252286178056	OK	-angle:	0	Receive Timeout
-
-1676286636.3741152
-Intercept Handler - intercept length: 180 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.88562459370736	OK	-angle:	-1	Receive Timeout
-
-1676286636.5752459
-Intercept Handler - intercept length: 180 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.96252286178056	OK	-angle:	0	Receive Timeout
-
-1676286636.777182
-Intercept Handler - intercept length: 180 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.94149754840629	OK	-angle:	-1	Receive Timeout
-
-1676286636.9804938
-Intercept Handler - intercept length: 151 - intercept gap: 41
-	 	LANE KEEPING - 	speed:	99.94149754840629	OK	-angle:	-1	Receive Timeout
-
-1676286637.1816688
-Intercept Handler - intercept length: 150 - intercept gap: 41
-	 	LANE KEEPING - 	speed:	99.96252286178056	OK	-angle:	0	Receive Timeout
-
-1676286637.383026
-Intercept Handler - intercept length: 151 - intercept gap: 41
-	 	LANE KEEPING - 	speed:	99.610432149102	OK	-angle:	-2	Receive Timeout
-
-1676286637.5847683
-Intercept Handler - intercept length: 151 - intercept gap: 42
-	 	LANE KEEPING - 	speed:	99.26493058306461	OK	-angle:	-3	Receive Timeout
-
-1676286637.7864957
-Intercept Handler - intercept length: 151 - intercept gap: 41
-	 	LANE KEEPING - 	speed:	99.54945399124021	OK	-angle:	-3	Receive Timeout
-
-1676286637.98783
-Intercept Handler - intercept length: 179 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.41515524250872	OK	-angle:	-3	Receive Timeout
-
-1676286638.189144
-Intercept Handler - intercept length: 150 - intercept gap: 40
-	 	LANE KEEPING - 	speed:	99.4843361261328	OK	-angle:	-3	Receive Timeout
-
-1676286638.3903728
-Intercept Handler - intercept length: 180 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.54945399124021	OK	-angle:	-3	Receive Timeout
-
-1676286638.5919547
-Intercept Handler - intercept length: 179 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.011251050222	OK	-angle:	-4	Receive Timeout
-
-1676286638.793845
-Intercept Handler - intercept length: 151 - intercept gap: 40
-	 	LANE KEEPING - 	speed:	99.18405886190902	OK	-angle:	-4	Receive Timeout
-
-1676286638.995946
-1676286640.4032435
-Intercept Handler - intercept length: 179 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	98.72582482246621	OK	-angle:	-5	Receive Timeout
-
-1676286640.606596
-Intercept Handler - intercept length: 179 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	98.72582482246621	OK	-angle:	-5	Receive Timeout
-
-1676286640.810938
-Intercept Handler - intercept length: 158 - intercept gap: 41
-	 	LANE KEEPING - 	speed:	98.91950535533785	OK	-angle:	-4	Receive Timeout
-
-1676286641.0142546
-Intercept Handler - intercept length: 160 - intercept gap: 42
-	 	LANE KEEPING - 	speed:	97.83057712780814	OK	-angle:	-6	Receive Timeout
-
-1676286641.2155268
-Intercept Handler - intercept length: 161 - intercept gap: 42
-	 	LANE KEEPING - 	speed:	99.09946772983331	OK	-angle:	-4	Receive Timeout
-
-1676286641.4181848
-Intercept Handler - intercept length: 190 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	98.62409403771566	OK	-angle:	-5	Receive Timeout
-
-1676286641.620695
-Intercept Handler - intercept length: 189 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	98.51924182425478	OK	-angle:	-5	Receive Timeout
-
-1676286641.8269908
-Intercept Handler - intercept length: 190 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	98.51924182425478	OK	-angle:	-5	Receive Timeout
-
-1676286642.0299945
-Intercept Handler - intercept length: 190 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.18405886190902	OK	-angle:	-4	Receive Timeout
-
-1676286642.2325861
-Intercept Handler - intercept length: 191 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	98.30059808298648	OK	-angle:	-6	Receive Timeout
-
-1676286642.4371636
-Intercept Handler - intercept length: 190 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	98.51924182425478	OK	-angle:	-5	Receive Timeout
-
-1676286642.641192
-Intercept Handler - intercept length: 188 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.71968362994512	OK	-angle:	-2	Receive Timeout
-
-1676286642.8430722
-Intercept Handler - intercept length: 161 - intercept gap: 42
-	 	LANE KEEPING - 	speed:	99.41515524250872	OK	-angle:	-3	Receive Timeout
-
-1676286643.0491853
-Intercept Handler - intercept length: 190 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.41515524250872	OK	-angle:	-3	Receive Timeout
-
-1676286643.2507885
-Intercept Handler - intercept length: 161 - intercept gap: 41
-	 	LANE KEEPING - 	speed:	99.81156428944223	OK	-angle:	-1	Receive Timeout
-
-1676286643.4521132
-Intercept Handler - intercept length: 161 - intercept gap: 41
-	 	LANE KEEPING - 	speed:	99.6671980745015	OK	-angle:	-2	Receive Timeout
-
-1676286643.654304
-Intercept Handler - intercept length: 190 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.71968362994512	OK	-angle:	-2	Receive Timeout
-
-1676286643.8573992
-Intercept Handler - intercept length: 189 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.7678252792762	OK	-angle:	-2	Receive Timeout
-
-1676286644.062447
-Intercept Handler - intercept length: 189 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.18405886190902	OK	-angle:	-4	Receive Timeout
-
-1676286644.263748
-Intercept Handler - intercept length: 190 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.85084691921305	OK	-angle:	-1	Receive Timeout
-
-1676286644.4667244
-Intercept Handler - intercept length: 190 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.7678252792762	OK	-angle:	-2	Receive Timeout
-
-1676286644.6697242
-Intercept Handler - intercept length: 189 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.71968362994512	OK	-angle:	-2	Receive Timeout
-
-1676286644.8726165
-Intercept Handler - intercept length: 161 - intercept gap: 40
-	 	LANE KEEPING - 	speed:	99.6671980745015	OK	-angle:	-2	Receive Timeout
-
-1676286645.0771325
-Intercept Handler - intercept length: 148 - intercept gap: 57
-	 	LANE KEEPING - 	speed:	99.42760979777088	OK	-angle:	-3	Receive Timeout
-
-1676286645.2811632
-Intercept Handler - intercept length: 71 - intercept gap: 28
-	 	LANE KEEPING - 	speed:	99.61880109654221	OK	-angle:	-2	Receive Timeout
-
-1676286645.4824128
-Intercept Handler - intercept length: 145 - intercept gap: 56
-	 	LANE KEEPING - 	speed:	99.55910655954816	OK	-angle:	-3	Receive Timeout
-
-1676286645.6861458
-Intercept Handler - intercept length: 141 - intercept gap: 44
-	 	LANE KEEPING - 	speed:	99.85408557509218	OK	-angle:	-1	Receive Timeout
-
-1676286645.8875346
-Intercept Handler - intercept length: 166 - intercept gap: 57
-	 	LANE KEEPING - 	speed:	99.81156428944223	OK	-angle:	-1	Receive Timeout
-
-1676286646.0887814
-Intercept Handler - intercept length: 159 - intercept gap: 44
-	 	LANE KEEPING - 	speed:	99.42760979777088	OK	-angle:	-3	Receive Timeout
-
-1676286646.2923863
-Intercept Handler - intercept length: 185 - intercept gap: 57
-	 	LANE KEEPING - 	speed:	99.81564879374754	OK	-angle:	-1	Receive Timeout
-
-1676286646.4951682
-Intercept Handler - intercept length: 192 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.49535160597425	OK	-angle:	-3	Receive Timeout
-
-1676286646.6979964
-Intercept Handler - intercept length: 175 - intercept gap: 55
-	 	LANE KEEPING - 	speed:	99.4843361261328	OK	-angle:	-3	Receive Timeout
-
-1676286646.8992805
-Intercept Handler - intercept length: 182 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.81156428944223	OK	-angle:	-1	Receive Timeout
-
-1676286647.1005588
-Intercept Handler - intercept length: 89 - intercept gap: 43
-	 	LANE KEEPING - 	speed:	99.94277295449888	OK	-angle:	1	Receive Timeout
-
-1676286647.3033805
-Intercept Handler - intercept length: 187 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.85084691921305	OK	-angle:	-1	Receive Timeout
-
-1676286647.5046704
-Intercept Handler - intercept length: 186 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.96252286178056	OK	-angle:	0	Receive Timeout
+	 	LANE KEEPING - 	speed:	0	OK	-angle:	0	OK
+
+1676287333.7286406
+Intercept Handler - intercept length: 0 - intercept gap: inf
+	 	LANE KEEPING - 	speed:	0	OK	-angle:	0	OK
+
+1676287333.741776
+Intercept Handler - intercept length: 0 - intercept gap: inf
+	 	LANE KEEPING - 	speed:	0	OK	-angle:	0	OK
+
+1676287333.7507548
+Intercept Handler - intercept length: 0 - intercept gap: inf
+	 	LANE KEEPING - 	speed:	0	OK	-angle:	0	OK
+
+1676287333.7707949
+Intercept Handler - intercept length: 0 - intercept gap: inf
+	 	LANE KEEPING - 	speed:	0	OK	-angle:	0	OK
+
+1676287333.7797234
+Intercept Handler - intercept length: 0 - intercept gap: inf
+	 	LANE KEEPING - 	speed:	0	OK	-angle:	0	OK
+
+1676287333.7897906
+Intercept Handler - intercept length: 0 - intercept gap: inf
+	 	LANE KEEPING - 	speed:	0	OK	-angle:	0	OK
+
+1676287333.798872
+Intercept Handler - intercept length: 0 - intercept gap: inf
+	 	LANE KEEPING - 	speed:	0	OK	-angle:	0	OK
 
-1676286647.7059507
-Intercept Handler - intercept length: 188 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.91585406365535	OK	-angle:	-1	Receive Timeout
+1676287333.8079078
+Intercept Handler - intercept length: 0 - intercept gap: inf
+	 	LANE KEEPING - 	speed:	0	CRC Error	-angle:	0	CRC Error
 
-1676286647.908544
-Intercept Handler - intercept length: 186 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	97.4528496937926	OK	-angle:	-7	Receive Timeout
+1676287333.8244314
+Intercept Handler - intercept length: 65 - intercept gap: 26
+	 	LANE KEEPING - 	speed:	0	Packet Error	-angle:	0	OK
 
-1676286648.1129496
-Intercept Handler - intercept length: 186 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.94149754840629	OK	-angle:	-1	Receive Timeout
+1676287333.838745
+Intercept Handler - intercept length: 65 - intercept gap: 26
+	 	LANE KEEPING - 	speed:	0	OK	-angle:	0	CRC Error
 
-1676286648.3147478
-Intercept Handler - intercept length: 186 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.88562459370736	OK	-angle:	-1	Receive Timeout
+1676287333.9506476
+Intercept Handler - intercept length: 65 - intercept gap: 27
+	 	LANE KEEPING - 	speed:	100.0	OK	-angle:	0	OK
 
-1676286648.517661
-Intercept Handler - intercept length: 185 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.88562459370736	OK	-angle:	-1	Receive Timeout
+1676287334.0613391
+Intercept Handler - intercept length: 67 - intercept gap: 21
+	 	LANE KEEPING - 	speed:	99.94277295449888	OK	-angle:	-1	OK
 
-1676286648.7206557
-Intercept Handler - intercept length: 186 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.94149754840629	OK	-angle:	-1	Receive Timeout
+1676287334.070067
+Intercept Handler - intercept length: 67 - intercept gap: 21
+	 	LANE KEEPING - 	speed:	99.94277295449888	OK	-angle:	-1	OK
 
-1676286648.9230287
-Intercept Handler - intercept length: 186 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.88562459370736	OK	-angle:	-1	Receive Timeout
+1676287334.0797744
+Intercept Handler - intercept length: 67 - intercept gap: 21
+	 	LANE KEEPING - 	speed:	99.94277295449888	CRC Error	-angle:	-1	OK
 
-1676286649.1255276
-Intercept Handler - intercept length: 188 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.96252286178056	OK	-angle:	0	Receive Timeout
+1676287334.1945586
+Intercept Handler - intercept length: 66 - intercept gap: 22
+	 	LANE KEEPING - 	speed:	99.9793642024102	OK	-angle:	0	OK
 
-1676286649.3267572
-Intercept Handler - intercept length: 186 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.88562459370736	OK	-angle:	-1	Receive Timeout
+1676287334.2040033
+Intercept Handler - intercept length: 66 - intercept gap: 22
+	 	LANE KEEPING - 	speed:	99.9793642024102	CRC Error	-angle:	0	OK
 
-1676286649.5279663
-Intercept Handler - intercept length: 186 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	97.05676080930013	OK	-angle:	-8	Receive Timeout
+1676287334.2175157
+Intercept Handler - intercept length: 65 - intercept gap: 27
+	 	LANE KEEPING - 	speed:	99.9793642024102	OK	-angle:	0	OK
 
-1676286649.7291763
-Intercept Handler - intercept length: 186 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	96.78391486729569	OK	-angle:	-8	Receive Timeout
+1676287334.226393
+Intercept Handler - intercept length: 65 - intercept gap: 27
+	 	LANE KEEPING - 	speed:	99.9793642024102	OK	-angle:	0	OK
 
-1676286649.934585
-Intercept Handler - intercept length: 185 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.94149754840629	OK	-angle:	-1	Receive Timeout
+1676287334.2430363
+Intercept Handler - intercept length: 65 - intercept gap: 27
+	 	LANE KEEPING - 	speed:	99.9793642024102	OK	-angle:	0	Packet Error
 
-1676286650.1377592
-Intercept Handler - intercept length: 187 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.96252286178056	OK	-angle:	0	Receive Timeout
+1676287334.3529596
+Intercept Handler - intercept length: 65 - intercept gap: 27
+	 	LANE KEEPING - 	speed:	99.99082379264456	OK	-angle:	0	OK
 
-1676286650.3412058
-Intercept Handler - intercept length: 185 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.96252286178056	OK	-angle:	0	Receive Timeout
+1676287334.3695614
+Intercept Handler - intercept length: 65 - intercept gap: 27
+	 	LANE KEEPING - 	speed:	99.99082379264456	OK	-angle:	0	OK
 
-1676286650.5446262
-Intercept Handler - intercept length: 187 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	97.70688760585215	OK	-angle:	-7	Receive Timeout
+1676287334.377786
+Intercept Handler - intercept length: 65 - intercept gap: 27
+	 	LANE KEEPING - 	speed:	99.99082379264456	OK	-angle:	0	OK
 
-1676286650.7469711
-Intercept Handler - intercept length: 182 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.94149754840629	OK	-angle:	-1	Receive Timeout
+1676287334.3865416
+Intercept Handler - intercept length: 65 - intercept gap: 27
+	 	LANE KEEPING - 	speed:	99.99082379264456	OK	-angle:	0	OK
 
-1676286650.9489334
-Intercept Handler - intercept length: 187 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.91585406365535	OK	-angle:	-1	Receive Timeout
+1676287334.3949428
+Intercept Handler - intercept length: 65 - intercept gap: 27
+	 	LANE KEEPING - 	speed:	99.99082379264456	OK	-angle:	0	OK
 
-1676286651.1519964
-Intercept Handler - intercept length: 188 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.91585406365535	OK	-angle:	-1	Receive Timeout
+1676287334.405485
+Intercept Handler - intercept length: 65 - intercept gap: 27
+	 	LANE KEEPING - 	speed:	100.0	OK	-angle:	0	OK
 
-1676286651.3563697
-Intercept Handler - intercept length: 185 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.94149754840629	OK	-angle:	-1	Receive Timeout
+1676287334.4157827
+Intercept Handler - intercept length: 65 - intercept gap: 27
+	 	LANE KEEPING - 	speed:	100.0	Packet Error	-angle:	0	OK
 
-1676286651.558865
-Intercept Handler - intercept length: 188 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.94149754840629	OK	-angle:	-1	Receive Timeout
+1676287334.4358323
+Intercept Handler - intercept length: 65 - intercept gap: 27
+	 	LANE KEEPING - 	speed:	100.0	OK	-angle:	0	OK
 
-1676286651.7615519
-Intercept Handler - intercept length: 186 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.91585406365535	OK	-angle:	-1	Receive Timeout
+1676287334.4466965
+Intercept Handler - intercept length: 65 - intercept gap: 27
+	 	LANE KEEPING - 	speed:	100.0	OK	-angle:	0	OK
 
-1676286651.9627104
-Intercept Handler - intercept length: 187 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.91585406365535	OK	-angle:	-1	Receive Timeout
+1676287334.455719
+Intercept Handler - intercept length: 65 - intercept gap: 27
+	 	LANE KEEPING - 	speed:	100.0	Packet Error	-angle:	0	OK
 
-1676286652.1639028
-Intercept Handler - intercept length: 187 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.91585406365535	OK	-angle:	-1	Receive Timeout
+1676287334.6654477
+Intercept Handler - intercept length: 63 - intercept gap: 33
+	 	LANE KEEPING - 	speed:	100.0	OK	-angle:	0	OK
 
-1676286652.3677425
-Intercept Handler - intercept length: 184 - intercept gap: 58
-	 	LANE KEEPING - 	speed:	99.88562459370736	OK	-angle:	-1	Receive Timeout
+1676287334.676256
+Intercept Handler - intercept length: 63 - intercept gap: 33
+	 	LANE KEEPING - 	speed:	100.0	OK	-angle:	0	OK
 
-1676286652.5717363
+1676287334.7854443
+
+ 
+ ********************************************** 
+ 
+
+ 	 	 INTERCEPT DETECTION 
+ 
+ 	 	   IMU START
+
+ 
+ ********************************************** 
+ 
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287337.8222957
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287337.8363209
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 CRC Error
+1676287337.9517474
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287337.9659302
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287337.9776108
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 CRC Error - speed: 30 OK
+1676287337.998108
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287338.01382
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287338.024905
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287338.0396428
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287338.052432
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287338.0621974
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287338.0746202
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287338.0870125
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287338.098371
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 Packet Error
+1676287338.209817
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287338.2194805
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287338.243261
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287338.2545989
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287338.2672114
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287338.280011
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287338.2905054
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287338.3006961
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287338.312649
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287338.3237498
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 Packet Error - speed: 30 OK
+1676287338.4404984
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287338.452328
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287338.465539
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287338.478476
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287338.4942198
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287338.513367
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287338.5288908
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 CRC Error - speed: 30 OK
+1676287338.6422415
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287338.6548133
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287338.668014
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287338.6812901
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287338.6953971
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 Receive Timeout - speed: 30 OK
+1676287338.8263423
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287338.839913
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287338.850842
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 CRC Error - speed: 30 OK
+1676287338.9615505
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287338.9713864
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 CRC Error
+1676287339.0819063
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287339.0923827
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287339.1022801
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287339.1173084
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287339.1317909
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287339.2469816
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287339.2586486
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287339.2725155
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 Receive Timeout - speed: 30 OK
+1676287339.3868244
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287339.4008484
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287339.4126718
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287339.4239028
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287339.4412978
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287339.5557246
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287339.572642
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287339.582223
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287339.5941703
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287339.605101
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 Receive Timeout
+1676287339.7187583
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287339.7304916
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 CRC Error
+1676287339.8431122
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 Packet Error - speed: 30 OK
+1676287339.858267
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287339.971013
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 CRC Error
+1676287340.0864968
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287340.0984354
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287340.1114118
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287340.1235316
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287340.2387235
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287340.2516756
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287340.2698207
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287340.2840946
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287340.294668
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287340.3110776
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287340.323502
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287340.4356472
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 Receive Timeout
+1676287340.5479417
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287340.5628445
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 Receive Timeout - speed: 30 OK
+1676287340.769919
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287340.781295
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287340.7954688
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287340.8098488
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 CRC Error
+1676287340.8283596
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287340.9473586
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 Receive Timeout
+1676287341.1628098
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287341.2752867
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 Receive Timeout - speed: 30 Receive Timeout
+1676287341.5833118
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287341.5967343
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 Receive Timeout
+1676287341.7112489
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 CRC Error - speed: 30 OK
+1676287341.8261507
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287341.9428332
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287341.9558938
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287341.9708307
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287341.9864185
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287342.098364
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287342.1116529
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287342.1238296
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287342.13537
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287342.151455
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287342.1645122
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287342.175549
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287342.1916642
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 Packet Error
+1676287342.3067524
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287342.3199635
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 Receive Timeout - speed: 30 OK
+1676287342.430322
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287342.4434052
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287342.4554815
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287342.4721193
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 Receive Timeout
+1676287342.5840502
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 Packet Error - speed: 30 OK
+1676287342.6975605
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287342.7150905
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287342.726712
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287342.7365472
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287342.7632165
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287342.776339
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287342.8882627
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287342.9039967
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287342.9196901
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 Receive Timeout
+1676287343.0310755
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287343.0440195
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287343.0563624
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287343.0677056
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287343.0792522
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 Packet Error - speed: 30 OK
+1676287343.1900883
+
+Intercept Handler - IMU angle: 0.0 - Run angle: -6 OK - speed: 30 OK
+1676287343.2005215
