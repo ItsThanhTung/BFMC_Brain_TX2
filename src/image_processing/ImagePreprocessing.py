@@ -17,7 +17,6 @@ class ImagePreprocessing():
         return binary
 
     def process_image(self, frame):
-        frame = imutils.rotate(frame, -5)
         bgr_image = np.copy(frame)
         red_channel = bgr_image[:,:,2]
 

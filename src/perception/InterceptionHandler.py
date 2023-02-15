@@ -67,49 +67,54 @@ class InterceptionHandler:
 
     def turn_left(self, imu_angle, CarHandler=None):
         if imu_angle > -5:
-            status, mess_speed = CarHandler.setSpeed(30)
-            status, mess_angle = CarHandler.setAngle(-6)
+            status, mess_speed = CarHandler.setSpeed(40)
+            status, mess_angle = CarHandler.setAngle(-5)
             return self.log_messagge(True, imu_angle, -6, 30, mess_speed, mess_angle), False
         
         elif imu_angle > -7:
-            status, mess_speed = CarHandler.setSpeed(30)
-            status, mess_angle = CarHandler.setAngle(-7)
+            status, mess_speed = CarHandler.setSpeed(40)
+            status, mess_angle = CarHandler.setAngle(-5)
             return self.log_messagge(True, imu_angle, -7, 30, mess_speed, mess_angle), False
         
         elif imu_angle > -9:
-            status, mess_speed = CarHandler.setSpeed(30)
-            status, mess_angle = CarHandler.setAngle(-10)
+            status, mess_speed = CarHandler.setSpeed(40)
+            status, mess_angle = CarHandler.setAngle(-7)
             return self.log_messagge(True, imu_angle, -10, 30, mess_speed, mess_angle), False
         
         elif imu_angle > -10:
-            status, mess_speed = CarHandler.setSpeed(30)
-            status, mess_angle = CarHandler.setAngle(-13)
+            status, mess_speed = CarHandler.setSpeed(40)
+            status, mess_angle = CarHandler.setAngle(-10)
             return self.log_messagge(True, imu_angle, -13, 30, mess_speed, mess_angle), False
         
         elif imu_angle > -15:
-            status, mess_speed = CarHandler.setSpeed(30)
-            status, mess_angle = CarHandler.setAngle(-17)
+            status, mess_speed = CarHandler.setSpeed(40)
+            status, mess_angle = CarHandler.setAngle(-15)
             return self.log_messagge(True, imu_angle, -17, 30, mess_speed, mess_angle), False
         
         elif imu_angle > -20:
             status, mess_speed = CarHandler.setSpeed(30)
-            status, mess_angle = CarHandler.setAngle(-18)
+            status, mess_angle = CarHandler.setAngle(-17)
             return self.log_messagge(True, imu_angle, -18, 30, mess_speed, mess_angle), False
         
         elif imu_angle > -25:
-            status, mess_speed = CarHandler.setSpeed(30)
-            status, mess_angle = CarHandler.setAngle(-19)
+            status, mess_speed = CarHandler.setSpeed(40)
+            status, mess_angle = CarHandler.setAngle(-13)
             return self.log_messagge(True, imu_angle, -19, 30, mess_speed, mess_angle), False
         
         
-        elif imu_angle > -30:
-            status, mess_speed = CarHandler.setSpeed(30)
-            status, mess_angle = CarHandler.setAngle(-21)
+        elif imu_angle > -35:
+            status, mess_speed = CarHandler.setSpeed(40)
+            status, mess_angle = CarHandler.setAngle(-15)
             return self.log_messagge(True, imu_angle, -21, 30, mess_speed, mess_angle), False
         
-        elif imu_angle > -40:
+        elif imu_angle > -45:
             status, mess_speed = CarHandler.setSpeed(30)
-            status, mess_angle = CarHandler.setAngle(-21)
+            status, mess_angle = CarHandler.setAngle(-15)
+            return self.log_messagge(True, imu_angle, -21, 30, mess_speed, mess_angle), False
+        
+        elif imu_angle > -55:
+            status, mess_speed = CarHandler.setSpeed(30)
+            status, mess_angle = CarHandler.setAngle(-18)
             return self.log_messagge(True, imu_angle, -21, 30, mess_speed, mess_angle), False
         
         elif imu_angle > -75:

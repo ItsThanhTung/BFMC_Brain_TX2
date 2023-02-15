@@ -167,9 +167,9 @@ class DecisionMakingProcess(WorkerProcess):
                 speed_lane_keeping, angle_lane_keeping = self.read_lane_keeping_data()
                 intercept_length, intercept_gap = self.read_intercept_detection_data()
                 object_result = self.read_object_detection_data()
-                print(object_result)
+                # print(object_result)
                 if object_result is not None and len(object_result) > 0:
-                    if object_result[0][1] > 0.8 and self.is_sign == False:
+                    if object_result[0][1] > 1 and self.is_sign == False:
                         print(object_result[0][0])
                         print(object_result[0][2])
                         status, messSpd = self.__CarHandlerTh.setSpeed(0)
@@ -202,7 +202,6 @@ class DecisionMakingProcess(WorkerProcess):
                     # intercept_handler_log, isFinish = interceptionHandler.turn_right(imu_angle, self.__CarHandlerTh)
                     self.is_intercept = not isFinish
 
-                # print(angle_lane_keeping)
                 if not self.is_intercept: # and self.prev_angle != angle_lane_keeping:
                     if self.is_sign:
                         self.count_sign_step += 1
@@ -217,7 +216,7 @@ class DecisionMakingProcess(WorkerProcess):
                         self.historyFile.write("\n \n \n ******************* OFF ANGLE ***************************\n \n \n")
 
                     if not self.is_stop:
-                        status, messSpd = self.__CarHandlerTh.setSpeed(30)
+                        status, messSpd = self.__CarHandlerTh.setSpeed(40)
                     else:
                         status, messSpd = 0, "OK"
                     
