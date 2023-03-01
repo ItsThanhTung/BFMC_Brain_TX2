@@ -94,12 +94,9 @@ if __name__ == '__main__':
     # =============================== HARDWARE ===============================================
     camLaneStR, camLaneStS = Pipe(duplex = False)           # camera  ->  streamer
     
-    camProc = CameraProcess([],{"PREPROCESS_IMAGE" : camLaneStS, "OBJECT_IMAGE" : camObjectStS}, cam_opt["CAM_PATH"])
-    allProcesses.append(camProc)
+    LocStR, LocStS = Pipe(duplex = False)           # LocSys  ->  brain
 
-    
     rcShR, rcShS   = Pipe(duplex = False)                                               # laneKeeping  ->  Serial
-    distSerialR, distSerialS  = Pipe(duplex = False)                                    # laneKeeping  ->  Serial
 
     imagePreprocessR, imagePreprocessS = Pipe(duplex = False)                           # preprocess   ->  LaneKeeping
     
@@ -116,13 +113,7 @@ if __name__ == '__main__':
     shEnPIDR, shEnPIDS = Pipe(duplex= False)
     shGetSpdR, shGetSpdS = Pipe(duplex= False)
     shDistR, shDistS = Pipe(duplex= False)
-    shInps = {
-        "SETSPEED": shSetSpdR,
-        "STEER": shSteerR,
-        "ENPID": shEnPIDR,
-        "GETSPEED": shGetSpdR,
-        "DIST": shDistR
-    }
+
     
     if enableStream:
         imagePreprocessStreamR, imagePreprocessStreamS = Pipe(duplex = False)               # preprocess   ->  Stream
@@ -140,21 +131,50 @@ if __name__ == '__main__':
         interceptDebugR, interceptDebugS = None, None
 
 
+
+    # =============================== Sensor Input Layer ===================================================
+    camProc = CameraProcess([],{"PREPROCESS_IMAGE" : camLaneStS, "OBJECT_IMAGE" : camObjectStS}, cam_opt["CAM_PATH"])
+    allProcesses.append(camProc)
+
+    # LocSys client process
+    LocsysOpt = opt["LOCSYS"]
+    LocSysProc = LocalisationSystem(LocsysOpt["LOCSYS_TAGID"], LocsysOpt["LOCSYS_BEACON"], LocsysOpt["PUBLIC_KEY"],LocStS)
+    allProcesses.append(LocSysProc)
+
+
+
+    # =============================== PreProcessing Layer ===================================================
     imagePreprocess = ImagePreprocessingProcess({"LANE_IMAGE" : camLaneStR}, {"LANE_KEEPING" : imagePreprocessS, "INTERCEPT_DETECTION" : imagePreprocessInterceptS},\
                                                                 opt , is_show, debugP=imagePreprocessStreamS, debug=enableStream)
-                                             
+    allProcesses.append(imagePreprocess)
+
     laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [laneKeepingDecisionS], opt, debugP=laneKeepingDebugS, debug=enableLaneStream, is_remote=is_remote)
-    
+    allProcesses.append(laneKeepingProcess)
+
     interceptDetectionProcess = InterceptDetectionProcess({"IMAGE_PREPROCESSING" : imagePreprocessInterceptR}, {"DECISION_MAKING" : interceptDecisionS}, \
                                                             opt, debugP=interceptDebugS, debug=enableInterceptStream, is_remote=is_remote)           
-    
+    allProcesses.append(interceptDetectionProcess)
+
+
+
+    # =============================== Perception Layer ===================================================
+
+    shInps = {
+        "SETSPEED": shSetSpdR,
+        "STEER": shSteerR,
+        "ENPID": shEnPIDR,
+        "GETSPEED": shGetSpdR,
+        "DIST": shDistR
+    }
     if not is_remote:
         decisionMakingProcess = DecisionMakingProcess({"LANE_KEEPING" : laneKeepingDecisionR, "INTERCEPT_DETECTION" : interceptDecisionR, "OBJECT_DETECTION" : objectDecisionR}, \
-                                                        {"SERIAL" : rcShS, "SERIAL_DISTANCE": distSerialR}, shInps, opt, is_stop=is_stop)
-    
+                                                        {"SERIAL" : rcShS}, shInps, opt, is_stop=is_stop)
         allProcesses.append(decisionMakingProcess)
         
     # SerialHandler Process
+    
+
+    # =============================== Actuator Output Layer ===================================================
     shOutPs = {
         "1": shSetSpdS,
         "2": shSteerS,
@@ -162,15 +182,12 @@ if __name__ == '__main__':
         "5": shGetSpdS,
         "7": shDistS
     }
-
     shProc = SerialHandlerProcess([rcShR], shOutPs)
-    
-    allProcesses.append(imagePreprocess)
-    allProcesses.append(laneKeepingProcess)
-    allProcesses.append(interceptDetectionProcess)
     allProcesses.append(shProc)
-    
-    
+
+
+
+    # =============================== Streamer Layer ===================================================
     if enableStream:
         streamProc = CameraStreamerProcess([imagePreprocessStreamR], [], cam_opt["IP_ADDRESS"], 2244)
         allProcesses.append(streamProc)
@@ -190,12 +207,7 @@ if __name__ == '__main__':
 
 
 
-    # =============================== DATA ===================================================
-    # LocSys client process
-    LocsysOpt = opt["LOCSYS"]
-    LocStR, LocStS = Pipe(duplex = False)           # LocSys  ->  brain
-    LocSysProc = LocalisationSystem(LocsysOpt["LOCSYS_TAGID"], LocsysOpt["LOCSYS_BEACON"], LocsysOpt["PUBLIC_KEY"],LocStS)
-    allProcesses.append(LocSysProc)
+
 
 
 
