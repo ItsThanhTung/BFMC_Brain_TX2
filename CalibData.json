@@ -1,0 +1,19 @@
+{
+    "AccelOffset": [
+        -19,
+        -29,
+        -13
+    ],
+    "GyroOffset": [
+        1,
+        -2,
+        -1
+    ],
+    "MagnetOffset": [
+        -32765,
+        -32748,
+        -32762
+    ],
+    "AccelRad": 1000,
+    "MagnetRad": 21
+}

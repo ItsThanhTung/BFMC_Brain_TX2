@@ -18,8 +18,8 @@
   },
   "LANE_KEEPING": {
     "roi": {
-      "left": 0.3,
-      "right": 0.7,
+      "left": 0.1,
+      "right": 0.9,
       "upper": 0.3
     },
     "middle_point": {
@@ -33,7 +33,7 @@
     "x_dist": 50,
     "min_length": 50,
     "middle_point_ratio": 0.25,
-    "angle_scale_ratio": 0.35
+    "angle_scale_ratio": 0.25
   },
   "REMOTE": {
     "CAM_PATH": "/dev/video0",
@@ -41,11 +41,17 @@
   },
   "RC": {
     "CAM_PATH": "/dev/video0",
-    "IP_ADDRESS": "192.168.0.101"
+    "IP_ADDRESS": "192.168.0.101",
+  
   },
   "INTERCEPT_DETECTION": {
     "crop_ratio": 0.75,
     "minimum_points": 1,
     "tolerance": 2
+  },
+  "LOCSYS":{
+    "LOCSYS_TAGID": "0xCEFE",
+    "LOCSYS_BEACON": 12345,
+    "PUBLIC_KEY": "/home/ceec/BFMC_Brain_TX2/src/data/localisationssystem/publickey_server_test.pem"
   }
 }

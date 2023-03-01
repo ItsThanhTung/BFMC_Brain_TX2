@@ -24,6 +24,11 @@ class IMUHandler:
               
     def set_yaw(self):
         self.yaw0 = self.sensor.euler[0]
+        
+    def print_euler(self):
+        # print(self.sensor.euler)
+        print(self.sensor.calibrated)
+        return [self.sensor.euler]
     
     def get_yaw(self):
         delta_yaw = self.sensor.euler[0] - self.yaw0

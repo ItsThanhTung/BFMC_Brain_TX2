@@ -38,6 +38,9 @@ from multiprocessing import Pipe, Process, Event
 from src.hardware.camera.CameraProcess                      import CameraProcess
 from src.hardware.serialhandler.SerialHandlerProcess        import SerialHandlerProcess
 
+# V2X Listener
+from src.data.localisationssystem.locsys                    import LocalisationSystem
+
 # utility imports
 from src.utils.camerastreamer.CameraStreamerProcess         import CameraStreamerProcess
 
@@ -63,13 +66,13 @@ if __name__ == '__main__':
 
     # =============================== CONFIG =================================================
     enableStream             =  True
-    enableStreamObject       =  True
-    enableLaneStream         =  False
+    enableStreamObject       =  False
+    enableLaneStream         =  True
     enableInterceptStream    =  False
     
     is_remote = False
     is_show = False
-    is_stop = True
+    is_stop = False
     
     if enableStreamObject:
         objectDebugStreamR, objectDebugStreamS = Pipe(duplex = False)    
@@ -188,11 +191,11 @@ if __name__ == '__main__':
 
 
     # =============================== DATA ===================================================
-    #LocSys client process
-    # LocStR, LocStS = Pipe(duplex = False)           # LocSys  ->  brain
-    # from data.localisationsystem.locsys import LocalisationSystemProcess
-    # LocSysProc = LocalisationSystemProcess([], [LocStS])
-    # allProcesses.append(LocSysProc)
+    # LocSys client process
+    LocsysOpt = opt["LOCSYS"]
+    LocStR, LocStS = Pipe(duplex = False)           # LocSys  ->  brain
+    LocSysProc = LocalisationSystem(LocsysOpt["LOCSYS_TAGID"], LocsysOpt["LOCSYS_BEACON"], LocsysOpt["PUBLIC_KEY"],LocStS)
+    allProcesses.append(LocSysProc)
 
 
 
