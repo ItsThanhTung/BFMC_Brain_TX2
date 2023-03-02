@@ -81,11 +81,11 @@ class ServerListener:
 					
 					self.__server_data.is_new_server = True
 				except socket.timeout as e:
-					print("cannot find server")
+					print("Locsys: cannot find server")
 					# Cannot find the server. Need to repeat the process.
 					pass
 				except ValueError as e:
-					print("Wrong message")
+					print("Locsys: Wrong message")
 					# Wrong message was received. Need to repeat the process.
 					pass
 

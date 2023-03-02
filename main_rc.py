@@ -37,6 +37,7 @@ from multiprocessing import Pipe, Process, Event
 # hardware imports
 from src.hardware.camera.CameraProcess                      import CameraProcess
 from src.hardware.serialhandler.SerialHandlerProcess        import SerialHandlerProcess
+from src.hardware.NucleoListener.NucleoProcess              import NucleoProcess
 
 # V2X Listener
 from src.data.localisationssystem.locsys                    import LocalisationSystem
@@ -114,6 +115,17 @@ if __name__ == '__main__':
     shGetSpdR, shGetSpdS = Pipe(duplex= False)
     shDistR, shDistS = Pipe(duplex= False)
 
+    # Serial Handler Pipe -> Nucleo Listener
+    VLXListenerR, VLXListenerS = Pipe(duplex = False)
+    encSpeedListenerR, encSpeedListenerS = Pipe(duplex = False)
+    encTravelledListenerR, encTravelledListenerS = Pipe(duplex = False)
+
+    # Nucleo Speed, Travelled Listner -> Data Fusion
+    SpeedR, SpeedS = Pipe(duplex = False)
+    TravelledR, TravelledS = Pipe(duplex = False)
+
+    # VLX sensor Data -> ?
+    VLXDataR, VLXDataS = Pipe(duplex = False)
     
     if enableStream:
         imagePreprocessStreamR, imagePreprocessStreamS = Pipe(duplex = False)               # preprocess   ->  Stream
@@ -139,8 +151,20 @@ if __name__ == '__main__':
     # LocSys client process
     LocsysOpt = opt["LOCSYS"]
     LocSysProc = LocalisationSystem(LocsysOpt["LOCSYS_TAGID"], LocsysOpt["LOCSYS_BEACON"], LocsysOpt["PUBLIC_KEY"],LocStS)
-    allProcesses.append(LocSysProc)
+    # allProcesses.append(LocSysProc)
 
+    NucListenerInPs ={
+        "SPEED": encSpeedListenerR,
+        "TRAVELLED": encTravelledListenerR,
+        "VLX": VLXListenerR
+    }
+    NucOutPs = {
+        "SPEED": SpeedS,
+        "TRAVELLED": TravelledS,
+        "VLX": VLXDataS
+    }
+    NucListenerProc = NucleoProcess(NucListenerInPs, NucOutPs)
+    allProcesses.append(NucListenerProc)
 
 
     # =============================== PreProcessing Layer ===================================================
@@ -176,11 +200,13 @@ if __name__ == '__main__':
 
     # =============================== Actuator Output Layer ===================================================
     shOutPs = {
-        "1": shSetSpdS,
-        "2": shSteerS,
-        "4": shEnPIDS, 
-        "5": shGetSpdS,
-        "7": shDistS
+        "1": [shSetSpdS],
+        "2": [shSteerS],
+        "4": [shEnPIDS], 
+        "5": [shGetSpdS, encSpeedListenerS],
+        "7": [shDistS],
+        "8": [VLXListenerS],
+        "9": [encTravelledListenerS]
     }
     shProc = SerialHandlerProcess([rcShR], shOutPs)
     allProcesses.append(shProc)
@@ -204,8 +230,6 @@ if __name__ == '__main__':
         streamProc = CameraStreamerProcess([objectDebugStreamR], [], cam_opt["IP_ADDRESS"], 2233)
         allProcesses.append(streamProc)
         
-
-
 
 
 

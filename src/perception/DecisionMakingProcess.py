@@ -1,6 +1,5 @@
 from threading import Thread, Lock
 from src.templates.workerprocess import WorkerProcess
-from src.utils.utils_function import setSpeed, setAngle, EnablePID, MoveDistance
 from src.hardware.serialhandler.filehandler import FileHandler
 from src.perception.InterceptionHandler import InterceptionHandler
 
@@ -32,7 +31,7 @@ class DecisionMakingProcess(WorkerProcess):
         """
         
 
-        super(DecisionMakingProcess,self).__init__( inPs, outPs)
+        super(DecisionMakingProcess,self).__init__(inPs, outPs)
         self.opt = opt
         self.speed_lane_keeping = 0 
         self.angle_lane_keeping = 0 

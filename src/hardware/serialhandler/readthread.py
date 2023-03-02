@@ -112,7 +112,8 @@ class ReadThread(ThreadWithStop):
                 else:
                     self.__subscribers[f_key].append(outP)
             else:
-                self.__subscribers[f_key] = [outP]
+                self.__subscribers[f_key] = list(outP)
+               
         else:
             if f_key in self.__subscribers:
                 if outP in self.__subscribers[f_key]:

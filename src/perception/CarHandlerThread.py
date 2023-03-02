@@ -36,10 +36,12 @@ class CarHandlerThread(ThreadWithStop):
         else:
             self.__sendAttemp = sendAttempTimes
         
-        if enablePID: 
-            self.enablePID()
-        else:
-            self.enablePID(False)
+
+        self.enablePID(enablePID)
+
+
+        self.enListenSpeed()
+         
 
 
     
@@ -55,9 +57,9 @@ class CarHandlerThread(ThreadWithStop):
                     print("Pipe Error ", inP)
                 else:
                     if mess["action"] == "7":
-                        print(mess["data"])
+                        print("DM ", mess["data"])
                     elif mess["action"] == "5":
-                        print(mess["data"])
+                        print("DM ", mess["data"])
     
     def enablePID(self, Enable = True):
         data = {
@@ -77,6 +79,7 @@ class CarHandlerThread(ThreadWithStop):
             if Status == 0:
                 if Mess == "ack;;":
                     return 0, "OK"
+                
         return Status, Mess["data"]
 
     def _shSend(self, outP, Data):
@@ -162,5 +165,68 @@ class CarHandlerThread(ThreadWithStop):
 
     def getSpeed(self):
         return self.__CurrentSpeed
+
+    def enListenTravelled(self, Enable = True):
+        data = {
+        "action": '9',
+        "activate": Enable
+        }
+        Status = 0
+        Mess = {
+            "data":"OK"
+        }
+        for i in range(self.__sendAttemp):
+            self._shSend(self.__shOutP, data)
+            if self.__AckTimeout < 0:
+                return 0, "OK"
+
+            Status, Mess = self._shRecv(self.__shInPs["ENPID"])
+            if Status == 0:
+                if Mess == "ack;;":
+                    return 0, "OK"
+                
+        return Status, Mess["data"]
+
+    def enListenVLX(self, Enable = True):
+        data = {
+        "action": '8',
+        "activate": Enable
+        }
+        Status = 0
+        Mess = {
+            "data":"OK"
+        }
+        for i in range(self.__sendAttemp):
+            self._shSend(self.__shOutP, data)
+            if self.__AckTimeout < 0:
+                return 0, "OK"
+
+            Status, Mess = self._shRecv(self.__shInPs["ENPID"])
+            if Status == 0:
+                if Mess == "ack;;":
+                    return 0, "OK"
+                
+        return Status, Mess["data"]
+
+    def enListenSpeed(self, Enable = True):
+        data = {
+        "action": '5',
+        "activate": Enable
+        }
+        Status = 0
+        Mess = {
+            "data":"OK"
+        }
+        for i in range(self.__sendAttemp):
+            self._shSend(self.__shOutP, data)
+            if self.__AckTimeout < 0:
+                return 0, "OK"
+
+            Status, Mess = self._shRecv(self.__shInPs["ENPID"])
+            if Status == 0:
+                if Mess == "ack;;":
+                    return 0, "OK"
+                
+        return Status, Mess["data"]
 
     
