@@ -29,22 +29,22 @@ class NucleoListener(ThreadWithStop):
                 else:
                     if mess["action"] == "5":
                         data = self._SpeedParser(mess["data"])
-                        self.outPs["SPEED"].send(data)
+                        self._outPs["SPEED"].send(data)
                     elif mess["action"] == "8":
                         data = self._VLXParser(mess["data"])
-                        self.outPs["VLX"].send(data)
+                        self._outPs["VLX"].send(data)
                     elif mess["action"] == "9":
                         data = self._TravelledParser(mess["data"])
-                        self.outPs["TRAVELLED"].send(data)
+                        self._outPs["TRAVELLED"].send(data)
     
     def _VLXParser(self, rawData):
-        print("VLX RawData ", rawData)
+        # print("VLX RawData ", rawData)
         return rawData
     
     def _SpeedParser(self, rawData):
-        print("Speed RawData ", rawData)
+        # print("Speed RawData ", rawData)
         return rawData
     
     def _TravelledParser(self, rawData):
-        print("Travelled RawData ", rawData)
+        # print("Travelled RawData ", rawData)
         return rawData

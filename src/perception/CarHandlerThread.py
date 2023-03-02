@@ -55,11 +55,7 @@ class CarHandlerThread(ThreadWithStop):
                     mess = inP.recv()
                 except:
                     print("Pipe Error ", inP)
-                else:
-                    if mess["action"] == "7":
-                        print("DM ", mess["data"])
-                    elif mess["action"] == "5":
-                        print("DM ", mess["data"])
+
     
     def enablePID(self, Enable = True):
         data = {
