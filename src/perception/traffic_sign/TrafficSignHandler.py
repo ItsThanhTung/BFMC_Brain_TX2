@@ -8,10 +8,9 @@ class TrafficSignHandler:
         
         self.handler_dict = {"stop" : StopSignHandler(car_handler, self.logger)}
         
-        self.counter = 0
+        # self.tracker = ByteTrack()
         
-    def args_sort(self, object_result):
-        pass
+        self.handler_dict = {"stop" : StopSignHandler(car_handler)}
     
     def detect(self, object_result):
         if object_result is not None and len(object_result) > 0:       
