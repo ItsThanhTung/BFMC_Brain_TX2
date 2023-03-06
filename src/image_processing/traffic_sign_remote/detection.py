@@ -7,6 +7,8 @@ from src.image_processing.traffic_sign_remote.yolov5_utils.utils.torch_utils imp
 from src.image_processing.traffic_sign_remote.yolov5_utils.models.common import DetectMultiBackend
 from src.image_processing.traffic_sign_remote.yolov5_utils.utils.general import non_max_suppression,scale_coords
 from src.image_processing.traffic_sign_remote.yolov5_utils.utils.plots import Annotator, colors, save_one_box
+from src.perception.tracker.byte_tracker import BYTETracker
+from src.perception.tracker.visualize import plot_tracking
 
 from multiprocessing import Condition
 
@@ -34,6 +36,7 @@ class Yolo(object):
         self.image_condition = Condition()
         self.outP = outP
 
+        self.tracker = BYTETracker()
     
     def detect(self,img0):
         # img0=self.image_loader()
@@ -47,18 +50,46 @@ class Yolo(object):
             pred = self.model(img, augment=False, visualize=False)
         pred = non_max_suppression(pred, self.conf_thres, self.iou_thres, None, False, max_det=self.max_det)
         results=[]
+        
+        boxes=[]
+        confs=[]
+        clss=[]
+        
         for i, det in enumerate(pred):  # per image
-            annotator = Annotator(img_resized, line_width=3, example=str(self.names))
+            # annotator = Annotator(img_resized, line_width=3, example=str(self.names))
             det=det.cpu().detach().numpy()
             if len(det):
                 # det[:, :4] = scale_coords(im.shape, det[:, :4], im0.shape).round()
                 for (*xyxy, conf, cls) in reversed(det): 
                     c = int(cls)  # integer class
                     label = f'{self.names[c]} {conf:.2f}'
-                    annotator.box_label(xyxy, label, color=colors(c, True))
+                    # annotator.box_label(xyxy, label, color=colors(c, True))
                     result = (xyxy, conf, self.names[c])
                     results.append(result)
-            img_resized = annotator.result()
+                    
+                    boxes.append(xyxy)
+                    confs.append(float(conf))
+                    clss.append(self.names[c])
+                    
+            # img_resized = annotator.result()
+        
+        results = self.tracker.update([boxes, confs, clss])
+        
+        online_tlwhs = []
+        online_ids = []
+        online_scores = []
+        for t in results:
+            tlwh = t.tlwh
+            tid = t.track_id
+
+            online_tlwhs.append(tlwh)
+            online_ids.append(tid)
+            online_scores.append(t.score)
+              
+
+        img_resized = plot_tracking(img_resized, online_tlwhs, online_ids, frame_id=1, fps=20)
+            
+        
         return img_resized, results
     
     def read_image(self):
