@@ -166,7 +166,7 @@ class DecisionMakingProcess(WorkerProcess):
             status, messSpd = self.__CarHandlerTh.enablePID()
 
         interceptionHandler = InterceptionHandler(self.imu_handler, self.__CarHandlerTh, self.historyFile) # , self.localization_thr)
-        # trafficSignHanlder = TrafficSignHandler(self.__CarHandlerTh)
+        trafficSignHanlder = TrafficSignHandler(self.__CarHandlerTh)
         
         while True:
             if True:

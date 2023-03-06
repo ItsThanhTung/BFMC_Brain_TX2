@@ -5,6 +5,8 @@ class TrafficSignHandler:
     def __init__(self, car_handler):
         self.car_handler = car_handler
         
+        # self.tracker = ByteTrack()
+        
         self.handler_dict = {"stop" : StopSignHandler(car_handler)}
     
     def detect(self, object_result):
