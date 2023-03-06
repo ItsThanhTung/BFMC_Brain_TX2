@@ -57,12 +57,14 @@ class ReadThread(ThreadWithStop):
                 if read_chr=='@':
                     self.isResponse=True
                     if len(self.buff)!=0:
-                        # self.__checkSubscriber(self.buff)
+                        self.__checkSubscriber(self.buff)
+                        # print(self.buff)
                         pass
                     self.buff=""
                 elif read_chr=='\r':   
                     self.isResponse=False
                     if len(self.buff)!=0:
+                        # print(self.budff)
                         self.__checkSubscriber(self.buff)
                     self.buff=""
                 if self.isResponse:

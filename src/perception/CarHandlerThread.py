@@ -39,8 +39,10 @@ class CarHandlerThread(ThreadWithStop):
 
         self.enablePID(enablePID)
 
-
-        self.enListenSpeed()
+        self.enListenVLX(False)
+        self.enListenSpeed(False)
+        self.enListenTravelled(False)
+        
          
 
 
@@ -48,7 +50,7 @@ class CarHandlerThread(ThreadWithStop):
     def run(self):
         readers=[]
         readers.append(self.__shInPs["DIST"])
-        readers.append(self.__shInPs["GETSPEED"])
+        # readers.append(self.__shInPs["GETSPEED"])
         while(self._running):
             for inP in wait(readers):
                 try:
@@ -115,7 +117,7 @@ class CarHandlerThread(ThreadWithStop):
     def setAngle(self, value, send_attempt=None):
         if send_attempt is None:
             send_attempt = self.__sendAttemp 
-            
+        # return 0, "OK"
         data = {
         "action": '2',
         "steerAngle": float(value)
