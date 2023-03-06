@@ -45,11 +45,11 @@ class NucleoListener(ThreadWithStop):
             DataInt = [int(i) for i in Data[:4]]
         except:
             return [0,0,0,0]
-        print(DataInt)
+        # print(DataInt)
         return DataInt
     
     def _SpeedParser(self, rawData):
-        print("Speed RawData ", rawData)
+        # print("Speed RawData ", rawData)
         # Status, Data = rawData.split(";",2)[:2]
         # Status = int(Status)
         # if Status == 0:

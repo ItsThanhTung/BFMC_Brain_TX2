@@ -16,9 +16,9 @@ class Yolo(object):
                         imgsize= (480,640), device='0',conf_thres=0.1, iou_thres=0.45,max_det=1000): 
         
         if is_tensorRt: 
-            weights='sign2.engine'
+            weights='best2.engine'
         else: 
-            weights='sign2.pt'
+            weights='best2.pt'
             
         self.img_size = imgsize
         self.device = select_device(device)
@@ -53,7 +53,10 @@ class Yolo(object):
         with torch.no_grad():            
             pred = self.model(img, augment=False, visualize=False)
         pred = non_max_suppression(pred, self.conf_thres, self.iou_thres, None, False, max_det=self.max_det)
-        results=[]
+        results = []
+        boxes=[]
+        confs=[]
+        clss=[]
         for i, det in enumerate(pred):  # per image
             # annotator = Annotator(img_resized, line_width=3, example=str(self.names))
             det=det.cpu().detach().numpy()
@@ -63,8 +66,14 @@ class Yolo(object):
                     c = int(cls)  # integer class
                     label = f'{self.names[c]} {conf:.2f}'
                     # annotator.box_label(xyxy, label, color=colors(c, True))
-                    result = (xyxy, conf, self.names[c])
-                    results.append(result)
+                    boxes.append(xyxy)
+                    confs.append(conf)
+                    clss.append(self.names[c])
+        boxes = np.array(boxes).reshape(-1,4)
+        confs = np.array(confs).reshape(-1,1)
+        clss = np.array(clss).reshape(-1,1)
+        
+        results = np.concatenate([boxes, confs, clss], axis = -1)
             # img_resized = annotator.result()
         return img_resized, results
     

@@ -1,17 +1,30 @@
-from src.perception.traffic_sign import StopSignHandler
-
+from src.perception.traffic_sign.StopSignHandler import StopSignHandler
+import numpy as np
 
 class TrafficSignHandler:
-    def __init__(self, car_handler):
+    def __init__(self, car_handler, logger):
         self.car_handler = car_handler
+        self.logger = logger
         
-        self.handler_dict = {"stop" : StopSignHandler(car_handler)}
+        self.handler_dict = {"stop" : StopSignHandler(car_handler, self.logger)}
+        
+        self.counter = 0
+        
+    def args_sort(self, object_result):
+        pass
     
     def detect(self, object_result):
-        print(object_result)   
-        if object_result is not None and len(object_result) > 0:         
-            if object_result[0][1] > 0.9:          
-                self.handler_dict["stop"].handler(0.9)
-    
-    
+        if object_result is not None and len(object_result) > 0:       
+            print(object_result)
+        #     if object_result[0][1] > 0.9: 
+        #         if self.counter == 0 :         
+        #             self.handler_dict["stop"].handler()
+        #             self.counter += 1
+                    
+        # if self.counter > 0:
+        #     self.counter += 1
+        # elif self.counter == 100:
+        #     self.counter = 0
 
+        
+    

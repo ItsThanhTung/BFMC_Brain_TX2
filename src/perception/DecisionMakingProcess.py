@@ -166,7 +166,7 @@ class DecisionMakingProcess(WorkerProcess):
             status, messSpd = self.__CarHandlerTh.enablePID()
 
         interceptionHandler = InterceptionHandler(self.imu_handler, self.__CarHandlerTh, self.historyFile) # , self.localization_thr)
-        # trafficSignHanlder = TrafficSignHandler(self.__CarHandlerTh)
+        trafficSignHanlder = TrafficSignHandler(self.__CarHandlerTh, self.historyFile)
         
         while True:
             if True:
@@ -178,7 +178,7 @@ class DecisionMakingProcess(WorkerProcess):
                 object_result = self.read_object_detection_data()
 
                 
-                # trafficSignHanlder.detect(object_result)
+                trafficSignHanlder.detect(object_result)
 
                 if self.decision_maker.is_intercept(intercept_length, intercept_gap) and not self.is_stop:
                     direction = self.decision_maker.get_intercept_direction()

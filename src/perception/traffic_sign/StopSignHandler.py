@@ -1,3 +1,5 @@
+import  time
+
 
 aterisk_line = "*******************************************************************\n"
 
@@ -14,6 +16,7 @@ class StopSignHandler:
         self.start_handler_log()
         status, mess_speed = self.car_handler.setSpeed(0, send_attempt= 100)
         
+        time.sleep(self.time_stop)
         if status < 0:
             self.speed_log(status, mess_speed)
             
