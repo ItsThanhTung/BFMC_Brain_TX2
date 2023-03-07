@@ -12,17 +12,19 @@ from src.perception.tracker.basetrack import BaseTrack, TrackState
 
 class STrack(BaseTrack):
     shared_kalman = KalmanFilter()
-    def __init__(self, tlwh, score):
+    def __init__(self, tlwh, score, cls):
 
         # wait activate
         self._tlwh = np.asarray(tlwh, dtype=np.float)
         self.kalman_filter = None
         self.mean, self.covariance = None, None
         self.is_activated = False
+        self.is_handle = False
 
         self.score = score
         self.tracklet_len = 0
-
+        self.cls = cls
+        
     def predict(self):
         mean_state = self.mean.copy()
         if self.state != TrackState.Tracked:
@@ -109,6 +111,15 @@ class STrack(BaseTrack):
         ret = self.tlwh.copy()
         ret[2:] += ret[:2]
         return ret
+    
+    @property
+    # @jit(nopython=True)
+    def center(self):
+        """Convert bounding box to format `(min x, min y, max x, max y)`, i.e.,
+        `(top left, bottom right)`.
+        """
+        ret = self.tlwh.copy()
+        return ret[:2] + ret[2:]/2
 
     @staticmethod
     # @jit(nopython=True)
@@ -139,7 +150,7 @@ class STrack(BaseTrack):
         return ret
 
     def __repr__(self):
-        return 'OT_{}_({}-{})'.format(self.track_id, self.start_frame, self.end_frame)
+        return 'OT_{}_({})_is_handle_{}__location__{}'.format(self.track_id, self.cls, self.is_handle, self.center)
 
 
 class BYTETracker(object):
@@ -171,6 +182,7 @@ class BYTETracker(object):
         else:
             scores = np.array(output_results[1])
             bboxes = np.array(output_results[0])
+            classes = np.array(output_results[2])
             
 
             remain_inds = scores > 0.6
@@ -180,13 +192,17 @@ class BYTETracker(object):
             inds_second = np.logical_and(inds_low, inds_high)
             dets_second = bboxes[inds_second]
             dets = bboxes[remain_inds]
+            
             scores_keep = scores[remain_inds]
             scores_second = scores[inds_second]
+            
+            clss = classes[remain_inds]
+            clss_second = classes[inds_second]
 
         if len(dets) > 0:
             '''Detections'''
-            detections = [STrack(STrack.tlbr_to_tlwh(tlbr), s) for
-                          (tlbr, s) in zip(dets, scores_keep)]
+            detections = [STrack(STrack.tlbr_to_tlwh(tlbr), s, clss_name) for
+                          (tlbr, s, clss_name) in zip(dets, scores_keep, clss)]
         else:
             detections = []
 
@@ -221,8 +237,8 @@ class BYTETracker(object):
         # association the untrack to the low score detections
         if len(dets_second) > 0:
             '''Detections'''
-            detections_second = [STrack(STrack.tlbr_to_tlwh(tlbr), s) for
-                          (tlbr, s) in zip(dets_second, scores_second)]
+            detections_second = [STrack(STrack.tlbr_to_tlwh(tlbr), s, clss_name) for
+                          (tlbr, s, clss_name) in zip(dets_second, scores_second, clss_second)]
         else:
             detections_second = []
         r_tracked_stracks = [strack_pool[i] for i in u_track if strack_pool[i].state == TrackState.Tracked]

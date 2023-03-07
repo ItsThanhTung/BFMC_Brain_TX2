@@ -12,7 +12,14 @@ class TrafficSignHandler:
         
     
     def detect(self, object_result):
-        print(object_result)
+        if object_result is None:
+            return 
+        
+        for object in object_result:
+            is_handle = object.is_handle
+            cls = object.cls
+
+            print(object)
         # if object_result is not None and len(object_result) > 0:       
         #     print(object_result)
         #     if object_result[0][1] > 0.9: 
