@@ -119,7 +119,7 @@ class STrack(BaseTrack):
         `(top left, bottom right)`.
         """
         ret = self.tlwh.copy()
-        return ret[:2] + ret[2:]/2
+        return np.array(ret[:2] + ret[2:]/2, dtype=np.int32)
 
     @staticmethod
     # @jit(nopython=True)

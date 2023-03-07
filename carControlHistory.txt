@@ -1,3672 +1,1496 @@
 
-2023-03-07 18:53:28.630686
+2023-03-07 18:56:46.190296
  intercept_length = 0 	 intercept_gap = inf 
 Lane keeping angle: 0   speed: 30
 
-Fail send angle: -1 	 Receive Timeout
-
-2023-03-07 18:53:28.839202
- intercept_length = 34 	 intercept_gap = 42 
+2023-03-07 18:56:46.281974
+ intercept_length = 0 	 intercept_gap = inf 
 Lane keeping angle: 0   speed: 30
 
-2023-03-07 18:53:28.845678
- intercept_length = 34 	 intercept_gap = 42 
+2023-03-07 18:56:46.287914
+ intercept_length = 0 	 intercept_gap = inf 
 Lane keeping angle: 0   speed: 30
 
-2023-03-07 18:53:28.852211
+2023-03-07 18:56:46.293846
+ intercept_length = 0 	 intercept_gap = inf 
+Lane keeping angle: 0   speed: 30
+
+2023-03-07 18:56:46.299952
+ intercept_length = 0 	 intercept_gap = inf 
+Lane keeping angle: 0   speed: 30
+
+2023-03-07 18:56:46.306657
+ intercept_length = 0 	 intercept_gap = inf 
+Lane keeping angle: 0   speed: 30
+
+2023-03-07 18:56:46.312995
+ intercept_length = 0 	 intercept_gap = inf 
+Lane keeping angle: 0   speed: 30
+
+2023-03-07 18:56:46.319242
+ intercept_length = 0 	 intercept_gap = inf 
+Lane keeping angle: 0   speed: 30
+
+2023-03-07 18:56:46.329869
+ intercept_length = 0 	 intercept_gap = inf 
+Lane keeping angle: 0   speed: 30
+
+2023-03-07 18:56:46.336078
+ intercept_length = 0 	 intercept_gap = inf 
+Lane keeping angle: 0   speed: 30
+
+2023-03-07 18:56:46.342953
+ intercept_length = 0 	 intercept_gap = inf 
+Lane keeping angle: 0   speed: 30
+
+2023-03-07 18:56:46.349589
+ intercept_length = 0 	 intercept_gap = inf 
+Lane keeping angle: 0   speed: 30
+
+2023-03-07 18:56:46.355866
+ intercept_length = 0 	 intercept_gap = inf 
+Lane keeping angle: 0   speed: 30
+
+2023-03-07 18:56:46.362841
+ intercept_length = 0 	 intercept_gap = inf 
+Lane keeping angle: 0   speed: 30
+
+2023-03-07 18:56:46.369611
+ intercept_length = 0 	 intercept_gap = inf 
+Lane keeping angle: 0   speed: 30
+
+2023-03-07 18:56:46.376065
+ intercept_length = 0 	 intercept_gap = inf 
+Lane keeping angle: 0   speed: 30
+
+2023-03-07 18:56:46.383369
+ intercept_length = 0 	 intercept_gap = inf 
+Lane keeping angle: 0   speed: 30
+
+2023-03-07 18:56:46.389810
+ intercept_length = 0 	 intercept_gap = inf 
+Lane keeping angle: 0   speed: 30
+
+2023-03-07 18:56:46.398737
+ intercept_length = 0 	 intercept_gap = inf 
+Lane keeping angle: 0   speed: 30
+
+2023-03-07 18:56:46.405211
+ intercept_length = 0 	 intercept_gap = inf 
+Lane keeping angle: 0   speed: 30
+
+2023-03-07 18:56:46.411708
+ intercept_length = 0 	 intercept_gap = inf 
+Lane keeping angle: 0   speed: 30
+
+2023-03-07 18:56:46.418344
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 0   speed: 30
+
+2023-03-07 18:56:46.424730
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 0   speed: 30
+
+2023-03-07 18:56:46.434999
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 0   speed: 30
+
+2023-03-07 18:56:46.443340
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 0   speed: 30
+
+2023-03-07 18:56:46.454961
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 0   speed: 30
+
+2023-03-07 18:56:46.461779
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 0   speed: 30
+
+2023-03-07 18:56:46.469386
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 0   speed: 30
+
+2023-03-07 18:56:46.475659
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 2.0904770224135616   speed: 30
+
+2023-03-07 18:56:46.582766
  intercept_length = 34 	 intercept_gap = 42 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:28.863519
- intercept_length = 34 	 intercept_gap = 42 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:28.878703
- intercept_length = 34 	 intercept_gap = 42 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:28.885159
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:28.892343
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:28.900879
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:28.907634
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:28.913970
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:28.920585
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:28.927066
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:28.933688
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:29.040542
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:29.048841
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:29.055667
- intercept_length = 34 	 intercept_gap = 42 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:29.062953
- intercept_length = 34 	 intercept_gap = 42 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:29.069863
- intercept_length = 34 	 intercept_gap = 42 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:29.076822
- intercept_length = 34 	 intercept_gap = 42 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:29.083835
- intercept_length = 34 	 intercept_gap = 42 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:29.091590
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:29.100762
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:29.107729
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:29.114517
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:29.121101
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:29.130375
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:29.138667
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.147133
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.153932
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.161564
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.168545
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.175276
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.184628
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.192615
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.201197
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.214653
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.223092
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.233571
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.242404
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.249701
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.256682
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.263813
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.270830
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.277730
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.284546
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.291463
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.298919
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.305766
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.312809
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.320173
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.327432
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.334360
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.341501
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.348847
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.355806
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.368993
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.379952
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.389563
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.399692
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.406711
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.415731
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.424163
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.431138
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.439359
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.446357
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.452952
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.463319
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.476203
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:29.584460
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:29.591613
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:29.599023
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:29.606973
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:29.635565
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:29.645297
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:29.654021
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:29.675958
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:29.683382
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:29.690427
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:29.698024
- intercept_length = 34 	 intercept_gap = 42 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:29.708745
- intercept_length = 34 	 intercept_gap = 42 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:29.716017
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:29.728455
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:29.735957
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:29.742982
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:29.749637
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:29.756835
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:29.864822
- intercept_length = 37 	 intercept_gap = 50 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:29.873202
- intercept_length = 37 	 intercept_gap = 50 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:29.882005
- intercept_length = 37 	 intercept_gap = 50 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:29.898362
- intercept_length = 37 	 intercept_gap = 50 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:29.904838
- intercept_length = 37 	 intercept_gap = 50 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:29.911937
- intercept_length = 37 	 intercept_gap = 50 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:29.918787
- intercept_length = 37 	 intercept_gap = 50 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:29.927242
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:29.942091
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:29.950382
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:29.961389
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:29.970497
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:29.977673
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:29.993887
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:30.003948
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:30.011400
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:30.027668
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:30.036170
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:30.047214
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:30.055808
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:30.064501
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:30.071792
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:30.080141
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:30.086789
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:30.101096
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:30.107827
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:30.114630
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:30.121672
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:30.144613
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:30.159528
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:30.168176
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:30.176993
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:30.183951
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:30.194661
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 0.3819090060170168   speed: 30
-
-2023-03-07 18:53:30.203128
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 0.3819090060170168   speed: 30
-
-2023-03-07 18:53:30.211371
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 0.3819090060170168   speed: 30
-
-2023-03-07 18:53:30.220269
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 0.3819090060170168   speed: 30
-
-2023-03-07 18:53:30.229885
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 0.3819090060170168   speed: 30
-
-2023-03-07 18:53:30.237523
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 0.3819090060170168   speed: 30
-
-2023-03-07 18:53:30.243858
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 0.3819090060170168   speed: 30
-
-2023-03-07 18:53:30.256442
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 0.3819090060170168   speed: 30
-
-2023-03-07 18:53:30.266349
- intercept_length = 36 	 intercept_gap = 45 
 Lane keeping angle: 1.9020575237729715   speed: 30
 
-2023-03-07 18:53:30.275506
- intercept_length = 36 	 intercept_gap = 45 
+2023-03-07 18:56:46.593871
+ intercept_length = 34 	 intercept_gap = 42 
 Lane keeping angle: 1.9020575237729715   speed: 30
 
-2023-03-07 18:53:30.282899
- intercept_length = 36 	 intercept_gap = 45 
+2023-03-07 18:56:46.602698
+ intercept_length = 34 	 intercept_gap = 42 
 Lane keeping angle: 1.9020575237729715   speed: 30
 
-2023-03-07 18:53:30.290965
- intercept_length = 37 	 intercept_gap = 50 
+2023-03-07 18:56:46.609556
+ intercept_length = 34 	 intercept_gap = 42 
 Lane keeping angle: 1.9020575237729715   speed: 30
 
-2023-03-07 18:53:30.301944
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:30.319994
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:30.331425
+2023-03-07 18:56:46.616713
  intercept_length = 34 	 intercept_gap = 41 
 Lane keeping angle: 1.9020575237729715   speed: 30
 
-2023-03-07 18:53:30.339086
+2023-03-07 18:56:46.623823
  intercept_length = 34 	 intercept_gap = 41 
 Lane keeping angle: 1.9020575237729715   speed: 30
 
-2023-03-07 18:53:30.348540
+2023-03-07 18:56:46.634257
  intercept_length = 34 	 intercept_gap = 41 
 Lane keeping angle: 2.2783930105774344   speed: 30
 
-2023-03-07 18:53:30.357175
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:30.368820
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:30.377420
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:30.384861
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:30.403698
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:30.411539
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:30.419518
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:30.430771
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:30.438059
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:30.445823
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:30.453016
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:30.459907
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:30.467486
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:30.474811
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:30.482602
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:30.488976
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:30.501153
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:30.508940
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:30.517925
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:30.532743
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:30.540675
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:30.649127
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:30.657254
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:30.666847
+2023-03-07 18:56:46.642483
  intercept_length = 34 	 intercept_gap = 41 
 Lane keeping angle: 2.2783930105774344   speed: 30
 
-2023-03-07 18:53:30.675090
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:30.682822
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:30.689734
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:30.699224
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:30.707602
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:30.718693
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:30.727120
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:30.734112
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:30.741830
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.6525443680574994   speed: 30
-
-2023-03-07 18:53:30.748801
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.6525443680574994   speed: 30
-
-2023-03-07 18:53:30.757215
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.6525443680574994   speed: 30
-
-2023-03-07 18:53:30.765030
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.6525443680574994   speed: 30
-
-2023-03-07 18:53:30.777098
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.6525443680574994   speed: 30
-
-2023-03-07 18:53:30.884011
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:30.891989
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:30.901430
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:30.908014
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:30.914981
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:30.928340
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:30.935208
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:30.943462
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:30.951222
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:30.962508
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:30.975349
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:30.981966
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:30.988743
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:30.996190
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:31.002913
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:31.009765
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:31.116825
- intercept_length = 37 	 intercept_gap = 50 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:31.126349
- intercept_length = 37 	 intercept_gap = 50 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:31.134043
- intercept_length = 37 	 intercept_gap = 50 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:31.141580
- intercept_length = 37 	 intercept_gap = 50 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:31.158926
- intercept_length = 37 	 intercept_gap = 50 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:31.166722
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:31.173968
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:31.180991
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:31.290925
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 3.3929797422060646   speed: 30
-
-2023-03-07 18:53:31.301916
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:31.309633
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:31.317373
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:31.328085
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:31.336931
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:31.345021
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:31.352989
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:31.461069
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:31.468014
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:31.475216
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:31.481950
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:31.489704
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:31.497651
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:31.504860
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:31.511742
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:31.518549
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:31.525469
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:31.532561
+2023-03-07 18:56:46.659217
  intercept_length = 34 	 intercept_gap = 45 
 Lane keeping angle: 2.2783930105774344   speed: 30
 
-2023-03-07 18:53:31.540051
+2023-03-07 18:56:46.668032
  intercept_length = 34 	 intercept_gap = 45 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:31.556634
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:31.665977
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 0.5727457298989137   speed: 30
-
-2023-03-07 18:53:31.673794
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 0.5727457298989137   speed: 30
-
-2023-03-07 18:53:31.679980
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 0.5727457298989137   speed: 30
-
-2023-03-07 18:53:31.688283
- intercept_length = 34 	 intercept_gap = 41 
 Lane keeping angle: 2.2783930105774344   speed: 30
 
-2023-03-07 18:53:31.695408
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:31.703176
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:31.710689
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:31.722642
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:31.732266
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:31.740171
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:31.747482
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:31.766119
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:31.877524
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:31.884805
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:31.892024
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:31.899035
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:31.906544
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:31.913589
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:31.921740
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:31.929981
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 3.0241793962626957   speed: 30
-
-2023-03-07 18:53:31.936815
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 3.0241793962626957   speed: 30
-
-2023-03-07 18:53:31.943978
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 3.0241793962626957   speed: 30
-
-2023-03-07 18:53:31.952354
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 3.0241793962626957   speed: 30
-
-2023-03-07 18:53:31.967478
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 3.0241793962626957   speed: 30
-
-2023-03-07 18:53:31.974890
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 3.0241793962626957   speed: 30
-
-2023-03-07 18:53:31.981845
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 3.0241793962626957   speed: 30
-
-2023-03-07 18:53:31.990988
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 3.0241793962626957   speed: 30
-
-2023-03-07 18:53:31.999676
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 3.0241793962626957   speed: 30
-
-2023-03-07 18:53:32.009206
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 3.0241793962626957   speed: 30
-
-2023-03-07 18:53:32.017035
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:32.024135
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:32.033050
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:32.043160
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:32.055028
- intercept_length = 37 	 intercept_gap = 50 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:32.064594
- intercept_length = 37 	 intercept_gap = 50 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:32.071537
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:32.079580
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:32.087959
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:32.095008
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:32.102316
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:32.111282
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:32.118637
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:32.125599
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:32.152052
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:32.160132
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:32.167190
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:32.174697
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:32.183887
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:32.190632
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:32.201489
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:32.208572
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:32.215007
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:32.221977
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:32.232060
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:32.241046
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:32.252319
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:32.260644
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:32.368597
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:32.375488
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:32.382787
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:32.391075
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:32.399057
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:32.410803
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:32.420418
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:32.427882
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:32.435470
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:32.443115
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:32.553633
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:32.561340
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:32.569745
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:32.576628
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:32.584116
+2023-03-07 18:56:46.674670
  intercept_length = 34 	 intercept_gap = 45 
-Lane keeping angle: 2.0904770224135616   speed: 30
+Lane keeping angle: 2.2783930105774344   speed: 30
 
-2023-03-07 18:53:32.597696
- intercept_length = 34 	 intercept_gap = 45 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:32.604943
- intercept_length = 34 	 intercept_gap = 45 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:32.611788
- intercept_length = 34 	 intercept_gap = 45 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:32.618792
- intercept_length = 34 	 intercept_gap = 45 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:32.625719
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:32.637857
+2023-03-07 18:56:46.681483
  intercept_length = 37 	 intercept_gap = 47 
 Lane keeping angle: 2.2783930105774344   speed: 30
 
-2023-03-07 18:53:32.645021
+2023-03-07 18:56:46.690641
  intercept_length = 37 	 intercept_gap = 47 
 Lane keeping angle: 2.2783930105774344   speed: 30
 
-2023-03-07 18:53:32.652061
+2023-03-07 18:56:46.698837
  intercept_length = 37 	 intercept_gap = 47 
 Lane keeping angle: 2.2783930105774344   speed: 30
 
-2023-03-07 18:53:32.660650
+2023-03-07 18:56:46.706759
  intercept_length = 37 	 intercept_gap = 47 
 Lane keeping angle: 2.2783930105774344   speed: 30
 
-2023-03-07 18:53:32.671651
+2023-03-07 18:56:46.714212
  intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
+Lane keeping angle: 2.0904770224135616   speed: 30
 
-2023-03-07 18:53:32.679519
+2023-03-07 18:56:46.724050
  intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
+Lane keeping angle: 2.0904770224135616   speed: 30
 
-2023-03-07 18:53:32.692423
- intercept_length = 37 	 intercept_gap = 50 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:32.800148
+2023-03-07 18:56:46.735363
  intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
+Lane keeping angle: 2.0904770224135616   speed: 30
 
-2023-03-07 18:53:32.809064
+2023-03-07 18:56:46.741792
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.0904770224135616   speed: 30
+
+2023-03-07 18:56:46.749445
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.0904770224135616   speed: 30
+
+2023-03-07 18:56:46.761183
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.0904770224135616   speed: 30
+
+2023-03-07 18:56:46.771919
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.0904770224135616   speed: 30
+
+2023-03-07 18:56:46.778771
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.0904770224135616   speed: 30
+
+2023-03-07 18:56:46.786375
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.0904770224135616   speed: 30
+
+2023-03-07 18:56:46.797075
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.0904770224135616   speed: 30
+
+2023-03-07 18:56:46.810880
  intercept_length = 34 	 intercept_gap = 42 
 Lane keeping angle: 2.2783930105774344   speed: 30
 
-2023-03-07 18:53:32.816978
+2023-03-07 18:56:46.823554
  intercept_length = 34 	 intercept_gap = 42 
 Lane keeping angle: 2.2783930105774344   speed: 30
 
-2023-03-07 18:53:32.823772
+2023-03-07 18:56:46.830774
  intercept_length = 34 	 intercept_gap = 42 
 Lane keeping angle: 2.2783930105774344   speed: 30
 
-2023-03-07 18:53:32.835259
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:32.844084
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:32.856807
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:32.865501
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:32.875026
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:32.882492
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:32.891003
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:32.907706
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:32.914789
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:32.923728
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:32.932129
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:32.941003
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:32.948536
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:32.960318
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:32.967656
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:32.975072
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:32.982834
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:32.990048
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:33.002419
- intercept_length = 37 	 intercept_gap = 50 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:33.011617
- intercept_length = 37 	 intercept_gap = 50 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:33.026801
- intercept_length = 37 	 intercept_gap = 50 
-Lane keeping angle: 0.3819090060170168   speed: 30
-
-2023-03-07 18:53:33.033739
- intercept_length = 37 	 intercept_gap = 50 
-Lane keeping angle: 0.3819090060170168   speed: 30
-
-2023-03-07 18:53:33.042937
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 0.3819090060170168   speed: 30
-
-2023-03-07 18:53:33.051324
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 0.3819090060170168   speed: 30
-
-2023-03-07 18:53:33.059554
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 0.3819090060170168   speed: 30
-
-2023-03-07 18:53:33.070329
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 0.3819090060170168   speed: 30
-
-2023-03-07 18:53:33.078594
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 0.3819090060170168   speed: 30
-
-2023-03-07 18:53:33.084880
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 0.3819090060170168   speed: 30
-
-2023-03-07 18:53:33.098183
- intercept_length = 37 	 intercept_gap = 50 
-Lane keeping angle: 0.3819090060170168   speed: 30
-
-2023-03-07 18:53:33.105561
- intercept_length = 37 	 intercept_gap = 50 
-Lane keeping angle: 0.3819090060170168   speed: 30
-
-2023-03-07 18:53:33.114956
- intercept_length = 37 	 intercept_gap = 50 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:33.124745
- intercept_length = 37 	 intercept_gap = 50 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:33.135767
- intercept_length = 37 	 intercept_gap = 50 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:33.144775
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:33.155135
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:33.164085
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:33.173157
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:33.182740
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:33.189865
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:33.199100
+2023-03-07 18:56:46.843733
  intercept_length = 34 	 intercept_gap = 41 
 Lane keeping angle: 2.2783930105774344   speed: 30
 
-2023-03-07 18:53:33.207108
- intercept_length = 37 	 intercept_gap = 49 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:33.214035
- intercept_length = 37 	 intercept_gap = 49 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:33.321682
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:33.333226
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:33.340057
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:33.347361
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:33.354853
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:33.367263
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:33.374989
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:33.382165
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:33.388820
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:33.395810
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:33.403163
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:33.411485
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:33.521320
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:33.528802
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:33.537793
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:33.545791
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:33.553979
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:33.563541
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:33.571422
+2023-03-07 18:56:46.951824
  intercept_length = 34 	 intercept_gap = 44 
 Lane keeping angle: 2.4657627746697144   speed: 30
 
-2023-03-07 18:53:33.579300
+2023-03-07 18:56:46.959660
  intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.4657627746697144   speed: 30
+Lane keeping angle: 2.0904770224135616   speed: 30
 
-2023-03-07 18:53:33.586526
+2023-03-07 18:56:46.966839
  intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.4657627746697144   speed: 30
+Lane keeping angle: 2.0904770224135616   speed: 30
 
-2023-03-07 18:53:33.597345
+2023-03-07 18:56:46.975521
  intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.4657627746697144   speed: 30
+Lane keeping angle: 2.0904770224135616   speed: 30
 
-2023-03-07 18:53:33.704757
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: -0.3819090060170168   speed: 30
+2023-03-07 18:56:46.981745
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.0904770224135616   speed: 30
 
-2023-03-07 18:53:33.712319
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: -0.3819090060170168   speed: 30
+2023-03-07 18:56:46.988845
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.0904770224135616   speed: 30
 
-2023-03-07 18:53:33.720739
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: -0.3819090060170168   speed: 30
-
-2023-03-07 18:53:33.729717
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: -0.3819090060170168   speed: 30
-
-2023-03-07 18:53:33.736849
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: -0.3819090060170168   speed: 30
-
-2023-03-07 18:53:33.743927
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: -0.3819090060170168   speed: 30
-
-2023-03-07 18:53:33.765884
+2023-03-07 18:56:46.997414
  intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.0904770224135616   speed: 30
+
+2023-03-07 18:56:47.004626
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.0904770224135616   speed: 30
+
+2023-03-07 18:56:47.031344
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.0904770224135616   speed: 30
+
+2023-03-07 18:56:47.039097
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.047809
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.061429
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.069797
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.077336
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.083904
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.091504
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.199029
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:47.205826
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:47.212911
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:47.221251
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:47.231498
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:47.339808
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.349751
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.357386
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.365887
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.373766
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.382327
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.390125
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.402046
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.409847
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.416608
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.426438
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.437693
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.444861
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.454764
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.461602
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.471206
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.478939
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.489157
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.503566
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.511922
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.525635
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.533791
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.541191
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.550855
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.557758
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.568818
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.577457
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.585947
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.695009
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:47.801903
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:47.808789
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:47.823832
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 2.0904770224135616   speed: 30
+
+2023-03-07 18:56:47.831537
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 2.0904770224135616   speed: 30
+
+2023-03-07 18:56:47.839848
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.0904770224135616   speed: 30
+
+2023-03-07 18:56:47.848827
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.0904770224135616   speed: 30
+
+2023-03-07 18:56:47.855807
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.0904770224135616   speed: 30
+
+2023-03-07 18:56:47.866664
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.0904770224135616   speed: 30
+
+2023-03-07 18:56:47.873547
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.0904770224135616   speed: 30
+
+2023-03-07 18:56:47.880891
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.0904770224135616   speed: 30
+
+2023-03-07 18:56:47.896005
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.906666
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.913590
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.927326
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.935097
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.942882
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.958359
+ intercept_length = 34 	 intercept_gap = 42 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.965327
+ intercept_length = 34 	 intercept_gap = 42 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.972399
+ intercept_length = 34 	 intercept_gap = 42 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.979905
+ intercept_length = 34 	 intercept_gap = 42 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.987736
+ intercept_length = 34 	 intercept_gap = 42 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:47.996578
+ intercept_length = 34 	 intercept_gap = 42 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:48.005701
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:48.012629
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:48.021376
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:48.028944
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:48.038129
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:48.045985
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:48.057513
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:48.064720
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:48.074753
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:48.083158
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:48.093982
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:48.101506
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:48.109535
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:48.117489
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:48.126408
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:48.133808
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:48.141116
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:48.147814
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:48.157575
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:48.164777
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:48.171683
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:48.179521
+ intercept_length = 34 	 intercept_gap = 42 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:48.187948
+ intercept_length = 34 	 intercept_gap = 42 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:48.197051
+ intercept_length = 34 	 intercept_gap = 42 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:48.209211
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:48.228046
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:48.236577
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:48.243281
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:48.253641
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:48.262919
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:48.271133
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:48.277745
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:48.284669
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:48.294222
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:48.304150
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:48.311785
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:48.319979
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:48.328232
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:48.334897
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:48.442005
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:48.456518
+ intercept_length = 34 	 intercept_gap = 42 
 Lane keeping angle: 2.6525443680574994   speed: 30
 
-2023-03-07 18:53:33.773700
+2023-03-07 18:56:48.567978
  intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.6525443680574994   speed: 30
+Lane keeping angle: 2.4657627746697144   speed: 30
 
-2023-03-07 18:53:33.881650
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 0.9539490359592704   speed: 30
+2023-03-07 18:56:48.575740
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.4657627746697144   speed: 30
 
-2023-03-07 18:53:33.988880
- intercept_length = 37 	 intercept_gap = 47 
+2023-03-07 18:56:48.583968
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:48.593046
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:48.601701
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:48.609657
+ intercept_length = 34 	 intercept_gap = 41 
 Lane keeping angle: 2.0904770224135616   speed: 30
 
-2023-03-07 18:53:33.996033
- intercept_length = 37 	 intercept_gap = 47 
+2023-03-07 18:56:48.622704
+ intercept_length = 34 	 intercept_gap = 41 
 Lane keeping angle: 2.0904770224135616   speed: 30
 
-2023-03-07 18:53:34.004912
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:34.014582
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:34.025116
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:34.035674
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:34.043360
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:34.050734
+2023-03-07 18:56:48.631236
  intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.4657627746697144   speed: 30
+Lane keeping angle: 2.0904770224135616   speed: 30
 
-2023-03-07 18:53:34.062398
+2023-03-07 18:56:48.741734
  intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.4657627746697144   speed: 30
+Lane keeping angle: 2.2783930105774344   speed: 30
 
-2023-03-07 18:53:34.069148
+2023-03-07 18:56:48.748989
  intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.4657627746697144   speed: 30
+Lane keeping angle: 2.2783930105774344   speed: 30
 
-2023-03-07 18:53:34.075850
+2023-03-07 18:56:48.757292
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:48.765988
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.0904770224135616   speed: 30
+
+2023-03-07 18:56:48.772949
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.0904770224135616   speed: 30
+
+2023-03-07 18:56:48.781133
  intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.4657627746697144   speed: 30
+Lane keeping angle: 2.0904770224135616   speed: 30
 
-2023-03-07 18:53:34.083760
+2023-03-07 18:56:48.787758
  intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.4657627746697144   speed: 30
+Lane keeping angle: 2.0904770224135616   speed: 30
 
-2023-03-07 18:53:34.091838
+2023-03-07 18:56:48.797483
  intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.4657627746697144   speed: 30
+Lane keeping angle: 2.0904770224135616   speed: 30
 
-2023-03-07 18:53:34.099070
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:34.107289
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:34.116019
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:34.125599
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:34.132921
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:34.140146
+2023-03-07 18:56:48.812381
  intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.4657627746697144   speed: 30
+Lane keeping angle: 2.0904770224135616   speed: 30
 
-2023-03-07 18:53:34.147861
+2023-03-07 18:56:48.819609
  intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.4657627746697144   speed: 30
+Lane keeping angle: 2.0904770224135616   speed: 30
 
-2023-03-07 18:53:34.155078
+2023-03-07 18:56:48.827387
  intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.4657627746697144   speed: 30
+Lane keeping angle: 2.0904770224135616   speed: 30
 
-2023-03-07 18:53:34.162004
+2023-03-07 18:56:48.835880
  intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.4657627746697144   speed: 30
+Lane keeping angle: 2.0904770224135616   speed: 30
 
-2023-03-07 18:53:34.169580
+2023-03-07 18:56:48.844679
  intercept_length = 34 	 intercept_gap = 41 
 Lane keeping angle: 2.2783930105774344   speed: 30
 
-2023-03-07 18:53:34.177723
+2023-03-07 18:56:48.858881
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:48.868553
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:48.876474
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:48.882934
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:48.894936
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:48.901693
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:48.910208
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:48.919136
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:48.926744
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:49.035092
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:49.142814
+ intercept_length = 34 	 intercept_gap = 45 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:49.151798
+ intercept_length = 34 	 intercept_gap = 45 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:49.160073
+ intercept_length = 36 	 intercept_gap = 45 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:49.167805
+ intercept_length = 36 	 intercept_gap = 45 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:49.175467
+ intercept_length = 36 	 intercept_gap = 45 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:49.183614
+ intercept_length = 36 	 intercept_gap = 45 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:49.295091
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.0904770224135616   speed: 30
+
+2023-03-07 18:56:49.302220
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.0904770224135616   speed: 30
+
+2023-03-07 18:56:49.311090
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:49.318794
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:49.326468
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:49.333485
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:49.340845
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:49.349141
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:49.361689
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:49.375536
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:49.382523
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:49.391182
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:49.400678
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:49.411987
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:49.421008
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:49.427834
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:49.434703
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:49.441560
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:49.447899
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:49.471232
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:49.479686
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:49.488125
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:49.496541
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:49.504013
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:49.510705
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:49.532582
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:49.539615
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:49.651146
+ intercept_length = 34 	 intercept_gap = 42 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:49.659440
+ intercept_length = 36 	 intercept_gap = 45 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:49.673792
+ intercept_length = 36 	 intercept_gap = 45 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:49.688395
+ intercept_length = 36 	 intercept_gap = 45 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:49.702236
+ intercept_length = 36 	 intercept_gap = 45 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:49.709601
+ intercept_length = 36 	 intercept_gap = 45 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:49.718802
+ intercept_length = 36 	 intercept_gap = 45 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:49.727170
+ intercept_length = 36 	 intercept_gap = 46 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:49.734117
+ intercept_length = 36 	 intercept_gap = 46 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:49.744031
+ intercept_length = 36 	 intercept_gap = 46 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:49.754545
+ intercept_length = 36 	 intercept_gap = 46 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:49.761848
+ intercept_length = 36 	 intercept_gap = 46 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:49.776892
  intercept_length = 36 	 intercept_gap = 48 
 Lane keeping angle: 2.2783930105774344   speed: 30
 
-2023-03-07 18:53:34.185008
- intercept_length = 36 	 intercept_gap = 48 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:34.192341
- intercept_length = 36 	 intercept_gap = 48 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:34.212492
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:34.220371
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:34.229676
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:34.336662
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:34.343626
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:34.356906
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:34.365633
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:34.373846
- intercept_length = 34 	 intercept_gap = 42 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:34.382829
- intercept_length = 34 	 intercept_gap = 42 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:34.396413
- intercept_length = 34 	 intercept_gap = 42 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:34.406826
- intercept_length = 34 	 intercept_gap = 42 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:34.413607
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:34.420723
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:34.427670
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:34.439567
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:34.447222
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:34.455876
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:34.471459
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:34.478806
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:34.490619
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:34.499050
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:34.505766
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:34.512896
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:34.520053
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:34.527010
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:34.537852
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:34.549065
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:34.557728
- intercept_length = 37 	 intercept_gap = 50 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-03-07 18:53:34.759378
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:34.868049
- intercept_length = 34 	 intercept_gap = 42 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:34.875234
- intercept_length = 34 	 intercept_gap = 42 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:34.883014
- intercept_length = 34 	 intercept_gap = 42 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:34.889816
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:34.897190
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:34.904663
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:34.912954
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:34.920900
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:34.927711
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:34.934943
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:34.943195
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:34.949875
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:34.958336
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:34.967112
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:34.975669
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:34.982944
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:34.990272
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:35.000221
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.8386966624076835   speed: 30
-
-2023-03-07 18:53:35.007229
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.8386966624076835   speed: 30
-
-2023-03-07 18:53:35.014651
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.8386966624076835   speed: 30
-
-2023-03-07 18:53:35.023456
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.8386966624076835   speed: 30
-
-2023-03-07 18:53:35.030022
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.8386966624076835   speed: 30
-
-2023-03-07 18:53:35.036654
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.8386966624076835   speed: 30
-
-2023-03-07 18:53:35.049014
+2023-03-07 18:56:49.784118
  intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.8386966624076835   speed: 30
-
-2023-03-07 18:53:35.061797
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.8386966624076835   speed: 30
-
-2023-03-07 18:53:35.068744
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.8386966624076835   speed: 30
-
-2023-03-07 18:53:35.075902
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.8386966624076835   speed: 30
-
-2023-03-07 18:53:35.084165
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.8386966624076835   speed: 30
-
-2023-03-07 18:53:35.091951
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.8386966624076835   speed: 30
-
-2023-03-07 18:53:35.098990
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.8386966624076835   speed: 30
-
-2023-03-07 18:53:35.106936
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.8386966624076835   speed: 30
-
-2023-03-07 18:53:35.115587
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.8386966624076835   speed: 30
-
-2023-03-07 18:53:35.123420
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.8386966624076835   speed: 30
-
-2023-03-07 18:53:35.235751
- intercept_length = 34 	 intercept_gap = 43 
 Lane keeping angle: 2.2783930105774344   speed: 30
 
-2023-03-07 18:53:35.243155
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.4657627746697144   speed: 30
+2023-03-07 18:56:49.792452
+ intercept_length = 36 	 intercept_gap = 45 
+Lane keeping angle: 2.2783930105774344   speed: 30
 
-2023-03-07 18:53:35.256680
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.4657627746697144   speed: 30
+2023-03-07 18:56:49.800631
+ intercept_length = 36 	 intercept_gap = 45 
+Lane keeping angle: 2.2783930105774344   speed: 30
 
-2023-03-07 18:53:35.264326
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.4657627746697144   speed: 30
+2023-03-07 18:56:49.808915
+ intercept_length = 36 	 intercept_gap = 45 
+Lane keeping angle: 2.2783930105774344   speed: 30
 
-2023-03-07 18:53:35.271755
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.4657627746697144   speed: 30
+2023-03-07 18:56:49.816949
+ intercept_length = 36 	 intercept_gap = 45 
+Lane keeping angle: 2.2783930105774344   speed: 30
 
-2023-03-07 18:53:35.278848
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.4657627746697144   speed: 30
+2023-03-07 18:56:49.834909
+ intercept_length = 34 	 intercept_gap = 42 
+Lane keeping angle: 2.2783930105774344   speed: 30
 
-2023-03-07 18:53:35.285625
+2023-03-07 18:56:49.843025
+ intercept_length = 34 	 intercept_gap = 42 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:49.853286
+ intercept_length = 34 	 intercept_gap = 42 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:49.861571
  intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.4657627746697144   speed: 30
+Lane keeping angle: 2.2783930105774344   speed: 30
 
-2023-03-07 18:53:35.294046
+2023-03-07 18:56:49.870896
  intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.4657627746697144   speed: 30
+Lane keeping angle: 2.2783930105774344   speed: 30
 
-2023-03-07 18:53:35.303121
+2023-03-07 18:56:49.880884
  intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.4657627746697144   speed: 30
+Lane keeping angle: 1.7131779412498886   speed: 30
 
-2023-03-07 18:53:35.309912
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.4657627746697144   speed: 30
+2023-03-07 18:56:49.898627
+ intercept_length = 36 	 intercept_gap = 45 
+Lane keeping angle: 1.7131779412498886   speed: 30
 
-2023-03-07 18:53:35.317708
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.4657627746697144   speed: 30
+2023-03-07 18:56:49.906954
+ intercept_length = 36 	 intercept_gap = 45 
+Lane keeping angle: 1.7131779412498886   speed: 30
 
-2023-03-07 18:53:35.329163
+2023-03-07 18:56:49.913722
+ intercept_length = 36 	 intercept_gap = 45 
+Lane keeping angle: 1.7131779412498886   speed: 30
+
+2023-03-07 18:56:49.921936
+ intercept_length = 36 	 intercept_gap = 45 
+Lane keeping angle: 1.7131779412498886   speed: 30
+
+2023-03-07 18:56:49.929875
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 1.7131779412498886   speed: 30
+
+2023-03-07 18:56:49.938065
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 1.7131779412498886   speed: 30
+
+2023-03-07 18:56:49.948603
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 1.7131779412498886   speed: 30
+
+2023-03-07 18:56:49.963352
+ intercept_length = 36 	 intercept_gap = 45 
+Lane keeping angle: 1.9020575237729715   speed: 30
+
+2023-03-07 18:56:49.972095
+ intercept_length = 36 	 intercept_gap = 45 
+Lane keeping angle: 1.9020575237729715   speed: 30
+
+2023-03-07 18:56:50.079588
  intercept_length = 37 	 intercept_gap = 47 
 Lane keeping angle: 1.9020575237729715   speed: 30
 
-2023-03-07 18:53:35.336250
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:35.343482
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:35.353923
+2023-03-07 18:56:50.087834
  intercept_length = 34 	 intercept_gap = 41 
 Lane keeping angle: 1.9020575237729715   speed: 30
 
-2023-03-07 18:53:35.362876
- intercept_length = 37 	 intercept_gap = 47 
+2023-03-07 18:56:50.096491
+ intercept_length = 34 	 intercept_gap = 41 
 Lane keeping angle: 1.9020575237729715   speed: 30
 
-2023-03-07 18:53:35.369829
- intercept_length = 37 	 intercept_gap = 47 
+2023-03-07 18:56:50.104943
+ intercept_length = 34 	 intercept_gap = 41 
 Lane keeping angle: 1.9020575237729715   speed: 30
 
-2023-03-07 18:53:35.376860
+2023-03-07 18:56:50.118634
  intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.9020575237729715   speed: 30
+Lane keeping angle: 2.6525443680574994   speed: 30
 
-2023-03-07 18:53:35.484739
+2023-03-07 18:56:50.127127
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 2.6525443680574994   speed: 30
+
+2023-03-07 18:56:50.136298
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 2.6525443680574994   speed: 30
+
+2023-03-07 18:56:50.143945
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 2.6525443680574994   speed: 30
+
+2023-03-07 18:56:50.165838
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 2.6525443680574994   speed: 30
+
+2023-03-07 18:56:50.174083
  intercept_length = 36 	 intercept_gap = 45 
 Lane keeping angle: 2.6525443680574994   speed: 30
 
-2023-03-07 18:53:35.495153
+2023-03-07 18:56:50.181489
  intercept_length = 36 	 intercept_gap = 45 
 Lane keeping angle: 2.6525443680574994   speed: 30
 
-2023-03-07 18:53:35.502121
+2023-03-07 18:56:50.196077
  intercept_length = 36 	 intercept_gap = 45 
 Lane keeping angle: 2.6525443680574994   speed: 30
 
-2023-03-07 18:53:35.508898
+2023-03-07 18:56:50.204813
  intercept_length = 36 	 intercept_gap = 45 
+Lane keeping angle: 1.9020575237729715   speed: 30
+
+2023-03-07 18:56:50.212698
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 1.9020575237729715   speed: 30
+
+2023-03-07 18:56:50.219513
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 1.9020575237729715   speed: 30
+
+2023-03-07 18:56:50.237435
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 1.9020575237729715   speed: 30
+
+2023-03-07 18:56:50.244566
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 1.9020575237729715   speed: 30
+
+2023-03-07 18:56:50.251613
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 1.9020575237729715   speed: 30
+
+2023-03-07 18:56:50.259517
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 1.9020575237729715   speed: 30
+
+2023-03-07 18:56:50.274796
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 1.9020575237729715   speed: 30
+
+2023-03-07 18:56:50.281859
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:50.298404
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:50.306367
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:50.313786
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:50.320963
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:50.334999
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:50.341961
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:50.349318
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:50.357602
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:50.365410
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:50.376794
+ intercept_length = 36 	 intercept_gap = 45 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:50.386400
+ intercept_length = 36 	 intercept_gap = 45 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:50.397397
+ intercept_length = 36 	 intercept_gap = 45 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:50.406323
+ intercept_length = 36 	 intercept_gap = 45 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:50.415643
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:50.423301
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:50.434999
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:50.543598
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.0904770224135616   speed: 30
+
+2023-03-07 18:56:50.650894
+ intercept_length = 36 	 intercept_gap = 45 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:50.658226
+ intercept_length = 36 	 intercept_gap = 45 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:50.667963
+ intercept_length = 36 	 intercept_gap = 45 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:50.677008
+ intercept_length = 36 	 intercept_gap = 45 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:50.683685
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:50.697219
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:50.704223
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:50.811983
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:50.820682
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:50.827964
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:50.835576
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:50.947811
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:50.957840
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:50.966990
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:50.973747
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:50.986457
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:50.994341
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:51.003800
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:51.021544
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:51.032080
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:51.039980
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:51.047090
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:51.054046
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:51.063262
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:51.077439
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 2.0904770224135616   speed: 30
+
+2023-03-07 18:56:51.090460
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.0904770224135616   speed: 30
+
+2023-03-07 18:56:51.107964
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.0904770224135616   speed: 30
+
+2023-03-07 18:56:51.120991
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.0904770224135616   speed: 30
+
+2023-03-07 18:56:51.128116
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.0904770224135616   speed: 30
+
+2023-03-07 18:56:51.235393
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:51.245511
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:51.253719
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:51.265971
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:51.275490
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:51.290412
+ intercept_length = 34 	 intercept_gap = 44 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:51.399968
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:51.407726
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:51.415282
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:51.422744
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:51.431408
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:51.443576
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:51.466207
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:51.474022
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:51.483916
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:51.501784
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:51.510866
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:51.519127
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:51.631242
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:51.640662
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:51.647492
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:51.654498
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:51.662091
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:51.669473
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:51.676949
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.4657627746697144   speed: 30
+
+2023-03-07 18:56:51.700536
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:51.708083
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:51.716593
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:51.725688
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:51.833526
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 2.0904770224135616   speed: 30
+
+2023-03-07 18:56:51.840669
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 2.0904770224135616   speed: 30
+
+2023-03-07 18:56:51.852449
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 2.0904770224135616   speed: 30
+
+2023-03-07 18:56:51.864870
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:51.872503
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:51.879653
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:51.990129
+ intercept_length = 34 	 intercept_gap = 41 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:52.103786
+ intercept_length = 37 	 intercept_gap = 47 
+Lane keeping angle: 2.2783930105774344   speed: 30
+
+2023-03-07 18:56:52.112514
+ intercept_length = 37 	 intercept_gap = 47 
 Lane keeping angle: 2.6525443680574994   speed: 30
 
-2023-03-07 18:53:35.516426
- intercept_length = 36 	 intercept_gap = 45 
+2023-03-07 18:56:52.122819
+ intercept_length = 37 	 intercept_gap = 47 
 Lane keeping angle: 2.6525443680574994   speed: 30
-
-2023-03-07 18:53:35.539880
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.6525443680574994   speed: 30
-
-2023-03-07 18:53:35.546983
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.6525443680574994   speed: 30
-
-2023-03-07 18:53:35.555008
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.6525443680574994   speed: 30
-
-2023-03-07 18:53:35.563412
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:35.569959
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:35.576901
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:35.584929
- intercept_length = 37 	 intercept_gap = 50 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:35.592048
- intercept_length = 37 	 intercept_gap = 50 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:35.600657
- intercept_length = 37 	 intercept_gap = 50 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:35.607728
- intercept_length = 37 	 intercept_gap = 50 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:35.614949
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:35.621813
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:35.642067
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:35.649628
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:35.666618
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:35.674883
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:35.684018
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:35.694539
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:35.703379
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:35.714540
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:35.724166
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:35.733721
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:35.743346
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:35.750078
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:35.758886
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:35.766626
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:35.773786
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:35.880775
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:35.887801
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:35.899063
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:35.906992
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:35.916786
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:35.923950
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:35.942074
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:35.949763
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:35.958422
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:35.967591
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:35.974980
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:35.981757
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:35.990427
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:35.998576
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:36.005723
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:36.113098
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:36.122620
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:36.129926
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:36.137384
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:36.145696
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:36.157989
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:36.167868
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:36.177890
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:36.185771
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:36.195027
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:36.203704
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:36.222506
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:36.230139
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:36.237993
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:36.244795
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:36.251825
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:36.258848
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:36.266696
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:36.273821
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:36.280573
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:36.288699
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:36.295779
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:36.310169
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:36.317011
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:36.329278
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:36.335730
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:36.343283
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:36.354820
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:36.361911
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:36.370942
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:36.383046
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:36.399041
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:36.407574
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:36.413881
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:36.425515
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:36.432481
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:36.439310
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:36.446440
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:36.453788
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:36.560790
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:36.670073
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:36.680972
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:36.697096
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:36.704845
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:36.713558
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:36.722492
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:36.739659
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:36.748354
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:36.759004
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:36.767506
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:36.775130
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:36.789825
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:36.898200
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:36.905701
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:37.012813
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.019943
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.027578
- intercept_length = 34 	 intercept_gap = 42 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.038245
- intercept_length = 34 	 intercept_gap = 42 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.044796
- intercept_length = 34 	 intercept_gap = 42 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.056628
- intercept_length = 34 	 intercept_gap = 42 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:37.064825
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:37.073708
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:37.088528
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:37.098099
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:37.105862
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:37.114947
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:37.123240
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:37.131243
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:37.143245
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:37.151718
- intercept_length = 34 	 intercept_gap = 45 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:37.159091
- intercept_length = 34 	 intercept_gap = 45 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:37.165802
- intercept_length = 34 	 intercept_gap = 45 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:37.276450
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.285786
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.299214
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.307133
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.313800
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.320674
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.329009
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.341933
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.352123
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.360299
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.369393
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.378837
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.386872
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.398538
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.407483
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.415419
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.422726
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.429880
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.439084
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.447503
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.455526
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.463253
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.472301
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.479711
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.490526
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.499464
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.506964
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.513974
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.521780
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.528819
- intercept_length = 34 	 intercept_gap = 45 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:37.637767
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:37.647163
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:37.657163
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:37.770575
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:37.778753
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:37.785663
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:37.795014
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:37.802137
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:37.909907
- intercept_length = 37 	 intercept_gap = 50 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:37.916726
- intercept_length = 37 	 intercept_gap = 50 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.923865
- intercept_length = 37 	 intercept_gap = 50 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.932026
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.939509
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.947482
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.959965
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.967809
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.975133
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.981884
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.991979
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:37.998812
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:38.006229
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:38.014567
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:38.025801
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:38.033992
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:38.047828
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:38.056219
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:38.066061
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:38.082932
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:38.089827
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:38.104404
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:38.115283
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:38.121838
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:38.135252
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:38.143372
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:38.150514
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:38.167671
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:38.175012
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:38.181909
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:38.193861
- intercept_length = 34 	 intercept_gap = 45 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:38.200778
- intercept_length = 34 	 intercept_gap = 45 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:38.207747
- intercept_length = 34 	 intercept_gap = 45 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:38.215009
- intercept_length = 34 	 intercept_gap = 45 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:38.222120
- intercept_length = 34 	 intercept_gap = 45 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:38.231679
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:38.249209
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:38.257872
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:38.264915
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:38.372853
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:38.379754
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:38.387660
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:38.396331
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:38.409065
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:38.415788
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:38.423401
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:38.431417
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:38.438838
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:38.445784
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:38.455099
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:38.462684
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:38.472114
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:38.479116
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:38.485752
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:38.593233
- intercept_length = 37 	 intercept_gap = 50 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:38.701102
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:38.708675
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:38.715726
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:38.724193
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:38.835017
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:38.843005
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:38.849819
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:38.861815
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:38.869122
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:38.877260
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:38.984759
- intercept_length = 37 	 intercept_gap = 50 
-Lane keeping angle: 3.2089532207334313   speed: 30
-
-2023-03-07 18:53:38.991645
- intercept_length = 37 	 intercept_gap = 50 
-Lane keeping angle: 3.2089532207334313   speed: 30
-
-2023-03-07 18:53:39.000053
- intercept_length = 37 	 intercept_gap = 50 
-Lane keeping angle: 3.2089532207334313   speed: 30
-
-2023-03-07 18:53:39.007713
- intercept_length = 37 	 intercept_gap = 50 
-Lane keeping angle: 3.2089532207334313   speed: 30
-
-2023-03-07 18:53:39.022338
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:39.028983
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:39.036842
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:39.047804
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:39.059749
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:39.076896
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:39.085937
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:39.095660
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:39.105438
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:39.113948
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:39.124637
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:39.135275
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:39.144168
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:39.152011
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:39.159745
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:39.168053
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:39.175922
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:39.182963
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:39.195285
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:39.207316
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:39.319812
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:39.327684
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:39.335826
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:39.343029
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:39.449919
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:39.463049
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:39.471544
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:39.480797
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:39.487568
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:39.497189
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:39.503845
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:39.511065
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:39.517839
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:39.533655
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:39.542260
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:39.549800
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:39.563871
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:39.572900
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:39.582600
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-03-07 18:53:39.784072
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:39.791604
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:39.799289
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:39.806754
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:39.815583
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:39.835272
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:39.843575
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:39.853237
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:39.861999
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:39.968818
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:39.979034
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:39.987031
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:39.993917
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:40.004086
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:40.012599
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:40.019131
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:40.029588
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:40.039981
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:40.047118
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.7131779412498886   speed: 30
-
-2023-03-07 18:53:40.058607
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:40.067209
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:40.077588
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:40.084800
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:40.093691
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:40.200917
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 3.0241793962626957   speed: 30
-
-2023-03-07 18:53:40.208796
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:40.215978
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:40.224496
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:40.235722
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:40.243805
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:40.250861
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:40.259301
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:40.267930
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:40.276909
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:40.285599
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:40.295068
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:40.403085
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:40.515520
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:40.524754
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:40.634767
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 3.0241793962626957   speed: 30
-
-2023-03-07 18:53:40.642665
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 3.0241793962626957   speed: 30
-
-2023-03-07 18:53:40.750893
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:40.759851
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:40.768645
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:40.779131
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:40.791193
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:40.800108
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:40.810347
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:40.818393
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:40.927346
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:40.933968
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:40.941902
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:40.948976
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:40.955802
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:40.967957
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:40.976550
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:41.085807
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:41.094781
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:41.104598
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:41.115536
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:41.123023
- intercept_length = 35 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:41.136750
- intercept_length = 35 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:41.143633
- intercept_length = 35 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:41.150743
- intercept_length = 35 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:41.161055
- intercept_length = 35 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:41.169267
- intercept_length = 35 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:41.176935
- intercept_length = 34 	 intercept_gap = 42 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:41.285340
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:41.299401
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:41.306902
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:41.315715
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:41.332244
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:41.339571
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:41.347570
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:41.364975
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:41.373024
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:41.381398
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:41.390672
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:41.407351
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:41.414020
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:41.429429
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:41.436120
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:41.443013
- intercept_length = 34 	 intercept_gap = 43 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:41.551097
- intercept_length = 34 	 intercept_gap = 44 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:41.558947
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:41.566947
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:41.573886
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:41.581774
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:41.593957
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:41.600815
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:41.611052
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:41.623225
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:41.632197
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:41.643469
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:41.650756
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:41.661920
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:41.769674
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:41.777711
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:41.784657
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:41.791699
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:41.802682
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:41.810906
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:41.817596
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:41.824828
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:41.846865
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:41.855067
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:41.864932
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:41.876065
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:41.884678
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:41.892985
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:41.900367
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:42.009525
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:42.016407
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:42.023583
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:42.031183
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:42.040442
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:42.049108
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:42.056720
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:42.065160
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:42.073361
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:42.082465
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:42.089794
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:42.101910
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:42.209194
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:42.216790
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:42.224116
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:42.235085
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:42.243766
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:42.251030
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:42.259692
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:42.271705
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:42.279063
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:42.285972
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:42.300068
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:42.308264
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:42.314861
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:42.321728
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:42.332651
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:42.339907
- intercept_length = 34 	 intercept_gap = 42 
-Lane keeping angle: 1.9020575237729715   speed: 30
-
-2023-03-07 18:53:42.347440
- intercept_length = 34 	 intercept_gap = 42 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:42.357915
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:42.365481
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:42.373218
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:42.381572
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:42.388988
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:42.497833
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:42.506995
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:42.518806
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-2023-03-07 18:53:42.526421
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.4657627746697144   speed: 30
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-03-07 18:53:42.728073
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:42.735446
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:42.742770
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:42.753977
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:42.762240
- intercept_length = 34 	 intercept_gap = 45 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:42.769927
- intercept_length = 34 	 intercept_gap = 45 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:42.777264
- intercept_length = 34 	 intercept_gap = 45 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:42.790535
- intercept_length = 34 	 intercept_gap = 45 
-Lane keeping angle: 2.2783930105774344   speed: 30
-
-2023-03-07 18:53:42.900409
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:42.908070
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:42.915380
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:42.923237
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:42.931029
- intercept_length = 36 	 intercept_gap = 45 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:42.939820
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:42.946985
- intercept_length = 34 	 intercept_gap = 41 
-Lane keeping angle: 2.0904770224135616   speed: 30
-
-2023-03-07 18:53:42.957751
- intercept_length = 37 	 intercept_gap = 47 
-Lane keeping angle: 2.0904770224135616   speed: 30
