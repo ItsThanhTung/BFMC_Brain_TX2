@@ -161,7 +161,7 @@ class BYTETracker(object):
 
         self.frame_id = 0
         #self.det_thresh = args.track_thresh
-        self.det_thresh = 0.7
+        self.det_thresh = 0.8
         self.buffer_size = int(30)
         self.max_time_lost = self.buffer_size
         self.kalman_filter = KalmanFilter()
@@ -185,9 +185,9 @@ class BYTETracker(object):
             classes = np.array(output_results[2])
             
 
-            remain_inds = scores > 0.6
+            remain_inds = scores > 0.3
             inds_low = scores > 0.1
-            inds_high = scores < 0.6
+            inds_high = scores < 0.3
 
             inds_second = np.logical_and(inds_low, inds_high)
             dets_second = bboxes[inds_second]
@@ -221,7 +221,7 @@ class BYTETracker(object):
         STrack.multi_predict(strack_pool)
         dists = iou_distance(strack_pool, detections)
 
-        matches, u_track, u_detection = linear_assignment(dists, thresh=0.8)
+        matches, u_track, u_detection = linear_assignment(dists, thresh=0.5)
 
         for itracked, idet in matches:
             track = strack_pool[itracked]
@@ -243,7 +243,7 @@ class BYTETracker(object):
             detections_second = []
         r_tracked_stracks = [strack_pool[i] for i in u_track if strack_pool[i].state == TrackState.Tracked]
         dists = iou_distance(r_tracked_stracks, detections_second)
-        matches, u_track, u_detection_second = linear_assignment(dists, thresh=0.5)
+        matches, u_track, u_detection_second = linear_assignment(dists, thresh=0.95)
         for itracked, idet in matches:
             track = r_tracked_stracks[itracked]
             det = detections_second[idet]
@@ -264,7 +264,7 @@ class BYTETracker(object):
         detections = [detections[i] for i in u_detection]
         dists = iou_distance(unconfirmed, detections)
      
-        matches, u_unconfirmed, u_detection = linear_assignment(dists, thresh=0.7)
+        matches, u_unconfirmed, u_detection = linear_assignment(dists, thresh=0.9)
         for itracked, idet in matches:
             unconfirmed[itracked].update(detections[idet], self.frame_id)
             activated_starcks.append(unconfirmed[itracked])

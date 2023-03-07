@@ -10,7 +10,6 @@ from src.image_processing.traffic_sign.yolov5_utils.utils.general import non_max
 # from src.image_processing.traffic_sign.yolov5_utils.utils.plots import Annotator, colors
 
 from multiprocessing import Condition
-from src.perception.tracker.byte_tracker import BYTETracker
 
 class Yolo(object):
     def __init__(self, streamP, outP, debugP, debug, is_tensorRt, source='',\
@@ -43,7 +42,6 @@ class Yolo(object):
         self.debug = debug
         self.debugP = debugP
         
-        self.tracker = BYTETracker()
         
     def detect(self,img0):
         # img0=self.image_loader()
@@ -73,8 +71,7 @@ class Yolo(object):
                     confs.append(float(conf))
                     clss.append(self.names[c])
 
-            
-        results = self.tracker.update([boxes, confs, clss])
+        results = [boxes, confs, clss]
         return img_resized, results
     
     def read_image(self):
