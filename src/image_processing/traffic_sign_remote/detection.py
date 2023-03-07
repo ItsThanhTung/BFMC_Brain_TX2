@@ -78,16 +78,19 @@ class Yolo(object):
         online_tlwhs = []
         online_ids = []
         online_scores = []
+        online_centers = []
         for t in results:
             tlwh = t.tlwh
+            center = t.center
             tid = t.track_id
 
+            online_centers.append(center)
             online_tlwhs.append(tlwh)
             online_ids.append(tid)
             online_scores.append(t.score)
               
 
-        img_resized = plot_tracking(img_resized, online_tlwhs, online_ids, frame_id=1, fps=20)
+        img_resized = plot_tracking(img_resized, online_tlwhs, online_centers, online_ids, frame_id=1, fps=20)
             
         
         return img_resized, results
