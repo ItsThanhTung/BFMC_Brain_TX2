@@ -34,8 +34,8 @@ class PedestrianHandler(GeneralHandler):
         center = object_info[0]
         
         left_point, right_point = lane_data["left_point"][0] * 2, lane_data["right_point"][0] * 2
-        left_bound = left_point - 20 
-        right_bound = right_point + 20
+        left_bound = left_point + 20 
+        right_bound = right_point - 20
     
         
         if center[1] < 200:
