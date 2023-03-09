@@ -31,51 +31,31 @@ class InterceptionHandler:
 
     def turn_right(self):
         imu_angle = self.imu_handler.get_yaw()   
-               
-        while imu_angle < 75:
+        self.send_speed(30)
+
+        while imu_angle < 75:   
+            print("imu ", imu_angle)    
             if imu_angle < 5:
-                status, mess_speed = self.car_handler.setSpeed(30)
-                status, mess_angle = self.car_handler.setAngle(10)
-                    
-            elif imu_angle < 7:
-                status, mess_speed = self.car_handler.setSpeed(30)
-                status, mess_angle = self.car_handler.setAngle(14)
-               
-            
-            elif imu_angle < 9:
-                status, mess_speed = self.car_handler.setSpeed(30)
-                status, mess_angle = self.car_handler.setAngle(15)
+                angle = 15
+                self.send_angle(angle)
 
-            
-            elif imu_angle < 10:
-                status, mess_speed = self.car_handler.setSpeed(30)
-                status, mess_angle = self.car_handler.setAngle(17)
-
-            
             elif imu_angle < 15:
-                status, mess_speed = self.car_handler.setSpeed(30)
-                status, mess_angle = self.car_handler.setAngle(19)
-
-            
-            elif imu_angle < 20:
-                status, mess_speed = self.car_handler.setSpeed(30)
-                status, mess_angle = self.car_handler.setAngle(19)
-
+                angle = 20
+                self.send_angle(angle)
             
             elif imu_angle < 25:
-                status, mess_speed = self.car_handler.setSpeed(30)
-                status, mess_angle = self.car_handler.setAngle(20)
-
+                angle = 22
+                self.send_angle(angle)
+   
+            else:
+                angle = 23
+                self.send_angle(angle)
+                
+            self.log_handler(imu_angle, angle)
             
+            time.sleep(0.1)
             
-            elif imu_angle < 30:
-                status, mess_speed = self.car_handler.setSpeed(30)
-                status, mess_angle = self.car_handler.setAngle(22)
-
-            
-            elif imu_angle < 75:
-                status, mess_speed = self.car_handler.setSpeed(30)
-                status, mess_angle = self.car_handler.setAngle(23)
+            imu_angle = self.imu_handler.get_yaw()  
 
                             
     def send_speed(self, speed):
@@ -105,24 +85,24 @@ class InterceptionHandler:
                 self.send_angle(-5)
 
             elif imu_angle > -15:
-                angle = -10
-                self.send_angle(-11)
+                angle = -11
+                self.send_angle(angle)
             
             elif imu_angle > -20:
-                angle = -16
-                self.send_angle(-12)
+                angle = -12
+                self.send_angle(angle)
    
             elif imu_angle > -25:
-                angle = -17
-                self.send_angle(-13)
+                angle = -13
+                self.send_angle(angle)
 
             elif imu_angle > -55:
-                angle = -18
-                self.send_angle(-15)
+                angle = -15
+                self.send_angle(angle)
      
             else:
                 angle = -23
-                self.send_angle(-23)
+                self.send_angle(angle)
                 
             self.log_handler(imu_angle, angle)
             

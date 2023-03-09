@@ -52,7 +52,7 @@ class SerialHandlerProcess(WorkerProcess):
         super(SerialHandlerProcess,self).__init__(inPs, outPs)
 
         # devFile = 'COM3'
-        devFile = '/dev/ttyACM0'
+        devFile = '/dev/ttyACM2'
         logFile = 'historyFile.txt'
         
         # self.readTh = None

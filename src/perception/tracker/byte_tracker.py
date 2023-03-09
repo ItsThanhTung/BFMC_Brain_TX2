@@ -10,6 +10,10 @@ from src.perception.tracker.kalman_filter import KalmanFilter
 from src.perception.tracker.matching import *
 from src.perception.tracker.basetrack import BaseTrack, TrackState
 
+
+def most(List):
+    return max(set(List), key = List.count)
+
 class STrack(BaseTrack):
     shared_kalman = KalmanFilter()
     def __init__(self, tlwh, score, cls):
@@ -23,7 +27,9 @@ class STrack(BaseTrack):
 
         self.score = score
         self.tracklet_len = 0
-        self.cls = cls
+        self.cls=cls
+        self.cls_arr = [cls]
+        self.clss_max= cls
         
     def predict(self):
         mean_state = self.mean.copy()
@@ -88,6 +94,17 @@ class STrack(BaseTrack):
         self.is_activated = True
 
         self.score = new_track.score
+        
+        self.cls_arr.append(new_track.cls)
+        if len(self.cls_arr)>10:
+            self.clss_max=most(self.cls_arr)
+        else:
+            self.clss_max=most(self.cls_arr)
+        
+        
+            
+            
+        
 
     @property
     # @jit(nopython=True)
@@ -150,7 +167,7 @@ class STrack(BaseTrack):
         return ret
 
     def __repr__(self):
-        return 'OT_{}_({})_is_handle_{}__location__{}'.format(self.track_id, self.cls, self.is_handle, self.center)
+        return 'OT_{}_({})_is_handle_{}__location__{}'.format(self.track_id, self.clss_max, self.is_handle, self.center)
 
 
 class BYTETracker(object):

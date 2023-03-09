@@ -22,7 +22,8 @@ class IMUHandler:
         self.euler = None
               
     def set_yaw(self):
-        self.yaw0 = self.sensor.euler[0]
+        x = self.sensor.euler[0]
+        self.yaw0=x if x <= 180 else x -360
         
     def print_euler(self):
         # print(self.sensor.euler)
@@ -30,5 +31,6 @@ class IMUHandler:
         return [self.sensor.euler]
     
     def get_yaw(self):
-        delta_yaw = self.sensor.euler[0] - self.yaw0
+        imu_yaw = self.sensor.euler[0]
+        delta_yaw = imu_yaw - self.yaw0
         return delta_yaw if delta_yaw <= 180 else delta_yaw -360

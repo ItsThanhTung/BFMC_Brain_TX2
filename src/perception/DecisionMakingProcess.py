@@ -39,6 +39,7 @@ class DecisionMakingProcess(WorkerProcess):
         self.opt = opt
         self.speed_lane_keeping = 0 
         self.angle_lane_keeping = 0 
+        self.lane_data = None
 
         self.intercept_length = 0
         self.intercept_gap = float("inf")
@@ -101,9 +102,11 @@ class DecisionMakingProcess(WorkerProcess):
                 data = self.inPs["LANE_KEEPING"].recv()
                 speed = data["speed"]
                 angle = data["angle"]
+                lane_data = data["lane_data"]
                 self.data_lane_keeping_lock.acquire()
                 self.speed_lane_keeping = speed
                 self.angle_lane_keeping = angle
+                self.lane_data = lane_data
                 self.data_lane_keeping_lock.release()
 
             except Exception as e:
@@ -140,8 +143,9 @@ class DecisionMakingProcess(WorkerProcess):
         self.data_lane_keeping_lock.acquire()
         speed_lane_keeping = self.speed_lane_keeping
         angle_lane_keeping = self.angle_lane_keeping
+        lane_data = self.lane_data
         self.data_lane_keeping_lock.release()
-        return speed_lane_keeping, angle_lane_keeping
+        return speed_lane_keeping, angle_lane_keeping, lane_data
     
     def read_intercept_detection_data(self):
         self.data_intercept_detection_lock.acquire()
@@ -176,12 +180,13 @@ class DecisionMakingProcess(WorkerProcess):
                 current_time = time.time()
                 current_time = datetime.fromtimestamp(current_time)
                 self.historyFile.write("\n" + str(current_time))
-                speed_lane_keeping, angle_lane_keeping = self.read_lane_keeping_data()
+                speed_lane_keeping, angle_lane_keeping, lane_data = self.read_lane_keeping_data()
                 intercept_length, intercept_gap = self.read_intercept_detection_data()
                 object_result = self.read_object_detection_data()
 
                 
-                trafficSignHanlder.detect(object_result)
+                if trafficSignHanlder.detect(object_result, lane_data):
+                    continue
 
                 if self.decision_maker.is_intercept(intercept_length, intercept_gap) and not self.is_stop:
                     direction = self.decision_maker.get_intercept_direction()

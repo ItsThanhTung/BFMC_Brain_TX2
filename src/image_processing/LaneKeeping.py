@@ -274,6 +274,16 @@ class LaneKeeping:
         
             return speed, angle, state, debug_data
 
-        return speed, angle, state, None
+        lane_data = { "image_size" : [int(h), int(w)],
+                        "left_points" : left_points,
+                        "right_points" : right_points,
+                        "left_point" : [left_point_x, left_point_y],
+                        "right_point" : [right_point_x, right_point_y]}
+        
+        
+        return speed, angle, state, lane_data
+        
+        
+
 
 

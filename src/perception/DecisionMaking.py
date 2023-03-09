@@ -37,6 +37,6 @@ class DecisionMaking:
         return "\n intercept_length = {} \t intercept_gap = {} \n".format(intercept_length, intercept_gap)
     
     def get_intercept_direction(self):
-        return 'left'
+        return 'right'
 
     

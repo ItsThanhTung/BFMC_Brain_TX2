@@ -102,7 +102,8 @@ class LaneKeepingProcess(WorkerProcess):
 
                 if not self.is_remote:
                     outP.send({"speed" : speed,
-                            "angle" : angle})
+                            "angle" : angle,
+                            "lane_data" : debug_data,})
 
                 if self.debug: 
                     self.debugP.send(debug_data)
