@@ -21,9 +21,8 @@ class TrafficSignHandler:
         self.handler_dict = {"stop" : StopSignHandler(car_handler, self.logger), "pedestrian" : PedestrianHandler(car_handler, self.logger)}
         self.tracker = BYTETracker()
     
-    def detect(self, results):
+    def detect(self, object_result):
         
-        object_result = self.tracker.update(results)
         print(object_result)
         if object_result is None:
             return 

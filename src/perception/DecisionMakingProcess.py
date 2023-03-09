@@ -7,7 +7,7 @@ from src.hardware.IMU.imuHandler import IMUHandler
 from src.perception.CarHandlerThread import CarHandlerThread
 from src.perception.traffic_sign.TrafficSignHandler import TrafficSignHandler
 from src.perception.DecisionMaking import DecisionMaking
-
+from src.perception.tracker.byte_tracker import BYTETracker
 
 from datetime import datetime
 import time
@@ -60,6 +60,8 @@ class DecisionMakingProcess(WorkerProcess):
         self.is_stop = is_stop
         
         self.decision_maker = DecisionMaking(self.historyFile)
+        
+        self.tracker = BYTETracker()
 
     # ===================================== RUN ==========================================
     def run(self):
@@ -112,8 +114,9 @@ class DecisionMakingProcess(WorkerProcess):
         while True:
             try:
                 results = self.inPs["OBJECT_DETECTION"].recv()["results"]
+                object_result = self.tracker.update(results)
                 self.data_object_detection_lock.acquire()
-                self.object_result = results
+                self.object_result = object_result
                 self.data_object_detection_lock.release()
 
             except Exception as e:

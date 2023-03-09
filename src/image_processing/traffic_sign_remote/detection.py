@@ -123,7 +123,7 @@ class Yolo(object):
 
                 visualized_image, results = self.detect(image)
                 
-                print(results)
+                # print(results)
                    
                 self.outP.send({"image": visualized_image})
                     
