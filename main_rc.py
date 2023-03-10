@@ -183,15 +183,16 @@ if __name__ == '__main__':
 
     # =============================== Perception Layer ===================================================
 
-    shInps = {
+    shInps = {                      #Inps for ack command
         "SETSPEED": shSetSpdR,
         "STEER": shSteerR,
         "ENPID": shEnPIDR,
         "GETSPEED": shGetSpdR,
         "DIST": shDistR
     }
+    dmInps = {"LANE_KEEPING" : laneKeepingDecisionR, "INTERCEPT_DETECTION" : interceptDecisionR, "OBJECT_DETECTION" : objectDecisionR, "TRAVELLED": TravelledS }
     if not is_remote:
-        decisionMakingProcess = DecisionMakingProcess({"LANE_KEEPING" : laneKeepingDecisionR, "INTERCEPT_DETECTION" : interceptDecisionR, "OBJECT_DETECTION" : objectDecisionR}, \
+        decisionMakingProcess = DecisionMakingProcess(dmInps, \
                                                         {"SERIAL" : rcShS}, shInps, opt, is_stop=is_stop)
         allProcesses.append(decisionMakingProcess)
         

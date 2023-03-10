@@ -16,9 +16,9 @@ class Yolo(object):
                         imgsize= (480,640), device='0',conf_thres=0.1, iou_thres=0.45,max_det=1000): 
         
         if is_tensorRt: 
-            weights='best2.engine'
+            weights='ver3.engine'
         else: 
-            weights='best2.pt'
+            weights='ver3.pt'
             
         self.img_size = imgsize
         self.device = select_device(device)

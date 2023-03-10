@@ -23,6 +23,8 @@ class InterceptionHandler:
         if direction == 'right':
             self.turn_right()
         
+        elif direction =='straight':
+            self.go_straight()
         else:
             self.turn_left()
             
@@ -56,7 +58,12 @@ class InterceptionHandler:
             time.sleep(0.1)
             
             imu_angle = self.imu_handler.get_yaw()  
-
+    def go_straight(self):
+        self.send_angle(0)
+        self.send_speed(30)
+        print("Start sleep")
+        time.sleep(5)
+        print('out straight')
                             
     def send_speed(self, speed):
         # print("set speed: ", speed)

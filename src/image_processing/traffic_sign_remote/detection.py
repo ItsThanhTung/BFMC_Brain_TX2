@@ -17,14 +17,14 @@ class Yolo(object):
                         imgsize= (480,640), device='0',conf_thres=0.1, iou_thres=0.45,max_det=1000): 
         
         if is_tensorRt: 
-            weights='sign2.engine'
+            weights='ver3.engine'
         else: 
-            weights='best2.pt'
+            weights='ver3.pt'
             
         self.img_size = imgsize
         self.device = select_device(device)
         self.model = DetectMultiBackend(weights, device=self.device, dnn=False, data='./src/image_processing/traffic_sign/yolov5_utils/data/coco128.yaml')
-        self.names=['car', 'crosswalk', 'highway_entry', 'highway_exit', 'no_entry', 'onewayroad', 'parking', 'pedestrian', 'priority', 'roadblock', 'roundabout', 'stop', 'trafficlight']
+        self.names=['car', 'crosswalk', 'highway_entry', 'highway_exit', 'no_entry', 'parking', 'pedestrian', 'priority', 'roundabout', 'stop', 'red','yellow','green']
         self.conf_thres=conf_thres
         self.iou_thres=iou_thres
         self.max_det=max_det

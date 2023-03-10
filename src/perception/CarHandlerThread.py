@@ -1,5 +1,6 @@
 from src.templates.threadwithstop import ThreadWithStop
 from multiprocessing.connection import wait
+from threading import Lock
 class CarHandlerThread(ThreadWithStop):
     def __init__(self, shInPs, shOutP, enablePID = True, AckTimeout = 0.05, sendAttempTimes:int = 2):
         """
@@ -29,36 +30,45 @@ class CarHandlerThread(ThreadWithStop):
         self.__shOutP = shOutP
         self.__shInPs = shInPs
         self.__AckTimeout = AckTimeout
-        self.__RunnedDistance = 0
+        self.__DistanceMess = 0
+        self.__DistanceStatus = 0
+        self.__DistanceLock = Lock()
         self.__CurrentState = 0
         if sendAttempTimes < 0:
             self.__sendAttemp = 1
         else:
             self.__sendAttemp = sendAttempTimes
         
-
+        
         self.enablePID(enablePID)
 
         self.enListenVLX(False)
         self.enListenSpeed(False)
         self.enListenTravelled(False)
         
-         
-
 
     
     def run(self):
         readers=[]
         readers.append(self.__shInPs["DIST"])
-        readers.append(self.__shInPs["GETSPEED"])
         while(self._running):
             for inP in wait(readers):
                 try:
                     mess = inP.recv()
+                    if mess['action'] =='7':
+                        # print("Car Handler Mess", mess)
+                        self._distanceProcess(mess['data'])
                 except:
                     print("Pipe Error ", inP)
 
-    
+    def _distanceProcess(self, Data):
+        self.__DistanceLock.acquire()
+        try:
+            self.__DistanceStatus, self.__DistanceMess = Data.split(";", 2)[:2]
+        except:
+            print("Split Error")
+        self.__DistanceLock.release()
+        
     def enablePID(self, Enable = True):
         data = {
         "action": '4',
@@ -137,29 +147,29 @@ class CarHandlerThread(ThreadWithStop):
                     return 0, "OK"
         return Status, Mess["data"]
 
-    def moveDistance(self, distance, speed):
+    def moveDistance(self, distance, speed, send_attempt = None):
+        if send_attempt is None:
+            send_attempt = self.__sendAttemp 
         data = {
         "action": '7',
-        "distance": distance,
-        "speed": speed
+        "distance": float(distance/100),
+        "speed": float(speed/100)
         }
         Status = 0
         Mess = {
             "data":"OK"
         }
-        for i in range(self.__sendAttemp):
-            self._shSend(self.__shOutP, data)
-            if self.__AckTimeout < 0:
-                return 0, "OK"
+        # print("sh Pipe ", self.__shOutP)
+        self._shSend(self.__shOutP, data)
+        return 0, "OK"
 
-            Status, Mess = self._shRecv(self.__shInPs["STEER"])
-            if Status == 0:
-                if Mess["data"] == "ack;;":
-                    return 0, "OK"
-        return Status, Mess["data"]
+            
 
     def getDistanceStatus(self):
-        return self.__RunnedDistance
+        self.__DistanceLock.acquire()
+        Status, mess = int(self.__DistanceStatus), self.__DistanceMess
+        self.__DistanceLock.release()
+        return Status, mess
 
     def getSpeed(self):
         return self.__CurrentSpeed

@@ -35,7 +35,7 @@ class TrafficSignHandler:
                 continue
 
             cls = object.clss_max
-            print(cls)
+            print("cls", cls)
             
             if cls in self.handler_dict:
             
@@ -43,7 +43,7 @@ class TrafficSignHandler:
                 dist = mapping_distance(center)
                 
                 object_info = [center, dist, object, lane_data]  # still missing
-                
+                print('in sign handler')
                 if self.handler_dict[cls].is_handle(object_info):
                     is_done = self.handler_dict[cls].handler()
                     object.is_handle = is_done

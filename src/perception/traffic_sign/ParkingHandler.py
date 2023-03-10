@@ -7,23 +7,51 @@ class ParkingHandler(GeneralHandler):
         
         self.name = "PARKING"
         self.time_stop = 10
-        
-        
+        self.obj_info=None
     def handler(self):
         self.start_handler_log()
-        status, mess_speed = self.car_handler.setSpeed(0, send_attempt= 100)
+        # status, mess_speed = self.car_handler.setSpeed(0, send_attempt= 100)
+        print('start parking')
+        self.car_handler.setSpeed(20)
+        time.sleep(3.5)
+        self.car_handler.setSpeed(0)
+        time.sleep(0.5)
+        self.car_handler.setAngle(23,send_attempt=100)
+        self.car_handler.setSpeed(-50)
+        time.sleep(3.8)
+        self.car_handler.setSpeed(0)
+        time.sleep(0.5)
+        self.car_handler.setAngle(-25)
+        self.car_handler.setAngle(-23,send_attempt=100)
+        self.car_handler.setSpeed(-50)
+        time.sleep(1)
+        self.car_handler.setSpeed(0)
+        time.sleep(10)
+        exit()
+        
+        # DistStatus, DistMess = self.car_handler.getDistanceStatus()
+        # while DistStatus != 1:
+        #     time.sleep(0.1)
+        #     DistStatus, DistMess = self.car_handler.getDistanceStatus()      
+            # print("Status {} Mess  {}".format(DistStatus, DistMess))
+            
         
         time.sleep(self.time_stop)
+        #     DistStatus, DistMess = self.car_handler.getDistanceStatus()
+        #     print("Status {} Mess  {}".format(DistStatus, DistMess))
         if status < 0:
             self.speed_log(status, mess_speed)
             
         self.end_handler_log()
-        return True
+        return Falset
     
     
     def is_handle(self, object_info):
         dist = object_info[1]
-        if dist > 200:
+        self.obj_info=object_info
+        print(dist)
+        if dist > 180:
+            print('done parking')
             return True
 
         return False
