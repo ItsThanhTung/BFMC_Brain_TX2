@@ -8,25 +8,43 @@ class ParkingHandler(GeneralHandler):
         self.name = "PARKING"
         self.time_stop = 10
         self.obj_info=None
-    def handler(self):
+        
+        
+    def handler(self, decision_maker, object_info):
         self.start_handler_log()
         # status, mess_speed = self.car_handler.setSpeed(0, send_attempt= 100)
         print('start parking')
-        self.car_handler.setSpeed(20)
-        time.sleep(3.5)
-        self.car_handler.setSpeed(0)
+        self.car_handler.setSpeed(0, send_attempt=100)
         time.sleep(0.5)
+        
+        self.car_handler.setSpeed(20, send_attempt=100)
+        time.sleep(3.7)
+        
+        self.car_handler.setSpeed(0, send_attempt=100)
+        time.sleep(0.5)
+        
         self.car_handler.setAngle(23,send_attempt=100)
-        self.car_handler.setSpeed(-50)
-        time.sleep(3.8)
-        self.car_handler.setSpeed(0)
+        self.car_handler.setSpeed(-30, send_attempt=100)
+        time.sleep(4.3)
+        
+        self.car_handler.setSpeed(0, send_attempt=100)
         time.sleep(0.5)
-        self.car_handler.setAngle(-25)
-        self.car_handler.setAngle(-23,send_attempt=100)
-        self.car_handler.setSpeed(-50)
+
+        self.car_handler.setAngle(-23, send_attempt=100)
+        self.car_handler.setSpeed(-30, send_attempt=100)
+        time.sleep(2.2)
+               
+        self.car_handler.setSpeed(0, send_attempt=100)
         time.sleep(1)
-        self.car_handler.setSpeed(0)
+        
+        self.car_handler.setSpeed(20, send_attempt=100)
+        self.car_handler.setAngle(5,send_attempt=100)
+        time.sleep(1)
+        
+        self.car_handler.setSpeed(0, send_attempt=100)
+        self.car_handler.setAngle(0,send_attempt=100)
         time.sleep(10)
+        
         exit()
         
         # DistStatus, DistMess = self.car_handler.getDistanceStatus()

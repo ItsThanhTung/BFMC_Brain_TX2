@@ -173,10 +173,12 @@ class DecisionMakingProcess(WorkerProcess):
             status, messSpd = self.__CarHandlerTh.enablePID()
 
         interceptionHandler = InterceptionHandler(self.imu_handler, self.__CarHandlerTh, self.historyFile) # , self.localization_thr)
-        trafficSignHanlder = TrafficSignHandler(self.__CarHandlerTh, self.historyFile)
+        trafficSignHanlder = TrafficSignHandler(self.__CarHandlerTh, self.historyFile, self.decision_maker)
         
         while True:
             if True:
+                self.decision_maker.reiniate()
+                
                 current_time = time.time()
                 current_time = datetime.fromtimestamp(current_time)
                 self.historyFile.write("\n" + str(current_time))
@@ -190,14 +192,14 @@ class DecisionMakingProcess(WorkerProcess):
 
                 if self.decision_maker.is_intercept(intercept_length, intercept_gap) and not self.is_stop:
                     direction = self.decision_maker.get_intercept_direction()
-                    interceptionHandler.handler(direction)
+                    interceptionHandler.handler(direction,angle_lane_keeping)
                     continue
 
                 else:   
-                    self.historyFile.write("Lane keeping angle: {}   speed: {}\n".format(angle_lane_keeping, 30))
+                    self.historyFile.write("Lane keeping angle: {}   speed: {}\n".format(angle_lane_keeping, self.decision_maker.speed))
                     angle_lane_keeping = int(angle_lane_keeping)    
                     if not self.is_stop:
-                        status, messSpd = self.__CarHandlerTh.setSpeed(30)
+                        status, messSpd = self.__CarHandlerTh.setSpeed(self.decision_maker.speed)
                         
                         if status < 0:
                             log_message = "\nFail send speed: {} \t {}\n".format(status, messSpd)

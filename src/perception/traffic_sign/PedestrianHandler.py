@@ -12,7 +12,7 @@ class PedestrianHandler(GeneralHandler):
         self.time_stop = 0.5
         
         
-    def handler(self):
+    def handler(self, decision_maker, object_info):
         self.start_handler_log()
         status, mess_speed = self.car_handler.setSpeed(0, send_attempt= 100)
         

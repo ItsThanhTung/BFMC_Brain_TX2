@@ -9,11 +9,11 @@ if __name__ == '__main__':
     rcShR, rcShS = Pipe(duplex = False)                                               # laneKeeping  ->  Serial
     DistR, DistS = Pipe (duplex = False)     #Pipe Rcv Runned Data
 
-    shProc = SerialHandlerProcess([rcShR], [])
+    shProc = SerialHandlerProcess([rcShR], {})
 
     allProcesses = [shProc]
 
-    shProc.SubscribeTopic('7', DistS)
+    shProc.SubscribeTopic('7', [DistS])
 
     print("Starting the processes!",allProcesses)
     for proc in allProcesses:
@@ -23,19 +23,21 @@ if __name__ == '__main__':
     time.sleep(5)
 
     EnablePID(rcShS)
+    setAngle(rcShS , 0)
+    time.sleep(1)
     while True:
-        angle = float(input("Please enter angle: "))
-        Distance = float(input("Please enter distance: "))
+        # angle = float(input("Please enter angle: "))
+        # Distance = float(input("Please enter distance: "))
 
-        setAngle(rcShS , angle)
-        time.sleep(0.05)
-        MoveDistance(rcShS , Distance, 0.5)
+        setAngle(rcShS , 23)
+        time.sleep(0.5)
+        # MoveDistance(rcShS , Distance, 0.5)
         
-        while True:
-            Status, message = GetDistanceStatus(DistR)
-            print("Status ", Status)
-            print("Message ", message)
-            if(Status == 2) : 
-                break
+        # while True:
+        #     Status, message = GetDistanceStatus(DistR)
+        #     print("Status ", Status)
+        #     print("Message ", message)
+        #     if(Status == 2) : 
+        #         break
 
 

@@ -44,7 +44,7 @@
     "IP_ADDRESS": "192.168.1.151"
   },
   "INTERCEPT_DETECTION": {
-    "crop_ratio": 0.75,
+    "crop_ratio": 0.8,
     "minimum_points": 1,
     "tolerance": 2
   },

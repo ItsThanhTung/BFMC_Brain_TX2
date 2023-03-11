@@ -31,6 +31,8 @@ class STrack(BaseTrack):
         self.cls_arr = [cls]
         self.clss_max= cls
         
+        self.new_cls = cls
+        
     def predict(self):
         mean_state = self.mean.copy()
         if self.state != TrackState.Tracked:
@@ -96,8 +98,12 @@ class STrack(BaseTrack):
         self.score = new_track.score
         
         self.cls_arr.append(new_track.cls)
+        self.new_cls = new_track.cls
+        
         if len(self.cls_arr)>10:
             self.clss_max=most(self.cls_arr)
+            
+            
         else:
             self.clss_max=most(self.cls_arr)
         
