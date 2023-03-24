@@ -38,23 +38,23 @@ def SetCalibOffset(Sensor: adafruit_bno055.BNO055, CalibOffset):
 		Sensor.radius_magnetometer = CalibOffset["MagnetRad"]
 
 def main():
-	if CALIB == False:
-		CalibData = GetCabliOffset(MyBNO)
-		with open("CalibData.json", 'w') as file:
-			file.write(json.dumps(CalibData))
+	# if CALIB == False:
+	# 	CalibData = GetCabliOffset(MyBNO)
+	# 	with open("CalibData.json", 'w') as file:
+	# 		file.write(json.dumps(CalibData))
 	
-	if WRITECALIB == True:
-		with open("CalibData.json", 'r') as file:
-			Calib = json.load(file)
-			# SetCalibOffset(MyBNO, Calib)
-			print(Calib["AccelOffset"])
+	# if WRITECALIB == True:
+	# 	with open("CalibData.json", 'r') as file:
+	# 		Calib = json.load(file)
+	# 		# SetCalibOffset(MyBNO, Calib)
+	# 		print(Calib["AccelOffset"])
 
 	
 	while True:
 		calib = MyBNO.calibration_status
 		print("Sys {} gyro {} accel {} magnet {}".format(calib[0], calib[1], calib[2], calib[3]))
 		print("Euler ",MyBNO.euler)
-		print("Accel ",MyBNO.acceleration)
+		print("Accel ",MyBNO.linear_acceleration)
 		sleep(0.05)
  
 

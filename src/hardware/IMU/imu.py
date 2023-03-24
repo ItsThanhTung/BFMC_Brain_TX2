@@ -34,6 +34,8 @@ import time
 import math
 import threading
 
+readInterval = 0.2
+
 class imu(threading.Thread):
     def __init__(self): 
         threading.Thread.__init__(self,daemon=False)

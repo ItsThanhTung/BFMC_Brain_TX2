@@ -10,7 +10,6 @@ class IMUHandler:
         self.sensor = adafruit_bno055.BNO055_I2C(i2c, 0x29)
 
         print("Inited")
-        last_val = 0xFFFF
 
         iscalib = self.sensor.calibrated
 
