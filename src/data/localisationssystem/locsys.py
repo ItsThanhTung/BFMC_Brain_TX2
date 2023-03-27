@@ -96,6 +96,7 @@ if __name__ == '__main__':
     # img =Image.frombytes('RGB', fig.canvas.get_width_height(),fig.canvas.tostring_rgb())
     # img.save('image.jpg')
     map_arr=[[x,y]for x,y in zip(x,y)]
+    np.save('map.npy',map_arr)
     # dist_arr = euclidean_distances([[x_tag,y_tag]], map_arr)
     # print(np.argmin(dist_arr)+1)
     time.sleep(3)

@@ -1,18 +1,56 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 import numpy as np
+from numpy.linalg import norm
+import random
+from pygraphml import GraphMLParser
+from sklearn.metrics.pairwise import euclidean_distances
+def cal_distance(p1, p2,p3):
+    p1,p2,p3=np.array(p1),np.array(p2),np.array(p3)
+    return norm(np.cross(p2-p1, p1-p3))/norm(p2-p1)
 
-G = nx.read_graphml('Test_track.graphml')
+
+
+#array of nodes
+parser = GraphMLParser()
+map = parser.parse('Test_track.graphml')
+x=[]
+y=[]
+for node in map.nodes():
+    x.append(node['d0'])
+    y.append(node['d1'])
+x = np.array(x).astype(float)
+y = np.array(y).astype(float)
+map_arr=[[x,y]for x,y in zip(x,y)]
+
+#plot nodes
 my_graph = {}
-
-node_idx = []
-
+G = nx.read_graphml('Test_track.graphml')
 for node in G.nodes(data=True):
     my_graph[node[0]] = [node[1]["x"], node[1]["y"]]
 nx.draw(G, pos=my_graph,with_labels=True)
+
+
+
 data = np.load('data.npy',allow_pickle=True)[1:]
-for point in data:
-    plt.plot(point[0],point[1], marker="o",markerfacecolor='red', markersize=12)
+error_array=[]
+for x_choose in data:
+    dist_arr = euclidean_distances([[x_choose[0],x_choose[1]]], map_arr)
+    p1 = map_arr[np.argmin(dist_arr)]
+    dist_arr[0][np.argmin(dist_arr)]=999
+    p2 = map_arr[np.argmin(dist_arr)]
+    error_array.append(cal_distance(p1,p2,x_choose))
+
+error_array=np.asarray(error_array)    
+print(error_array.shape)
+print(np.max(error_array))
+print(np.mean(error_array))
+print(np.min(error_array))
+
+print((error_array<0.1).sum())
+
+# for point in data:
+#     plt.plot(point[0],point[1], marker="o",markerfacecolor='red', markersize=12)
 
 
 plt.show()
