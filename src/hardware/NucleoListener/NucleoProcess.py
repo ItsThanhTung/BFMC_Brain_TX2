@@ -28,6 +28,8 @@
 
 from src.templates.workerprocess                import WorkerProcess
 from src.hardware.NucleoListener.NucleoListenerThread import NucleoListener
+from src.hardware.IMU.IMUThread import IMUHandlerThread
+
 import time
 class NucleoProcess(WorkerProcess):
     #================================ VL53L0X PROCESS =====================================
@@ -50,8 +52,10 @@ class NucleoProcess(WorkerProcess):
 
     # ===================================== INIT TH ======================================
     def _init_threads(self):
-        """Create the Camera Publisher thread and add to the list of threads.
+        """
         """
         listenerTh = NucleoListener(self.inPs, self.outPs)
         self.threads.append(listenerTh)
+        IMUHandlerTh = IMUHandlerThread(self.outPs)
+        self.threads.append(IMUHandlerTh)
 

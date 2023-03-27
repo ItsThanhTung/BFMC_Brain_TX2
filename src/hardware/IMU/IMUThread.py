@@ -2,6 +2,7 @@ from src.templates.threadwithstop import ThreadWithStop
 from adafruit_extended_bus import ExtendedI2C as I2C
 import adafruit_bno055
 from numpy import linalg
+import numpy as np
 from threading import Lock
 
 import time
@@ -27,38 +28,39 @@ class IMUHandlerThread(ThreadWithStop):
         print("IMU Init Done")
 
         iscalib = self._sensor.calibrated
-
+        print("Before Vel")
+        self.__velLock = Lock()
         self._vel = 0
-        self._velLock = Lock()
-
+        print("End vel")
         if(iscalib):
             print("Calibrated")
 
         super(IMUHandlerThread,self).__init__()
 
-    @property
-    def _vel(self):
+    def getVelo(self):
         vel = 0
-        self._velLock.acquire()
+        self.__velLock.acquire()
         vel = self._vel
-        self._velLock.release()
+        self.__velLock.release()
         return vel
-    @_vel.setter
-    def _vel(self, vel):
-        self._velLock.acquire()
-        self._vel  = vel
-        self._velLock.release()
+    
+    def _setVelo(self, newVelo):
+        self.__velLock.acquire()
+        self._vel = newVelo
+        self.__velLock.release()
 
     def run(self):
-        vel = 0
-        for i in range(10):
-            accel_axis = self._sensor.linear_acceleration
-            accel = linalg.norm(accel_axis[:2]).round(2)
-            if accel < self._accel_thres:
-                accel = 0
-            vel += accel*self._dt
-            time.sleep(self._dt)
-        # print("accel {} Velo: {}".format(accel, vel))
-        self._vel = vel
-        print("IMU Velo: ", vel)
-        time.sleep(self._readInterval)
+        print("Haha")
+        while self._running:
+            vel = 0
+            for i in range(10):
+                accel_axis = self._sensor.linear_acceleration
+                accel = linalg.norm(accel_axis[:2]).round(2)
+                # if accel < self._accelThres:
+                #     accel = 0
+                vel += accel*self._dt
+                time.sleep(self._dt)
+            # print("accel {} Velo: {}".format(accel, vel))
+            self._vel = vel
+            print("IMU Velo: ", np.round(vel,2))
+            time.sleep(self._readInterval)

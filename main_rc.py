@@ -40,7 +40,7 @@ from src.hardware.serialhandler.SerialHandlerProcess        import SerialHandler
 from src.hardware.NucleoListener.NucleoProcess              import NucleoProcess
 
 # V2X Listener
-from src.data.localisationssystem.locsys                    import LocalisationSystem
+# from src.data.localisationssystem.locsys                    import LocalisationSystem
 
 # utility imports
 from src.utils.camerastreamer.CameraStreamerProcess         import CameraStreamerProcess
@@ -66,8 +66,8 @@ if __name__ == '__main__':
     
 
     # =============================== CONFIG =================================================
-    enableStream             =  True
-    enableStreamObject       =  True
+    enableStream             =  False
+    enableStreamObject       =  False
     enableLaneStream         =  False
     enableInterceptStream    =  False
     
@@ -149,8 +149,8 @@ if __name__ == '__main__':
     allProcesses.append(camProc)
 
     # LocSys client process
-    LocsysOpt = opt["LOCSYS"]
-    LocSysProc = LocalisationSystem(LocsysOpt["LOCSYS_TAGID"], LocsysOpt["LOCSYS_BEACON"], LocsysOpt["PUBLIC_KEY"],LocStS)
+    # LocsysOpt = opt["LOCSYS"]
+    # LocSysProc = LocalisationSystem(LocsysOpt["LOCSYS_TAGID"], LocsysOpt["LOCSYS_BEACON"], LocsysOpt["PUBLIC_KEY"],LocStS)
     # allProcesses.append(LocSysProc)
 
     NucListenerInPs ={

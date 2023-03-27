@@ -43,7 +43,7 @@ class CarHandlerThread(ThreadWithStop):
         self.enablePID(enablePID)
 
         self.enListenVLX(False)
-        self.enListenSpeed(False)
+        self.enListenSpeed(True)
         self.enListenTravelled(False)
         
 
@@ -51,6 +51,7 @@ class CarHandlerThread(ThreadWithStop):
     def run(self):
         readers=[]
         readers.append(self.__shInPs["DIST"])
+        readers.append(self.__shInPs["GETSPEED"])
         while(self._running):
             for inP in wait(readers):
                 try:
