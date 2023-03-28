@@ -15,8 +15,7 @@ class LocalizeProcess(WorkerProcess):
         self.id = 0x1705
         self.debugP = debugP
         self.localizeCondition = Condition()
-        self.gpsStR  = Pipe(duplex = False)
-        self.gpsStS = Pipe(duplex = False)
+        self.gpsStR,self.gpsStS  = Pipe(duplex = False)
         self.serverpublickey = 'src/data/localisationssystem/publickey_server_test.pem'
         super(LocalizeProcess,self).__init__( None, outPs)
         
@@ -45,19 +44,19 @@ class LocalizeProcess(WorkerProcess):
             Output pipe to send the steering angle value to other process.
 
         """
-        
-        
+        print(self.o)
+        print('in localize')
         while True:
             try:
                 # Obtain data from server
-                self.localizeCondition.acquire()
-                self.localizeCondition.wait()
+                # self.localizeCondition.acquire()
+                # self.localizeCondition.wait()
                 coora = self.gpsStR.recv()
                 coora = ast.literal_eval(coora)
-                self.point[0], self.point[1]=coora['coor'][1].real,coora['coor'][0].real
-                self.localizeCondition.release()
+                self.point=[coora['coor'][1].real,coora['coor'][0].real]
+                # self.localizeCondition.release()
                 self.debug_data = f"x: {self.point[0]} y: {self.point[1]}"
-                print("Point: ",self.point)
+                # print("Point: ",self.point)
                 for out in self.outPs:      # decision 
                     out.send({"point" : self.point
                             })

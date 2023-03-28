@@ -70,7 +70,7 @@ if __name__ == '__main__':
     enableStreamObject       =  False
     enableLaneStream         =  False
     enableInterceptStream    =  False
-    enableLocalizeStream = False
+    enableLocalizeStream = True
     
     is_remote = False
     is_show = False
