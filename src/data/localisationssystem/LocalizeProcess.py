@@ -1,7 +1,7 @@
 import numpy as np
 from threading import Thread,Condition
 from src.templates.workerprocess import WorkerProcess
-from src.data.localisationssystem import LocalisationSystem
+from src.data.localisationssystem.locsys import LocalisationSystem
 from multiprocessing import Pipe
 import time
 import ast
@@ -17,7 +17,7 @@ class LocalizeProcess(WorkerProcess):
         self.localizeCondition = Condition()
         self.gpsStR  = Pipe(duplex = False)
         self.gpsStS = Pipe(duplex = False)
-        self.serverpublickey = '/home/topo/code/BFMC_Brain_TX2/src/data/localisationssystem/publickey_server_test.pem'
+        self.serverpublickey = 'src/data/localisationssystem/publickey_server_test.pem'
         super(LocalizeProcess,self).__init__( None, outPs)
         
     def run(self):
@@ -27,7 +27,7 @@ class LocalizeProcess(WorkerProcess):
     def _init_threads(self):
         """Initialize the sending thread.
         """
-        LocalizeSytem = LocalisationSystem(self.ID, self.beacon, self.serverpublickey, self.gpsStS)
+        LocalizeSytem = LocalisationSystem(self.id, self.beacon, self.serverpublickey, self.gpsStS)
         if self._blocker.is_set():
             return
         readTh = Thread(name='LocalizeThread',target = self._run )
@@ -57,7 +57,7 @@ class LocalizeProcess(WorkerProcess):
                 self.point[0], self.point[1]=coora['coor'][1].real,coora['coor'][0].real
                 self.localizeCondition.release()
                 self.debug_data = f"x: {self.point[0]} y: {self.point[1]}"
-                print(self.point)
+                print("Point: ",self.point)
                 for out in self.outPs:      # decision 
                     out.send({"point" : self.point
                             })

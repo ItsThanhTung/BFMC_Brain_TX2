@@ -62,5 +62,5 @@ class IMUHandlerThread(ThreadWithStop):
                 time.sleep(self._dt)
             # print("accel {} Velo: {}".format(accel, vel))
             self._vel = vel
-            print("IMU Velo: ", np.round(vel,2))
+            # print("IMU Velo: ", np.round(vel,2))
             time.sleep(self._readInterval)

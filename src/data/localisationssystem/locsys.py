@@ -1,10 +1,12 @@
 from time import sleep
 from multiprocessing import Pipe
 from threading import Thread
-from server_data import ServerData
-from server_listener import ServerListener
-from server_subscriber import ServerSubscriber
-from position_listener import PositionListener
+
+
+from src.data.localisationssystem.server_data import ServerData
+from src.data.localisationssystem.server_listener import ServerListener
+from src.data.localisationssystem.server_subscriber import ServerSubscriber
+from src.data.localisationssystem.position_listener import PositionListener
 from PIL import Image
 import ast
 import json
@@ -13,17 +15,9 @@ from pygraphml import GraphMLParser
 from pygraphml import Graph
 import matplotlib.pyplot as plt
 import numpy as np
-from sklearn.metrics.pairwise import euclidean_distances
 
-parser = GraphMLParser()
-map = parser.parse('Test_track.graphml')
-x=[]
-y=[]
-for node in map.nodes():
-    x.append(node['d0'])
-    y.append(node['d1'])
-x = np.array(x).astype(float)
-y = np.array(y).astype(float)
+# from sklearn.metrics.pairwise import euclidean_distances
+
 class LocalisationSystem(Thread):
     
     def __init__(self, ID, beacon, serverpublickey, streamPipe):
@@ -76,6 +70,15 @@ class LocalisationSystem(Thread):
         self.__position_listener.stop()
 
 if __name__ == '__main__':
+    parser = GraphMLParser()
+    map = parser.parse('Test_track.graphml')
+    x=[]
+    y=[]
+    for node in map.nodes():
+        x.append(node['d0'])
+        y.append(node['d1'])
+    x = np.array(x).astype(float)
+    y = np.array(y).astype(float)
     beacon = 12345
     id = 0x1705
     serverpublickey = 'publickey_server_test.pem'
