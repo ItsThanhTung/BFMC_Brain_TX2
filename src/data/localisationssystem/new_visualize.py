@@ -28,7 +28,7 @@ my_graph = {}
 G = nx.read_graphml('Test_track.graphml')
 for node in G.nodes(data=True):
     my_graph[node[0]] = [node[1]["x"], node[1]["y"]]
-nx.draw(G, pos=my_graph,with_labels=True)
+# nx.draw(G, pos=my_graph,with_labels=True)
 
 
 
@@ -52,7 +52,7 @@ print((error_array<0.1).sum())
 # for point in data:
 #     plt.plot(point[0],point[1], marker="o",markerfacecolor='red', markersize=12)
 
-
+plt.plot(error_array)
 plt.show()
 # trajectory = ["38", "39", "40", "41", "42", "43", "44", "18", "19",\
             #   "13", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "2", "9",\

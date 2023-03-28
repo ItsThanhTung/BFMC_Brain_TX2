@@ -67,7 +67,7 @@ class LocalisationSystem(Thread):
         while(self.__running):
             self.setup()
             self.listen()
-    
+            
     def stop(self):
         """Terminate the thread running.
         """

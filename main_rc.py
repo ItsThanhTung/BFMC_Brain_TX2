@@ -52,7 +52,7 @@ from src.image_processing.ImagePreprocessingProcess import ImagePreprocessingPro
 from src.perception.DecisionMakingProcess import DecisionMakingProcess
 from src.utils.datastreamer.DataStreamerProcess import DataStreamerProcess
 from src.image_processing.InterceptDetectionProcess import InterceptDetectionProcess
-
+from src.data.localisationssystem.LocalizeProcess import LocalizeProcess
 from src.utils.utils_function import load_config_file
 
 from src.image_processing.traffic_sign.detection import Yolo
@@ -70,6 +70,7 @@ if __name__ == '__main__':
     enableStreamObject       =  False
     enableLaneStream         =  False
     enableInterceptStream    =  False
+    enableLocalizeStream = True
     
     is_remote = False
     is_show = False
@@ -141,8 +142,13 @@ if __name__ == '__main__':
         interceptDebugR, interceptDebugS = Pipe(duplex = False)                             # lane keeping ->  Decision making
     else:
         interceptDebugR, interceptDebugS = None, None
-
-
+        
+        
+    if enableLocalizeStream:
+        localizeDebugR, localizeDebugS = Pipe(duplex = False) 
+    else:
+        localizeDebugR, localizeDebugS = None, None
+    localizeProc = LocalizeProcess([],debugP=localizeDebugS ,debug=True)
 
     # =============================== Sensor Input Layer ===================================================
     camProc = CameraProcess([],{"PREPROCESS_IMAGE" : camLaneStS, "OBJECT_IMAGE" : camObjectStS}, cam_opt["CAM_PATH"])
@@ -231,10 +237,9 @@ if __name__ == '__main__':
         streamProc = CameraStreamerProcess([objectDebugStreamR], [], cam_opt["IP_ADDRESS"], 2233)
         allProcesses.append(streamProc)
         
-
-
-
-
+    if enableLocalizeStream:
+        dataLocalizeStreamerProcess = DataStreamerProcess([localizeDebugR], [], cam_opt["IP_ADDRESS"], 2277)
+        allProcesses.append(dataLocalizeStreamerProcess)
 
     # ===================================== START PROCESSES ==================================
     print("Starting the processes!",allProcesses)
