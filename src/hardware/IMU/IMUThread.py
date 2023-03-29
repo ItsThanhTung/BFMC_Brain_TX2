@@ -28,10 +28,8 @@ class IMUHandlerThread(ThreadWithStop):
         print("IMU Init Done")
 
         iscalib = self._sensor.calibrated
-        print("Before Vel")
         self.__velLock = Lock()
         self._vel = 0
-        print("End vel")
         if(iscalib):
             print("Calibrated")
 
@@ -53,7 +51,7 @@ class IMUHandlerThread(ThreadWithStop):
         print("Haha")
         while self._running:
             vel = 0
-            for i in range(10):
+            for i in range(1/self._dt):
                 accel_axis = self._sensor.linear_acceleration
                 accel = linalg.norm(accel_axis[:2]).round(2)
                 # if accel < self._accelThres:
