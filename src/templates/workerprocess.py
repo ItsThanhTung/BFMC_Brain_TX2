@@ -70,8 +70,9 @@ class WorkerProcess(Process):
         """
         self._init_threads()
         for th in self.threads:
-            th.daemon = self.daemon
-            th.start()
+            if th:
+                th.daemon = self.daemon
+                th.start()
         
         # Wait to set internal flag true for the event
         while not self._blocker.is_set():

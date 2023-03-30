@@ -81,8 +81,8 @@ if __name__ == '__main__':
     else:    
         objectDebugStreamR, objectDebugStreamS = None, None
         
-    object_detector = Yolo(camObjectStR, objectDecisionS, objectDebugStreamS, \
-                            debug=enableStreamObject, is_tensorRt = not is_remote)
+    # object_detector = Yolo(camObjectStR, objectDecisionS, objectDebugStreamS, \
+    #                         debug=enableStreamObject, is_tensorRt = not is_remote)
     
 
         
@@ -169,21 +169,21 @@ if __name__ == '__main__':
         "TRAVELLED": TravelledS,
         "VLX": VLXDataS
     }
-    NucListenerProc = NucleoProcess(NucListenerInPs, NucOutPs)
-    allProcesses.append(NucListenerProc)
+    # NucListenerProc = NucleoProcess(NucListenerInPs, NucOutPs)
+    # allProcesses.append(NucListenerProc)
 
 
     # =============================== PreProcessing Layer ===================================================
-    imagePreprocess = ImagePreprocessingProcess({"LANE_IMAGE" : camLaneStR}, {"LANE_KEEPING" : imagePreprocessS, "INTERCEPT_DETECTION" : imagePreprocessInterceptS},\
-                                                                opt , is_show, debugP=imagePreprocessStreamS, debug=enableStream)
-    allProcesses.append(imagePreprocess)
+    # imagePreprocess = ImagePreprocessingProcess({"LANE_IMAGE" : camLaneStR}, {"LANE_KEEPING" : imagePreprocessS, "INTERCEPT_DETECTION" : imagePreprocessInterceptS},\
+    #                                                             opt , is_show, debugP=imagePreprocessStreamS, debug=enableStream)
+    # allProcesses.append(imagePreprocess)
 
-    laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [laneKeepingDecisionS], opt, debugP=laneKeepingDebugS, debug=enableLaneStream, is_remote=is_remote)
-    allProcesses.append(laneKeepingProcess)
+    # laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [laneKeepingDecisionS], opt, debugP=laneKeepingDebugS, debug=enableLaneStream, is_remote=is_remote)
+    # allProcesses.append(laneKeepingProcess)
 
-    interceptDetectionProcess = InterceptDetectionProcess({"IMAGE_PREPROCESSING" : imagePreprocessInterceptR}, {"DECISION_MAKING" : interceptDecisionS}, \
-                                                            opt, debugP=interceptDebugS, debug=enableInterceptStream, is_remote=is_remote)           
-    allProcesses.append(interceptDetectionProcess)
+    # interceptDetectionProcess = InterceptDetectionProcess({"IMAGE_PREPROCESSING" : imagePreprocessInterceptR}, {"DECISION_MAKING" : interceptDecisionS}, \
+    #                                                         opt, debugP=interceptDebugS, debug=enableInterceptStream, is_remote=is_remote)           
+    # allProcesses.append(interceptDetectionProcess)
 
 
 
@@ -215,8 +215,8 @@ if __name__ == '__main__':
         "8": [VLXListenerS],
         "9": [encTravelledListenerS]
     }
-    shProc = SerialHandlerProcess([rcShR], shOutPs)
-    allProcesses.append(shProc)
+    # shProc = SerialHandlerProcess([rcShR], shOutPs)
+    # allProcesses.append(shProc)
 
 
 
@@ -250,13 +250,13 @@ if __name__ == '__main__':
 
     # ===================================== STAYING ALIVE ====================================
     blocker = Event()  
-    object_cam_read_th = Thread(target = object_detector.read_image)
-    stream_image_th = Thread(target = object_detector.stream_image_th)
-    object_detector_th = Thread(target = object_detector.detection_loop)
+    # object_cam_read_th = Thread(target = object_detector.read_image)
+    # stream_image_th = Thread(target = object_detector.stream_image_th)
+    # object_detector_th = Thread(target = object_detector.detection_loop)
     
-    object_cam_read_th.start()
-    object_detector_th.start()
-    stream_image_th.start()
+    # object_cam_read_th.start()
+    # object_detector_th.start()
+    # stream_image_th.start()
 
     try:
         blocker.wait()
