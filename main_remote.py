@@ -79,7 +79,7 @@ if __name__ == '__main__':
     
     # =============================== CONFIG =================================================
     enableCameraSpoof   =  False 
-    enableLocalizeStream = False
+    enableLocalizeStream = True
     # =============================== INITIALIZING PROCESSES =================================
     allProcesses = list()
 
@@ -105,6 +105,7 @@ if __name__ == '__main__':
         localizeDebugProcR, localizeDebugProcS = Pipe(duplex = False)                               # laneDebug           ->  ImageShow
         localizeDebugProc = LocalizeDebugProcess([localizeDebugR], [localizeDebugProcS])
         allProcesses.append(dataLocalizeProc)
+        allProcesses.append(localizeDebugProc)
     else:
         localizeDebugR, localizeDebugS = None, None
         localizeDebugProcR, localizeDebugProcS = None, None
@@ -150,6 +151,7 @@ if __name__ == '__main__':
 
 
     # ===================================== START PROCESSES ==================================
+    allProcesses=[dataLocalizeProc,localizeDebugProc]
     print("Starting the processes!",allProcesses)
     for proc in allProcesses:
         proc.daemon = True
@@ -159,11 +161,11 @@ if __name__ == '__main__':
     # ===================================== STAYING ALIVE ====================================
     blocker = Event()  
   
-    object_cam_read_th = Thread(target = object_detector.read_image)
-    object_detector_th = Thread(target = object_detector.detection_loop)
+    # object_cam_read_th = Thread(target = object_detector.read_image)
+    # object_detector_th = Thread(target = object_detector.detection_loop)
     
-    object_cam_read_th.start()
-    object_detector_th.start()
+    # object_cam_read_th.start()
+    # object_detector_th.start()
     
     try:
         blocker.wait()
