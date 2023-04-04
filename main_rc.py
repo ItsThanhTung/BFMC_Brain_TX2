@@ -42,7 +42,7 @@ from src.hardware.NucleoListener.NucleoProcess              import NucleoProcess
 from src.hardware.data_fusion.CarEstimateProcess import CarEstimateProcess
 
 # V2X Listener
-# from src.data.localisationssystem.locsys                    import LocalisationSystem
+from src.data.localisationssystem.locsys                    import LocalisationSystem
 
 # utility imports
 from src.utils.camerastreamer.CameraStreamerProcess         import CameraStreamerProcess
@@ -127,6 +127,13 @@ if __name__ == '__main__':
     SpeedR, SpeedS = Pipe(duplex = False)
     TravelledR, TravelledS = Pipe(duplex = False)
 
+    #IMU -> Data Fusion
+    IMUDataR, IMUDataS = Pipe(duplex = False)
+
+    # Set Speed Steer -> Car Estimate Predict State
+    StatePre_SpeedR, StatePre_SpeedS = Pipe(duplex= False)
+    StatePre_SteerR, StatePre_SteerS = Pipe(duplex= False)
+
     # VLX sensor Data -> ?
     VLXDataR, VLXDataS = Pipe(duplex = False)
     
@@ -152,9 +159,9 @@ if __name__ == '__main__':
     allProcesses.append(camProc)
 
     # LocSys client process
-    # LocsysOpt = opt["LOCSYS"]
-    # LocSysProc = LocalisationSystem(LocsysOpt["LOCSYS_TAGID"], LocsysOpt["LOCSYS_BEACON"], LocsysOpt["PUBLIC_KEY"],LocStS)
-    # allProcesses.append(LocSysProc)
+    LocsysOpt = opt["LOCSYS"]
+    LocSysProc = LocalisationSystem(LocsysOpt["LOCSYS_TAGID"], LocsysOpt["LOCSYS_BEACON"], LocsysOpt["PUBLIC_KEY"],LocStS)
+    allProcesses.append(LocSysProc)
 
     NucListenerInPs ={
         "SPEED": encSpeedListenerR,
@@ -164,7 +171,8 @@ if __name__ == '__main__':
     NucOutPs = {
         "SPEED": SpeedS,
         "TRAVELLED": TravelledS,
-        "VLX": VLXDataS
+        "VLX": VLXDataS,
+        "IMU": IMUDataS
     }
     NucListenerProc = NucleoProcess(NucListenerInPs, NucOutPs)
     allProcesses.append(NucListenerProc)
@@ -184,11 +192,11 @@ if __name__ == '__main__':
 
 
     CarEstimateInPs = {
-        "GPS": None,
-        "IMU": None,
+        "GPS": LocStR,
+        "IMU":  IMUDataR,
         "Encoder": SpeedR,
-        "InSteer": None,
-        "InSpeed":None,
+        "InSteer": StatePre_SteerR,
+        "InSpeed":StatePre_SpeedR,
     }
     CarEstimateOutPs = {
 
@@ -202,12 +210,21 @@ if __name__ == '__main__':
         "STEER": shSteerR,
         "ENPID": shEnPIDR,
         "GETSPEED": shGetSpdR,
-        "DIST": shDistR
+        "DIST": shDistR,
+        "TRAVELLED": TravelledR 
     }
-    dmInps = {"LANE_KEEPING" : laneKeepingDecisionR, "INTERCEPT_DETECTION" : interceptDecisionR, "OBJECT_DETECTION" : objectDecisionR, "TRAVELLED": TravelledS }
+    dmInps = {"LANE_KEEPING" : laneKeepingDecisionR, 
+              "INTERCEPT_DETECTION" : interceptDecisionR, 
+              "OBJECT_DETECTION" : objectDecisionR, 
+            }
+    
+    dmOutPs = {
+        "SERIAL" : rcShS,
+        "Steer": StatePre_SteerS,
+        "Velocity": StatePre_SpeedS,
+    }
     if not is_remote:
-        decisionMakingProcess = DecisionMakingProcess(dmInps, \
-                                                        {"SERIAL" : rcShS}, shInps, opt, is_stop=is_stop)
+        decisionMakingProcess = DecisionMakingProcess(dmInps, dmOutPs, shInps, opt, is_stop=is_stop)
         allProcesses.append(decisionMakingProcess)
         
     # SerialHandler Process

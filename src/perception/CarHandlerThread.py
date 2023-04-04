@@ -117,7 +117,7 @@ class CarHandlerThread(ThreadWithStop):
             self._shSend(self.__shOutP, data)
             if self.__AckTimeout < 0:
                 return 0, "OK"
-
+        
             Status, Mess = self._shRecv(self.__shInPs["SETSPEED"])
             if Status == 0:
                 if Mess["data"] == "ack;;":
