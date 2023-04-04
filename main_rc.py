@@ -67,14 +67,15 @@ if __name__ == '__main__':
 
     # =============================== CONFIG =================================================
     enableStream             =  False
+    enableLocalize = True
     enableStreamObject       =  False
     enableLaneStream         =  False
     enableInterceptStream    =  False
-    enableLocalizeStream = True
+    enableLocalizeStream       = False
     
     is_remote = False
     is_show = False
-    is_stop = True
+    is_stop = False
     
     if enableStreamObject:
         objectDebugStreamR, objectDebugStreamS = Pipe(duplex = False)    
@@ -144,12 +145,13 @@ if __name__ == '__main__':
         interceptDebugR, interceptDebugS = None, None
         
         
-    if enableLocalizeStream:
+    if enableLocalize:
         localizeDebugR, localizeDebugS = Pipe(duplex = False) 
+        localizeProc = LocalizeProcess([],debugP=localizeDebugS,opt=opt ,debug=True)
+        allProcesses.append(localizeProc)
     else:
         localizeDebugR, localizeDebugS = None, None
-    localizeProc = LocalizeProcess([],debugP=localizeDebugS,opt=opt ,debug=True)
-    allProcesses.append(localizeProc)
+        localizeProc = None
     # =============================== Sensor Input Layer ===================================================
     camProc = CameraProcess([],{"PREPROCESS_IMAGE" : camLaneStS, "OBJECT_IMAGE" : camObjectStS}, cam_opt["CAM_PATH"])
     allProcesses.append(camProc)

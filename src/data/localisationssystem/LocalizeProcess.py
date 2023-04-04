@@ -12,8 +12,8 @@ class LocalizeProcess(WorkerProcess):
         self.debugP = debugP
         self.point= None
         self.beacon = 12345
-        self.id = 0x1705
-        self.dummy = True
+        self.id = 0x8704
+        self.dummy = False
         self.localizeCondition = Condition()
         self.gpsStR,self.gpsStS  = Pipe(duplex = False)
         self.serverpublickey = 'src/data/localisationssystem/publickey_server_test.pem'
@@ -54,6 +54,7 @@ class LocalizeProcess(WorkerProcess):
                     coora = self.gpsStR.recv()
                     coora = ast.literal_eval(coora)
                     self.point=[coora['coor'][1].real,coora['coor'][0].real]
+                    print(self.point)
                 else:
                     self.point = [0,1]
                 self.debug_data = f"x: {self.point[0]} y: {self.point[1]}"
@@ -64,11 +65,9 @@ class LocalizeProcess(WorkerProcess):
                      
                 # remote 
                 if self.debug:
-                    print(f'localize debug')
+                    print(self.debug_data)
                     self.debugP.send(self.debug_data)
-                
 
-                
                 time.sleep(0.005)
             except Exception as e:
                 print("Localize error:", e)

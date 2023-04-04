@@ -159,11 +159,11 @@ if __name__ == '__main__':
     # ===================================== STAYING ALIVE ====================================
     blocker = Event()  
   
-    object_cam_read_th = Thread(target = object_detector.read_image)
-    object_detector_th = Thread(target = object_detector.detection_loop)
+    # object_cam_read_th = Thread(target = object_detector.read_image)
+    # object_detector_th = Thread(target = object_detector.detection_loop)
     
-    object_cam_read_th.start()
-    object_detector_th.start()
+    # object_cam_read_th.start()
+    # object_detector_th.start()
     
     try:
         blocker.wait()
