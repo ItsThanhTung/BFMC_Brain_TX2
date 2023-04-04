@@ -52,13 +52,13 @@ from src.image_processing.ImagePreprocessingProcess import ImagePreprocessingPro
 from src.image_processing.LaneDebuggingProcess import LaneDebuginggProcess
 # from src.perception.DecisionMakingProcess import DecisionMakingProcess
 from src.image_processing.InterceptDetectionProcess import InterceptDetectionProcess
-
-
+from src.utils.datastreamer.DataReceiverProcess import DataReceiverProcess
+from src.data.localisationssystem.LocalizeDebugProcess import LocalizeDebugProcess
 # opt import
 from src.utils.utils_function import load_config_file
 
 # object detection import
-from src.image_processing.traffic_sign_remote.detection import Yolo
+# from src.image_processing.traffic_sign_remote.detection import Yolo
 import multiprocessing
 from threading import Thread
 
@@ -68,10 +68,10 @@ if __name__ == '__main__':
     # =========================== Object Detection ===========================================
     camObjectStR, camObjectStS = Pipe(duplex = False)                                   # camera  ->  streamer
     imageObjectShowR, imageObjectShowS = Pipe(duplex = False)                           # object detection    ->  ImageShow
-    object_detector = Yolo(camObjectStR, imageObjectShowS, False)
+    # object_detector = Yolo(camObjectStR, imageObjectShowS, False)
 
-    is_remote = True
-    is_show = True
+    is_remote = False
+    is_show = False
     
     
     opt = load_config_file("main_rc.json")
@@ -79,7 +79,7 @@ if __name__ == '__main__':
     
     # =============================== CONFIG =================================================
     enableCameraSpoof   =  False 
-
+    enableLocalizeStream = False
     # =============================== INITIALIZING PROCESSES =================================
     allProcesses = list()
 
@@ -99,7 +99,15 @@ if __name__ == '__main__':
         allProcesses.append(camProc)
         allProcesses.append(camObjectProc)
     
-
+    if enableLocalizeStream:
+        localizeDebugR, localizeDebugS = Pipe(duplex = False)                                       # laneKeeping         ->  LaneDebug
+        dataLocalizeProc = DataReceiverProcess([], [localizeDebugS], port=2277)
+        localizeDebugProcR, localizeDebugProcS = Pipe(duplex = False)                               # laneDebug           ->  ImageShow
+        localizeDebugProc = LocalizeDebugProcess([localizeDebugR], [localizeDebugProcS])
+        allProcesses.append(dataLocalizeProc)
+    else:
+        localizeDebugR, localizeDebugS = None, None
+        localizeDebugProcR, localizeDebugProcS = None, None
     imagePreprocessShowR, imagePreprocessShowS = Pipe(duplex = False)                   # preprocess          ->  ImageShow
     imagePreprocessR, imagePreprocessS = Pipe(duplex = False)                           # preprocess          ->  LaneKeeping
     imagePreprocessInterceptR, imagePreprocessInterceptS = Pipe(duplex = False)         # preprocess          ->  Intercept detection
@@ -112,24 +120,24 @@ if __name__ == '__main__':
     interceptDecisionDebugR, interceptDecisionDebugS = Pipe(duplex = False)             # Intercept detection ->  LaneDebug
 
 
-    imagePreprocess = ImagePreprocessingProcess({"LANE_IMAGE" : camLaneStR}, {"IMAGE_SHOW" : imagePreprocessShowS, "LANE_KEEPING" : imagePreprocessS, \
-                                                        "INTERCEPT_DETECTION" : imagePreprocessInterceptS}, opt, is_show=is_show)
-    laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [None], opt, laneDebugS, debug=True, is_remote=is_remote)
+    # imagePreprocess = ImagePreprocessingProcess({"LANE_IMAGE" : camLaneStR}, {"IMAGE_SHOW" : imagePreprocessShowS, "LANE_KEEPING" : imagePreprocessS, \
+    #                                                     "INTERCEPT_DETECTION" : imagePreprocessInterceptS}, opt, is_show=is_show)
+    # laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [None], opt, laneDebugS, debug=True, is_remote=is_remote)
 
-    interceptDetectionProcess = InterceptDetectionProcess({"IMAGE_PREPROCESSING" : imagePreprocessInterceptR}, {}, \
-                                                            opt, debugP = interceptDecisionDebugS, debug=True, is_remote=is_remote)
+    # interceptDetectionProcess = InterceptDetectionProcess({"IMAGE_PREPROCESSING" : imagePreprocessInterceptR}, {}, \
+    #                                                         opt, debugP = interceptDecisionDebugS, debug=True, is_remote=is_remote)
 
-    laneDebugProcess = LaneDebuginggProcess({"LANE_KEEPING" : laneDebugR, "INTERCEPT_DETECTION" : interceptDecisionDebugR}, \
-                                        {"LANE_KEEPING" :laneDebugShowS, "INTERCEPT_DETECTION" :interceptDebugShowS}, )
+    # laneDebugProcess = LaneDebuginggProcess({"LANE_KEEPING" : laneDebugR, "INTERCEPT_DETECTION" : interceptDecisionDebugR}, \
+    #                                     {"LANE_KEEPING" :laneDebugShowS, "INTERCEPT_DETECTION" :interceptDebugShowS}, )
 
-    imageShow = imageShowProcess([imagePreprocessShowR, laneDebugShowR, interceptDebugShowR, imageObjectShowR], [])
+    # imageShow = imageShowProcess([imagePreprocessShowR, laneDebugShowR, interceptDebugShowR, imageObjectShowR], [])
     
 
-    allProcesses.append(imagePreprocess)
-    allProcesses.append(laneKeepingProcess)
-    allProcesses.append(laneDebugProcess)
-    allProcesses.append(imageShow)
-    allProcesses.append(interceptDetectionProcess)
+    # allProcesses.append(imagePreprocess)
+    # allProcesses.append(laneKeepingProcess)
+    # allProcesses.append(laneDebugProcess)
+    # allProcesses.append(imageShow)
+    # allProcesses.append(interceptDetectionProcess)
  
  
     # =============================== DATA ===================================================
@@ -151,11 +159,11 @@ if __name__ == '__main__':
     # ===================================== STAYING ALIVE ====================================
     blocker = Event()  
   
-    object_cam_read_th = Thread(target = object_detector.read_image)
-    object_detector_th = Thread(target = object_detector.detection_loop)
+    # object_cam_read_th = Thread(target = object_detector.read_image)
+    # object_detector_th = Thread(target = object_detector.detection_loop)
     
-    object_cam_read_th.start()
-    object_detector_th.start()
+    # object_cam_read_th.start()
+    # object_detector_th.start()
     
     try:
         blocker.wait()

@@ -113,8 +113,3 @@ class DataFusionProcess(WorkerProcess):
                 print("Data Fusion - fuse data thread error:")
                 print(e)
             
-                        
-
-            
-        
-               

@@ -50,6 +50,7 @@ class NucleoListener(ThreadWithStop):
     def _SpeedParser(self, rawData):
         # return 0
         # print("Speed RawData ",rawData)
+        return 0
         Status, Data = rawData.split(";",2)[:2]
         Status = int(Status)
         if Status == 0:
