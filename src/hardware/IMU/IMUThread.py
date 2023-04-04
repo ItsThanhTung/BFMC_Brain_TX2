@@ -7,7 +7,7 @@ from threading import Lock
 
 import time
 class IMUHandlerThread(ThreadWithStop):
-    def __init__(self, outPs, readInterval = 0.1, dt = 0.01):
+    def __init__(self, outPs, readInterval = 0.001, dt = 0.01):
         """
     
     Car Handler Thread object
@@ -30,6 +30,7 @@ class IMUHandlerThread(ThreadWithStop):
         iscalib = self._sensor.calibrated
         self.__velLock = Lock()
         self._vel = 0
+        self._prevVelo = 0
         if(iscalib):
             print("Calibrated")
 
@@ -46,19 +47,21 @@ class IMUHandlerThread(ThreadWithStop):
         self.__velLock.acquire()
         self._vel = newVelo
         self.__velLock.release()
-
+    
+    def _getAccel(self):
+        accel_axis = self._sensor.linear_acceleration
+        return linalg.norm(accel_axis[:2]).round(2)
     def run(self):
-        print("Haha")
+        self._prevVelo = 0
         while self._running:
-            vel = 0
-            for i in range(1/self._dt):
-                accel_axis = self._sensor.linear_acceleration
-                accel = linalg.norm(accel_axis[:2]).round(2)
-                # if accel < self._accelThres:
-                #     accel = 0
-                vel += accel*self._dt
-                time.sleep(self._dt)
-            # print("accel {} Velo: {}".format(accel, vel))
-            self._vel = vel
-            print("IMU Velo: ", np.round(vel,2))
             time.sleep(self._readInterval)
+            Data = {
+                "Accelerometer": np.array(self._sensor.acceleration),
+                "Magnetometer": np.array(self._sensor.magnetic),
+                "Gyroscope": np.array(self._sensor.gyro),
+                "Euler": np.array(self._sensor.euler),
+                "Quaternion": np.array(self._sensor.quaternion),
+                "Linear Accel": np.array(self._sensor.linear_acceleration),
+                "Gravity": np.array(self._sensor.gravity)
+            }
+            self._outPs.send(Data)

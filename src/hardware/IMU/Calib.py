@@ -53,7 +53,7 @@ def main():
 	while True:
 		calib = MyBNO.calibration_status
 		print("Sys {} gyro {} accel {} magnet {}".format(calib[0], calib[1], calib[2], calib[3]))
-		print("Euler ",MyBNO.euler)
+		# print("Euler ",MyBNO.euler)
 		print("Accel ",MyBNO.linear_acceleration)
 		sleep(0.05)
  

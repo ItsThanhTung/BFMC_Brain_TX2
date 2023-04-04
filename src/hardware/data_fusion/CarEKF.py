@@ -45,7 +45,11 @@ class CarEKF(EKF):
         self.F_jac = self.fxu.jacobian(self.stateMat)
         self.V_jac = self.fxu.jacobian(self.inputMat)
 
-
+    def InitialState(self, X, Y, Velo, Heading):
+        self.x[0,0] = X
+        self.x[1,0] = Y
+        self.x[2,0] = Velo
+        self.x[3,0] = Heading
     
     def predict(self, u):
         self.subs[x] = self.x[0,0]
@@ -61,6 +65,8 @@ class CarEKF(EKF):
         self.x[3,0] = self.wrapAngle(self.x[3,0])
     
         self.P = F @ self.P @ F.T + V @ self.PredictCov @ V.T
+        self.x_prior = self.x.copy()
+        self.P_prior = self.P.copy()
 
     def residual(self, a, b):
         y = a-b
@@ -84,7 +90,8 @@ class CarEKF(EKF):
         self.update(z,self._Encoder_H_j, self._Encoder_hx, EncNoiseMat,residual= self.residual)
 
     def _GPS_hx(self, x):
-        return np.array([[x[0,0], y[1,0]]])
+        return np.array([[x[0,0], 
+                          y[1,0]]])
     
     def _GPS_H_j(self, x):
         return np.array([[1,0,0,0],
@@ -97,8 +104,8 @@ class CarEKF(EKF):
         self.update(z, self._GPS_H_j, self._GPS_hx, GPS_NoiseMat, residual= self.residual)
 
     def _IMU_hx(self, x):
-        return np.array([[x[2:0]],
-                         [x[3:0]]])
+        return np.array([[x[2,0]],
+                         [x[3,0]]])
     
     def _IMU_H_j(self, x):
         return np.array([[0, 0, 1, 0],

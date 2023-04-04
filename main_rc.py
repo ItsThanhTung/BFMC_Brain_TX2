@@ -39,6 +39,8 @@ from src.hardware.camera.CameraProcess                      import CameraProcess
 from src.hardware.serialhandler.SerialHandlerProcess        import SerialHandlerProcess
 from src.hardware.NucleoListener.NucleoProcess              import NucleoProcess
 
+from src.hardware.data_fusion.CarEstimateProcess import CarEstimateProcess
+
 # V2X Listener
 # from src.data.localisationssystem.locsys                    import LocalisationSystem
 
@@ -52,6 +54,7 @@ from src.image_processing.ImagePreprocessingProcess import ImagePreprocessingPro
 from src.perception.DecisionMakingProcess import DecisionMakingProcess
 from src.utils.datastreamer.DataStreamerProcess import DataStreamerProcess
 from src.image_processing.InterceptDetectionProcess import InterceptDetectionProcess
+
 
 from src.utils.utils_function import load_config_file
 
@@ -180,6 +183,17 @@ if __name__ == '__main__':
     allProcesses.append(interceptDetectionProcess)
 
 
+    CarEstimateInPs = {
+        "GPS": None,
+        "IMU": None,
+        "Encoder": SpeedR,
+        "InSteer": None,
+        "InSpeed":None,
+    }
+    CarEstimateOutPs = {
+
+    }
+    CarEstimateProc = CarEstimateProcess(CarEstimateInPs, CarEstimateOutPs)
 
     # =============================== Perception Layer ===================================================
 
