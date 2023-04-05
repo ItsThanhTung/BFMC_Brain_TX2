@@ -54,8 +54,9 @@ class NucleoProcess(WorkerProcess):
     def _init_threads(self):
         """
         """
-        listenerTh = NucleoListener(self.inPs, self.outPs)
-        self.threads.append(listenerTh)
         IMUHandlerTh = IMUHandlerThread(self.outPs["IMU"])
         self.threads.append(IMUHandlerTh)
+        listenerTh = NucleoListener(self.inPs, self.outPs)
+        self.threads.append(listenerTh)
+
 

@@ -75,7 +75,7 @@ if __name__ == '__main__':
     enableStreamObject       =  False
     enableLaneStream         =  False
     enableInterceptStream    =  False
-    enableLocalizeStream       = True
+    enableLocalizeStream       = False
     
     is_remote = False
     is_show = False
@@ -133,9 +133,8 @@ if __name__ == '__main__':
     #IMU -> Data Fusion
     IMUDataR, IMUDataS = Pipe(duplex = False)
 
-    # Set Speed Steer -> Car Estimate Predict State
-    StatePre_SpeedR, StatePre_SpeedS = Pipe(duplex= False)
-    StatePre_SteerR, StatePre_SteerS = Pipe(duplex= False)
+    # Set Speed Steer from DM -> Car Estimate Predict State
+    SetStateR, SetStateS = Pipe(duplex = False)
 
     # VLX sensor Data -> ?
     VLXDataR, VLXDataS = Pipe(duplex = False)
@@ -204,11 +203,10 @@ if __name__ == '__main__':
 
 
     CarEstimateInPs = {
-        # "GPS": locSysR,
+        "GPS": locSysR,
         "IMU":  IMUDataR,
         "Encoder": SpeedR,
-        "InSteer": StatePre_SteerR,
-        "InSpeed":StatePre_SpeedR,
+        "DM": SetStateR,
     }
     CarEstimateOutPs = {
 
@@ -233,8 +231,7 @@ if __name__ == '__main__':
     
     dmOutPs = {
         "SERIAL" : rcShS,
-        "Steer": StatePre_SteerS,
-        "Velocity": StatePre_SpeedS,
+        "StateEstimate": SetStateS
     }
     if not is_remote:
         decisionMakingProcess = DecisionMakingProcess(dmInps, dmOutPs, shInps, opt, is_stop=is_stop)
@@ -248,7 +245,7 @@ if __name__ == '__main__':
         "1": [shSetSpdS],
         "2": [shSteerS],
         "4": [shEnPIDS], 
-        "5": [shGetSpdS, encSpeedListenerS],
+        "5": [encSpeedListenerS],
         "7": [shDistS],
         "8": [VLXListenerS],
         "9": [encTravelledListenerS]

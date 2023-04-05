@@ -1,1474 +1,748 @@
 
-2023-04-05 15:31:41.627998
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
+2023-04-05 18:25:17.645541
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:41.838959
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
+2023-04-05 18:25:17.856409
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:42.045961
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:18.065227
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:42.260943
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:18.278895
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:42.472772
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:18.489867
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:42.684094
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:18.705657
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:42.899197
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:18.920360
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:43.106483
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:19.135538
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:43.316304
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:19.348274
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:43.531713
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:19.565040
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:43.746161
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:19.781534
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:43.954920
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:19.993277
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:44.167703
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:20.207279
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:44.380239
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:20.419335
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:44.590097
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:20.630294
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:44.803624
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:20.842749
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:45.016576
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:21.057166
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:45.234217
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:21.273305
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:45.449837
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:21.488488
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:45.675298
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:21.700314
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:45.889507
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:21.914613
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:46.103499
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:22.125497
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:46.315456
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:22.337931
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:46.534781
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:22.552356
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:46.745916
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:22.762749
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:46.952940
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:22.973672
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:47.170399
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:23.180588
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:47.385779
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:23.390687
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:47.609499
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:23.602042
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:47.823084
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:23.814483
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:48.033111
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:24.029135
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:48.241309
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:24.243515
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:48.454212
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:24.454710
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:48.667479
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:24.667653
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:48.874687
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:24.882037
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:49.088358
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:25.098176
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:49.301277
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:25.310936
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:49.519975
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:25.523094
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:49.737305
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:25.738219
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:49.955509
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:25.958010
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:50.163934
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:26.172516
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:50.376725
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:26.384068
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:50.590794
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:26.597304
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:50.807086
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:26.805964
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:51.022144
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:27.013127
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:51.240552
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:27.221869
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:51.448964
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:27.431586
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:51.662139
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:27.642066
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:51.869696
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:27.851005
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:52.080774
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:28.058867
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:52.287996
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:28.267880
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:52.501917
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:28.477474
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:52.712136
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:28.684515
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:52.925114
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:28.893995
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:53.135985
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:29.104391
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:53.345796
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:29.313435
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:53.552597
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:29.522564
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:53.761079
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:29.732249
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:53.972103
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:29.942153
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:54.182214
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:30.152364
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:54.393564
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:30.361172
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:54.601697
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:30.570087
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:54.812996
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:30.779293
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:55.022896
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:30.987748
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:55.232759
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:31.197132
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:55.442508
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:31.404761
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:55.654458
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:31.613391
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:55.865168
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:31.820889
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:56.075300
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:32.030410
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:56.282694
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:32.240960
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:56.493292
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:32.450083
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:56.704226
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:32.657592
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:56.912009
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:32.867192
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:57.122100
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:33.078103
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:57.330678
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:33.288345
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:57.538808
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:33.499360
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:57.748702
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:33.708430
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:57.957376
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:33.920803
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:58.167613
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:34.130672
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:58.375630
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:34.341584
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:58.587241
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:34.551920
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:58.794884
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:34.759245
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:59.006333
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:34.966543
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:59.221449
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:35.176995
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:59.434667
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:35.386229
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:59.641898
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:35.596647
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:31:59.851635
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:35.805256
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:32:00.059287
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:36.014727
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:32:00.269557
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:36.224194
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:32:00.482812
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:36.433628
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:32:00.690164
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:36.642166
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:32:00.902256
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:36.850378
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:32:01.109775
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:37.060328
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:32:01.316524
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:37.267110
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:32:01.527150
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:37.474793
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:32:01.735964
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:37.682649
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:32:01.942319
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:37.890649
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:32:02.150965
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:38.097635
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:32:02.359977
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:38.305068
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:32:02.570503
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:38.512508
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:32:02.781884
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:38.721718
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:32:02.989043
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:38.931733
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:32:03.201039
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:39.141426
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:32:03.413113
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:39.350288
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:32:03.620501
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:39.558984
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:32:03.832054
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:39.767373
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:32:04.047498
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:39.977219
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:32:04.257343
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:40.184456
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:32:04.464675
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:40.391737
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:32:04.674424
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:40.599999
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:32:04.881832
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:40.807474
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:32:05.093729
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:41.017086
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:32:05.303190
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:41.226250
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:32:05.511907
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:41.434979
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:32:05.719743
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:41.644901
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:32:05.936937
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:41.854051
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:32:06.146581
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:42.063135
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:32:06.356353
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:42.271727
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:32:06.571004
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:42.480384
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:32:06.779090
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:42.690429
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:32:06.987922
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:42.899153
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:32:07.194844
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:43.108112
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:32:07.405205
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:43.316443
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:32:07.615649
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:43.524443
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35
 
 Fail send angle: -4 	 Timeout
 
-2023-04-05 15:32:07.825389
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:08.032176
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:08.243327
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:08.450141
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:08.659324
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:08.869535
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:09.079860
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:09.286556
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:09.496627
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:09.704008
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:09.915619
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:10.133116
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:10.349293
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:10.558247
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:10.770675
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:10.978526
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:11.189997
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:11.398676
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:11.605891
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:11.813927
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:12.021596
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:12.238285
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:12.449648
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:12.667467
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:12.874440
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:13.083667
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:13.297291
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:13.512444
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:13.719676
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:13.930448
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:14.138025
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:14.347373
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:14.557765
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:14.771503
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:14.983050
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:15.192285
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:15.401241
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:15.610006
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:15.819447
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:16.030521
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:16.241421
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:16.448740
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:16.658145
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:16.865564
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:17.075782
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:17.290799
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:17.504489
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:17.711740
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:17.922405
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:18.131807
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:18.341998
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:18.550885
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:18.765306
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:18.975263
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:19.184970
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:19.394969
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:19.605146
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:19.815173
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:20.022976
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:20.231145
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:20.438250
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:20.651515
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:20.860468
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:21.070268
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:21.277513
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:21.487810
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:21.694463
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:21.902790
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:22.114057
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:22.324644
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:22.531628
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:22.743736
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:22.951078
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:23.161350
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:23.373849
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:23.587345
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:23.798582
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:24.008449
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:24.219766
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:24.438937
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:24.651335
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:24.858368
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:25.067241
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:25.277035
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:25.485526
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:25.695493
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:25.906664
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:26.113632
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:26.323698
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:26.533435
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:26.746571
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:26.957477
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:27.166146
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:27.377520
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:27.586382
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:27.793999
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:28.002641
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:28.213329
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:28.423598
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:28.640098
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:28.848549
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:29.060176
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:29.269873
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:29.481607
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:29.688702
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:29.903639
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:30.114335
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:30.323980
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:30.534253
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:30.744296
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:30.951735
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:31.161246
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:31.368924
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:31.579308
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:31.787436
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:31.997238
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:32.210332
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:32.420216
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:32.630360
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:32.841107
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:33.050380
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
-
-Fail send angle: -4 	 Timeout
-
-2023-04-05 15:32:33.259809
- intercept_length = 38 	 intercept_gap = 18 
-Lane keeping angle: 1.606747512856556   speed: 35
+2023-04-05 18:25:43.732044
+ intercept_length = 71 	 intercept_gap = 36 
+Lane keeping angle: 1.0956668340918994   speed: 35

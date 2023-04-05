@@ -54,7 +54,7 @@ class DecisionMakingProcess(WorkerProcess):
         self.is_sign = False
         self.count_sign_step = 0
 
-        self.__CarHandlerTh = CarHandlerThread(serInPs, self.outPs["SERIAL"], enablePID= False)
+        self.__CarHandlerTh = CarHandlerThread(serInPs, self.outPs, enablePID= True)
         self.__CarHandlerTh.daemon = True
         self.threads.append(self.__CarHandlerTh)
         
@@ -178,6 +178,7 @@ class DecisionMakingProcess(WorkerProcess):
     def _run_decision_making(self):
         if not self.is_stop:
             status, messSpd = self.__CarHandlerTh.enablePID()
+            status, messSpd = self.__CarHandlerTh.enListenSpeed()
 
         interceptionHandler = InterceptionHandler(self.imu_handler, self.__CarHandlerTh, self.historyFile) # , self.localization_thr)
         trafficSignHanlder = TrafficSignHandler(self.__CarHandlerTh, self.historyFile, self.decision_maker)

@@ -4,7 +4,7 @@ import time
 ser = serial.Serial("/dev/ttyACM0", 115200)
 
 prev = time.time()
-command_msg = "#2:6.00;:59;;\r\n"
+command_msg = "#5:1;:6c;;\r\n"
 print("Start")
 ser.write(command_msg.encode('ascii'))
 # print("Send time ", time.time()-prev)

@@ -89,12 +89,16 @@ class CarEstimateProcess(WorkerProcess):
                 "inVelocity": self.inVelocity,
                 "timeStamp": time.time()
             }
-            for Val in Data.values():
-                if Val is None:
-                    continue
-            self.LogFile.writelines(json.dumps(Data))    
+            
+            if self._haveNone(Data):
+                continue
+            self.LogFile.write(json.dumps(Data)+ "\r\n")    
     
-
+    def _haveNone(self, Data):
+        for Key in Data:
+            if Data[Key] is None:
+                return True
+        return False
     def RcvDataThread(self):
         reader  = list()
         for key in self.inPs:
@@ -116,13 +120,13 @@ class CarEstimateProcess(WorkerProcess):
                         # print("Rcv GPS: ", self.GPS)
                     elif inP == self.inPs["Encoder"]:
                         self.Encoder = Data
-                        print("Rcv Encoder ", self.Encoder)
-                    elif inP == self.inPs["InSteer"]:
-                        self.Steering = Data
-                        print("Rcv Steer ", self.Steering)
-                    elif inP == self.inPs["InSpeed"]:
-                        self.inVelocity = Data
-                        print("Velo ", self.inVelocity)
+                        # print("Rcv Encoder ", self.Encoder)
+                    elif inP == self.inPs["DM"]:
+                        # print("Rcv From DM ", Data)
+                        if Data["type"] == "SPEED":
+                            self.inVelocity = Data["value"]
+                        elif Data["type"] == "STEER":
+                            self.Steering = Data["value"]
     
     @property
     def IMU(self):
