@@ -162,15 +162,15 @@ class DecisionMakingProcess(WorkerProcess):
         return object_result
     
     def turn_off_rc_car(self):
-        status, messSpd = self.__CarHandlerTh.setAngle(0)
+        status, messSpd = self.__CarHandlerTh.setAngle(0,1)
         time.sleep(0.01)
-        status, messSpd = self.__CarHandlerTh.setAngle(0)
-        time.sleep(0.01)
-
-        status, messSpd = self.__CarHandlerTh.setSpeed(0)
+        status, messSpd = self.__CarHandlerTh.setAngle(0,1)
         time.sleep(0.01)
 
-        status, messSpd = self.__CarHandlerTh.setSpeed(0)
+        status, messSpd = self.__CarHandlerTh.setSpeed(0,1)
+        time.sleep(0.01)
+
+        status, messSpd = self.__CarHandlerTh.setSpeed(0,1)
         time.sleep(0.01)
 
         return 0

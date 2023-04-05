@@ -1,6 +1,7 @@
 from src.templates.threadwithstop import ThreadWithStop
 from multiprocessing.connection import wait
 from threading import Lock
+import time
 class CarHandlerThread(ThreadWithStop):
     def __init__(self, shInPs, shOutP, enablePID = True, AckTimeout = 0.05, sendAttempTimes:int = 2):
         """
@@ -41,17 +42,19 @@ class CarHandlerThread(ThreadWithStop):
         
         
         self.enablePID(enablePID)
-
+        time.sleep(0.001)
         self.enListenVLX(False)
-        self.enListenSpeed(False)
+        self.enListenSpeed(True)
         self.enListenTravelled(False)
+
+
         
 
     
     def run(self):
         readers=[]
-        readers.append(self.__shInPs["DIST"])
-        readers.append(self.__shInPs["GETSPEED"])
+        # readers.append(self.__shInPs["DIST"])
+        # readers.append(self.__shInPs["GETSPEED"])
         while(self._running):
             for inP in wait(readers):
                 try:
@@ -89,17 +92,18 @@ class CarHandlerThread(ThreadWithStop):
                 if Mess == "ack;;":
                     return 0, "OK"
                 
-        return Status, Mess["data"]
+        return Status, Mess
 
     def _shSend(self, outP, Data):
         outP.send(Data)
 
     def _shRecv(self, inP, timeout = 0.1):
         if inP.poll(timeout) :
-            Data = inP.recv()
-            return 0, Data
+            Status, Mess = inP.recv()["data"].split(";",2)
+            # print("Car Handler Th Rcv: ", Status, Mess)
+            return int(Status), Mess
         else:
-            return -1, {"data":"Receive Timeout"}
+            return -4, "Timeout"
 
     def setSpeed(self, speed, send_attempt=None):
         if send_attempt is None:
@@ -110,9 +114,7 @@ class CarHandlerThread(ThreadWithStop):
         "speed": float(speed/100)
         }
         Status = 0
-        Mess = {
-            "data":"OK"
-        }
+        Mess = "OK"
         for i in range(send_attempt):
             self._shSend(self.__shOutP, data)
             if self.__AckTimeout < 0:
@@ -120,10 +122,9 @@ class CarHandlerThread(ThreadWithStop):
         
             Status, Mess = self._shRecv(self.__shInPs["SETSPEED"])
             if Status == 0:
-                if Mess["data"] == "ack;;":
-                    return 0, "OK"
+                return Status, Mess
 
-        return Status, Mess["data"]
+        return Status, Mess
             
     def setAngle(self, value, send_attempt=None):
         if send_attempt is None:
@@ -134,19 +135,17 @@ class CarHandlerThread(ThreadWithStop):
         "steerAngle": float(value)
         }
         Status = 0
-        Mess = {
-            "data":"OK"
-        }
+        Mess = "OK"
         for i in range(send_attempt):
             self._shSend(self.__shOutP, data)
             if self.__AckTimeout < 0:
                 return 0, "OK"
-
-            Status, Mess = self._shRecv(self.__shInPs["STEER"])
+        
+            Status, Mess = self._shRecv(self.__shInPs["SETSPEED"])
             if Status == 0:
-                if Mess["data"] == "ack;;":
-                    return 0, "OK"
-        return Status, Mess["data"]
+                return Status, Mess
+
+        return Status, Mess
 
     def moveDistance(self, distance, speed, send_attempt = None):
         if send_attempt is None:
@@ -154,7 +153,6 @@ class CarHandlerThread(ThreadWithStop):
         data = {
         "action": '7',
         "distance": float(distance/100),
-        "speed": float(speed/100)
         }
         Status = 0
         Mess = {
@@ -181,20 +179,17 @@ class CarHandlerThread(ThreadWithStop):
         "activate": Enable
         }
         Status = 0
-        Mess = {
-            "data":"OK"
-        }
+        Mess = "OK"
         for i in range(self.__sendAttemp):
             self._shSend(self.__shOutP, data)
             if self.__AckTimeout < 0:
                 return 0, "OK"
-
+        
             Status, Mess = self._shRecv(self.__shInPs["ENPID"])
             if Status == 0:
-                if Mess == "ack;;":
-                    return 0, "OK"
-                
-        return Status, Mess["data"]
+                return Status, Mess
+
+        return Status, Mess
 
     def enListenVLX(self, Enable = True):
         data = {
@@ -202,20 +197,18 @@ class CarHandlerThread(ThreadWithStop):
         "activate": Enable
         }
         Status = 0
-        Mess = {
-            "data":"OK"
-        }
+        Mess = "OK"
         for i in range(self.__sendAttemp):
             self._shSend(self.__shOutP, data)
             if self.__AckTimeout < 0:
                 return 0, "OK"
-
+        
             Status, Mess = self._shRecv(self.__shInPs["ENPID"])
             if Status == 0:
-                if Mess == "ack;;":
-                    return 0, "OK"
+                return Status, Mess
+
+        return Status, Mess
                 
-        return Status, Mess["data"]
 
     def enListenSpeed(self, Enable = True):
         data = {
@@ -223,19 +216,16 @@ class CarHandlerThread(ThreadWithStop):
         "activate": Enable
         }
         Status = 0
-        Mess = {
-            "data":"OK"
-        }
+        Mess = "OK"
         for i in range(self.__sendAttemp):
             self._shSend(self.__shOutP, data)
             if self.__AckTimeout < 0:
                 return 0, "OK"
-
+        
             Status, Mess = self._shRecv(self.__shInPs["ENPID"])
             if Status == 0:
-                if Mess == "ack;;":
-                    return 0, "OK"
-                
-        return Status, Mess["data"]
+                return Status, Mess
+
+        return Status, Mess
 
     

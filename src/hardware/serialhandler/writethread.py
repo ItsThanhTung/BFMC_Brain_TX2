@@ -61,7 +61,6 @@ class WriteThread(Thread):
             self.serialCom.write(command_msg.encode('ascii'))
             # self.logFile.write(str(timestamp) + str(command_msg.encode('ascii')))
             self.logFile.write(command_msg)
-            print("To nucleo ", command_msg)
 
 
 
