@@ -54,18 +54,18 @@ class LocalizeProcess(WorkerProcess):
                     coora = self.gpsStR.recv()
                     coora = ast.literal_eval(coora)
                     self.point=[coora['coor'][1].real,coora['coor'][0].real]
-                    print(self.point)
+                    # print(self.point)
                 else:
                     self.point = [0,1]
                 self.debug_data = f"x: {self.point[0]} y: {self.point[1]}"
-                for out in self.outPs:      # decision 
-                    out.send({"point" : self.point
+                for outP in self.outPs:      # decision 
+                    outP.send({"point" : self.point
                             })
+                    # print("Send ", self.point)
 
                      
                 # remote 
                 if self.debug:
-                    print(self.debug_data)
                     self.debugP.send(self.debug_data)
 
                 time.sleep(0.005)

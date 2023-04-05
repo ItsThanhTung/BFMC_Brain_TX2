@@ -54,12 +54,7 @@ from src.image_processing.ImagePreprocessingProcess import ImagePreprocessingPro
 from src.perception.DecisionMakingProcess import DecisionMakingProcess
 from src.utils.datastreamer.DataStreamerProcess import DataStreamerProcess
 from src.image_processing.InterceptDetectionProcess import InterceptDetectionProcess
-<<<<<<< HEAD
-
-
-=======
 from src.data.localisationssystem.LocalizeProcess import LocalizeProcess
->>>>>>> test_localize
 from src.utils.utils_function import load_config_file
 
 from src.image_processing.traffic_sign.detection import Yolo
@@ -74,11 +69,13 @@ if __name__ == '__main__':
 
     # =============================== CONFIG =================================================
     enableStream             =  False
-    enableLocalize = True
+    enableLocalize             = True
+    enableYolo              = False
+
     enableStreamObject       =  False
     enableLaneStream         =  False
     enableInterceptStream    =  False
-    enableLocalizeStream       = False
+    enableLocalizeStream       = True
     
     is_remote = False
     is_show = False
@@ -88,9 +85,9 @@ if __name__ == '__main__':
         objectDebugStreamR, objectDebugStreamS = Pipe(duplex = False)    
     else:    
         objectDebugStreamR, objectDebugStreamS = None, None
-        
-    # object_detector = Yolo(camObjectStR, objectDecisionS, objectDebugStreamS, \
-    #                         debug=enableStreamObject, is_tensorRt = not is_remote)
+    if enableYolo:
+        object_detector = Yolo(camObjectStR, objectDecisionS, objectDebugStreamS, \
+                                debug=enableStreamObject, is_tensorRt = not is_remote)
     
 
         
@@ -161,7 +158,10 @@ if __name__ == '__main__':
         
     if enableLocalize:
         localizeDebugR, localizeDebugS = Pipe(duplex = False) 
-        localizeProc = LocalizeProcess([],debugP=localizeDebugS,opt=opt ,debug=True)
+
+        locSysR, locSysS = Pipe(duplex = False) 
+
+        localizeProc = LocalizeProcess([locSysS],debugP=localizeDebugS,opt=opt ,debug=True)
         allProcesses.append(localizeProc)
     else:
         localizeDebugR, localizeDebugS = None, None
@@ -171,9 +171,9 @@ if __name__ == '__main__':
     allProcesses.append(camProc)
 
     # LocSys client process
-    LocsysOpt = opt["LOCSYS"]
-    LocSysProc = LocalisationSystem(LocsysOpt["LOCSYS_TAGID"], LocsysOpt["LOCSYS_BEACON"], LocsysOpt["PUBLIC_KEY"],LocStS)
-    allProcesses.append(LocSysProc)
+    # LocsysOpt = opt["LOCSYS"]
+    # LocSysProc = LocalisationSystem(LocsysOpt["LOCSYS_TAGID"], LocsysOpt["LOCSYS_BEACON"], LocsysOpt["PUBLIC_KEY"],LocStS)
+    # allProcesses.append(LocSysProc)
 
     NucListenerInPs ={
         "SPEED": encSpeedListenerR,
@@ -186,25 +186,25 @@ if __name__ == '__main__':
         "VLX": VLXDataS,
         "IMU": IMUDataS
     }
-    # NucListenerProc = NucleoProcess(NucListenerInPs, NucOutPs)
-    # allProcesses.append(NucListenerProc)
+    NucListenerProc = NucleoProcess(NucListenerInPs, NucOutPs)
+    allProcesses.append(NucListenerProc)
 
 
     # =============================== PreProcessing Layer ===================================================
-    # imagePreprocess = ImagePreprocessingProcess({"LANE_IMAGE" : camLaneStR}, {"LANE_KEEPING" : imagePreprocessS, "INTERCEPT_DETECTION" : imagePreprocessInterceptS},\
-    #                                                             opt , is_show, debugP=imagePreprocessStreamS, debug=enableStream)
-    # allProcesses.append(imagePreprocess)
+    imagePreprocess = ImagePreprocessingProcess({"LANE_IMAGE" : camLaneStR}, {"LANE_KEEPING" : imagePreprocessS, "INTERCEPT_DETECTION" : imagePreprocessInterceptS},\
+                                                                opt , is_show, debugP=imagePreprocessStreamS, debug=enableStream)
+    allProcesses.append(imagePreprocess)
 
-    # laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [laneKeepingDecisionS], opt, debugP=laneKeepingDebugS, debug=enableLaneStream, is_remote=is_remote)
-    # allProcesses.append(laneKeepingProcess)
+    laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [laneKeepingDecisionS], opt, debugP=laneKeepingDebugS, debug=enableLaneStream, is_remote=is_remote)
+    allProcesses.append(laneKeepingProcess)
 
-    # interceptDetectionProcess = InterceptDetectionProcess({"IMAGE_PREPROCESSING" : imagePreprocessInterceptR}, {"DECISION_MAKING" : interceptDecisionS}, \
-    #                                                         opt, debugP=interceptDebugS, debug=enableInterceptStream, is_remote=is_remote)           
-    # allProcesses.append(interceptDetectionProcess)
+    interceptDetectionProcess = InterceptDetectionProcess({"IMAGE_PREPROCESSING" : imagePreprocessInterceptR}, {"DECISION_MAKING" : interceptDecisionS}, \
+                                                            opt, debugP=interceptDebugS, debug=enableInterceptStream, is_remote=is_remote)           
+    allProcesses.append(interceptDetectionProcess)
 
 
     CarEstimateInPs = {
-        "GPS": LocStR,
+        # "GPS": locSysR,
         "IMU":  IMUDataR,
         "Encoder": SpeedR,
         "InSteer": StatePre_SteerR,
@@ -214,6 +214,7 @@ if __name__ == '__main__':
 
     }
     CarEstimateProc = CarEstimateProcess(CarEstimateInPs, CarEstimateOutPs)
+    allProcesses.append(CarEstimateProc)
 
     # =============================== Perception Layer ===================================================
 
@@ -252,8 +253,8 @@ if __name__ == '__main__':
         "8": [VLXListenerS],
         "9": [encTravelledListenerS]
     }
-    # shProc = SerialHandlerProcess([rcShR], shOutPs)
-    # allProcesses.append(shProc)
+    shProc = SerialHandlerProcess([rcShR], shOutPs)
+    allProcesses.append(shProc)
 
 
 
@@ -287,21 +288,23 @@ if __name__ == '__main__':
 
     # ===================================== STAYING ALIVE ====================================
     blocker = Event()  
-    # object_cam_read_th = Thread(target = object_detector.read_image)
-    # stream_image_th = Thread(target = object_detector.stream_image_th)
-    # object_detector_th = Thread(target = object_detector.detection_loop)
-    
-    # object_cam_read_th.start()
-    # object_detector_th.start()
-    # stream_image_th.start()
+    if enableYolo:
+        object_cam_read_th = Thread(target = object_detector.read_image)
+        stream_image_th = Thread(target = object_detector.stream_image_th)
+        object_detector_th = Thread(target = object_detector.detection_loop)
+        
+        object_cam_read_th.start()
+        object_detector_th.start()
+        stream_image_th.start()
 
     try:
         blocker.wait()
     except KeyboardInterrupt:
         print("\nCatching a KeyboardInterruption exception! Shutdown all processes.\n")
-        del object_cam_read_th  
-        del object_detector_th  
-        del stream_image_th
+        if enableYolo:
+            del object_cam_read_th  
+            del object_detector_th  
+            del stream_image_th
         
         decisionMakingProcess.stop()
         decisionMakingProcess.join()
@@ -316,6 +319,3 @@ if __name__ == '__main__':
                 proc.terminate()
                 proc.join()
                 
-        
-                
-        

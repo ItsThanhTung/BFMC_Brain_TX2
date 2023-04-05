@@ -58,10 +58,11 @@ class WriteThread(Thread):
             # Unpacking the dictionary into action and values
             # print("Command ", command)
             command_msg = self.messageConverter.get_command(**command)
-            timestamp = time.time()
             self.serialCom.write(command_msg.encode('ascii'))
             # self.logFile.write(str(timestamp) + str(command_msg.encode('ascii')))
             self.logFile.write(command_msg)
+            print("To nucleo ", command_msg)
+
 
 
 

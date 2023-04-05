@@ -163,9 +163,16 @@ class DecisionMakingProcess(WorkerProcess):
     
     def turn_off_rc_car(self):
         status, messSpd = self.__CarHandlerTh.setAngle(0)
+        time.sleep(0.01)
         status, messSpd = self.__CarHandlerTh.setAngle(0)
+        time.sleep(0.01)
+
         status, messSpd = self.__CarHandlerTh.setSpeed(0)
+        time.sleep(0.01)
+
         status, messSpd = self.__CarHandlerTh.setSpeed(0)
+        time.sleep(0.01)
+
         return 0
 
     def _run_decision_making(self):

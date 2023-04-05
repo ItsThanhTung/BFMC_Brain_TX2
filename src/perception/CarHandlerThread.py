@@ -43,7 +43,7 @@ class CarHandlerThread(ThreadWithStop):
         self.enablePID(enablePID)
 
         self.enListenVLX(False)
-        self.enListenSpeed(True)
+        self.enListenSpeed(False)
         self.enListenTravelled(False)
         
 

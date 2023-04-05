@@ -7,7 +7,7 @@ from threading import Lock
 
 import time
 class IMUHandlerThread(ThreadWithStop):
-    def __init__(self, outPs, readInterval = 0.001, dt = 0.01):
+    def __init__(self, outPs, readInterval = 0.01, dt = 0.01):
         """
     
     Car Handler Thread object
@@ -23,8 +23,7 @@ class IMUHandlerThread(ThreadWithStop):
 
         self._accelThres =  0.2
 
-        i2c = I2C(0)  
-        self._sensor = adafruit_bno055.BNO055_I2C(i2c, 0x29)
+        self._sensor = adafruit_bno055.BNO055_I2C(I2C(0), 0x29)
         print("IMU Init Done")
 
         iscalib = self._sensor.calibrated
@@ -56,12 +55,12 @@ class IMUHandlerThread(ThreadWithStop):
         while self._running:
             time.sleep(self._readInterval)
             Data = {
-                "Accelerometer": np.array(self._sensor.acceleration),
-                "Magnetometer": np.array(self._sensor.magnetic),
-                "Gyroscope": np.array(self._sensor.gyro),
-                "Euler": np.array(self._sensor.euler),
-                "Quaternion": np.array(self._sensor.quaternion),
-                "Linear Accel": np.array(self._sensor.linear_acceleration),
-                "Gravity": np.array(self._sensor.gravity)
+                "Accelerometer": self._sensor.acceleration,
+                "Magnetometer": self._sensor.magnetic,
+                "Gyroscope": self._sensor.gyro,
+                "Euler": self._sensor.euler,
+                "Quaternion": self._sensor.quaternion,
+                "Linear Accel":self._sensor.linear_acceleration,
+                "Gravity": self._sensor.gravity
             }
             self._outPs.send(Data)

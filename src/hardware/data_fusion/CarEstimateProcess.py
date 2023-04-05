@@ -96,7 +96,6 @@ class CarEstimateProcess(WorkerProcess):
     
 
     def RcvDataThread(self):
-        IMUPipeR = self.inPs["IMU"]
         reader  = list()
         for key in self.inPs:
             reader.append(self.inPs[key])
@@ -105,19 +104,25 @@ class CarEstimateProcess(WorkerProcess):
             for inP in wait(reader):
                 try:
                     Data = inP.recv()
+                    # print("Pipe rcv ", Data)
                 except:
                     print("Pipe Error ", inP)
                 else:
                     if inP == self.inPs["IMU"]:
                         self.IMU = Data
+                        # print("IMU Rcv", self.IMU)
                     elif inP == self.inPs["GPS"]:
-                        self.GPS = Data
+                        self.GPS = Data["point"]
+                        # print("Rcv GPS: ", self.GPS)
                     elif inP == self.inPs["Encoder"]:
                         self.Encoder = Data
+                        print("Rcv Encoder ", self.Encoder)
                     elif inP == self.inPs["InSteer"]:
                         self.Steering = Data
+                        print("Rcv Steer ", self.Steering)
                     elif inP == self.inPs["InSpeed"]:
                         self.inVelocity = Data
+                        print("Velo ", self.inVelocity)
     
     @property
     def IMU(self):
@@ -126,7 +131,7 @@ class CarEstimateProcess(WorkerProcess):
             IMUData = self._IMU_Data
         return IMUData
     @IMU.setter
-    def IMU_Data(self, newData):
+    def IMU(self, newData):
         with self.__IMU_Lock:
             self._IMU_Data = newData
 
@@ -138,7 +143,7 @@ class CarEstimateProcess(WorkerProcess):
         return GPSData
     
     @GPS.setter
-    def GPS_Data(self, newData):
+    def GPS(self, newData):
         with self.__GPS_Lock:
             self._GPS_Data = newData
 

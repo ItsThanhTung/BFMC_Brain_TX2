@@ -22,14 +22,14 @@ if __name__ == '__main__':
 
     time.sleep(5)
 
-    EnablePID(rcShS)
-    setAngle(rcShS , 0)
-    time.sleep(1)
+    # EnablePID(rcShS)
+    # setAngle(rcShS , 0)
+    # time.sleep(1)
     while True:
         # angle = float(input("Please enter angle: "))
         # Distance = float(input("Please enter distance: "))
 
-        setAngle(rcShS , 23)
+        setAngle(rcShS , 2)
         time.sleep(0.5)
         # MoveDistance(rcShS , Distance, 0.5)
         

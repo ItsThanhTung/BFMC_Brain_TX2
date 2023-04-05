@@ -1,5 +1,5 @@
 
-2023-04-04 14:05:53.226889
+2023-04-05 10:46:16.630759
  intercept_length = 0 	 intercept_gap = inf 
 Lane keeping angle: 0   speed: 35
 
@@ -7,704 +7,160 @@ Fail send speed: -1 	 Receive Timeout
 
 Fail send angle: -1 	 Receive Timeout
 
-2023-04-04 14:05:53.653953
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:05:54.071155
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:05:54.480847
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:05:54.895462
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:05:55.301761
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:05:55.707734
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:05:56.116440
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:05:56.540562
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:05:56.956560
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:05:57.373678
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:05:57.793317
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:05:58.198762
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:05:58.603724
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:05:59.009137
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:05:59.414604
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:05:59.822846
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:00.247012
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:00.658840
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:01.072858
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:01.493076
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:01.898275
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:02.304079
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:02.709530
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:03.114931
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:03.528621
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:03.941636
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:04.361123
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:04.766614
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:05.174868
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:05.595540
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:06.001503
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:06.406720
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:06.811769
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:07.217607
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:07.632991
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:08.054615
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:08.460603
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:08.866932
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:09.272946
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:09.691896
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:10.097620
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:10.503761
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:10.910892
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:11.317933
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:11.734228
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:12.161686
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:12.571047
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:12.983751
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:13.393560
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:13.798709
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:14.204085
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:14.610222
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:15.016823
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:15.423862
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:15.859074
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:16.293131
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
+2023-04-05 10:46:17.035143
+ intercept_length = 45 	 intercept_gap = 23 
+Lane keeping angle: 7.028607842623619   speed: 35
 
 Fail send speed: -1 	 Receive Timeout
 
 Fail send angle: -1 	 Receive Timeout
 
-2023-04-04 14:06:16.698893
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:17.103646
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:17.509452
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:17.917597
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:18.334779
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:18.753091
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:19.179110
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:19.586504
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:20.004649
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:20.419151
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:20.829729
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:21.255699
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
-
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:21.677682
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
-Fail send speed: -1 	 Receive Timeout
+2023-04-05 10:46:17.446532
+ intercept_length = 45 	 intercept_gap = 23 
+Lane keeping angle: 7.028607842623619   speed: 35
 
-Fail send angle: -1 	 Receive Timeout
-
-2023-04-04 14:06:22.095993
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
-
 Fail send speed: -1 	 Receive Timeout
 
 Fail send angle: -1 	 Receive Timeout
 
-2023-04-04 14:06:22.501636
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
+2023-04-05 10:46:17.862781
+ intercept_length = 45 	 intercept_gap = 23 
+Lane keeping angle: 7.028607842623619   speed: 35
 
 Fail send speed: -1 	 Receive Timeout
 
 Fail send angle: -1 	 Receive Timeout
 
-2023-04-04 14:06:22.906694
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
+2023-04-05 10:46:18.281522
+ intercept_length = 45 	 intercept_gap = 23 
+Lane keeping angle: 7.028607842623619   speed: 35
 
 Fail send speed: -1 	 Receive Timeout
 
 Fail send angle: -1 	 Receive Timeout
 
-2023-04-04 14:06:23.311521
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
+2023-04-05 10:46:18.700840
+ intercept_length = 45 	 intercept_gap = 23 
+Lane keeping angle: 7.028607842623619   speed: 35
 
 Fail send speed: -1 	 Receive Timeout
 
 Fail send angle: -1 	 Receive Timeout
 
-2023-04-04 14:06:23.716838
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
+2023-04-05 10:46:19.120557
+ intercept_length = 45 	 intercept_gap = 23 
+Lane keeping angle: 7.028607842623619   speed: 35
 
 Fail send speed: -1 	 Receive Timeout
 
 Fail send angle: -1 	 Receive Timeout
 
-2023-04-04 14:06:24.123134
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
+2023-04-05 10:46:19.542124
+ intercept_length = 45 	 intercept_gap = 23 
+Lane keeping angle: 7.028607842623619   speed: 35
 
 Fail send speed: -1 	 Receive Timeout
 
 Fail send angle: -1 	 Receive Timeout
 
-2023-04-04 14:06:24.530203
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
+2023-04-05 10:46:19.958606
+ intercept_length = 45 	 intercept_gap = 23 
+Lane keeping angle: 7.028607842623619   speed: 35
 
 Fail send speed: -1 	 Receive Timeout
 
 Fail send angle: -1 	 Receive Timeout
 
-2023-04-04 14:06:24.948571
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
+2023-04-05 10:46:20.370381
+ intercept_length = 45 	 intercept_gap = 23 
+Lane keeping angle: 7.028607842623619   speed: 35
 
 Fail send speed: -1 	 Receive Timeout
 
 Fail send angle: -1 	 Receive Timeout
 
-2023-04-04 14:06:25.357502
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
+2023-04-05 10:46:20.787840
+ intercept_length = 45 	 intercept_gap = 23 
+Lane keeping angle: 7.028607842623619   speed: 35
 
 Fail send speed: -1 	 Receive Timeout
 
 Fail send angle: -1 	 Receive Timeout
 
-2023-04-04 14:06:25.774690
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
+2023-04-05 10:46:21.205509
+ intercept_length = 45 	 intercept_gap = 23 
+Lane keeping angle: 7.028607842623619   speed: 35
 
 Fail send speed: -1 	 Receive Timeout
 
 Fail send angle: -1 	 Receive Timeout
 
-2023-04-04 14:06:26.193615
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
+2023-04-05 10:46:21.620569
+ intercept_length = 45 	 intercept_gap = 23 
+Lane keeping angle: 7.028607842623619   speed: 35
 
 Fail send speed: -1 	 Receive Timeout
 
 Fail send angle: -1 	 Receive Timeout
 
-2023-04-04 14:06:26.601973
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
+2023-04-05 10:46:22.028973
+ intercept_length = 45 	 intercept_gap = 23 
+Lane keeping angle: 7.028607842623619   speed: 35
 
 Fail send speed: -1 	 Receive Timeout
 
 Fail send angle: -1 	 Receive Timeout
 
-2023-04-04 14:06:27.006801
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
+2023-04-05 10:46:22.445403
+ intercept_length = 45 	 intercept_gap = 23 
+Lane keeping angle: 7.028607842623619   speed: 35
 
 Fail send speed: -1 	 Receive Timeout
 
 Fail send angle: -1 	 Receive Timeout
 
-2023-04-04 14:06:27.413008
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
+2023-04-05 10:46:22.860771
+ intercept_length = 45 	 intercept_gap = 23 
+Lane keeping angle: 7.028607842623619   speed: 35
 
 Fail send speed: -1 	 Receive Timeout
 
 Fail send angle: -1 	 Receive Timeout
 
-2023-04-04 14:06:27.822647
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
+2023-04-05 10:46:23.279485
+ intercept_length = 45 	 intercept_gap = 23 
+Lane keeping angle: 7.028607842623619   speed: 35
 
 Fail send speed: -1 	 Receive Timeout
 
 Fail send angle: -1 	 Receive Timeout
 
-2023-04-04 14:06:28.238088
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
+2023-04-05 10:46:23.695308
+ intercept_length = 45 	 intercept_gap = 23 
+Lane keeping angle: 7.028607842623619   speed: 35
 
 Fail send speed: -1 	 Receive Timeout
 
 Fail send angle: -1 	 Receive Timeout
 
-2023-04-04 14:06:28.656450
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
+2023-04-05 10:46:24.116000
+ intercept_length = 45 	 intercept_gap = 23 
+Lane keeping angle: 7.028607842623619   speed: 35
 
 Fail send speed: -1 	 Receive Timeout
 
 Fail send angle: -1 	 Receive Timeout
 
-2023-04-04 14:06:29.067387
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
+2023-04-05 10:46:24.525463
+ intercept_length = 45 	 intercept_gap = 23 
+Lane keeping angle: 7.028607842623619   speed: 35
 
 Fail send speed: -1 	 Receive Timeout
 
 Fail send angle: -1 	 Receive Timeout
 
-2023-04-04 14:06:29.476182
- intercept_length = 0 	 intercept_gap = inf 
-Lane keeping angle: 0   speed: 35
+2023-04-05 10:46:24.950692
+ intercept_length = 45 	 intercept_gap = 23 
+Lane keeping angle: 7.028607842623619   speed: 35
 
 Fail send speed: -1 	 Receive Timeout
