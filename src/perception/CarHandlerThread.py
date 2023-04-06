@@ -234,7 +234,6 @@ class CarHandlerThread(ThreadWithStop):
         }
         Status = 0
         Mess = "OK"
-        print("Enable Speed Listen")
         for i in range(self.__sendAttemp):
             self._shSend(self.__shOutP, data)
             if self.__AckTimeout < 0:

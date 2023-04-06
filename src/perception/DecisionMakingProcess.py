@@ -169,6 +169,8 @@ class DecisionMakingProcess(WorkerProcess):
 
         status, messSpd = self.__CarHandlerTh.setSpeed(0,1)
 
+
+        self.__CarHandlerTh.enListenSpeed(False)
         return 0
 
     
@@ -179,7 +181,7 @@ class DecisionMakingProcess(WorkerProcess):
 
         interceptionHandler = InterceptionHandler(self.imu_handler, self.__CarHandlerTh, self.historyFile) # , self.localization_thr)
         trafficSignHanlder = TrafficSignHandler(self.__CarHandlerTh, self.historyFile, self.decision_maker)
-        self._TestRun2()
+        self._FakeRun()
         while True:
             if True:
                 self.decision_maker.reiniate()
@@ -245,22 +247,22 @@ class DecisionMakingProcess(WorkerProcess):
         print("Start Run")
         self.__CarHandlerTh.setSpeed(35)
         self.__CarHandlerTh.setAngle(0)
-        time.sleep(2)
+        time.sleep(3)
         self.__CarHandlerTh.setSpeed(35)
-        self.__CarHandlerTh.setAngle(10)
-        time.sleep(2)
+        self.__CarHandlerTh.setAngle(-20)
+        time.sleep(3)
+        self.__CarHandlerTh.setSpeed(35)
+        self.__CarHandlerTh.setAngle(15)
+        time.sleep(3)
+        self.__CarHandlerTh.setSpeed(35)
+        self.__CarHandlerTh.setAngle(-25)
+        time.sleep(3)
         self.__CarHandlerTh.setSpeed(35)
         self.__CarHandlerTh.setAngle(0)
-        time.sleep(2)
-        self.__CarHandlerTh.setSpeed(35)
-        self.__CarHandlerTh.setAngle(-15)
-        time.sleep(2)
-        self.__CarHandlerTh.setSpeed(35)
-        self.__CarHandlerTh.setAngle(0)
-        time.sleep(2)
+        time.sleep(1)
         self.__CarHandlerTh.setSpeed(0)
         self.__CarHandlerTh.setAngle(0)
         self.__CarHandlerTh.enListenSpeed(False)
         print("Run Done")
         while(True):
-            time.sleep(1)
+            time.sleep(5)
