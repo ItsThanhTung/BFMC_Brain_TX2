@@ -79,7 +79,10 @@ class ReadThread(ThreadWithStop):
         f_response : string
             The response received from the other device without the key. 
         """
-        l_key=f_response[1]
+        try:
+            l_key=f_response[1]
+        except:
+            return
         # print("resp ",f_response)
         
         if l_key in self.__subscribers:

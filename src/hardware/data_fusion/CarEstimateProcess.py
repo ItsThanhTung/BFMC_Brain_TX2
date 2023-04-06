@@ -127,6 +127,7 @@ class CarEstimateProcess(WorkerProcess):
                             self.inVelocity = Data["value"]
                         elif Data["type"] == "STEER":
                             self.Steering = Data["value"]
+                            print("Steer Value ", self.Steering)
     
     @property
     def IMU(self):
@@ -163,7 +164,6 @@ class CarEstimateProcess(WorkerProcess):
 
     @property
     def Steering(self):
-        SteerData = None
         with self.__inSteer_Lock:
             SteerData = self._inSteer_Data
         return SteerData

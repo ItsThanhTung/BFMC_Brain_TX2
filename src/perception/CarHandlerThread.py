@@ -72,6 +72,7 @@ class CarHandlerThread(ThreadWithStop):
     def _distanceProcess(self, Data):
         self.__DistanceLock.acquire()
         try:
+            # print("Data", Data)
             self.__DistanceStatus, self.__DistanceMess = Data.split(";", 2)[:2]
         except:
             print("Split Error")
@@ -163,12 +164,12 @@ class CarHandlerThread(ThreadWithStop):
 
         return Status, Mess
 
-    def moveDistance(self, distance, speed, send_attempt = None):
+    def moveDistance(self, distance, send_attempt = None):
         if send_attempt is None:
             send_attempt = self.__sendAttemp 
         data = {
         "action": '7',
-        "distance": float(distance/100),
+        "distance": float(distance),
         }
         Status = 0
         Mess = {

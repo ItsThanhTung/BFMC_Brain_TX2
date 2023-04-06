@@ -163,18 +163,15 @@ class DecisionMakingProcess(WorkerProcess):
     
     def turn_off_rc_car(self):
         status, messSpd = self.__CarHandlerTh.setAngle(0,1)
-        time.sleep(0.01)
         status, messSpd = self.__CarHandlerTh.setAngle(0,1)
-        time.sleep(0.01)
 
         status, messSpd = self.__CarHandlerTh.setSpeed(0,1)
-        time.sleep(0.01)
 
         status, messSpd = self.__CarHandlerTh.setSpeed(0,1)
-        time.sleep(0.01)
 
         return 0
 
+    
     def _run_decision_making(self):
         if not self.is_stop:
             status, messSpd = self.__CarHandlerTh.enablePID()
@@ -182,7 +179,7 @@ class DecisionMakingProcess(WorkerProcess):
 
         interceptionHandler = InterceptionHandler(self.imu_handler, self.__CarHandlerTh, self.historyFile) # , self.localization_thr)
         trafficSignHanlder = TrafficSignHandler(self.__CarHandlerTh, self.historyFile, self.decision_maker)
-        
+        self._TestRun2()
         while True:
             if True:
                 self.decision_maker.reiniate()
@@ -236,4 +233,34 @@ class DecisionMakingProcess(WorkerProcess):
                     # if np.abs(self.prev_angle - angle_lane_keeping) > 10:
                     #     self.historyFile.write("\n \n \n ******************* OFF ANGLE ***************************\n \n \n")
 
-            
+    def _TestRun2(self):
+        self.__CarHandlerTh.moveDistance(2)
+        time.sleep(1)
+        while(True):
+            time.sleep(0.2)
+            Status, Mess = self.__CarHandlerTh.getDistanceStatus()
+            print("Status {} Mess {}".format(Status, Mess))
+    def _FakeRun(self):
+        time.sleep(10)
+        print("Start Run")
+        self.__CarHandlerTh.setSpeed(35)
+        self.__CarHandlerTh.setAngle(0)
+        time.sleep(2)
+        self.__CarHandlerTh.setSpeed(35)
+        self.__CarHandlerTh.setAngle(10)
+        time.sleep(2)
+        self.__CarHandlerTh.setSpeed(35)
+        self.__CarHandlerTh.setAngle(0)
+        time.sleep(2)
+        self.__CarHandlerTh.setSpeed(35)
+        self.__CarHandlerTh.setAngle(-15)
+        time.sleep(2)
+        self.__CarHandlerTh.setSpeed(35)
+        self.__CarHandlerTh.setAngle(0)
+        time.sleep(2)
+        self.__CarHandlerTh.setSpeed(0)
+        self.__CarHandlerTh.setAngle(0)
+        self.__CarHandlerTh.enListenSpeed(False)
+        print("Run Done")
+        while(True):
+            time.sleep(1)
