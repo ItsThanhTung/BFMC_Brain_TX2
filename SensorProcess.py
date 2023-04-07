@@ -5,7 +5,7 @@ import numpy as np
 from src.utils.SensorProcess.utils import *
 
 Delta_t = 0.01
-CarFilter = CarEKF(Delta_t, 0.26, 25)
+CarFilter = CarEKF(Delta_t, 0.26)
 # CarFilter.InitialState()
 
 DataFile = open("SensorLog.txt","r")
@@ -92,7 +92,7 @@ while True:
         CarFilter.GPS_Update(Coor[0], Coor[1])
         prev_Coor = Coor
 
-    CarFilter.IMU_Update(Velo, GetIMUHeading(DataJson))
+    CarFilter.IMU_Update(GetIMUHeading(DataJson))
 
     Speed = GetEncoderSpeed(DataJson)
     CarFilter.Encoder_Update(Speed)
