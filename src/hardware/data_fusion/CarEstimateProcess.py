@@ -28,6 +28,7 @@
 
 from src.templates.workerprocess                import WorkerProcess
 from multiprocessing.connection import wait
+from src.hardware.data_fusion.CarEKF import CarEKF
 import json
 
 from threading import Lock, Thread
@@ -43,7 +44,8 @@ class CarEstimateProcess(WorkerProcess):
         """
 
         super(CarEstimateProcess,self).__init__( inPs, outPs, daemon = True)
-        self._LogInterval = 0.01
+        self._dt = 0.01
+        self._LogInterval = self._dt
 
         self._IMU_Data = None
         self.__IMU_Lock = Lock()
@@ -60,6 +62,8 @@ class CarEstimateProcess(WorkerProcess):
         self._inVelocity_Data = None
         self.__inVelocity_Lock = Lock()
 
+        self.CarFilter = CarEKF(self._dt, 0.26)
+
         self.LogFile = open("SensorLog.txt", "w")
 
     # ===================================== RUN ==========================================
@@ -73,6 +77,8 @@ class CarEstimateProcess(WorkerProcess):
 
        ListenDataTh =  Thread(target= self.RcvDataThread, daemon = True)
        self.threads.append(ListenDataTh)
+       LogDataTh = Thread(target= self.LogDataThread, daemon = True)
+       self.threads.append(LogDataTh)
        LogDataTh = Thread(target= self.LogDataThread, daemon = True)
        self.threads.append(LogDataTh)
 

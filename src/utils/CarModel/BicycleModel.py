@@ -1,6 +1,5 @@
 import numpy as np
 from math import cos, sin, tan
-from libs import normalise_angle
 class BicycleModel():
     def __init__(self, wheelbase: float, max_steer: float, delta_time: float=0.05):
         self.delta_time = delta_time

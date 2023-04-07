@@ -111,7 +111,7 @@ class DataStreamerProcess(WorkerProcess):
         
                 data = bytes(json_data, 'utf-8')
                 size   =  len(data)
-            
+                
                 self.connection.write(struct.pack("<L",size))
                 self.connection.write(data)
 
