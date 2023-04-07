@@ -85,7 +85,7 @@ class DataStreamerProcess(WorkerProcess):
                 try:
                     self.client_socket.connect((self.serverIp, self.port))
                     self.client_socket.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1)
-                    self.connection = self.client_socket.makefile('wb') 
+                    # self.connection = self.client_socket.makefile('wb') 
                 except ConnectionRefusedError as error:
                     time.sleep(0.5)
                     pass
@@ -112,8 +112,9 @@ class DataStreamerProcess(WorkerProcess):
                 data = bytes(json_data, 'utf-8')
                 size   =  len(data)
             
-                self.connection.write(struct.pack("<L",size))
-                self.connection.write(data)
+                # self.connection.write(struct.pack("<L",size))
+                # self.connection.write(data)
+                client_socket.send(data)
 
             except Exception as e:
                 print("DataStreamer failed to stream data:",e,"\n")
