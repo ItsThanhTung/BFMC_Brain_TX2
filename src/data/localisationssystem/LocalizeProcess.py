@@ -13,7 +13,7 @@ class LocalizeProcess(WorkerProcess):
         self.point= None
         self.beacon = 12345
         self.id = 0x8704
-        self.dummy = False
+        self.dummy = True
         self.localizeCondition = Condition()
         self.gpsStR,self.gpsStS  = Pipe(duplex = False)
         self.serverpublickey = 'src/data/localisationssystem/publickey_server_test.pem'
@@ -47,7 +47,7 @@ class LocalizeProcess(WorkerProcess):
             Output pipe to send the steering angle value to other process.
 
         """
-        print('in localize')
+        print('inited localize')
         while True:
             try:
                 if not self.dummy:
@@ -57,18 +57,16 @@ class LocalizeProcess(WorkerProcess):
                     # print(self.point)
                 else:
                     self.point = [0,1]
-                self.debug_data = f"x: {self.point[0]} y: {self.point[1]}"
+                self.debug_data = {"x": self.point[0], "y": self.point[1]}
+                print(self.debug_data)
                 for outP in self.outPs:      # decision 
                     outP.send({"point" : self.point
                             })
-                    # print("Send ", self.point)
 
                      
                 # remote 
                 if self.debug:
                     self.debugP.send(self.debug_data)
-
-                time.sleep(0.005)
             except Exception as e:
                 print("Localize error:", e)
         

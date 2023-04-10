@@ -46,24 +46,21 @@ class InterceptionHandler:
             print("imu ", imu_angle)    
             if imu_angle < 5:
                 angle = 7
-                self.send_angle(angle)
                 
             elif imu_angle < 10:
                 angle = 18
-                self.send_angle(angle)
 
             elif imu_angle < 15:
                 angle = 23
-                self.send_angle(angle)
             
             elif imu_angle < 25:
                 angle = 23
-                self.send_angle(angle)
    
             else:
                 angle = 23
-                self.send_angle(angle)
                 
+            angle = int(angle*1.5)            
+            self.send_angle(angle)
             self.log_handler(imu_angle, angle)
             
             time.sleep(0.08)
@@ -79,15 +76,8 @@ class InterceptionHandler:
         # time.sleep(0.5)
         # self.send_angle(0,send_attempt=10)
 
-        t = time.time()
         self.send_speed(40)
-        imu_angle = self.imu_handler.get_yaw()   
-        while time.time()-t <= 3.5:
-            imu_angle = self.imu_handler.get_yaw()   
-            print(-imu_angle*0.5)
-            self.send_angle(-imu_angle*0.5)
-            time.sleep(0.1)
-            
+        time.sleep(3.5)            
                             
     def send_speed(self, speed):
         # print("set speed: ", speed)
@@ -112,24 +102,20 @@ class InterceptionHandler:
         while imu_angle > -75:       
             if imu_angle > -7:
                 angle = -7
-                self.send_angle(angle)
             
             elif imu_angle > -20:
                 angle = -15
-                self.send_angle(angle)
    
             elif imu_angle > -25:
                 angle = -16
-                self.send_angle(angle)
 
             elif imu_angle > -55:
                 angle = -18
-                self.send_angle(angle)
      
             else:
                 angle = -23
-                self.send_angle(angle)
-                
+            angle = int(angle*1.5)                
+            self.send_angle(angle)
             self.log_handler(imu_angle, angle)
             
             time.sleep(0.08)
@@ -149,31 +135,28 @@ class InterceptionHandler:
         imu_angle = self.imu_handler.get_yaw()   
         self.send_speed(20)
 
-        while imu_angle > -75:       
+        while imu_angle > -75:    
+            print(imu_angle)   
             if imu_angle > -10:
-                angle = -5
-                self.send_angle(-7)
+                angle = -7
 
             elif imu_angle > -15:
                 angle = -8
-                self.send_angle(angle)
             
             elif imu_angle > -20:
                 angle = -10
-                self.send_angle(angle)
    
             elif imu_angle > -25:
                 angle = -13
-                self.send_angle(angle)
 
             elif imu_angle > -55:
                 angle = -15
-                self.send_angle(angle)
      
             else:
                 angle = -23
-                self.send_angle(angle)
-                
+            angle = int(angle*2.5)       
+            print(angle)     
+            self.send_angle(angle)
             self.log_handler(imu_angle, angle)
             
             time.sleep(0.1)
