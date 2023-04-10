@@ -5,10 +5,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.metrics.pairwise import euclidean_distances
 
-from threading import Thread
+from threading import Thread, Condition
 class LocalizeDebugProcess(WorkerProcess):
+    localize_condition = Condition()
+    filter_condition = Condition()
     # ===================================== INIT =========================================
-    def __init__(self, inPs, outPs):
+    def __init__(self, inPs, outPs,filter = True):
         """Process used for sending images over the network to a targeted IP via UDP protocol 
         (no feedback required). The image is compressed before sending it. 
 
@@ -23,6 +25,9 @@ class LocalizeDebugProcess(WorkerProcess):
         """
 
         super(LocalizeDebugProcess,self).__init__( inPs, outPs)
+        self.filter = filter
+        self.localize_data = {"x" : 0, "y" :0}
+        self.filter_data = {"x" : 0, "y" :0}
         
     # ===================================== RUN ==========================================
     def run(self):
@@ -37,10 +42,45 @@ class LocalizeDebugProcess(WorkerProcess):
         if self._blocker.is_set():
             return
         localizeShowTh = Thread(name='LocalizeShowProcessThread',target = self._run)
+        recvLocalizeTh = Thread(name='recvLocalize',target = self.recvLocalize)
+        recvFilter = Thread(name='recvFilter',target = self.recvFilter)
+        
         localizeShowTh.daemon = True
+        recvLocalizeTh.daemon = True
+        recvFilter.daemon = True
+        
         self.threads.append(localizeShowTh)
+        self.threads.append(recvLocalizeTh)
+        self.threads.append(recvFilter)
 
+    def recvLocalize(self):
+        while True:
+            try:
+                data = self.inPs['localize'].recv()
+                self.localize_condition.acquire()
+                self.localize_data = data
+                self.localize_condition.notify()
+                self.localize_condition.release()
 
+            except Exception as e:
+                print("Localize Debug Process - recvLocalize thread error:")
+                print(e)
+                
+                
+    def recvFilter(self):
+        while True:
+            try:
+                data = self.inPs['filter'].recv()
+                self.filter_condition.acquire()
+                self.filter_data = data
+                self.filter_condition.notify()
+                self.filter_condition.release()
+
+            except Exception as e:
+                print("Localize Debug Process - recvLocalize thread error:")
+                print(e)
+            
+            
     def _run(self):
         parser = GraphMLParser()
         map = parser.parse('src/data/localisationssystem/Test_track.graphml')
@@ -71,27 +111,39 @@ class LocalizeDebugProcess(WorkerProcess):
         while True:
             try:
                 # Obtain image
-                for  inP in self.inPs:
-                    point = inP.recv()
-                    passed = []
-                    fig.canvas.restore_region(bg)
-                    dist_arr = euclidean_distances([[point['x'],point['y']]], map_arr)
-                    closest_point = np.argmin(dist_arr)
-                    data.append(point)
-                    np.save('data.npy',data)
-                    # if closest_point not in passed:
-                    #     passed.append(closest_point)
-                    #     (ln,)=plt.plot(map_arr[closest_point][0],map_arr[closest_point][1], marker="o",markerfacecolor='green', markersize=12)
-                    #     ax.draw_artist(ln)
-                    #     bg = fig.canvas.copy_from_bbox(fig.bbox)
-                    (ln,)=plt.plot(point['x'],point['y'], marker="o",markerfacecolor='red', markersize=12)
+
+                
+                self.localize_condition.acquire()
+                point_raw = self.localize_data
+                self.localize_condition.release()
+                
+                self.filter_condition.acquire()
+                point_filter = self.filter_data
+                self.filter_condition.release()
+                
+
+                # passed = []
+                fig.canvas.restore_region(bg)
+                # dist_arr = euclidean_distances([[point['x'],point['y']]], map_arr)
+                # closest_point = np.argmin(dist_arr)
+                # data.append(point)
+                # np.save('data.npy',data)
+                # if closest_point not in passed:
+                #     passed.append(closest_point)
+                #     (ln,)=plt.plot(map_arr[closest_point][0],map_arr[closest_point][1], marker="o",markerfacecolor='green', markersize=12)
+                #     ax.draw_artist(ln)
+                #     bg = fig.canvas.copy_from_bbox(fig.bbox)
+                (ln,)=plt.plot(point_raw['x'],point_raw['y'], marker="o",markerfacecolor='red', markersize=12)
+                ax.draw_artist(ln)
+                if self.filter:
+                    (ln,)=plt.plot(point_filter['x'],point_filter['y'], marker="o",markerfacecolor='yellow', markersize=12)
                     ax.draw_artist(ln)
-                    # (ln,)=plt.plot(map_arr[closest_point][0],map_arr[closest_point][1], marker="o",markerfacecolor='yellow', markersize=12)
-                    
-                    # ax.draw_artist(ln)
-                    fig.canvas.blit(fig.bbox)
-                    fig.canvas.flush_events()
-                    # fig.pause(0.1)
+                # (ln,)=plt.plot(map_arr[closest_point][0],map_arr[closest_point][1], marker="o",markerfacecolor='yellow', markersize=12)
+                
+                # ax.draw_artist(ln)
+                fig.canvas.blit(fig.bbox)
+                fig.canvas.flush_events()
+                # fig.pause(0.1)
             except Exception as e:
                 print("Localize show error:")
                 print(e)
