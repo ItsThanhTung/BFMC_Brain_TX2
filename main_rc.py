@@ -62,44 +62,54 @@ import multiprocessing
 from threading import Thread
 
 if __name__ == '__main__':
-    # =========================== Object Detection ===========================================
-    camObjectStR, camObjectStS = Pipe(duplex = False)                                   # camera  ->  streamer
-    objectDecisionR, objectDecisionS = Pipe(duplex = False)                             # object detection    ->  Decision making
     
-
     # =============================== CONFIG =================================================
     enableStream             =  False
-    enableLocalize             = True
+    enableLocalize           = True
     enableYolo              = False
 
     enableStreamObject       =  False
     enableLaneStream         =  False
     enableInterceptStream    =  False
-    enableLocalizeStream       = False
+    enableLocalizeStream       = True
     
     is_remote = False
     is_show = False
     is_stop = False
     
-    if enableStreamObject:
-        objectDebugStreamR, objectDebugStreamS = Pipe(duplex = False)    
-    else:    
-        objectDebugStreamR, objectDebugStreamS = None, None
-    if enableYolo:
+    opt = load_config_file("main_rc.json")
+    cam_opt = opt["REMOTE"] if is_remote else opt["RC"]
+    allProcesses = list()
+    # =========================== Object Detection ===========================================
+    camObjectStR, camObjectStS = None, None
+    objectDecisionR, objectDecisionS = Pipe(duplex = False)                             # object detection    ->  Decision making
+    
+    camLaneStR, camLaneStS = Pipe(duplex = False)           # camera  ->  streamer
+        
+    if enableYolo:        
+        camObjectStR, camObjectStS = Pipe(duplex = False)                                   # camera  ->  streamer
+        
+        if enableStreamObject:
+            objectDebugStreamR, objectDebugStreamS = Pipe(duplex = False)    
+        else:    
+            objectDebugStreamR, objectDebugStreamS = None, None
+        
         object_detector = Yolo(camObjectStR, objectDecisionS, objectDebugStreamS, \
                                 debug=enableStreamObject, is_tensorRt = not is_remote)
     
+    cameraSendP = {"PREPROCESS_IMAGE" : camLaneStS, "OBJECT_IMAGE" : camObjectStS}
+    
+    camProc = CameraProcess([], cameraSendP, cam_opt["CAM_PATH"])
+    allProcesses.append(camProc)
 
         
-    opt = load_config_file("main_rc.json")
     
-    cam_opt = opt["REMOTE"] if is_remote else opt["RC"]
 
     # =============================== INITIALIZING PROCESSES =================================
-    allProcesses = list()
+    
 
     # =============================== HARDWARE ===============================================
-    camLaneStR, camLaneStS = Pipe(duplex = False)           # camera  ->  streamer
+    
     
     LocStR, LocStS = Pipe(duplex = False)           # LocSys  ->  brain
 
@@ -166,27 +176,25 @@ if __name__ == '__main__':
         localizeDebugR, localizeDebugS = None, None
         localizeProc = None
     # =============================== Sensor Input Layer ===================================================
-    camProc = CameraProcess([],{"PREPROCESS_IMAGE" : camLaneStS, "OBJECT_IMAGE" : camObjectStS}, cam_opt["CAM_PATH"])
-    allProcesses.append(camProc)
-
+    
     # LocSys client process
     # LocsysOpt = opt["LOCSYS"]
     # LocSysProc = LocalisationSystem(LocsysOpt["LOCSYS_TAGID"], LocsysOpt["LOCSYS_BEACON"], LocsysOpt["PUBLIC_KEY"],LocStS)
     # allProcesses.append(LocSysProc)
 
-    NucListenerInPs ={
-        "SPEED": encSpeedListenerR,
-        "TRAVELLED": encTravelledListenerR,
-        "VLX": VLXListenerR
-    }
-    NucOutPs = {
-        "SPEED": SpeedS,
-        "TRAVELLED": TravelledS,
-        "VLX": VLXDataS,
-        "IMU": IMUDataS
-    }
-    NucListenerProc = NucleoProcess(NucListenerInPs, NucOutPs)
-    allProcesses.append(NucListenerProc)
+    # NucListenerInPs ={
+    #     "SPEED": encSpeedListenerR,
+    #     "TRAVELLED": encTravelledListenerR,
+    #     "VLX": VLXListenerR
+    # }
+    # NucOutPs = {
+    #     "SPEED": SpeedS,
+    #     "TRAVELLED": TravelledS,
+    #     "VLX": VLXDataS,
+    #     "IMU": IMUDataS
+    # }
+    # NucListenerProc = NucleoProcess(NucListenerInPs, NucOutPs)
+    # allProcesses.append(NucListenerProc)
 
 
     # =============================== PreProcessing Layer ===================================================

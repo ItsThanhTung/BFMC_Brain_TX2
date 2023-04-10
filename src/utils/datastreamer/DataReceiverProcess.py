@@ -45,7 +45,7 @@ from src.templates.workerprocess import WorkerProcess
 
 class DataReceiverProcess(WorkerProcess):
     # ===================================== INIT =========================================
-    def __init__(self, inPs, outPs, port):
+    def __init__(self, inPs, outPs, port,check_length = False):
         """Process used for debugging. Can be used as a direct frame analyzer, instead of using the VNC
         It receives the images from the raspberry and displays them.
 
@@ -59,7 +59,7 @@ class DataReceiverProcess(WorkerProcess):
         super(DataReceiverProcess,self).__init__(inPs, outPs)
         
         self.port = port
-
+        self.check_length = check_length
     # ===================================== RUN ==========================================
     def run(self):
         """Apply the initializers and start the threads. 
@@ -102,7 +102,9 @@ class DataReceiverProcess(WorkerProcess):
                 str_data = bts.decode('UTF-8')
                 json_data = json.loads(str_data) 
 
-            
+                if self.check_length:
+                    if str_data.count('{') != 1:
+                        continue
                 for outP in outPs:
                     outP.send(json_data)
 
