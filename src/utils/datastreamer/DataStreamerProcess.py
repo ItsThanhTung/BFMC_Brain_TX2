@@ -89,7 +89,7 @@ class DataStreamerProcess(WorkerProcess):
                     break
                     # self.connection = self.client_socket.makefile('wb') 
                 except ConnectionRefusedError as error:
-                    time.sleep(0.5)
+                    time.sleep(0.05)
                     pass
         except KeyboardInterrupt:
             self._blocker.set()
@@ -114,9 +114,9 @@ class DataStreamerProcess(WorkerProcess):
                 data = bytes(json_data, 'utf-8')
                 size   =  len(data)
             
-                # self.connection.write(struct.pack("<L",size))
-                # self.connection.write(data)
-                self.client_socket.send(data)
+                self.connection.write(struct.pack("<L",size))
+                self.connection.write(data)
+
             except Exception as e:
                 print("DataStreamer failed to stream data:",e,"\n")
                 # Reinitialize the socket for reconnecting to client.  
