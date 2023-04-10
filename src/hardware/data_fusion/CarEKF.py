@@ -3,6 +3,7 @@ import numpy as np
 # import sympy
 # from sympy import Matrix
 # from sympy.abc import alpha, x, y, V, R, theta, beta, a, L
+# from src.utils.CarModel.BicycleModel import BicycleModel
 
 
 Enc_Vel_std = 1

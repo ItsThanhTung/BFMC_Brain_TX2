@@ -85,6 +85,7 @@ class CarEstimateProcess(WorkerProcess):
 
     def EKF_PredictThread(self):
         self._FilterInitEvent.wait()
+        print("Start EKF Predict")
         u={}
         while(True):
             with self._CarFilterLock:
@@ -108,8 +109,6 @@ class CarEstimateProcess(WorkerProcess):
         while(True):
             time.sleep(self._LogInterval)
             Data = self.GetAllData()
-            if self._haveNone(Data):
-                self._isFilterInit.set()
             self.LogFile.write(json.dumps(Data)+ "\r\n")    
     
     def _haveNone(self, Data):
