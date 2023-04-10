@@ -129,7 +129,9 @@ class CameraThread(ThreadWithStop):
 
             # Note: The sending process can be blocked, when doesn't exist any consumer process and it reaches the limit size.
             self.outPs["PREPROCESS_IMAGE"].send({"image": lane_image})
-            self.outPs["OBJECT_IMAGE"].send({"image": data})
+            
+            if self.outPs["OBJECT_IMAGE"] is not None:
+                self.outPs["OBJECT_IMAGE"].send({"image": data})
 
 
             

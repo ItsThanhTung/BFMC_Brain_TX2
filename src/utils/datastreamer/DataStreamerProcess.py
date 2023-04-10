@@ -81,13 +81,15 @@ class DataStreamerProcess(WorkerProcess):
         self.connection = None
         # Trying repeatedly to connect the camera receiver.
         try:
-            while self.connection is None and not self._blocker.is_set():
+            while not self._blocker.is_set():
                 try:
+                    print(self.serverIp,' ',self.port)
                     self.client_socket.connect((self.serverIp, self.port))
                     self.client_socket.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1)
-                    self.connection = self.client_socket.makefile('wb') 
+                    break
+                    # self.connection = self.client_socket.makefile('wb') 
                 except ConnectionRefusedError as error:
-                    time.sleep(0.5)
+                    time.sleep(0.05)
                     pass
         except KeyboardInterrupt:
             self._blocker.set()
@@ -110,15 +112,15 @@ class DataStreamerProcess(WorkerProcess):
                 json_data = json.dumps(data) 
         
                 data = bytes(json_data, 'utf-8')
-                size   =  len(data)
-                
-                self.connection.write(struct.pack("<L",size))
+                # size   =  len(data)
+            
+                # self.connection.write(struct.pack("<L",size))
                 self.connection.write(data)
 
             except Exception as e:
                 print("DataStreamer failed to stream data:",e,"\n")
                 # Reinitialize the socket for reconnecting to client.  
-                self.connection = None
+                # self.connection = None
                 self._init_socket()
                 pass
 

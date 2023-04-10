@@ -46,8 +46,8 @@ def main():
 	global IMU
 	signal.signal(signal.SIGINT, exit_handler)
 	IMU = imuHandler.IMUHandler()
-	IMU.start()
-	imu_interval = IMU.get_interval()
+	# IMU.start()
+	# imu_interval = IMU.get_interval()
 	IMU.set_yaw()
 
 	while True:
