@@ -182,7 +182,7 @@ class DecisionMakingProcess(WorkerProcess):
         interceptionHandler = InterceptionHandler(self.imu_handler, self.__CarHandlerTh, self.historyFile) # , self.localization_thr)
         trafficSignHanlder = TrafficSignHandler(self.__CarHandlerTh, self.historyFile, self.decision_maker)
         # self._FakeRun()
-        time.sleep(10)
+        # time.sleep(10)
         while True:
             if True:
                 self.decision_maker.reiniate()
@@ -209,7 +209,7 @@ class DecisionMakingProcess(WorkerProcess):
                 else:   
                     self.historyFile.write("Lane keeping angle: {}   speed: {}\n".format(angle_lane_keeping, self.decision_maker.speed))
                     angle_lane_keeping = int(angle_lane_keeping*1.5)    
-                    print(angle_lane_keeping)
+                    print('Angle: ',angle_lane_keeping)
                     if not self.is_stop:
                         status, messSpd = self.__CarHandlerTh.setSpeed(self.decision_maker.speed)
                         

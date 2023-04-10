@@ -64,7 +64,7 @@ from threading import Thread
 if __name__ == '__main__':
     
     # =============================== CONFIG =================================================
-    enableStream             =  False
+    enableStream             =  True
     enableLocalize           = True
     enableYolo              = False
 
@@ -72,7 +72,7 @@ if __name__ == '__main__':
     enableLaneStream         =  False
     enableInterceptStream    =  False
     enableLocalizeStream       = True
-    
+    enableFilterStream = True
     is_remote = False
     is_show = False
     is_stop = False
@@ -177,24 +177,20 @@ if __name__ == '__main__':
         localizeProc = None
     # =============================== Sensor Input Layer ===================================================
     
-    # LocSys client process
-    # LocsysOpt = opt["LOCSYS"]
-    # LocSysProc = LocalisationSystem(LocsysOpt["LOCSYS_TAGID"], LocsysOpt["LOCSYS_BEACON"], LocsysOpt["PUBLIC_KEY"],LocStS)
-    # allProcesses.append(LocSysProc)
 
-    # NucListenerInPs ={
-    #     "SPEED": encSpeedListenerR,
-    #     "TRAVELLED": encTravelledListenerR,
-    #     "VLX": VLXListenerR
-    # }
-    # NucOutPs = {
-    #     "SPEED": SpeedS,
-    #     "TRAVELLED": TravelledS,
-    #     "VLX": VLXDataS,
-    #     "IMU": IMUDataS
-    # }
-    # NucListenerProc = NucleoProcess(NucListenerInPs, NucOutPs)
-    # allProcesses.append(NucListenerProc)
+    NucListenerInPs ={
+        "SPEED": encSpeedListenerR,
+        "TRAVELLED": encTravelledListenerR,
+        "VLX": VLXListenerR
+    }
+    NucOutPs = {
+        "SPEED": SpeedS,
+        "TRAVELLED": TravelledS,
+        "VLX": VLXDataS,
+        "IMU": IMUDataS
+    }
+    NucListenerProc = NucleoProcess(NucListenerInPs, NucOutPs)
+    allProcesses.append(NucListenerProc)
 
 
     # =============================== PreProcessing Layer ===================================================
@@ -219,7 +215,11 @@ if __name__ == '__main__':
     CarEstimateOutPs = {
 
     }
-    CarEstimateProc = CarEstimateProcess(CarEstimateInPs, CarEstimateOutPs)
+    if enableFilterStream:
+        carEstimateDebugR, carEstimateDebugS = Pipe(duplex = False) 
+    else:
+        carEstimateDebugR, carEstimateDebugS = None,None
+    CarEstimateProc = CarEstimateProcess(CarEstimateInPs, CarEstimateOutPs,carEstimateDebugS,debug=True)
     allProcesses.append(CarEstimateProc)
 
     # =============================== Perception Layer ===================================================
@@ -283,7 +283,9 @@ if __name__ == '__main__':
     if enableLocalizeStream:
         dataLocalizeStreamerProcess = DataStreamerProcess([localizeDebugR], [], cam_opt["IP_ADDRESS"], 2277)
         allProcesses.append(dataLocalizeStreamerProcess)
-
+    if enableFilterStream:
+        dataFilterStreamProcess = DataStreamerProcess([carEstimateDebugR], [], cam_opt["IP_ADDRESS"], 2288)
+        allProcesses.append(dataFilterStreamProcess)
     # ===================================== START PROCESSES ==================================
     print("Starting the processes!",allProcesses)
     for proc in allProcesses:

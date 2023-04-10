@@ -58,15 +58,18 @@ class LocalizeProcess(WorkerProcess):
                 else:
                     self.point = [0,1]
                 self.debug_data = {"x": self.point[0], "y": self.point[1]}
-                print(self.debug_data)
+                # print(self.debug_data)
                 for outP in self.outPs:      # decision 
                     outP.send({"point" : self.point
                             })
 
                      
                 # remote 
+                
                 if self.debug:
                     self.debugP.send(self.debug_data)
+                if self.dummy:
+                    time.sleep(0.05)
             except Exception as e:
                 print("Localize error:", e)
         

@@ -35,7 +35,7 @@ from threading import Lock, Thread, Event
 import time
 class CarEstimateProcess(WorkerProcess):
     #================================ VL53L0X PROCESS =====================================
-    def __init__(self, inPs, outPs, daemon = True):
+    def __init__(self, inPs, outPs,debugPs,debug, daemon = True):
         """Process that start the raspicam and pipes it to the output pipe, to another process.
 
         Parameters
@@ -66,7 +66,8 @@ class CarEstimateProcess(WorkerProcess):
         self._CarFilterLock = Lock()
         self._FilterInitEvent = Event()
         self.LogFile = open("SensorLog.txt", "w")
-
+        self.debugPs = debugPs
+        self.debug = debug
     # ===================================== RUN ==========================================
     def run(self):
         """Apply the initializing methods and start the threads.
@@ -92,6 +93,10 @@ class CarEstimateProcess(WorkerProcess):
                 u["Velo"] = self.inVelocity
                 u["Angle"] = self.Steering
                 self.CarFilter.predict(u)
+            Result = self.CarFilter.GetCarState()
+            print(Result)
+            if self.debug:
+                self.debugPs.send(Result)
             time.sleep(self._dt)
             
     def GetAllData(self):
@@ -106,6 +111,7 @@ class CarEstimateProcess(WorkerProcess):
 
     def LogDataThread(self):
         self._FilterInitEvent.wait()
+        print("EKF Start Log Data")
         while(True):
             time.sleep(self._LogInterval)
             Data = self.GetAllData()
@@ -121,10 +127,11 @@ class CarEstimateProcess(WorkerProcess):
         reader  = list()
         for key in self.inPs:
             reader.append(self.inPs[key])
-
+        print("Start EKF Rcv Data")
         while(True):
             for inP in wait(reader):
                 if not self._FilterInitEvent.is_set():
+                    
                     AllData = self.GetAllData()
                     if not self._haveNone(AllData):
                         self._FilterInitEvent.set()
@@ -157,12 +164,11 @@ class CarEstimateProcess(WorkerProcess):
                         # print("Rcv Encoder ", self.Encoder)
                     
                     elif inP == self.inPs["DM"]:
-                        # print("Rcv From DM ", Data)
                         if Data["type"] == "SPEED":
                             self.inVelocity = Data["value"]
                         elif Data["type"] == "STEER":
                             self.Steering = Data["value"]
-                            print("Steer Value ", self.Steering)
+                            # print("Steer Value ", self.Steering)
     
     @property
     def IMU(self):
