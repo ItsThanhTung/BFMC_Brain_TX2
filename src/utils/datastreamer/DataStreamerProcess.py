@@ -112,9 +112,9 @@ class DataStreamerProcess(WorkerProcess):
                 json_data = json.dumps(data) 
         
                 data = bytes(json_data, 'utf-8')
-                size   =  len(data)
+                # size   =  len(data)
             
-                self.connection.write(struct.pack("<L",size))
+                # self.connection.write(struct.pack("<L",size))
                 self.connection.write(data)
 
             except Exception as e:

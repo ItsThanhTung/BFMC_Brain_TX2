@@ -95,16 +95,16 @@ class DataReceiverProcess(WorkerProcess):
             while True:
 
                 # decode image
-                image_len = struct.unpack('<L', self.connection.read(struct.calcsize('<L')))[0]
-                bts = self.connection.read(image_len)
+                # image_len = struct.unpack('<L', self.connection.read(struct.calcsize('<L')))[0]
+                bts = self.connection.read(1024)
     
                 # ----------------------- read image -----------------------
                 str_data = bts.decode('UTF-8')
-                json_data = json.loads(str_data) 
-
                 if self.check_length:
                     if str_data.count('{') != 1:
                         continue
+                json_data = json.loads(str_data) 
+
                 for outP in outPs:
                     outP.send(json_data)
 
