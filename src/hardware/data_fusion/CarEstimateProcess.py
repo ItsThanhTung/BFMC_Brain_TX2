@@ -81,7 +81,7 @@ class CarEstimateProcess(WorkerProcess):
        LogDataTh = Thread(target= self.LogDataThread, daemon = True)
        self.threads.append(LogDataTh)
        EKFPredictTh = Thread(target= self.EKF_PredictThread, daemon = True)
-       self.threads.append(LogDataTh)
+       self.threads.append(EKFPredictTh)
 
     def EKF_PredictThread(self):
         self._FilterInitEvent.wait()
@@ -125,7 +125,7 @@ class CarEstimateProcess(WorkerProcess):
 
         while(True):
             for inP in wait(reader):
-                if not self._isFilterInit.is_set():
+                if not self._FilterInitEvent.is_set():
                     AllData = self.GetAllData()
                     if not self._haveNone(AllData):
                         self._FilterInitEvent.set()
