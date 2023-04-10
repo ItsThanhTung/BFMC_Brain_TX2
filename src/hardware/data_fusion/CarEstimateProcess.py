@@ -64,7 +64,7 @@ class CarEstimateProcess(WorkerProcess):
 
         self.CarFilter = CarEKF(self._dt, 0.26)
         self._CarFilterLock = Lock()
-        self._isFilterInit = Event()
+        self._FilterInitEvent = Event()
         self.LogFile = open("SensorLog.txt", "w")
 
     # ===================================== RUN ==========================================
@@ -80,24 +80,21 @@ class CarEstimateProcess(WorkerProcess):
        self.threads.append(ListenDataTh)
        LogDataTh = Thread(target= self.LogDataThread, daemon = True)
        self.threads.append(LogDataTh)
-       LogDataTh = Thread(target= self.LogDataThread, daemon = True)
+       EKFPredictTh = Thread(target= self.EKF_PredictThread, daemon = True)
        self.threads.append(LogDataTh)
 
-    def FilterPredict(self):
-        self._isFilterInit.wait()
+    def EKF_PredictThread(self):
+        self._FilterInitEvent.wait()
         u={}
         while(True):
             with self._CarFilterLock:
                 u["Velo"] = self.inVelocity
                 u["Angle"] = self.Steering
                 self.CarFilter.predict(u)
-                time.sleep(self._dt)
+            time.sleep(self._dt)
             
-            
-    def LogDataThread(self):
-        while(True):
-            time.sleep(self._LogInterval)
-            Data = {
+    def GetAllData(self):
+        return {
                 "IMU":self.IMU,
                 "Encoder": self.Encoder,
                 "GPS": self.GPS,
@@ -105,7 +102,12 @@ class CarEstimateProcess(WorkerProcess):
                 "inVelocity": self.inVelocity,
                 "timeStamp": time.time()
             }
-            
+
+    def LogDataThread(self):
+        self._FilterInitEvent.wait()
+        while(True):
+            time.sleep(self._LogInterval)
+            Data = self.GetAllData()
             if self._haveNone(Data):
                 self._isFilterInit.set()
             self.LogFile.write(json.dumps(Data)+ "\r\n")    
@@ -123,6 +125,12 @@ class CarEstimateProcess(WorkerProcess):
 
         while(True):
             for inP in wait(reader):
+                if not self._isFilterInit.is_set():
+                    AllData = self.GetAllData()
+                    if not self._haveNone(AllData):
+                        self._FilterInitEvent.set()
+                        print("Have all Data Initialise Filter")
+
                 try:
                     Data = inP.recv()
                     # print("Pipe rcv ", Data)
@@ -135,17 +143,20 @@ class CarEstimateProcess(WorkerProcess):
                         angle = np.deg2rad(Data["Euler"][0] + 30)
                         with self._CarFilterLock:
                             self.CarFilter.IMU_Update(angle)
+
                     elif inP == self.inPs["GPS"]:
                         self.GPS = Data["point"]
                         gpsX, gpsY = Data["point"][0], Data["point"][1]
                         with self._CarFilterLock:
                             self.CarFilter.GPS_Update(gpsX, gpsY)
                         # print("Rcv GPS: ", self.GPS)
+
                     elif inP == self.inPs["Encoder"]:
                         self.Encoder = Data
                         with self._CarFilterLock:
                             self.CarFilter.Encoder_Update(Data)
                         # print("Rcv Encoder ", self.Encoder)
+                    
                     elif inP == self.inPs["DM"]:
                         # print("Rcv From DM ", Data)
                         if Data["type"] == "SPEED":
