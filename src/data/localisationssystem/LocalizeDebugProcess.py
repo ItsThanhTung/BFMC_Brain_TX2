@@ -86,6 +86,8 @@ class LocalizeDebugProcess(WorkerProcess):
         map = parser.parse('src/data/localisationssystem/Test_track.graphml')
         x=[]
         y=[]
+        img = plt.imread('Track_Test.png')
+        
         for node in map.nodes():
             x.append(node['d0'])
             y.append(node['d1'])
@@ -93,8 +95,10 @@ class LocalizeDebugProcess(WorkerProcess):
         y = np.array(y).astype(float)
 
         fig, ax = plt.subplots(figsize=(6.4, 4.8))
+        img = np.fliplr(img)
+        ax.imshow(img,extent=[0,6,0,6])
         fig.gca().invert_yaxis()
-        (ln,) = ax.plot(x, y,marker='o', markerfacecolor='blue', markersize=12)
+        (ln,) = ax.plot(x, y,marker='o', markerfacecolor='blue',linestyle='None', markersize=6,)
 
         for i,point in enumerate(zip(x,y)):
             ax.annotate(i+1,(point[0],point[1]))
@@ -122,21 +126,21 @@ class LocalizeDebugProcess(WorkerProcess):
                 self.filter_condition.release()
                 
 
-                # passed = []
+                passed = []
                 fig.canvas.restore_region(bg)
-                # dist_arr = euclidean_distances([[point['x'],point['y']]], map_arr)
-                # closest_point = np.argmin(dist_arr)
+                dist_arr = euclidean_distances([[point_raw['x'],point_raw['y']]], map_arr)
+                closest_point = np.argmin(dist_arr)
                 # data.append(point)
                 # np.save('data.npy',data)
-                # if closest_point not in passed:
-                #     passed.append(closest_point)
-                #     (ln,)=plt.plot(map_arr[closest_point][0],map_arr[closest_point][1], marker="o",markerfacecolor='green', markersize=12)
-                #     ax.draw_artist(ln)
-                #     bg = fig.canvas.copy_from_bbox(fig.bbox)
-                (ln,)=plt.plot(point_raw['x'],point_raw['y'], marker="o",markerfacecolor='red', markersize=12)
+                if closest_point not in passed:
+                    passed.append(closest_point)
+                    (ln,)=plt.plot(map_arr[closest_point][0],map_arr[closest_point][1], marker="o",markerfacecolor='green', markersize=6)
+                    ax.draw_artist(ln)
+                    bg = fig.canvas.copy_from_bbox(fig.bbox)
+                (ln,)=plt.plot(point_raw['x'],point_raw['y'], marker="o",markerfacecolor='red', markersize=6)
                 ax.draw_artist(ln)
                 if self.filter:
-                    (ln,)=plt.plot(point_filter['x'],point_filter['y'], marker="o",markerfacecolor='yellow', markersize=12)
+                    (ln,)=plt.plot(point_filter['x'],point_filter['y'], marker=(3,0,np.rad2deg(point_filter['Heading']+90)),markerfacecolor='yellow', markersize=10)
                     ax.draw_artist(ln)
                 # (ln,)=plt.plot(map_arr[closest_point][0],map_arr[closest_point][1], marker="o",markerfacecolor='yellow', markersize=12)
                 
