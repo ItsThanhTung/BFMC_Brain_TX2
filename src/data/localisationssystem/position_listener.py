@@ -71,8 +71,10 @@ class PositionListener:
 					if(msg == ''):
 						print('Invalid message. Connection can be interrupted.')
 						break
-					
-					coor = json.loads((msg),cls=ComplexDecoder)
+					try:
+						coor = json.loads((msg),cls=ComplexDecoder)
+					except:
+						continue
 					self.__streamP_pipe.send(coor)
 				except socket.timeout:
 					print("position listener socket_timeout")

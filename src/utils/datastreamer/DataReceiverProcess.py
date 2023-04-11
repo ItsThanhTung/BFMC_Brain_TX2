@@ -78,7 +78,7 @@ class DataReceiverProcess(WorkerProcess):
         self.server_socket.bind((self.serverIp, self.port))
 
         self.server_socket.listen(0)
-        self.connection = self.server_socket.accept()[0].makefile('rb')
+        self.connection = self.server_socket.accept()[0]#.makefile('rb')
 
     # ===================================== INIT THREADS =================================
     def _init_threads(self):
@@ -95,21 +95,24 @@ class DataReceiverProcess(WorkerProcess):
             while True:
 
                 # decode image
-                # image_len = struct.unpack('<L', self.connection.read(struct.calcsize('<L')))[0]
-                bts = self.connection.read(1024)
-    
+                image_len = struct.unpack('<L', self.connection.recv(struct.calcsize('<L')))[0]
+                bts = self.connection.recv(image_len)
                 # ----------------------- read image -----------------------
                 str_data = bts.decode('UTF-8')
                 if self.check_length:
-                    if str_data.count('{') != 1:
+                    if str_data.count('{') != 1 or str_data.find('{') != 0:
+                        print('error')
                         continue
                 json_data = json.loads(str_data) 
 
+            
                 for outP in outPs:
                     outP.send(json_data)
 
-        except:
+        except Exception as e:
+            # self.server_socket.listen(0)
+            # self.connection = self.server_socket.accept()[0]
+            print('localize error ',e)
             pass
         finally:
-            self.connection.close()
             self.server_socket.close()

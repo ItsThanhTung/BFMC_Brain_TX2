@@ -1,4 +1,4 @@
-from threading import Thread, Lock
+from threading import Thread, Lock, Event
 from src.templates.workerprocess import WorkerProcess
 from src.hardware.serialhandler.filehandler import FileHandler
 from src.perception.InterceptionHandler import InterceptionHandler
@@ -8,6 +8,8 @@ from src.perception.CarHandlerThread import CarHandlerThread
 from src.perception.traffic_sign.TrafficSignHandler import TrafficSignHandler
 from src.perception.DecisionMaking import DecisionMaking
 from src.perception.tracker.byte_tracker import BYTETracker
+
+from src.perception.CarPoseHandlerThread import CarPoseThread
 
 from datetime import datetime
 import time
@@ -57,13 +59,20 @@ class DecisionMakingProcess(WorkerProcess):
         self.__CarHandlerTh = CarHandlerThread(serInPs, self.outPs, enablePID= True)
         self.__CarHandlerTh.daemon = True
         self.threads.append(self.__CarHandlerTh)
+
+        self.enableEKF = opt["ENABLE_EKF"]
+        if self.enableEKF:
+            self.CarPoseHandler = CarPoseThread(inPs["CarEstimate"])
+            self.CarPoseHandler.daemon = True
+            self.threads.append(self.CarPoseHandler)
+
         
         self.is_stop = is_stop
+        
         
         self.decision_maker = DecisionMaking(self.historyFile)
         
         self.tracker = BYTETracker()
-
     # ===================================== RUN ==========================================
     def run(self):
         """Apply the initializing methods and start the threads.
@@ -164,9 +173,7 @@ class DecisionMakingProcess(WorkerProcess):
     def turn_off_rc_car(self):
         status, messSpd = self.__CarHandlerTh.setAngle(0,1)
         status, messSpd = self.__CarHandlerTh.setAngle(0,1)
-
         status, messSpd = self.__CarHandlerTh.setSpeed(0,1)
-
         status, messSpd = self.__CarHandlerTh.setSpeed(0,1)
 
 
@@ -177,12 +184,16 @@ class DecisionMakingProcess(WorkerProcess):
     def _run_decision_making(self):
         if not self.is_stop:
             status, messSpd = self.__CarHandlerTh.enablePID()
+
+        if self.enableEKF:
             status, messSpd = self.__CarHandlerTh.enListenSpeed()
+            self.CarPoseHandler.waitInitDone()
+            print("DM Wait EKF Done")
 
         interceptionHandler = InterceptionHandler(self.imu_handler, self.__CarHandlerTh, self.historyFile) # , self.localization_thr)
         trafficSignHanlder = TrafficSignHandler(self.__CarHandlerTh, self.historyFile, self.decision_maker)
         # self._FakeRun()
-        time.sleep(10)
+        # time.sleep(10)
         while True:
             if True:
                 self.decision_maker.reiniate()
@@ -199,7 +210,7 @@ class DecisionMakingProcess(WorkerProcess):
                     continue
 
                 if self.decision_maker.is_intercept(intercept_length, intercept_gap) and not self.is_stop:
-                    print('intercept')
+                    # print('intercept')
                     direction = self.decision_maker.get_intercept_direction()
                     
                     print(direction)
@@ -208,8 +219,8 @@ class DecisionMakingProcess(WorkerProcess):
 
                 else:   
                     self.historyFile.write("Lane keeping angle: {}   speed: {}\n".format(angle_lane_keeping, self.decision_maker.speed))
-                    angle_lane_keeping = int(angle_lane_keeping*1.5)    
-                    print(angle_lane_keeping)
+                    angle_lane_keeping = int(angle_lane_keeping)    
+                    # print('Angle: ',angle_lane_keeping)
                     if not self.is_stop:
                         status, messSpd = self.__CarHandlerTh.setSpeed(self.decision_maker.speed)
                         

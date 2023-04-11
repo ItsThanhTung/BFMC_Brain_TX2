@@ -99,11 +99,11 @@ class LaneKeepingProcess(WorkerProcess):
                 speed, angle, state, debug_data = LaneKeeper.lane_keeping(edge_image) 
                 # new_angle = self.pid(angle)
                 # setSpeed(outP[0], float(speed * 0.35))
-
                 if not self.is_remote:
                     outP.send({"speed" : speed,
                             "angle" : angle,
                             "lane_data" : debug_data,})
+
 
                 if self.debug: 
                     self.debugP.send(debug_data)

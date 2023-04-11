@@ -37,11 +37,11 @@
   },
   "REMOTE": {
     "CAM_PATH": "/dev/video0",
-    "IP_ADDRESS": "192.168.1.223"
+    "IP_ADDRESS": "192.168.1.178"
   },
   "RC": {
     "CAM_PATH": "/dev/video0",
-    "IP_ADDRESS": "192.168.1.223"
+    "IP_ADDRESS": "192.168.1.178"
   },
   "INTERCEPT_DETECTION": {
     "crop_ratio": 0.8,
@@ -52,5 +52,8 @@
     "LOCSYS_TAGID": "0xCEFE",
     "LOCSYS_BEACON": 12345,
     "PUBLIC_KEY": "/home/ceec/BFMC_Brain_TX2/src/data/localisationssystem/publickey_server_test.pem"
+  },
+  "DECISION":{
+    "ENABLE_EKF": true
   }
 }

@@ -72,7 +72,7 @@ if __name__ == '__main__':
     enableLaneStream         =  False
     enableInterceptStream    =  False
     enableLocalizeStream       = True
-    
+    enableFilterStream = True
     is_remote = False
     is_show = False
     is_stop = False
@@ -140,7 +140,7 @@ if __name__ == '__main__':
     SpeedR, SpeedS = Pipe(duplex = False)
     TravelledR, TravelledS = Pipe(duplex = False)
 
-    #IMU -> Data Fusion
+    #IMU -> CarEstimate
     IMUDataR, IMUDataS = Pipe(duplex = False)
 
     # Set Speed Steer from DM -> Car Estimate Predict State
@@ -148,6 +148,9 @@ if __name__ == '__main__':
 
     # VLX sensor Data -> ?
     VLXDataR, VLXDataS = Pipe(duplex = False)
+
+    #CarEstimate -> DecisionMaking
+    CarPoseR, CarPoseS = Pipe(duplex = False)
     
     if enableStream:
         imagePreprocessStreamR, imagePreprocessStreamS = Pipe(duplex = False)               # preprocess   ->  Stream
@@ -177,24 +180,20 @@ if __name__ == '__main__':
         localizeProc = None
     # =============================== Sensor Input Layer ===================================================
     
-    # LocSys client process
-    # LocsysOpt = opt["LOCSYS"]
-    # LocSysProc = LocalisationSystem(LocsysOpt["LOCSYS_TAGID"], LocsysOpt["LOCSYS_BEACON"], LocsysOpt["PUBLIC_KEY"],LocStS)
-    # allProcesses.append(LocSysProc)
 
-    # NucListenerInPs ={
-    #     "SPEED": encSpeedListenerR,
-    #     "TRAVELLED": encTravelledListenerR,
-    #     "VLX": VLXListenerR
-    # }
-    # NucOutPs = {
-    #     "SPEED": SpeedS,
-    #     "TRAVELLED": TravelledS,
-    #     "VLX": VLXDataS,
-    #     "IMU": IMUDataS
-    # }
-    # NucListenerProc = NucleoProcess(NucListenerInPs, NucOutPs)
-    # allProcesses.append(NucListenerProc)
+    NucListenerInPs ={
+        "SPEED": encSpeedListenerR,
+        "TRAVELLED": encTravelledListenerR,
+        "VLX": VLXListenerR
+    }
+    NucOutPs = {
+        "SPEED": SpeedS,
+        "TRAVELLED": TravelledS,
+        "VLX": VLXDataS,
+        "IMU": IMUDataS
+    }
+    NucListenerProc = NucleoProcess(NucListenerInPs, NucOutPs)
+    allProcesses.append(NucListenerProc)
 
 
     # =============================== PreProcessing Layer ===================================================
@@ -217,9 +216,13 @@ if __name__ == '__main__':
         "DM": SetStateR,
     }
     CarEstimateOutPs = {
-
+        "DM":CarPoseS
     }
-    CarEstimateProc = CarEstimateProcess(CarEstimateInPs, CarEstimateOutPs)
+    if enableFilterStream:
+        carEstimateDebugR, carEstimateDebugS = Pipe(duplex = False) 
+    else:
+        carEstimateDebugR, carEstimateDebugS = None,None
+    CarEstimateProc = CarEstimateProcess(CarEstimateInPs, CarEstimateOutPs,carEstimateDebugS,debug=True)
     allProcesses.append(CarEstimateProc)
 
     # =============================== Perception Layer ===================================================
@@ -234,7 +237,8 @@ if __name__ == '__main__':
     }
     dmInps = {"LANE_KEEPING" : laneKeepingDecisionR, 
               "INTERCEPT_DETECTION" : interceptDecisionR, 
-              "OBJECT_DETECTION" : objectDecisionR, 
+              "OBJECT_DETECTION" : objectDecisionR,
+              "CarEstimate": CarPoseR
             }
     
     dmOutPs = {
@@ -242,7 +246,7 @@ if __name__ == '__main__':
         "StateEstimate": SetStateS
     }
     if not is_remote:
-        decisionMakingProcess = DecisionMakingProcess(dmInps, dmOutPs, shInps, opt, is_stop=is_stop)
+        decisionMakingProcess = DecisionMakingProcess(dmInps, dmOutPs, shInps, opt["DECISION"], is_stop=is_stop)
         allProcesses.append(decisionMakingProcess)
         
     # SerialHandler Process
@@ -283,7 +287,9 @@ if __name__ == '__main__':
     if enableLocalizeStream:
         dataLocalizeStreamerProcess = DataStreamerProcess([localizeDebugR], [], cam_opt["IP_ADDRESS"], 2277)
         allProcesses.append(dataLocalizeStreamerProcess)
-
+    if enableFilterStream:
+        dataFilterStreamProcess = DataStreamerProcess([carEstimateDebugR], [], cam_opt["IP_ADDRESS"], 2288)
+        allProcesses.append(dataFilterStreamProcess)
     # ===================================== START PROCESSES ==================================
     print("Starting the processes!",allProcesses)
     for proc in allProcesses:

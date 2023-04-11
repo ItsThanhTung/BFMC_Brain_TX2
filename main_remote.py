@@ -65,10 +65,10 @@ from threading import Thread
 
 if __name__ == '__main__':
     
-    is_remote = False
+    is_remote = True
     is_show = False
     enableYolo = False
-    
+    enableFilter = True
     # =========================== Object Detection ===========================================
     camObjectStR, camObjectStS = Pipe(duplex = False)                                   # camera  ->  streamer
     imageObjectShowR, imageObjectShowS = Pipe(duplex = False)                           # object detection    ->  ImageShow
@@ -103,13 +103,19 @@ if __name__ == '__main__':
     if enableLocalizeStream:
         localizeDebugR, localizeDebugS = Pipe(duplex = False)                                       # laneKeeping         ->  LaneDebug
         dataLocalizeProc = DataReceiverProcess([], [localizeDebugS], port=2277,check_length=True)
-        localizeDebugProcR, localizeDebugProcS = Pipe(duplex = False)                               # laneDebug           ->  ImageShow
-        localizeDebugProc = LocalizeDebugProcess([localizeDebugR], [localizeDebugProcS])
         allProcesses.append(dataLocalizeProc)
-        allProcesses.append(localizeDebugProc)
+        localizeDebugProcR, localizeDebugProcS = Pipe(duplex = False)                               # laneDebug           ->  ImageShow
+        localizeDebugProc = LocalizeDebugProcess({'localize':localizeDebugR, 'filter':None}, [localizeDebugProcS])
     else:
         localizeDebugR, localizeDebugS = None, None
         localizeDebugProcR, localizeDebugProcS = None, None
+    if enableFilter:
+        filterDebugR, filterDebugS = Pipe(duplex = False)                                       # laneKeeping         ->  LaneDebug
+        dataFilterProc = DataReceiverProcess([], [filterDebugS], port=2288,check_length=True)
+        localizeDebugProc = LocalizeDebugProcess({'localize':localizeDebugR, 'filter':filterDebugR},[localizeDebugS],filter=True )
+        allProcesses.append(dataFilterProc)
+    if enableLocalizeStream:
+        allProcesses.append(localizeDebugProc)
     imagePreprocessShowR, imagePreprocessShowS = Pipe(duplex = False)                   # preprocess          ->  ImageShow
     imagePreprocessR, imagePreprocessS = Pipe(duplex = False)                           # preprocess          ->  LaneKeeping
     imagePreprocessInterceptR, imagePreprocessInterceptS = Pipe(duplex = False)         # preprocess          ->  Intercept detection
@@ -132,7 +138,7 @@ if __name__ == '__main__':
     laneDebugProcess = LaneDebuginggProcess({"LANE_KEEPING" : laneDebugR, "INTERCEPT_DETECTION" : interceptDecisionDebugR}, \
                                         {"LANE_KEEPING" :laneDebugShowS, "INTERCEPT_DETECTION" :interceptDebugShowS}, )
 
-    imageShow = imageShowProcess([imagePreprocessShowR, laneDebugShowR, interceptDebugShowR, imageObjectShowR], [])
+    imageShow = imageShowProcess([imagePreprocessShowR, laneDebugShowR, interceptDebugShowR], [])
     
 
     allProcesses.append(imagePreprocess)
