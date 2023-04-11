@@ -43,13 +43,16 @@ class CarHandlerThread(ThreadWithStop):
         
         
         self.enablePID(enablePID)
-        time.sleep(0.02)
+        time.sleep(0.001)
         self.enListenVLX(False)
-        time.sleep(0.02)
-        self.enListenSpeed(True)
-        time.sleep(0.02)
+        time.sleep(0.001)
+        self.enListenSpeed(False)
+        time.sleep(0.001)
         self.enListenTravelled(False)
-        time.sleep(0.02)
+        time.sleep(0.001)
+        self.setAngle(0)
+        time.sleep(0.001)
+        self.setSpeed(0.001)
 
 
         

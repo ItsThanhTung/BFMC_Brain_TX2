@@ -35,7 +35,7 @@ from threading import Lock, Thread, Event
 import time
 class CarEstimateProcess(WorkerProcess):
     #================================ VL53L0X PROCESS =====================================
-    def __init__(self, inPs, outPs,debugPs,debug, daemon = True):
+    def __init__(self, inPs, outPs,debugPs, debug = False, enableLog = True, daemon = True):
         """Process that start the raspicam and pipes it to the output pipe, to another process.
 
         Parameters
@@ -44,8 +44,11 @@ class CarEstimateProcess(WorkerProcess):
         """
 
         super(CarEstimateProcess,self).__init__( inPs, outPs, daemon = True)
+
+        
         self._dt = 0.01
         self._LogInterval = self._dt
+        self._debugSendInterval = 0.1
 
         self._IMU_Data = None
         self.__IMU_Lock = Lock()
@@ -65,9 +68,14 @@ class CarEstimateProcess(WorkerProcess):
         self.CarFilter = CarEKF(self._dt, 0.26)
         self._CarFilterLock = Lock()
         self._FilterInitEvent = Event()
-        self.LogFile = open("SensorLog.txt", "w")
+        
+        self._enableLock = enableLog
+        if enableLog:
+            self.LogFile = open("SensorLog.txt", "w")
+
         self.debugPs = debugPs
         self.debug = debug
+        
     # ===================================== RUN ==========================================
     def run(self):
         """Apply the initializing methods and start the threads.
@@ -77,28 +85,54 @@ class CarEstimateProcess(WorkerProcess):
     # ===================================== INIT TH ======================================
     def _init_threads(self):
 
-       ListenDataTh = Thread(target= self.RcvDataThread, daemon = True)
-       self.threads.append(ListenDataTh)
-       LogDataTh = Thread(target= self.LogDataThread, daemon = True)
-       self.threads.append(LogDataTh)
-       EKFPredictTh = Thread(target= self.EKF_PredictThread, daemon = True)
-       self.threads.append(EKFPredictTh)
+        ListenDataTh = Thread(name= "ListenDataThread",target= self.RcvDataThread, daemon = True)
+        self.threads.append(ListenDataTh)
+        EKFPredictTh = Thread(name= "EKF PredictThread",target= self.EKF_PredictThread, daemon = True)
+        self.threads.append(EKFPredictTh)
+        SendTh = Thread(name="SendDataThread", target= self.DM_SendThread, daemon = True)
+        self.threads.append(SendTh)
+
+        if self._enableLock:
+            LogDataTh = Thread(name="LogDataThread",target= self.LogDataThread, daemon = True)
+            self.threads.append(LogDataTh)
+        if self.debug:
+            DebugTh = Thread(name="SendDebugThread",target = self.Debug_SendThread, daemon = True)
+            self.threads.append(DebugTh)
 
     def EKF_PredictThread(self):
         self._FilterInitEvent.wait()
         print("Start EKF Predict")
         u={}
         while(True):
+            u["Velo"] = self.inVelocity + 0.3
+            u["Angle"] = self.Steering
             with self._CarFilterLock:
-                u["Velo"] = self.inVelocity
-                u["Angle"] = self.Steering
+                # print("Predict Input", u)
                 self.CarFilter.predict(u)
-            Result = self.CarFilter.GetCarState()
-            print(Result)
-            if self.debug:
-                self.debugPs.send(Result)
+                # self.CarFilter.Encoder_Update(self.Encoder+0.1)
+                # Heading = self.IMU_GetHeading()
+                # self.CarFilter.IMU_Update(Heading)
+            # print(Result)
             time.sleep(self._dt)
-            
+    
+    def Debug_SendThread(self):
+        self._FilterInitEvent.wait()
+        while(True):
+            time.sleep(self._debugSendInterval)
+            with self._CarFilterLock:
+                Result = self.CarFilter.GetCarState()
+            # print("SendGPS: ", Result["x"], Result["y"])
+            self.debugPs.send(Result)
+    
+    def DM_SendThread(self):
+        self._FilterInitEvent.wait()
+        print("Start send to DM")
+        while(True):
+            with self._CarFilterLock:
+                Result = self.CarFilter.GetCarState()
+            self.outPs["DM"].send(Result)
+
+
     def GetAllData(self):
         return {
                 "IMU":self.IMU,
@@ -120,6 +154,7 @@ class CarEstimateProcess(WorkerProcess):
     def _haveNone(self, Data):
         for Key in Data:
             if Data[Key] is None:
+                # print("Dont have: ", Key)
                 return True
         return False
     
@@ -130,12 +165,16 @@ class CarEstimateProcess(WorkerProcess):
         print("Start EKF Rcv Data")
         while(True):
             for inP in wait(reader):
-                if not self._FilterInitEvent.is_set():
-                    
+                if not self._FilterInitEvent.is_set():         
                     AllData = self.GetAllData()
                     if not self._haveNone(AllData):
+                        GPS = self.GPS
+                        Velo = self.Encoder
+                        Heading = self.IMU_GetHeading()
+                        self.CarFilter.InitialState(GPS[0], GPS[1], Velo, Heading)
                         self._FilterInitEvent.set()
-                        print("Have all Data Initialise Filter")
+                        # print("Have all Data Initialise Filter")
+                        # print("Init Filter With ", AllData)
 
                 try:
                     Data = inP.recv()
@@ -146,7 +185,7 @@ class CarEstimateProcess(WorkerProcess):
                     if inP == self.inPs["IMU"]:
                         self.IMU = Data
                         # print("IMU Rcv", self.IMU)
-                        angle = np.deg2rad(Data["Euler"][0] + 30)
+                        angle = self.IMU_GetHeading()
                         with self._CarFilterLock:
                             self.CarFilter.IMU_Update(angle)
 
@@ -169,7 +208,8 @@ class CarEstimateProcess(WorkerProcess):
                         elif Data["type"] == "STEER":
                             self.Steering = Data["value"]
                             # print("Steer Value ", self.Steering)
-    
+    def IMU_GetHeading(self):
+        return np.deg2rad(self.IMU["Euler"][0] + 30)
     @property
     def IMU(self):
         IMUData = None

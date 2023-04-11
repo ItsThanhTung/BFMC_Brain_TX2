@@ -64,7 +64,7 @@ from threading import Thread
 if __name__ == '__main__':
     
     # =============================== CONFIG =================================================
-    enableStream             =  True
+    enableStream             =  False
     enableLocalize           = True
     enableYolo              = False
 
@@ -140,7 +140,7 @@ if __name__ == '__main__':
     SpeedR, SpeedS = Pipe(duplex = False)
     TravelledR, TravelledS = Pipe(duplex = False)
 
-    #IMU -> Data Fusion
+    #IMU -> CarEstimate
     IMUDataR, IMUDataS = Pipe(duplex = False)
 
     # Set Speed Steer from DM -> Car Estimate Predict State
@@ -148,6 +148,9 @@ if __name__ == '__main__':
 
     # VLX sensor Data -> ?
     VLXDataR, VLXDataS = Pipe(duplex = False)
+
+    #CarEstimate -> DecisionMaking
+    CarPoseR, CarPoseS = Pipe(duplex = False)
     
     if enableStream:
         imagePreprocessStreamR, imagePreprocessStreamS = Pipe(duplex = False)               # preprocess   ->  Stream
@@ -213,7 +216,7 @@ if __name__ == '__main__':
         "DM": SetStateR,
     }
     CarEstimateOutPs = {
-
+        "DM":CarPoseS
     }
     if enableFilterStream:
         carEstimateDebugR, carEstimateDebugS = Pipe(duplex = False) 
@@ -234,7 +237,8 @@ if __name__ == '__main__':
     }
     dmInps = {"LANE_KEEPING" : laneKeepingDecisionR, 
               "INTERCEPT_DETECTION" : interceptDecisionR, 
-              "OBJECT_DETECTION" : objectDecisionR, 
+              "OBJECT_DETECTION" : objectDecisionR,
+              "CarEstimate": CarPoseR
             }
     
     dmOutPs = {
@@ -242,7 +246,7 @@ if __name__ == '__main__':
         "StateEstimate": SetStateS
     }
     if not is_remote:
-        decisionMakingProcess = DecisionMakingProcess(dmInps, dmOutPs, shInps, opt, is_stop=is_stop)
+        decisionMakingProcess = DecisionMakingProcess(dmInps, dmOutPs, shInps, opt["DECISION"], is_stop=is_stop)
         allProcesses.append(decisionMakingProcess)
         
     # SerialHandler Process
