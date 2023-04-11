@@ -65,8 +65,8 @@ from threading import Thread
 
 if __name__ == '__main__':
     
-    is_remote = False
-    is_show = True
+    is_remote = True
+    is_show = False
     enableYolo = False
     enableFilter = True
     # =========================== Object Detection ===========================================
