@@ -130,13 +130,11 @@ class LocalizeDebugProcess(WorkerProcess):
                 fig.canvas.restore_region(bg)
                 dist_arr = euclidean_distances([[point_raw['x'],point_raw['y']]], map_arr)
                 closest_point = np.argmin(dist_arr)
-                # data.append(point)
-                # np.save('data.npy',data)
-                if closest_point not in passed:
-                    passed.append(closest_point)
-                    (ln,)=plt.plot(map_arr[closest_point][0],map_arr[closest_point][1], marker="o",markerfacecolor='green', markersize=6)
-                    ax.draw_artist(ln)
-                    bg = fig.canvas.copy_from_bbox(fig.bbox)
+                # if closest_point not in passed:
+                #     passed.append(closest_point)
+                #     (ln,)=plt.plot(map_arr[closest_point][0],map_arr[closest_point][1], marker="o",markerfacecolor='green', markersize=6)
+                #     ax.draw_artist(ln)
+                #     bg = fig.canvas.copy_from_bbox(fig.bbox)
                 (ln,)=plt.plot(point_raw['x'],point_raw['y'], marker="o",markerfacecolor='red', markersize=6)
                 ax.draw_artist(ln)
                 if self.filter:

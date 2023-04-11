@@ -75,7 +75,7 @@ if __name__ == '__main__':
     enableFilterStream = True
     is_remote = False
     is_show = False
-    is_stop = False
+    is_stop = True
     
     opt = load_config_file("main_rc.json")
     cam_opt = opt["REMOTE"] if is_remote else opt["RC"]

@@ -5,6 +5,8 @@ from src.data.localisationssystem.locsys import LocalisationSystem
 from multiprocessing import Pipe
 import time
 import ast
+from pygraphml import GraphMLParser
+from sklearn.metrics.pairwise import euclidean_distances
 class LocalizeProcess(WorkerProcess):
     def __init__(self,  outPs, opt, debugP=None, debug=False):
         self.opt = opt
@@ -36,6 +38,10 @@ class LocalizeProcess(WorkerProcess):
         readTh.daemon = True
         self.threads.append(readTh)
         self.threads.append(LocalizeSytem)
+    def getClosetPoint(self,map_array,point):
+        dist_arr = euclidean_distances([[point[0],point[1]]], map_array)
+        closest_point = map_array[np.argmin(dist_arr)]
+        return closest_point
     def _run(self):
         """Obtains image, applies the required image processing and computes the steering angle value. 
         
@@ -47,6 +53,17 @@ class LocalizeProcess(WorkerProcess):
             Output pipe to send the steering angle value to other process.
 
         """
+        parser = GraphMLParser()
+        map = parser.parse('src/data/localisationssystem/Test_track.graphml')
+        x=[]
+        y=[]
+        for node in map.nodes():
+            x.append(node['d0'])
+            y.append(node['d1'])
+        x = np.array(x).astype(float)
+        y = np.array(y).astype(float)
+        map_array = np.array([[x,y] for x,y in zip(x,y)])
+
         print('inited localize')
         while True:
             try:
@@ -67,6 +84,9 @@ class LocalizeProcess(WorkerProcess):
                 # remote 
                 
                 if self.debug:
+                    closest_point = self.getClosetPoint(map_array,self.point)
+                    self.debug_data = {"x": closest_point[0], "y": closest_point[1]}
+                    print(self.debug_data)
                     self.debugP.send(self.debug_data)
                 if self.dummy:
                     time.sleep(0.05)
