@@ -69,7 +69,7 @@ class CarEstimateProcess(WorkerProcess):
         self._CarFilterLock = Lock()
         self._FilterInitEvent = Event()
         
-        self._enableLock = enableLog
+        self._enableLog = enableLog
         if enableLog:
             self.LogFile = open("SensorLog.txt", "w")
 
@@ -92,7 +92,7 @@ class CarEstimateProcess(WorkerProcess):
         SendTh = Thread(name="SendDataThread", target= self.DM_SendThread, daemon = True)
         self.threads.append(SendTh)
 
-        if self._enableLock:
+        if self._enableLog:
             LogDataTh = Thread(name="LogDataThread",target= self.LogDataThread, daemon = True)
             self.threads.append(LogDataTh)
         if self.debug:
