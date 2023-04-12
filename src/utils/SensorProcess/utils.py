@@ -1,6 +1,6 @@
 import numpy as np
 def GetIMUHeading(DataJson):
-    return np.deg2rad(DataJson["IMU"]["Euler"][0] + 160)*1.005
+    return np.deg2rad(DataJson["IMU"]["Euler"][0] - 110)
 
 
 def GetInitalData(DataJson):

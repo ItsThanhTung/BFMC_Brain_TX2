@@ -29,6 +29,9 @@
 from src.templates.workerprocess                import WorkerProcess
 from multiprocessing.connection import wait
 from src.hardware.data_fusion.CarEKF import CarEKF
+from src.utils.SensorProcess.utils import *
+
+
 import json
 import numpy as np
 from threading import Lock, Thread, Event
@@ -72,7 +75,7 @@ class CarEstimateProcess(WorkerProcess):
         self._enableLog = enableLog
         if enableLog:
             self.LogFile = open("SensorLog.txt", "w")
-
+            self.ProcessLog = open("ProcessLog_Car.txt", "w")
         self.debugPs = debugPs
         self.debug = debug
         
@@ -88,7 +91,7 @@ class CarEstimateProcess(WorkerProcess):
         ListenDataTh = Thread(name= "ListenDataThread",target= self.RcvDataThread, daemon = True)
         self.threads.append(ListenDataTh)
         EKFPredictTh = Thread(name= "EKF PredictThread",target= self.EKF_PredictThread, daemon = True)
-        self.threads.append(EKFPredictTh)
+        # self.threads.append(EKFPredictTh)
         SendTh = Thread(name="SendDataThread", target= self.DM_SendThread, daemon = True)
         self.threads.append(SendTh)
 
@@ -103,16 +106,33 @@ class CarEstimateProcess(WorkerProcess):
         self._FilterInitEvent.wait()
         print("Start EKF Predict")
         u={}
+        prevTime = time.time()
+
+        Coor = self.GPS
+        Velo = self.inVelocity
+        Heading = self.IMU_GetHeading()
+        self.CarFilter.InitialState(Coor[0], Coor[1], Velo, Heading)
+        print("Initialise ", self.CarFilter.GetCarState())
+        prevGPS = Coor
         while(True):
-            u["Velo"] = self.inVelocity + 0.3
+            
+            u["Velo"] = self.inVelocity
             u["Angle"] = self.Steering
+
+            EncSpeed = self.Encoder
+            Heading = self.IMU_GetHeading()
+            Coor = self.GPS
+            dt = time.time()- prevTime
+            prevTime = time.time()
+            # print("dt= ", dt)
             with self._CarFilterLock:
                 # print("Predict Input", u)
-                self.CarFilter.predict(u)
-                # self.CarFilter.Encoder_Update(self.Encoder+0.1)
-                # Heading = self.IMU_GetHeading()
-                # self.CarFilter.IMU_Update(Heading)
-            # print(Result)
+                self.CarFilter.predict(u, dt)
+                if Coor[0] != prevGPS[0] or Coor[1] != prevGPS[1]:
+                    self.CarFilter.GPS_Update(Coor[0], Coor[1])
+                    prevGPS = Coor
+                self.CarFilter.Encoder_Update(EncSpeed)
+                self.CarFilter.IMU_Update(Heading)
             time.sleep(self._dt)
     
     def Debug_SendThread(self):
@@ -130,7 +150,9 @@ class CarEstimateProcess(WorkerProcess):
         while(True):
             with self._CarFilterLock:
                 Result = self.CarFilter.GetCarState()
+            # print("Estimate State ", Result)
             self.outPs["DM"].send(Result)
+            time.sleep(self._dt)
 
 
     def GetAllData(self):
@@ -146,10 +168,36 @@ class CarEstimateProcess(WorkerProcess):
     def LogDataThread(self):
         self._FilterInitEvent.wait()
         print("EKF Start Log Data")
+        prev_Coor = [0,0]
+        init = False
         while(True):
             time.sleep(self._LogInterval)
-            Data = self.GetAllData()
-            self.LogFile.write(json.dumps(Data)+ "\r\n")    
+            DataJson = self.GetAllData()
+            self.LogFile.write(json.dumps(DataJson)+ "\r\n")
+
+            if not init:
+                pX, pY, Velo, heading = GetInitalData(DataJson)
+                self.CarFilter.InitialState(pX, pY, Velo, heading)
+                init = True
+                CurrentState = self.CarFilter.GetCarState()
+                self.ProcessLog.write(json.dumps(CurrentState) +"\r\n") 
+                continue
+            inputMat = {}
+            inputMat["Velo"], inputMat["Angle"] = GetCommandData(DataJson)
+            self.CarFilter.predict(inputMat,0.01)
+
+            Coor = GetGPS(DataJson)
+            if(Coor[0] != prev_Coor[0] or Coor[1] != prev_Coor[1]):
+                self.CarFilter.GPS_Update(Coor[0], Coor[1])
+                prev_Coor = Coor
+
+            self.CarFilter.IMU_Update(GetIMUHeading(DataJson))
+
+            Speed = GetEncoderSpeed(DataJson)*1.4
+            self.CarFilter.Encoder_Update(Speed)
+            CurrentState = self.CarFilter.GetCarState()
+            print("Estimate ", CurrentState)
+            self.ProcessLog.write(json.dumps(CurrentState) +"\r\n") 
     
     def _haveNone(self, Data):
         for Key in Data:
@@ -168,10 +216,7 @@ class CarEstimateProcess(WorkerProcess):
                 if not self._FilterInitEvent.is_set():         
                     AllData = self.GetAllData()
                     if not self._haveNone(AllData):
-                        GPS = self.GPS
-                        Velo = self.Encoder
-                        Heading = self.IMU_GetHeading()
-                        self.CarFilter.InitialState(GPS[0], GPS[1], Velo, Heading)
+
                         self._FilterInitEvent.set()
                         # print("Have all Data Initialise Filter")
                         # print("Init Filter With ", AllData)
@@ -185,21 +230,21 @@ class CarEstimateProcess(WorkerProcess):
                     if inP == self.inPs["IMU"]:
                         self.IMU = Data
                         # print("IMU Rcv", self.IMU)
-                        angle = self.IMU_GetHeading()
-                        with self._CarFilterLock:
-                            self.CarFilter.IMU_Update(angle)
+                        # angle = self.IMU_GetHeading()
+                        # with self._CarFilterLock:
+                        #     self.CarFilter.IMU_Update(angle)
 
                     elif inP == self.inPs["GPS"]:
                         self.GPS = Data["point"]
-                        gpsX, gpsY = Data["point"][0], Data["point"][1]
-                        with self._CarFilterLock:
-                            self.CarFilter.GPS_Update(gpsX, gpsY)
+                        # gpsX, gpsY = Data["point"][0], Data["point"][1]
+                        # with self._CarFilterLock:
+                        #     self.CarFilter.GPS_Update(gpsX, gpsY)
                         # print("Rcv GPS: ", self.GPS)
 
                     elif inP == self.inPs["Encoder"]:
                         self.Encoder = Data
-                        with self._CarFilterLock:
-                            self.CarFilter.Encoder_Update(Data)
+                        # with self._CarFilterLock:
+                        #     self.CarFilter.Encoder_Update(Data)
                         # print("Rcv Encoder ", self.Encoder)
                     
                     elif inP == self.inPs["DM"]:
@@ -209,7 +254,7 @@ class CarEstimateProcess(WorkerProcess):
                             self.Steering = Data["value"]
                             # print("Steer Value ", self.Steering)
     def IMU_GetHeading(self):
-        return np.deg2rad(self.IMU["Euler"][0] + 30)
+        return np.deg2rad(self.IMU["Euler"][0] - 110)
     @property
     def IMU(self):
         IMUData = None
