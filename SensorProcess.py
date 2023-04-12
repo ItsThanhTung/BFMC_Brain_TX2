@@ -43,13 +43,15 @@ IMU_Velo = []
 PrevVelo = np.array([0,0,0], dtype = float)
 
 updateGPSTimes = 0
+print("Initialise ", CarFilter.GetCarState())
+ProcessLog = open("ProcessLog.txt", "w")
 
 while True:
     Data = DataFile.readline()
     if not Data:
         break
     line+=1
-    print("Line ", line)
+    # print("Line ", line)
     # GPS Running Reference
     CurrentTime = GetTimeStamp(DataJson)
     timeStamp.append(CurrentTime)
@@ -93,18 +95,18 @@ while True:
 
     CarFilter.IMU_Update(GetIMUHeading(DataJson))
 
-    Speed = GetEncoderSpeed(DataJson)*1.2
+    Speed = GetEncoderSpeed(DataJson)
     CarFilter.Encoder_Update(Speed)
     CurrentState = CarFilter.GetCarState()
-    CurrentState["TimeStamp"]= GetTimeStamp(DataJson) - initTime
+    # CurrentState["TimeStamp"]= GetTimeStamp(DataJson) - initTime
 
     CarState["Velocity"].append(CurrentState["Velo"])
 
     Coor_ax.plot(CurrentState['x']*100, CurrentState['y']*100, marker = (3, 0, np.rad2deg(CurrentState["Heading"]) - 90), 
                  linestyle = 'None', color = "yellow")
-    print(CurrentState)
-
-    plt.pause(0.001)
+    # print(CurrentState)
+    ProcessLog.write(json.dumps(CurrentState)+"\n")
+    # plt.pause(0.001)
 
 print("Processed Line {} ")
 
