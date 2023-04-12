@@ -8,14 +8,15 @@ import numpy as np
 
 Enc_Vel_std = 0.2
 
-GPS_x_std = 0.8
-GPS_y_std = 0.8
+
+GPS_x_std = 0.7
+GPS_y_std = 0.7
 
 IMU_Velo_std = 1
-IMU_Heading_std = 0.01
+IMU_Heading_std = 0.1
 
-inVel_std = 0.2
-inSteer_std = 0.2 
+inVel_std = 0.5
+inSteer_std = 0.5 
 
 class CarEKF(EKF):
     def __init__(self, delta_t, WheelBase):
@@ -131,6 +132,9 @@ class CarEKF(EKF):
     def GPS_Update(self, x, y):
         if not self.isIntial:
             return
+        Velo = self.x[2,0]
+        GPS_x_std = Velo**2
+        GPS_y_std = Velo**2
         GPS_NoiseMat = np.array([[GPS_x_std**2, 0],
                                  [0, GPS_y_std**2]])
         z = np.array([[x], [y]])
