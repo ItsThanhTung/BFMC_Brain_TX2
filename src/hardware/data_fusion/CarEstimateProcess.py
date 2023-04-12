@@ -191,7 +191,7 @@ class CarEstimateProcess(WorkerProcess):
                 self.CarFilter.GPS_Update(Coor[0], Coor[1])
                 prev_Coor = Coor
 
-            self.CarFilter.IMU_Update(GetIMUHeading(DataJson))
+            self.CarFilter.IMU_Update(GetIMUHeading(DataJson)*1.005)
 
             Speed = GetEncoderSpeed(DataJson)*1.4
             self.CarFilter.Encoder_Update(Speed)
