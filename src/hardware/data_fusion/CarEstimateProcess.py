@@ -103,6 +103,7 @@ class CarEstimateProcess(WorkerProcess):
         self._FilterInitEvent.wait()
         print("Start EKF Predict")
         u={}
+        prevGPS = [0,0]
         while(True):
             u["Velo"] = self.inVelocity + 0.3
             u["Angle"] = self.Steering
@@ -146,6 +147,7 @@ class CarEstimateProcess(WorkerProcess):
     def LogDataThread(self):
         self._FilterInitEvent.wait()
         print("EKF Start Log Data")
+        
         while(True):
             time.sleep(self._LogInterval)
             Data = self.GetAllData()

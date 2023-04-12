@@ -6,16 +6,16 @@ import numpy as np
 # from src.utils.CarModel.BicycleModel import BicycleModel
 
 
-Enc_Vel_std = 1
+Enc_Vel_std = 0.2
 
 GPS_x_std = 0.8
 GPS_y_std = 0.8
 
 IMU_Velo_std = 1
-IMU_Heading_std = 0.3
+IMU_Heading_std = 0.01
 
-inVel_std = 1
-inSteer_std = 2 
+inVel_std = 0.2
+inSteer_std = 0.2 
 
 class CarEKF(EKF):
     def __init__(self, delta_t, WheelBase):
@@ -33,10 +33,10 @@ class CarEKF(EKF):
         self.x[1,0] = Y
         self.x[2,0] = Velo
         self.x[3,0] = Heading
-        self.P = np.array([[0.3**2, 0, 0, 0],
-                           [0, 0.3**2, 0, 0],
-                           [0, 0, 0.5**2, 0],
-                           [0, 0, 0, 0.2**2]])
+        # self.P = np.array([[0.3**2, 0, 0, 0],
+        #                    [0, 0.3**2, 0, 0],
+        #                    [0, 0, 0.5**2, 0],
+        #                    [0, 0, 0, 0.2**2]])
         self.isIntial = True
     
     def predict(self, u):
