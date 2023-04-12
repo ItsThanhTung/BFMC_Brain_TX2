@@ -12,7 +12,7 @@ from adafruit_extended_bus import ExtendedI2C as I2C
 import adafruit_bno055
 
 
-CALIB = True
+CALIBRATED = True
 WRITECALIB = False
 
 MyBNO = adafruit_bno055.BNO055_I2C(I2C(0), 0x29)
@@ -31,30 +31,33 @@ def GetCabliOffset(Sensor: adafruit_bno055.BNO055):
 	}
 
 def SetCalibOffset(Sensor: adafruit_bno055.BNO055, CalibOffset):
-		Sensor.offsets_accelerometer = CalibOffset["AccelOffset"]
-		Sensor.offsets_gyroscope = CalibOffset["GyroOffset"]
-		Sensor.offsets_magnetometer = CalibOffset["MagnetOffset"]
+		Sensor.offsets_accelerometer = tuple(CalibOffset["AccelOffset"])		
+		Sensor.offsets_gyroscope = tuple(CalibOffset["GyroOffset"]) 
+		Sensor.offsets_magnetometer = tuple(CalibOffset["MagnetOffset"])
 		Sensor.radius_accelerometer = CalibOffset["AccelRad"]
 		Sensor.radius_magnetometer = CalibOffset["MagnetRad"]
 
 def main():
-	# if CALIB == False:
-	# 	CalibData = GetCabliOffset(MyBNO)
-	# 	with open("CalibData.json", 'w') as file:
-	# 		file.write(json.dumps(CalibData))
+	if CALIBRATED == False:
+		print("Store Calib Data")
+		CalibData = GetCabliOffset(MyBNO)
+		with open("CalibData.json", 'w') as file:
+			file.write(json.dumps(CalibData))
 	
-	# if WRITECALIB == True:
-	# 	with open("CalibData.json", 'r') as file:
-	# 		Calib = json.load(file)
-	# 		# SetCalibOffset(MyBNO, Calib)
-	# 		print(Calib["AccelOffset"])
+	if WRITECALIB == True:
+		print("Write old calib data")
+		with open("CalibData.json", 'r') as file:
+			Calib = json.load(file)
+			SetCalibOffset(MyBNO, Calib)
+			print(Calib["AccelOffset"])
 
-	
+	MyBNO.mode = adafruit_bno055.NDOF_MODE
+	time.sleep(3)
 	while True:
 		calib = MyBNO.calibration_status
 		print("Sys {} gyro {} accel {} magnet {}".format(calib[0], calib[1], calib[2], calib[3]))
-		print("Euler ",MyBNO.acceleration)
-		print("Accel ",MyBNO.linear_acceleration)
+		print("Euler ",MyBNO.euler)
+		# print("AccelRad {} MagnetRad {} ".format(MyBNO.radius_accelerometer, MyBNO.radius_magnetometer))
 		sleep(0.05)
  
 
