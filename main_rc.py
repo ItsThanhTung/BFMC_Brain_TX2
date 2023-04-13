@@ -68,11 +68,13 @@ if __name__ == '__main__':
     enableLocalize           = True
     enableYolo              = False
 
-    enableStreamObject       =  False
+    enableStreamObject       =  True
     enableLaneStream         =  False
     enableInterceptStream    =  False
     enableLocalizeStream       = True
     enableFilterStream = True
+    
+
     is_remote = False
     is_show = False
     is_stop = False
