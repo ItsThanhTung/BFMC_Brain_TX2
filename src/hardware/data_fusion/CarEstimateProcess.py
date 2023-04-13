@@ -196,7 +196,7 @@ class CarEstimateProcess(WorkerProcess):
             Speed = GetEncoderSpeed(DataJson)*1.4
             self.CarFilter.Encoder_Update(Speed)
             CurrentState = self.CarFilter.GetCarState()
-            print("Estimate ", CurrentState)
+            # print("Estimate ", CurrentState)
             self.ProcessLog.write(json.dumps(CurrentState) +"\r\n") 
     
     def _haveNone(self, Data):

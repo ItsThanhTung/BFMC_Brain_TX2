@@ -134,7 +134,7 @@ class CarHandlerThread(ThreadWithStop):
             if self.__AckTimeout < 0:
                 return 0, "OK"
         
-            Status, Mess = self._shRecv(self.__shInPs["SETSPEED"])
+            Status, Mess = self._shRecv(self.__shInPs["SETSPEED"], self.__AckTimeout)
             if Status == 0:
                 return Status, Mess
 
@@ -161,7 +161,7 @@ class CarHandlerThread(ThreadWithStop):
             if self.__AckTimeout < 0:
                 return 0, "OK"
         
-            Status, Mess = self._shRecv(self.__shInPs["SETSPEED"])
+            Status, Mess = self._shRecv(self.__shInPs["SETSPEED"], self.__AckTimeout)
             if Status == 0:
                 return Status, Mess
 
