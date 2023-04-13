@@ -6,6 +6,8 @@ import numpy as np
 from sklearn.metrics.pairwise import euclidean_distances
 from matplotlib.markers import MarkerStyle
 from threading import Thread, Condition
+
+
 class LocalizeDebugProcess(WorkerProcess):
     localize_condition = Condition()
     filter_condition = Condition()
@@ -26,8 +28,8 @@ class LocalizeDebugProcess(WorkerProcess):
 
         super(LocalizeDebugProcess,self).__init__( inPs, outPs)
         self.filter = filter
-        self.localize_data = {"x" : 0, "y" :0}
-        self.filter_data = {"x" : 0, "y" :0,"Heading":0}
+        self.localize_data = {"x":0, "y":0}
+        self.filter_data = {"x":0, "y":0, "Heading":0}
         
     # ===================================== RUN ==========================================
     def run(self):
@@ -111,8 +113,6 @@ class LocalizeDebugProcess(WorkerProcess):
         fig.canvas.blit(fig.bbox)
 
         map_arr=[[x,y]for x,y in zip(x,y)]
-
-        data = []
         
         while True:
             try:
