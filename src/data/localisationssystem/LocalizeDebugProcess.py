@@ -4,8 +4,10 @@ from pygraphml import GraphMLParser
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.metrics.pairwise import euclidean_distances
-
+from matplotlib.markers import MarkerStyle
 from threading import Thread, Condition
+
+
 class LocalizeDebugProcess(WorkerProcess):
     localize_condition = Condition()
     filter_condition = Condition()
@@ -26,8 +28,8 @@ class LocalizeDebugProcess(WorkerProcess):
 
         super(LocalizeDebugProcess,self).__init__( inPs, outPs)
         self.filter = filter
-        self.localize_data = {"x" : 0, "y" :0}
-        self.filter_data = {"x" : 0, "y" :0,"Heading":0}
+        self.localize_data = {"x":0, "y":0}
+        self.filter_data = {"x":0, "y":0, "Heading":0}
         
     # ===================================== RUN ==========================================
     def run(self):
@@ -103,7 +105,7 @@ class LocalizeDebugProcess(WorkerProcess):
         for i,point in enumerate(zip(x,y)):
             if i in dup:
                 continue
-            ax.annotate(i+1,(point[0],point[1]),fontsize=6,weight = 'bold')
+            ax.annotate(i,(point[0],point[1]),fontsize=6,weight = 'bold')
         plt.show(block=False)
         plt.pause(0.1)
         bg = fig.canvas.copy_from_bbox(fig.bbox)
@@ -111,9 +113,7 @@ class LocalizeDebugProcess(WorkerProcess):
         fig.canvas.blit(fig.bbox)
 
         map_arr=[[x,y]for x,y in zip(x,y)]
-
-        data = []
-     
+        
         while True:
             try:
                 # Obtain image
@@ -130,17 +130,20 @@ class LocalizeDebugProcess(WorkerProcess):
 
                 passed = []
                 fig.canvas.restore_region(bg)
-                dist_arr = euclidean_distances([[point_raw['x'],point_raw['y']]], map_arr)
-                closest_point = np.argmin(dist_arr)
-                if closest_point not in passed:
-                    passed.append(closest_point)
-                    (ln,)=plt.plot(map_arr[closest_point][0],map_arr[closest_point][1], marker="o",markerfacecolor='green', markersize=6)
-                    ax.draw_artist(ln)
-                    bg = fig.canvas.copy_from_bbox(fig.bbox)
+                if not(point_filter['x'] == 0 and point_filter['y'] == 0):
+                    dist_arr = euclidean_distances([[point_filter['x'],point_filter['y']]], map_arr)
+                    closest_point = np.argmin(dist_arr)
+                    if closest_point not in passed:
+                        passed.append(closest_point)
+                        (ln,)=plt.plot(map_arr[closest_point][0],map_arr[closest_point][1], marker="o",markerfacecolor='green', markersize=6)
+                        ax.draw_artist(ln)
+                        bg = fig.canvas.copy_from_bbox(fig.bbox)
                 (ln,)=plt.plot(point_raw['x'],point_raw['y'], marker="o",markerfacecolor='red', markersize=6)
                 ax.draw_artist(ln)
                 if self.filter:
-                    (ln,)=plt.plot(point_filter['x'],point_filter['y'], marker=(3,0,np.rad2deg(point_filter['Heading']+90)),markerfacecolor='yellow', markersize=10)
+                    marker_raw = MarkerStyle("$>$")
+                    marker_raw._transform.rotate_deg(np.rad2deg(point_filter['Heading']))
+                    (ln,)=plt.plot(point_filter['x'],point_filter['y'], marker=marker_raw,markerfacecolor='yellow', markersize=10)
                     ax.draw_artist(ln)
                 # (ln,)=plt.plot(map_arr[closest_point][0],map_arr[closest_point][1], marker="o",markerfacecolor='yellow', markersize=12)
                 
