@@ -2,7 +2,7 @@ from threading import Thread, Lock, Event
 from src.templates.workerprocess import WorkerProcess
 from src.hardware.serialhandler.filehandler import FileHandler
 from src.perception.InterceptionHandler import InterceptionHandler
-
+import sys
 from src.hardware.IMU.imuHandler import IMUHandler
 from src.perception.CarHandlerThread import CarHandlerThread
 from src.perception.traffic_sign.TrafficSignHandler import TrafficSignHandler
@@ -197,9 +197,16 @@ class DecisionMakingProcess(WorkerProcess):
         # time.sleep(10)
         while True:
             if True:
-                pose = self.CarPoseHandler.getPose()
+                start_time = time.time()
+                pose = self.CarPoseHandler.GetCarPose()
                 self.point.cur_pos={ 'x': pose['x'], 'y': pose['y'] }
-                print(self.point.getClosestPoint())
+                node = self.point.getClosestNode()
+                
+                print(node)
+                if node == 58:
+                    self.turn_off_rc_car()
+                    while True:
+                        pass
                 self.decision_maker.reiniate()
                 
                 current_time = time.time()
@@ -209,11 +216,10 @@ class DecisionMakingProcess(WorkerProcess):
                 intercept_length, intercept_gap = self.read_intercept_detection_data()
                 object_result = self.read_object_detection_data()
 
-                
                 if trafficSignHanlder.detect(object_result, lane_data):
                     continue
 
-                if self.decision_maker.is_intercept(intercept_length, intercept_gap) and not self.is_stop:
+                if self.decision_maker.is_intercept(intercept_length, intercept_gap) and not self.is_stop and False:
                     # print('intercept')
                     direction = self.decision_maker.get_intercept_direction()
                     
@@ -226,7 +232,7 @@ class DecisionMakingProcess(WorkerProcess):
                     angle_lane_keeping = int(angle_lane_keeping)    
                     # print('Angle: ',angle_lane_keeping)
                     if not self.is_stop:
-                        status, messSpd = self.__CarHandlerTh.setSpeed(self.decision_maker.speed)
+                        status, messSpd = self.__CarHandlerTh.setSpeed(self.decision_maker.speed, send_attempt=1) 
                         
                         if status < 0:
                             log_message = "\nFail send speed: {} \t {}\n".format(status, messSpd)
@@ -234,13 +240,13 @@ class DecisionMakingProcess(WorkerProcess):
                     else:
                         status, messSpd = 0, "OK"
                         
-                    
-                    status, messAng = self.__CarHandlerTh.setAngle(angle_lane_keeping) 
+                    status, messAng = self.__CarHandlerTh.setAngle(angle_lane_keeping, send_attempt=1) 
                     if status < 0:
                             log_message = "\nFail send angle: {} \t {}\n".format(status, messAng)
                             self.historyFile.write(log_message)
                     
                     self.prev_angle = angle_lane_keeping
+                    
                 
 
             # except Exception as e:

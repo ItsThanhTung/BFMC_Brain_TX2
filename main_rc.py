@@ -64,7 +64,7 @@ from threading import Thread
 if __name__ == '__main__':
     
     # =============================== CONFIG =================================================
-    enableStream             =  False
+    enableStream             =  True
     enableLocalize           = True
     enableYolo              = False
 
