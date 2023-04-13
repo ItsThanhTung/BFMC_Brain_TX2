@@ -7,6 +7,7 @@ from src.hardware.IMU.imuHandler import IMUHandler
 from src.perception.CarHandlerThread import CarHandlerThread
 from src.perception.traffic_sign.TrafficSignHandler import TrafficSignHandler
 from src.perception.DecisionMaking import DecisionMaking
+from src.perception.PointProcess import Point
 from src.perception.tracker.byte_tracker import BYTETracker
 
 from src.perception.CarPoseHandlerThread import CarPoseThread
@@ -71,7 +72,7 @@ class DecisionMakingProcess(WorkerProcess):
         
         
         self.decision_maker = DecisionMaking(self.historyFile)
-        
+        self.point = Point()
         self.tracker = BYTETracker()
     # ===================================== RUN ==========================================
     def run(self):
@@ -196,6 +197,9 @@ class DecisionMakingProcess(WorkerProcess):
         # time.sleep(10)
         while True:
             if True:
+                pose = self.CarPoseHandler.getPose()
+                self.point.cur_pos={ 'x': pose['x'], 'y': pose['y'] }
+                print(self.point.getClosestPoint())
                 self.decision_maker.reiniate()
                 
                 current_time = time.time()

@@ -3,6 +3,7 @@ from threading import Thread,Condition
 from src.templates.workerprocess import WorkerProcess
 from src.data.localisationssystem.locsys import LocalisationSystem
 from multiprocessing import Pipe
+
 import time
 import ast
 class LocalizeProcess(WorkerProcess):
@@ -47,9 +48,11 @@ class LocalizeProcess(WorkerProcess):
             Output pipe to send the steering angle value to other process.
 
         """
+        
         print('inited localize')
         while True:
             try:
+                
                 if not self.dummy:
                     coora = self.gpsStR.recv()
                     coora = ast.literal_eval(coora)
