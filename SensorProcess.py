@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from src.hardware.data_fusion.CarEKF import CarEKF
 import numpy as np
 from src.utils.SensorProcess.utils import *
+from matplotlib.markers import MarkerStyle
 
 Delta_t = 0.01
 CarFilter = CarEKF(Delta_t, 0.26)
@@ -75,7 +76,9 @@ while True:
     y = DataJson["GPS"][1]*100
     Heading = GetIMUHeading(DataJson)
     Speed = GetEncoderSpeed(DataJson)
-    Coor_ax.plot(x, y, marker = (3, 0, np.rad2deg(Heading) - 90), linestyle = 'None', color = "red")
+    marker_raw = MarkerStyle("$>$")
+    marker_raw._transform.rotate_deg(np.rad2deg(Heading))
+    Coor_ax.plot(x, y, marker = marker_raw, linestyle = 'None', color = "red")
     rawVelocity.append(Speed)
     # VeloRaw_ax.step(CurrentTime, Speed,   linewidth = 0.001, color = "red")
     # Xcoor.append(x)
@@ -85,9 +88,10 @@ while True:
     inputMat = {}
     inputMat["Velo"], inputMat["Angle"] = GetCommandData(DataJson)
     # inputMat["Velo"]*=1
-    CarFilter.predict(inputMat)
+    CarFilter.predict(inputMat,0.010)
 
     Coor = GetGPS(DataJson)
+    
     if(Coor[0] != prev_Coor[0] or Coor[1] != prev_Coor[1]):
         CarFilter.GPS_Update(Coor[0], Coor[1])
         prev_Coor = Coor
@@ -95,14 +99,16 @@ while True:
 
     CarFilter.IMU_Update(GetIMUHeading(DataJson))
 
-    Speed = GetEncoderSpeed(DataJson)
+    Speed = GetEncoderSpeed(DataJson)*1.2
     CarFilter.Encoder_Update(Speed)
     CurrentState = CarFilter.GetCarState()
     # CurrentState["TimeStamp"]= GetTimeStamp(DataJson) - initTime
 
     CarState["Velocity"].append(CurrentState["Velo"])
 
-    Coor_ax.plot(CurrentState['x']*100, CurrentState['y']*100, marker = (3, 0, np.rad2deg(CurrentState["Heading"]) - 90), 
+    marker = MarkerStyle("$>$")
+    marker._transform.rotate_deg(np.rad2deg(CurrentState["Heading"]))
+    Coor_ax.plot(CurrentState['x']*100, CurrentState['y']*100, marker = marker, 
                  linestyle = 'None', color = "yellow")
     # print(CurrentState)
     ProcessLog.write(json.dumps(CurrentState)+"\n")

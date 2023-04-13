@@ -6,16 +6,16 @@ import numpy as np
 # from src.utils.CarModel.BicycleModel import BicycleModel
 
 
-Enc_Vel_std = 0.2
+Enc_Vel_std = 0.5
 
 GPS_x_std = 0.8
 GPS_y_std = 0.8
 
 IMU_Velo_std = 1
-IMU_Heading_std = 0.01
+IMU_Heading_std = 0.1
 
-inVel_std = 0.2
-inSteer_std = 0.2 
+inVel_std = 0.5
+inSteer_std = 0.5 
 
 class CarEKF(EKF):
     def __init__(self, delta_t, WheelBase):
