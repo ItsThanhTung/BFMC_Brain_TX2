@@ -1,6 +1,6 @@
 import numpy as np
 def GetIMUHeading(DataJson):
-    return np.deg2rad(DataJson["IMU"]["Euler"][0] + 30)
+    return np.deg2rad(DataJson["IMU"]["Euler"][0] - 110)
 
 
 def GetInitalData(DataJson):
@@ -12,11 +12,11 @@ def GetInitalData(DataJson):
 
 def GetCommandData(DataJson):
     Velo = DataJson["inVelocity"]
-    Steer = np.deg2rad(DataJson["inSteer"])/2
+    Steer = np.deg2rad(DataJson["inSteer"])
     return Velo, Steer
 
 def GetEncoderSpeed(DataJson):
-    return DataJson["Encoder"]
+    return DataJson["Encoder"]*1.2
 
 
 def GetGPS(DataJson):

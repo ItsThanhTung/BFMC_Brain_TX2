@@ -6,16 +6,17 @@ import numpy as np
 # from src.utils.CarModel.BicycleModel import BicycleModel
 
 
-Enc_Vel_std = 5
+Enc_Vel_std = 0.5
 
-GPS_x_std = 0.8
-GPS_y_std = 0.8
 
-IMU_Velo_std = 2
-IMU_Heading_std = 0.3
+GPS_x_std = 0.7
+GPS_y_std = 0.7
 
-inVel_std = 3
-inSteer_std = 5 
+IMU_Velo_std = 1
+IMU_Heading_std = 0.1
+
+inVel_std = 0.5
+inSteer_std = 0.5 
 
 class CarEKF(EKF):
     def __init__(self, delta_t, WheelBase):
@@ -33,14 +34,20 @@ class CarEKF(EKF):
         self.x[1,0] = Y
         self.x[2,0] = Velo
         self.x[3,0] = Heading
+        # self.P = np.array([[0.3**2, 0, 0, 0],
+        #                    [0, 0.3**2, 0, 0],
+        #                    [0, 0, 0.5**2, 0],
+        #                    [0, 0, 0, 0.2**2]])
         self.isIntial = True
     
-    def predict(self, u):
+    def predict(self, u, dt):
 
         _x, _y, _theta = self.x[0,0], self.x[1,0], self.x[3,0]
         # _Velo = self.x[2,0]
-        _Velo, _alpha = self.x[2,0], u["Angle"]
-        _dt = self._dt
+        # _Velo, _alpha = u["Velo"], u["Angle"]
+        _Velo, _alpha = u["Velo"], u["Angle"]
+
+        _dt = dt
         _wheelbase = self._WheelBase
 
         _beta = np.arctan(np.tan(_alpha)/2)
@@ -125,6 +132,9 @@ class CarEKF(EKF):
     def GPS_Update(self, x, y):
         if not self.isIntial:
             return
+        Velo = self.x[2,0]
+        GPS_x_std = Velo**2
+        GPS_y_std = Velo**2
         GPS_NoiseMat = np.array([[GPS_x_std**2, 0],
                                  [0, GPS_y_std**2]])
         z = np.array([[x], [y]])
