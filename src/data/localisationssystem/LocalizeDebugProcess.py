@@ -27,7 +27,7 @@ class LocalizeDebugProcess(WorkerProcess):
         super(LocalizeDebugProcess,self).__init__( inPs, outPs)
         self.filter = filter
         self.localize_data = {"x" : 0, "y" :0}
-        self.filter_data = {"x" : 0, "y" :0}
+        self.filter_data = {"x" : 0, "y" :0,"Heading":0}
         
     # ===================================== RUN ==========================================
     def run(self):
@@ -86,7 +86,7 @@ class LocalizeDebugProcess(WorkerProcess):
         map = parser.parse('src/data/localisationssystem/Test_track.graphml')
         x=[]
         y=[]
-        img = plt.imread('Track_Test.png')
+        img = plt.imread('Track_Test_White.png')
         
         for node in map.nodes():
             x.append(node['d0'])
@@ -99,9 +99,11 @@ class LocalizeDebugProcess(WorkerProcess):
         ax.imshow(img,extent=[0,6,0,6])
         fig.gca().invert_yaxis()
         (ln,) = ax.plot(x, y,marker='o', markerfacecolor='blue',linestyle='None', markersize=6,)
-
+        dup=[9, 10, 11, 19, 20, 28, 29]
         for i,point in enumerate(zip(x,y)):
-            ax.annotate(i+1,(point[0],point[1]))
+            if i in dup:
+                continue
+            ax.annotate(i+1,(point[0],point[1]),fontsize=6,weight = 'bold')
         plt.show(block=False)
         plt.pause(0.1)
         bg = fig.canvas.copy_from_bbox(fig.bbox)
@@ -130,8 +132,6 @@ class LocalizeDebugProcess(WorkerProcess):
                 fig.canvas.restore_region(bg)
                 dist_arr = euclidean_distances([[point_raw['x'],point_raw['y']]], map_arr)
                 closest_point = np.argmin(dist_arr)
-                # data.append(point)
-                # np.save('data.npy',data)
                 if closest_point not in passed:
                     passed.append(closest_point)
                     (ln,)=plt.plot(map_arr[closest_point][0],map_arr[closest_point][1], marker="o",markerfacecolor='green', markersize=6)
