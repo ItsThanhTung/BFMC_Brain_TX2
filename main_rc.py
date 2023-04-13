@@ -64,20 +64,27 @@ from threading import Thread
 if __name__ == '__main__':
     
     # =============================== CONFIG =================================================
-    enableStream             =  True
-    enableLocalize           = True
-    enableYolo              = False
-
-    enableStreamObject       =  True
+    enableYolo               = False
+    
+    
+    enableStream             =  False
+    enableStreamObject       =  False
     enableLaneStream         =  False
     enableInterceptStream    =  False
-    enableLocalizeStream       = True
-    enableFilterStream = True
+    
+    enableLocalize           = True
+    enableLocalizeStream     = True
+    enableFilterStream       = True
     
 
     is_remote = False
     is_show = False
     is_stop = False
+    
+    if not enableYolo and enableStreamObject:
+        print("Do not enable stream object and turn off object")
+        assert False
+    
     
     opt = load_config_file("main_rc.json")
     cam_opt = opt["REMOTE"] if is_remote else opt["RC"]

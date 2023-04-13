@@ -200,9 +200,11 @@ class DecisionMakingProcess(WorkerProcess):
                 start_time = time.time()
                 pose = self.CarPoseHandler.GetCarPose()
                 self.point.cur_pos={ 'x': pose['x'], 'y': pose['y'] }
-                node = self.point.getClosestNode()
                 
-                print(node)
+                node = self.point.getClosestNode()
+
+                print(f"{node} -----> {self.point.getNextPoint(node)}")
+                
                 if node == 58:
                     self.turn_off_rc_car()
                     while True:
