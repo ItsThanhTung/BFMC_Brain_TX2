@@ -199,7 +199,6 @@ class DecisionMakingProcess(WorkerProcess):
             if True:
                 pose = self.CarPoseHandler.getPose()
                 self.point.cur_pos={ 'x': pose['x'], 'y': pose['y'] }
-                print(self.point.getClosestPoint())
                 self.decision_maker.reiniate()
                 
                 current_time = time.time()
