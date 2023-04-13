@@ -99,7 +99,7 @@ while True:
 
     CarFilter.IMU_Update(GetIMUHeading(DataJson))
 
-    Speed = GetEncoderSpeed(DataJson)*1.2
+    Speed = GetEncoderSpeed(DataJson)
     CarFilter.Encoder_Update(Speed)
     CurrentState = CarFilter.GetCarState()
     # CurrentState["TimeStamp"]= GetTimeStamp(DataJson) - initTime
@@ -112,7 +112,7 @@ while True:
                  linestyle = 'None', color = "yellow")
     # print(CurrentState)
     ProcessLog.write(json.dumps(CurrentState)+"\n")
-    # plt.pause(0.001)
+    plt.pause(0.001)
 
 print("Processed Line {} ")
 

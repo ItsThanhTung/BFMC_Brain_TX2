@@ -133,8 +133,8 @@ class CarEKF(EKF):
         if not self.isIntial:
             return
         Velo = self.x[2,0]
-        GPS_x_std = Velo**2
-        GPS_y_std = Velo**2
+        GPS_x_std = (Velo+0.15)**2
+        GPS_y_std = (Velo+0.15)**2
         GPS_NoiseMat = np.array([[GPS_x_std**2, 0],
                                  [0, GPS_y_std**2]])
         z = np.array([[x], [y]])
