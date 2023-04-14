@@ -246,7 +246,28 @@ class DecisionMakingProcess(WorkerProcess):
                     print(direction)
                     interceptionHandler.handler(direction,angle_lane_keeping)
                     continue
-
+                # The intercept should have 2 way to detect the intercept from gps and image.
+                # for some traffic signal, be flexible
+                
+                
+                # from this line
+                # choose which strategy to follow
+                # from lane keeping or from gps system
+                # Need to have a mode 
+                # when intercept, switch to the gps strategy
+                # when normal, switch to lane strategy
+                
+                # when in lane mode, keep track the position 
+                # if the position is off from the lane
+                # need to switch mode until the error is small enough
+                
+                # mode variable
+                # strategy to run
+                # for lane model, check the current distance and the closet point in the predefined trajector
+                # if the distance larger than Tau value 
+                # we change the straegy
+                # if the distance is smaller  (Tau - epsilon) value 
+                # Switch mode
                 else:   
                     self.historyFile.write("Lane keeping angle: {}   speed: {}\n".format(angle_lane_keeping, self.decision_maker.speed))
                     angle_lane_keeping = int(angle_lane_keeping)    
