@@ -9,8 +9,8 @@ class Point:
         parser = GraphMLParser()
         map = parser.parse('src/data/localisationssystem/Test_track.graphml')
         
-        x=[]
-        y=[]
+        x = []
+        y = []
         for node in map.nodes():
             x.append(node['d0'])
             y.append(node['d1'])
@@ -18,7 +18,7 @@ class Point:
         x = np.array(x).astype(float)
         y = np.array(y).astype(float)
         
-        self.map_arr = [[x,y]for x,y in zip(x,y)]
+        self.map_arr = [[x,y] for x,y in zip(x,y)]
         self.cur_pos = {'x':0,'y':0}
         self.trajectory = np.array([16, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 1, 118, 8, 119, 6, 73, 74, 14, 120, 18, 121])
         
@@ -39,6 +39,9 @@ class Point:
             return self.trajectory[0]
         else:
             return self.trajectory[next_point+1]
+        
+    def get_point(self, idx):
+        return self.map_arr[idx]
         
         
     

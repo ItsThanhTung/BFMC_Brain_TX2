@@ -11,6 +11,7 @@ from src.perception.PointProcess import Point
 from src.perception.tracker.byte_tracker import BYTETracker
 
 from src.perception.CarPoseHandlerThread import CarPoseThread
+from src.perception.Planning import Planning
 
 from datetime import datetime
 import time
@@ -74,6 +75,7 @@ class DecisionMakingProcess(WorkerProcess):
         self.decision_maker = DecisionMaking(self.historyFile)
         self.point = Point()
         self.tracker = BYTETracker()
+        self.planer = Planning()
     # ===================================== RUN ==========================================
     def run(self):
         """Apply the initializing methods and start the threads.
@@ -195,20 +197,36 @@ class DecisionMakingProcess(WorkerProcess):
         trafficSignHanlder = TrafficSignHandler(self.__CarHandlerTh, self.historyFile, self.decision_maker)
         # self._FakeRun()
         # time.sleep(10)
+        self.test_inter = False
         while True:
             if True:
                 start_time = time.time()
                 pose = self.CarPoseHandler.GetCarPose()
                 self.point.cur_pos={ 'x': pose['x'], 'y': pose['y'] }
                 
-                node = self.point.getClosestNode()
-
-                print(f"{node} -----> {self.point.getNextPoint(node)}")
+                self.planer.update_point(pose)
                 
-                if node == 58:
-                    self.turn_off_rc_car()
-                    while True:
-                        pass
+                current_node = self.point.getClosestNode()
+                next_node = self.point.getNextPoint(current_node)
+
+                target_point = self.point.get_point(next_node)
+                
+                print(f"{current_node} -----> {next_node} - {target_point}")
+                
+                print(f"location: {self.planer.prev_point} ----- {(self.planer.x, self.planer.y)}")
+
+
+                
+                if current_node == 58 or self.test_inter:
+                    self.test_inter = True
+                    angle = -self.planer.drive([target_point[0], target_point[1]])
+                    self.__CarHandlerTh.setSpeed(30)
+                    self.__CarHandlerTh.setAngle(angle)
+                    # print("Angle: ", angle)
+                    # self.turn_off_rc_car()
+                    print("angle: ", angle)
+                    continue
+            
                 self.decision_maker.reiniate()
                 
                 current_time = time.time()
