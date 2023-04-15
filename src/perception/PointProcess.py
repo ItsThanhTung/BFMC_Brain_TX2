@@ -26,7 +26,7 @@ class Point:
     def getClosestNode(self):
         dist_arr = euclidean_distances([[self.cur_pos['x'],self.cur_pos['y']]], self.map_arr)
         closest_point = np.argmin(dist_arr)
-        return closest_point
+        return closest_point, self.get_point(idx)
     
     
     def getNextPoint(self, node=None):
@@ -36,9 +36,9 @@ class Point:
         next_point = np.where(self.trajectory==node)[0][0]
 
         if next_point == len(self.trajectory)-1:
-            return self.trajectory[0]
+            return self.trajectory[0], self.get_point(self.trajectory[0])
         else:
-            return self.trajectory[next_point+1]
+            return self.trajectory[next_point+1], self.get_point(self.trajectory[next_point+1])
         
     def get_point(self, idx):
         return self.map_arr[idx]

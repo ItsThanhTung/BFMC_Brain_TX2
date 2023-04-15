@@ -45,7 +45,6 @@ class Planning:
                 else:
                     return 0
 
-
             direction = left_or_right(self.prev_point, curr_point, tar_point)
 
             if direction != 0:

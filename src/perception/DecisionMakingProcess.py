@@ -76,6 +76,8 @@ class DecisionMakingProcess(WorkerProcess):
         self.point = Point()
         self.tracker = BYTETracker()
         self.planer = Planning()
+
+        self.strategy = "LANE"   # "GPS"
     # ===================================== RUN ==========================================
     def run(self):
         """Apply the initializing methods and start the threads.
@@ -209,27 +211,15 @@ class DecisionMakingProcess(WorkerProcess):
                 self.point.cur_pos={ 'x': pose['x'], 'y': pose['y'] }
                 
                 self.planer.update_point(pose)
-                
-                current_node = self.point.getClosestNode()
-                next_node = self.point.getNextPoint(current_node)
+                current_node, current_point = self.point.getClosestNode()
+                next_node, next_point = self.point.getNextPoint(current_node)
 
-                target_point = self.point.get_point(next_node)
                 
-                print(f"{current_node} -----> {next_node} - {target_point}")
-                
-                print(f"location: {self.planer.prev_point} ----- {(self.planer.x, self.planer.y)}")
+                # print(f"{current_node} -----> {next_node} - {target_point}")
+                # print(f"location: {self.planer.prev_point} ----- {(self.planer.x, self.planer.y)}")
 
                 # current_node = 0
                 
-                if current_node == 58 or self.test_inter:
-                    self.test_inter = True
-                    angle = -self.planer.drive([target_point[0], target_point[1]])
-                    self.__CarHandlerTh.setSpeed(30)
-                    self.__CarHandlerTh.setAngle(angle)
-                    # print("Angle: ", angle)
-                    # self.turn_off_rc_car()
-                    print("angle: ", angle)
-                    continue
             
                 self.decision_maker.reiniate()
                 
@@ -243,36 +233,19 @@ class DecisionMakingProcess(WorkerProcess):
                 if trafficSignHanlder.detect(object_result, lane_data):
                     continue
 
-                if self.decision_maker.is_intercept(intercept_length, intercept_gap) and not self.is_stop and False:
+                if self.decision_maker.is_intercept(intercept_length, intercept_gap) and not self.is_stop:
                     # print('intercept')
-                    direction = self.decision_maker.get_intercept_direction()
+                    self.strategy = "GPS"
+                    self.is_intercept = "True"
+                    self.intercept_node = current_node
+
+                    # direction = self.decision_maker.get_intercept_direction()
                     
-                    print(direction)
-                    interceptionHandler.handler(direction,angle_lane_keeping)
-                    continue
-                # The intercept should have 2 way to detect the intercept from gps and image.
-                # for some traffic signal, be flexible
-                
-                
-                # from this line
-                # choose which strategy to follow
-                # from lane keeping or from gps system
-                # Need to have a mode 
-                # when intercept, switch to the gps strategy
-                # when normal, switch to lane strategy
-                
-                # when in lane mode, keep track the position 
-                # if the position is off from the lane
-                # need to switch mode until the error is small enough
-                
-                # mode variable
-                # strategy to run
-                # for lane model, check the current distance and the closet point in the predefined trajector
-                # if the distance larger than Tau value 
-                # we change the straegy
-                # if the distance is smaller  (Tau - epsilon) value 
-                # Switch mode
-                else:   
+                    # print(direction)
+                    # interceptionHandler.handler(direction,angle_lane_keeping)
+                    # continue
+
+                if self.strategy == "LANE":
                     self.historyFile.write("Lane keeping angle: {}   speed: {}\n".format(angle_lane_keeping, self.decision_maker.speed))
                     angle_lane_keeping = int(angle_lane_keeping)    
                     print('Angle: ',angle_lane_keeping)
@@ -291,6 +264,19 @@ class DecisionMakingProcess(WorkerProcess):
                             self.historyFile.write(log_message)
                     
                     self.prev_angle = angle_lane_keeping
+
+                elif self.strategy == "GPS":   
+                    print("angle: ", angle)
+                    if self.is_intercept and self.planer.is_end_intercept(self.intercept_node):
+                        self.strategy = "LANE"
+                        self.is_intercept = False
+                        continue
+                        
+
+                    angle = -self.planer.drive([target_point[0], target_point[1]])
+                    self.__CarHandlerTh.setAngle(angle)
+                    
+                    
                     
             print("end: ", time.time() - start_time)
             # except Exception as e:
