@@ -19,7 +19,7 @@ class Yolo(object):
         if is_tensorRt: 
             weights='ver3.engine'
         else: 
-            weights='ver3.pt'
+            weights='sign2.pt'
             
         self.img_size = imgsize
         self.device = select_device(device)

@@ -57,7 +57,6 @@ from src.data.localisationssystem.LocalizeDebugProcess import LocalizeDebugProce
 from src.utils.utils_function import load_config_file
 
 # object detection import
-from src.image_processing.traffic_sign_remote.detection import Yolo
 import multiprocessing
 from threading import Thread
 
@@ -73,6 +72,7 @@ if __name__ == '__main__':
     # =========================== Object Detection ===========================================
     
     if enableYolo:
+        from src.image_processing.traffic_sign_remote.detection import Yolo
         camObjectStR, camObjectStS = Pipe(duplex = False)                                   # camera  ->  streamer
         imageObjectShowR, imageObjectShowS = Pipe(duplex = False)                           # object detection    ->  ImageShow
         object_detector = Yolo(camObjectStR, imageObjectShowS, False)
