@@ -84,27 +84,28 @@ class LocalizeDebugProcess(WorkerProcess):
             
             
     def _run(self):
-        parser = GraphMLParser()
-        map = parser.parse('src/data/localisationssystem/Test_track.graphml')
-        x=[]
-        y=[]
+        # parser = GraphMLParser()
+        # map = parser.parse('src/data/localisationssystem/Test_track.graphml')
+        # x=[]
+        # y=[]
         img = plt.imread('Track_Test_White.png')
-        
-        for node in map.nodes():
-            x.append(node['d0'])
-            y.append(node['d1'])
-        x = np.array(x).astype(float)
-        y = np.array(y).astype(float)
+        map_arr = np.load('src/data/localisationssystem/map_arr.npy')
+        x = [row[0] for row in map_arr]
+        y = [row[1] for row in map_arr]
+        # for node in map.nodes():
+        #     x.append(node['d0'])
+        #     y.append(node['d1'])
+        # x = np.array(x).astype(float)
+        # y = np.array(y).astype(float)
 
         fig, ax = plt.subplots(figsize=(6.4, 4.8))
         img = np.fliplr(img)
         ax.imshow(img,extent=[0,6,0,6])
         fig.gca().invert_yaxis()
         (ln,) = ax.plot(x, y,marker='o', markerfacecolor='blue',linestyle='None', markersize=6,)
-        dup=[9, 10, 11, 19, 20, 28, 29]
+        
         for i,point in enumerate(zip(x,y)):
-            if i in dup:
-                continue
+           
             ax.annotate(i,(point[0],point[1]),fontsize=6,weight = 'bold')
         plt.show(block=False)
         plt.pause(0.1)
