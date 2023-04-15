@@ -9,10 +9,11 @@ class Point:
         self.map_arr = np.load('src/data/localisationssystem/map_arr.npy')
         self.cur_pos = {'x':0,'y':0}
         self.trajectory = np.array([11, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 0, 108, 109, 110, 5, 62, 63, 9, 111, 112, 113, 114, 115])
-        
+        self.trajectory_map = [self.map_arr[i] for i in self.trajectory]
+        self.map_arr = self.trajectory_map
     
     def getClosestNode(self):
-        dist_arr = euclidean_distances([[self.cur_pos['x'],self.cur_pos['y']]], self.map_arr)
+        dist_arr = euclidean_distances([[self.cur_pos['x'],self.cur_pos['y']]], self.trajectory_map)
         closest_point = np.argmin(dist_arr)
         return closest_point, self.get_point(idx)
     
@@ -29,7 +30,7 @@ class Point:
             return self.trajectory[next_point+1], self.get_point(self.trajectory[next_point+1])
         
     def get_point(self, idx):
-        return self.map_arr[idx]
+        return self.trajectory_map[idx]
         
         
     
