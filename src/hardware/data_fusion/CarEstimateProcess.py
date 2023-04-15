@@ -90,7 +90,7 @@ class CarEstimateProcess(WorkerProcess):
 
         ListenDataTh = Thread(name= "ListenDataThread",target= self.RcvDataThread, daemon = True)
         self.threads.append(ListenDataTh)
-        EKFPredictTh = Thread(name= "EKF PredictThread",target= self.EKF_PredictThread, daemon = True)
+        # EKFPredictTh = Thread(name= "EKF PredictThread",target= self.EKF_PredictThread, daemon = True)
         # self.threads.append(EKFPredictTh)
         SendTh = Thread(name="SendDataThread", target= self.DM_SendThread, daemon = True)
         self.threads.append(SendTh)
@@ -150,7 +150,6 @@ class CarEstimateProcess(WorkerProcess):
         while(True):
             with self._CarFilterLock:
                 Result = self.CarFilter.GetCarState()
-            # print("Estimate State ", Result)
             self.outPs["DM"].send(Result)
             time.sleep(self._dt)
 
@@ -236,6 +235,7 @@ class CarEstimateProcess(WorkerProcess):
 
                     elif inP == self.inPs["GPS"]:
                         self.GPS = Data["point"]
+                        # print("Rcv GPS", Data["point"])
                         # gpsX, gpsY = Data["point"][0], Data["point"][1]
                         # with self._CarFilterLock:
                         #     self.CarFilter.GPS_Update(gpsX, gpsY)

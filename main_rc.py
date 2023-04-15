@@ -67,7 +67,7 @@ if __name__ == '__main__':
     enableYolo               = False
     
     
-    enableStream             =  False
+    enableStream             =  True
     enableStreamObject       =  False
     enableLaneStream         =  False
     enableInterceptStream    =  False
@@ -182,7 +182,7 @@ if __name__ == '__main__':
 
         locSysR, locSysS = Pipe(duplex = False) 
 
-        localizeProc = LocalizeProcess([locSysS],debugP=localizeDebugS,opt=opt ,debug=True)
+        localizeProc = LocalizeProcess([locSysS],debugP=localizeDebugS,opt=opt ,debug=enableLocalizeStream)
         allProcesses.append(localizeProc)
     else:
         localizeDebugR, localizeDebugS = None, None

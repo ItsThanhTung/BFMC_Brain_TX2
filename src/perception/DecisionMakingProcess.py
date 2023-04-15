@@ -190,6 +190,10 @@ class DecisionMakingProcess(WorkerProcess):
 
         if self.enableEKF:
             status, messSpd = self.__CarHandlerTh.enListenSpeed()
+            time.sleep(0.01)
+            status, messSpd = self.__CarHandlerTh.enListenSpeed()
+            time.sleep(0.01)
+
             self.CarPoseHandler.waitInitDone()
             print("DM Wait EKF Done")
 
@@ -215,7 +219,7 @@ class DecisionMakingProcess(WorkerProcess):
                 
                 print(f"location: {self.planer.prev_point} ----- {(self.planer.x, self.planer.y)}")
 
-
+                # current_node = 0
                 
                 if current_node == 58 or self.test_inter:
                     self.test_inter = True
@@ -271,7 +275,7 @@ class DecisionMakingProcess(WorkerProcess):
                 else:   
                     self.historyFile.write("Lane keeping angle: {}   speed: {}\n".format(angle_lane_keeping, self.decision_maker.speed))
                     angle_lane_keeping = int(angle_lane_keeping)    
-                    # print('Angle: ',angle_lane_keeping)
+                    print('Angle: ',angle_lane_keeping)
                     if not self.is_stop:
                         status, messSpd = self.__CarHandlerTh.setSpeed(self.decision_maker.speed, send_attempt=1) 
                         
@@ -288,8 +292,7 @@ class DecisionMakingProcess(WorkerProcess):
                     
                     self.prev_angle = angle_lane_keeping
                     
-                
-
+            print("end: ", time.time() - start_time)
             # except Exception as e:
             #     print("Decision Making - decision making thread error:")
             #     print(e)

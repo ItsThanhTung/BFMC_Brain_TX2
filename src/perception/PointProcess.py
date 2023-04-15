@@ -32,7 +32,7 @@ class Point:
     def getNextPoint(self, node=None):
         if node is None:
             node = self.getClosestNode()
-            
+        print(node)
         next_point = np.where(self.trajectory==node)[0][0]
 
         if next_point == len(self.trajectory)-1:
