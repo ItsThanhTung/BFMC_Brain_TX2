@@ -14,7 +14,7 @@ class Planning:
         
         
     def update_point(self, point):
-        if self.count == 5:
+        if self.count == 10:
             self.prev_point = (self.x, self.y)
             self.count = 0
             
@@ -52,7 +52,7 @@ class Planning:
                 angle = 180 - math.degrees(math.acos(np.dot(vec1, vec2) / (np.linalg.norm(vec1) * np.linalg.norm(vec2))))
                 angle *= direction
                 
-                angle = np.clip(angle * 0.3, -23, 23)
+                angle = np.clip(angle * 0.7, -23, 23)
                 
             else:
                 angle = 0

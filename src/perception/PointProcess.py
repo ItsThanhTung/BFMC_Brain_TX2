@@ -5,22 +5,10 @@ import numpy as np
 
 class Point:
     def __init__(self):
-        graphFile = 'src/data/localisationssystem/Test_track.graphml'
-        parser = GraphMLParser()
-        map = parser.parse('src/data/localisationssystem/Test_track.graphml')
         
-        x = []
-        y = []
-        for node in map.nodes():
-            x.append(node['d0'])
-            y.append(node['d1'])
-            
-        x = np.array(x).astype(float)
-        y = np.array(y).astype(float)
-        
-        self.map_arr = [[x,y] for x,y in zip(x,y)]
+        self.map_arr = np.load('src/data/localisationssystem/map_arr.npy')
         self.cur_pos = {'x':0,'y':0}
-        self.trajectory = np.array([16, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 1, 118, 8, 119, 6, 73, 74, 14, 120, 18, 121])
+        self.trajectory = np.array([11, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 0, 108, 109, 110, 5, 62, 63, 9, 111, 112, 113, 114, 115])
         
     
     def getClosestNode(self):
@@ -32,7 +20,7 @@ class Point:
     def getNextPoint(self, node=None):
         if node is None:
             node = self.getClosestNode()
-            
+        print(node)
         next_point = np.where(self.trajectory==node)[0][0]
 
         if next_point == len(self.trajectory)-1:
