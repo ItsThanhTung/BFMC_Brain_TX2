@@ -57,8 +57,15 @@ class Planning:
                 angle = 0
             
             self.prev_point = curr_point
-            self.cur_angle = angle
             
+            self.cur_angle = angle
             return angle
+
+            if angle > self.cur_angle -2 and angle > self.cur_angle < 2:
+                return self.cur_angle
+            else:
+                self.cur_angle = angle
+                return angle
+
 
 

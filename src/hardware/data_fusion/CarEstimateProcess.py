@@ -150,6 +150,9 @@ class CarEstimateProcess(WorkerProcess):
         while(True):
             with self._CarFilterLock:
                 Result = self.CarFilter.GetCarState()
+            pos = self.GPS
+            Result["rawX"] = pos[0]
+            Result["rawY"] = pos[1]
             self.outPs["DM"].send(Result)
             time.sleep(self._dt)
 

@@ -15,7 +15,7 @@ import adafruit_bno055
 CALIBRATED = True
 WRITECALIB = False
 
-MyBNO = adafruit_bno055.BNO055_I2C(I2C(0), 0x29)
+MyBNO = adafruit_bno055.BNO055_I2C(I2C(1), 0x29)
 # a,b,c,d,e,f = remap 
 # print(a+b+c+d+e+f)
 MyBNO.axis_remap = 2,0,1,0,0,0
