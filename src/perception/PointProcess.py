@@ -8,7 +8,7 @@ class Point:
         
         self.map_arr = np.load('src/data/localisationssystem/map_arr.npy')
         self.cur_pos = {'x':0,'y':0}
-        self.trajectory = np.array([10, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 0, 106, 107, 108, 109, 110, 111, 112, 5, 61, 62, 113, 114, 115, 116, 117, 118, 119])
+        self.trajectory = np.array([10, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 0, 109, 110, 111, 112, 5, 61, 62, 116, 117, 118, 119])
         self.trajectory_map = [self.map_arr[i] for i in self.trajectory]
     
     def getClosestNode(self):
