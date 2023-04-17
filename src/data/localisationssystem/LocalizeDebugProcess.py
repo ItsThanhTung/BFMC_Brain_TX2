@@ -91,7 +91,7 @@ class LocalizeDebugProcess(WorkerProcess):
         img = plt.imread('Track_Test_White.png')
         map_arr = np.load('src/data/localisationssystem/map_arr.npy')
 
-        trajectory = np.array([11, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 0, 108, 109, 110, 5, 62, 63, 9, 111, 112, 113, 114, 115])
+        trajectory = np.array([11, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 0, 112, 113, 114, 115, 5, 62, 63, 9, 108, 109, 110, 111])
         map_arr = [map_arr[i] for i in trajectory]
 
         x = [row[0] for row in map_arr]
@@ -110,7 +110,7 @@ class LocalizeDebugProcess(WorkerProcess):
         
         for i,point in enumerate(zip(x,y)):
            
-            ax.annotate(i,(point[0],point[1]),fontsize=6,weight = 'bold')
+            ax.annotate(trajectory[i],(point[0],point[1]),fontsize=6,weight = 'bold')
         plt.show(block=False)
         plt.pause(0.1)
         bg = fig.canvas.copy_from_bbox(fig.bbox)
