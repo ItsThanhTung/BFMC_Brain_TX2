@@ -150,6 +150,9 @@ class CarEstimateProcess(WorkerProcess):
         while(True):
             with self._CarFilterLock:
                 Result = self.CarFilter.GetCarState()
+            pos = self.GPS
+            Result["rawX"] = pos[0]
+            Result["rawY"] = pos[1]
             self.outPs["DM"].send(Result)
             time.sleep(self._dt)
 
@@ -169,11 +172,14 @@ class CarEstimateProcess(WorkerProcess):
         print("EKF Start Log Data")
         prev_Coor = [0,0]
         init = False
+        prevTime = time.time()
         while(True):
             time.sleep(self._LogInterval)
             DataJson = self.GetAllData()
             self.LogFile.write(json.dumps(DataJson)+ "\r\n")
-
+            dt = time.time() - prevTime
+            prevTime = time.time()
+            # print("dt ", dt)
             if not init:
                 pX, pY, Velo, heading = GetInitalData(DataJson)
                 self.CarFilter.InitialState(pX, pY, Velo, heading)
@@ -183,16 +189,16 @@ class CarEstimateProcess(WorkerProcess):
                 continue
             inputMat = {}
             inputMat["Velo"], inputMat["Angle"] = GetCommandData(DataJson)
-            self.CarFilter.predict(inputMat,0.01)
+            self.CarFilter.predict(inputMat,dt)
 
             Coor = GetGPS(DataJson)
             if(Coor[0] != prev_Coor[0] or Coor[1] != prev_Coor[1]):
                 self.CarFilter.GPS_Update(Coor[0], Coor[1])
                 prev_Coor = Coor
 
-            self.CarFilter.IMU_Update(GetIMUHeading(DataJson)*1.005)
+            self.CarFilter.IMU_Update(GetIMUHeading(DataJson))
 
-            Speed = GetEncoderSpeed(DataJson)*1.4
+            Speed = GetEncoderSpeed(DataJson)
             self.CarFilter.Encoder_Update(Speed)
             CurrentState = self.CarFilter.GetCarState()
             # print("Estimate ", CurrentState)
