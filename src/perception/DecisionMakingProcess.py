@@ -278,6 +278,7 @@ class DecisionMakingProcess(WorkerProcess):
 
                     angle = -self.planer.drive([next_point[0], next_point[1]])
                     # print("angle gps: ", angle)
+                    self.__CarHandlerTh.setSpeed(30)
                     self.__CarHandlerTh.setAngle(angle)
                     time.sleep(0.1)
                     prev_SendTime = time.time()

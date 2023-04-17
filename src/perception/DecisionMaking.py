@@ -19,9 +19,9 @@ class DecisionMaking:
         self.logger = logger
         
         self.count = 0
-        self.speed = 35
-        
-        self.default_speed = 35
+        self.speed = 50
+    
+        self.default_speed = 50
         
         self.start_time = None
         self.wait_time = None
