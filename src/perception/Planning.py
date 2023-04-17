@@ -14,7 +14,7 @@ class Planning:
         
         
     def update_point(self, point):
-        if self.count == 10:
+        if self.count == 5:
             self.prev_point = (self.x, self.y)
             self.count = 0
             
@@ -28,7 +28,6 @@ class Planning:
         curr_point = np.array([self.x, self.y])
         dist = np.linalg.norm([tar_point - curr_point])
         
-        print("dist: ", dist)
         
         if True:
             vec1 = self.prev_point - curr_point
@@ -51,7 +50,7 @@ class Planning:
                 angle = 180 - math.degrees(math.acos(np.dot(vec1, vec2) / (np.linalg.norm(vec1) * np.linalg.norm(vec2))))
                 angle *= direction
                 
-                angle = np.clip(angle * 0.7, -23, 23)
+                angle = np.clip(angle * 1, -23, 23)
                 
             else:
                 angle = 0
@@ -61,11 +60,27 @@ class Planning:
             self.cur_angle = angle
             return angle
 
-            if angle > self.cur_angle -2 and angle > self.cur_angle < 2:
-                return self.cur_angle
+            # if np.abs(angle-self.cur_angle) < 2:
+            #     return self.cur_angle
+            # else:
+            #     self.cur_angle = angle
+            #     return angle
+            
+    def is_end_intercept(self, current_node, intercept_node):
+        if intercept_node in [46, 47, 0]:
+            if current_node in [5, 110]:
+                return True
             else:
-                self.cur_angle = angle
-                return angle
+                return False
+            
+        elif intercept_node in [9, 63]:
+            if current_node in [11, 115]:
+                return True
+            else:
+                return False
+
+        else:
+            return False
 
 
 
