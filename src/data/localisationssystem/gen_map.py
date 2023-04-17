@@ -23,11 +23,8 @@ if FROM_BEGIN:
     map_arr=[]
     [map_arr.append(point) for point in map_arr_raw if point not in map_arr]
 else:
-<<<<<<< HEAD
-    map_arr = np.load('src/data/localisationssystem/map_arr.npy').tolist()
-=======
     map_arr = np.load('src/data/localisationssystem/map_arr.npy').to_list()
->>>>>>> 855d175d8c24a9465572e780d2a86328fd3ff23f
+    
 img = plt.imread('Track_Test_White.png')
 img = np.fliplr(img)
 
