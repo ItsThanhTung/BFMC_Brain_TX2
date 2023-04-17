@@ -68,13 +68,13 @@ class Planning:
             
     def is_end_intercept(self, current_node, intercept_node):
         if intercept_node in [46, 47, 0]:
-            if current_node in [5, 110]:
+            if current_node in [115, 5]:
                 return True
             else:
                 return False
             
-        elif intercept_node in [9, 63]:
-            if current_node in [11, 115]:
+        elif intercept_node in [9, 63, 62]:
+            if current_node in [11, 33, 34]:
                 return True
             else:
                 return False
