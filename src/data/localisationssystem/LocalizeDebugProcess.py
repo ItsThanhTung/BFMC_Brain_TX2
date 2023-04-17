@@ -90,9 +90,11 @@ class LocalizeDebugProcess(WorkerProcess):
         # y=[]
         img = plt.imread('Track_Test_White.png')
         map_arr = np.load('src/data/localisationssystem/map_arr.npy')
-
-        trajectory = np.array([10, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 0, 106, 107, 108, 109, 110, 111, 112, 5, 61, 62, 113, 114, 115, 116, 117, 118, 119])
-        map_arr = [map_arr[i] for i in trajectory]
+        map_arr = np.loadtxt('trajectory.txt')[:, ::-1]
+        print(map_arr.shape)
+        trajectory = np.arange(len(map_arr))
+        # trajectory = np.array([10, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 0, 106, 107, 108, 109, 110, 111, 112, 5, 61, 62, 113, 114, 115, 116, 117, 118, 119])
+        # map_arr = [map_arr[i] for i in trajectory]
 
         x = [row[0] for row in map_arr]
         y = [row[1] for row in map_arr]
