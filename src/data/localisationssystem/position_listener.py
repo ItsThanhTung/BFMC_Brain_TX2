@@ -31,7 +31,7 @@ sys.path.insert(0,'.')
 
 import socket
 import json
-from src.data.localisationssystem.complexDealer import ComplexDecoder
+from complexDealer import ComplexDecoder
 
 
 
@@ -77,7 +77,7 @@ class PositionListener:
 						continue
 					self.__streamP_pipe.send(coor)
 				except socket.timeout:
-					print("position listener socket_timeout")
+					print("position listener socket_timeout. Check if device is working")
 					# the socket was created successfully, but it wasn't received any message. Car with id wasn't detected before. 
 					pass
 				except Exception as e:

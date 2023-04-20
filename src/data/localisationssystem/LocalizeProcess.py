@@ -13,7 +13,7 @@ class LocalizeProcess(WorkerProcess):
         self.debugP = debugP
         self.point= None
         self.beacon = 12345
-        self.id = 0x8704
+        self.id = 1
         self.dummy = False
         self.localizeCondition = Condition()
         self.gpsStR,self.gpsStS  = Pipe(duplex = False)

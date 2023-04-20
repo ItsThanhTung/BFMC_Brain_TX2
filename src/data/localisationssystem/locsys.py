@@ -1,36 +1,48 @@
-from time import sleep
+# Copyright (c) 2019, Bosch Engineering Center Cluj and BFMC organizers
+# All rights reserved.
+
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+
+# 1. Redistributions of source code must retain the above copyright notice, this
+#    list of conditions and the following disclaimer.
+
+# 2. Redistributions in binary form must reproduce the above copyright notice,
+#    this list of conditions and the following disclaimer in the documentation
+#    and/or other materials provided with the distribution.
+
+# 3. Neither the name of the copyright holder nor the names of its
+#    contributors may be used to endorse or promote products derived from
+#    this software without specific prior written permission.
+
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+# SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+# OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
+import joblib
 from multiprocessing import Pipe
 from threading import Thread
-
-
-if __name__=='__main__':
-    from server_data import ServerData
-    from server_listener import ServerListener
-    from server_subscriber import ServerSubscriber
-    from position_listener import PositionListener
-else:
-    from src.data.localisationssystem.server_data import ServerData
-    from src.data.localisationssystem.server_listener import ServerListener
-    from src.data.localisationssystem.server_subscriber import ServerSubscriber
-    from src.data.localisationssystem.position_listener import PositionListener
-from PIL import Image
-import ast
-import json
+from server_data import ServerData
+from server_listener import ServerListener
+from server_subscriber import ServerSubscriber
+from position_listener import PositionListener
+import datetime
 import time
-from pygraphml import GraphMLParser
-from pygraphml import Graph
+from MapVisualize import MapVisualize
 import matplotlib.pyplot as plt
-import numpy as np
-
-# from sklearn.metrics.pairwise import euclidean_distances
-
 class LocalisationSystem(Thread):
     
     def __init__(self, ID, beacon, serverpublickey, streamPipe):
         """ GpsTracker targets to connect on the server and to receive the messages, which incorporates 
         the coordinate of the robot on the race track. It has two main state, the setup state and the listening state. 
         In the setup state, it creates the connection with server. It's receiving  the messages from the server in the listening
-        state. on
+        state. 
 
         It's a thread, so can be running parallel with other threads. You can access to the received parameters via 'coor' function.
 
@@ -67,62 +79,53 @@ class LocalisationSystem(Thread):
         while(self.__running):
             self.setup()
             self.listen()
-            
+    
     def stop(self):
         """Terminate the thread running.
         """
         self.__running = False
         self.__server_listener.stop()
         self.__position_listener.stop()
+x,y = 0,0
+
+def read_thread(gpsStR):
+    global x,y
+    map_vis = MapVisualize([],'/home/topo/code/new_loc/localisationsystemserver/Track_Test_White.png')
+    
+    while True:
+        
+        raw = gpsStR.recv()
+        x,y = raw['coor'][0],raw['coor'][1]
+        map_vis.plot([[x,y]])
 
 if __name__ == '__main__':
-    # parser = GraphMLParser()
-    # map = parser.parse('Test_track.graphml')
-    # x=[]
-    # y=[]
-    # for node in map.nodes():
-    #     x.append(node['d0'])
-    #     y.append(node['d1'])
-    # x = np.array(x).astype(float)
-    # y = np.array(y).astype(float)
+    
     beacon = 12345
-    id = 0x1705
+    id = 1
     serverpublickey = 'src/data/localisationssystem/publickey_server_test.pem'
+    
     gpsStR, gpsStS = Pipe(duplex = False)
-
+    
     LocalisationSystem = LocalisationSystem(id, beacon, serverpublickey, gpsStS)
     LocalisationSystem.start()  
-    
-    fig, ax = plt.subplots(figsize=(6.4, 4.8))
-    # fig.gca().invert_yaxis()
-
-    # x_tag,y_tag=(0.74,5.59)
-    # plt.plot(x, y,marker='o', markerfacecolor='blue', markersize=12)
-    # for i,point in enumerate(zip(x,y)):
-    #     ax.annotate(i+1,(point[0],point[1]))
-    # plt.plot(x_tag,y_tag, marker="o",markerfacecolor='red', markersize=12)
-    # fig.canvas.draw()
-    # img =Image.frombytes('RGB', fig.canvas.get_width_height(),fig.canvas.tostring_rgb())
-    # img.save('image.jpg')
-    # map_arr=[[x,y]for x,y in zip(x,y)]
-    # np.save('map.npy',map_arr)
-    # dist_arr = euclidean_distances([[x_tag,y_tag]], map_arr)
-    # print(np.argmin(dist_arr)+1)
-    time.sleep(3)
-    data=[]
+    my_thread = Thread(target=read_thread, args=(gpsStR,))
+    my_thread.daemon=True
+    my_thread.start()
+    time.sleep(5)
+    data = []
     while True:
         try:
-            coora = gpsStR.recv()
-            coora = ast.literal_eval(coora)
-            #mo file a.jpg de xem ket qua realtime
-            x_tag,y_tag=coora['coor'][1].real,coora['coor'][0].real
-            # plt.plot(x_tag,y_tag, marker="o",markerfacecolor='red', markersize=12)
-            # data.append([x_tag,y_tag])       
-            print(x_tag,y_tag)
-            
-            sleep(0.005)            
+            # raw = gpsStR.recv()
+            i = input()
+            data.append([x,y])
+            print(f'{x} {y}')
         except KeyboardInterrupt:
+            n = datetime.datetime.now()            
+            n = n.strftime('%H_%M')
+            joblib.dump(data,f'data_{n}.pkl')
             break
+        
     LocalisationSystem.stop()
-
+    
+    my_thread.join()
     LocalisationSystem.join()
