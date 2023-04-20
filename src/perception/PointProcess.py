@@ -7,7 +7,6 @@ class Point:
     def __init__(self):
         
         self.map_arr = joblib.load('/home/ceec/brain/BFMC_Brain_TX2/src/data/localisationssystem/data_18_17.pkl')
-        self.map_arr = [[point[1],point[0]] for point in self.map_arr]
         self.cur_pos = {'x':0,'y':0}
         self.trajectory_map = self.map_arr
         print("map len: ",len(self.map_arr))

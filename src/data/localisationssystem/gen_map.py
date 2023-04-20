@@ -5,6 +5,7 @@ import time
 from pygraphml import GraphMLParser
 from mpl_point_clicker import clicker
 from sklearn.metrics.pairwise import euclidean_distances
+import joblib
 FROM_BEGIN = False
 if FROM_BEGIN:
     parser = GraphMLParser()
@@ -23,8 +24,9 @@ if FROM_BEGIN:
     map_arr=[]
     [map_arr.append(point) for point in map_arr_raw if point not in map_arr]
 else:
-    map_arr = np.load('src/data/localisationssystem/map_arr.npy').tolist()
-
+    # map_arr = np.load('src/data/localisationssystem/map_arr.npy').tolist()
+    map_arr = joblib.load('src/data/localisationssystem/data_18_17.pkl')
+    # map_arr = [[point[1],point[0]] for point in map_arr]
 img = plt.imread('Track_Test_White.png')
 img = np.fliplr(img)
 
@@ -56,5 +58,5 @@ while True:
     
     print(klicker.get_positions())
     plt.close()
-
-np.save('src/data/localisationssystem/map_arr.npy',map_arr)
+joblib.dump(map_arr,'src/data/localisationssystem/data_18_17.pkl')
+# np.save('src/data/localisationssystem/map_arr.npy',map_arr)
