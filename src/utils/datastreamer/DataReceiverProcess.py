@@ -93,21 +93,23 @@ class DataReceiverProcess(WorkerProcess):
         """
         try:
             while True:
+                try:
 
                 # decode image
-                image_len = struct.unpack('<L', self.connection.recv(struct.calcsize('<L')))[0]
-                bts = self.connection.recv(image_len)
-                # ----------------------- read image -----------------------
-                str_data = bts.decode('UTF-8')
-                if self.check_length:
-                    if str_data.count('{') != 1 or str_data.find('{') != 0:
-                        print('error')
-                        continue
-                json_data = json.loads(str_data) 
-
-            
-                for outP in outPs:
-                    outP.send(json_data)
+                    image_len = struct.unpack('<L', self.connection.recv(struct.calcsize('<L')))[0]
+                    bts = self.connection.recv(image_len)
+                    # ----------------------- read image -----------------------
+                    str_data = bts.decode('UTF-8')
+                    if self.check_length:
+                        if str_data.count('{') != 1 or str_data.find('{') != 0:
+                            print('error')
+                            continue
+                        
+                        json_data = json.loads(str_data) 
+                    for outP in outPs:
+                        outP.send(json_data)
+                except Exception as e:
+                    continue
 
         except Exception as e:
             # self.server_socket.listen(0)

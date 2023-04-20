@@ -6,7 +6,7 @@ import numpy as np
 from sklearn.metrics.pairwise import euclidean_distances
 from matplotlib.markers import MarkerStyle
 from threading import Thread, Condition
-
+import joblib
 
 class LocalizeDebugProcess(WorkerProcess):
     localize_condition = Condition()
@@ -89,15 +89,14 @@ class LocalizeDebugProcess(WorkerProcess):
         # x=[]
         # y=[]
         img = plt.imread('Track_Test_White.png')
-        map_arr = np.load('src/data/localisationssystem/map_arr.npy')
+        map_arr = joblib.load('src/data/localisationssystem/data_10_37.pkl')
         # map_arr = np.loadtxt('trajectory.txt')[:, ::-1]
-        print(map_arr.shape)
         trajectory = np.arange(len(map_arr))
         # trajectory = np.array([10, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 0, 106, 107, 108, 109, 110, 111, 112, 5, 61, 62, 113, 114, 115, 116, 117, 118, 119])
         # map_arr = [map_arr[i] for i in trajectory]
 
-        x = [row[0] for row in map_arr]
-        y = [row[1] for row in map_arr]
+        x = [row[1] for row in map_arr]
+        y = [row[0] for row in map_arr]
         # for node in map.nodes():
         #     x.append(node['d0'])
         #     y.append(node['d1'])
@@ -119,10 +118,10 @@ class LocalizeDebugProcess(WorkerProcess):
         # ax.draw_artist(ln)
         fig.canvas.blit(fig.bbox)
 
-        map_arr=[[x,y]for x,y in zip(x,y)]
+        # map_arr=[[x,y]for x,y in zip(x,y)]
         
         while True:
-            try:
+            if True:
                 # Obtain image
 
                 
@@ -158,7 +157,7 @@ class LocalizeDebugProcess(WorkerProcess):
                 fig.canvas.blit(fig.bbox)
                 fig.canvas.flush_events()
                 # fig.pause(0.1)
-            except Exception as e:
-                print("Localize show error:")
-                print(e)
+            # except Exception as e:
+            #     print("Localize show error:")
+            #     print(e)
 
