@@ -64,18 +64,27 @@ from threading import Thread
 if __name__ == '__main__':
     
     # =============================== CONFIG =================================================
-    enableStream             =  False
-    enableLocalize           = True
-    enableYolo              = False
-
+    enableYolo               = False
+    
+    
+    enableStream             =  True
     enableStreamObject       =  False
     enableLaneStream         =  False
     enableInterceptStream    =  False
-    enableLocalizeStream       = True
-    enableFilterStream = True
+    
+    enableLocalize           = True
+    enableLocalizeStream     = True
+    enableFilterStream       = True
+    
+
     is_remote = False
     is_show = False
-    is_stop = False
+    is_stop = True
+    
+    if not enableYolo and enableStreamObject:
+        print("Do not enable stream object and turn off object")
+        assert False
+    
     
     opt = load_config_file("main_rc.json")
     cam_opt = opt["REMOTE"] if is_remote else opt["RC"]
@@ -173,7 +182,7 @@ if __name__ == '__main__':
 
         locSysR, locSysS = Pipe(duplex = False) 
 
-        localizeProc = LocalizeProcess([locSysS],debugP=localizeDebugS,opt=opt ,debug=True)
+        localizeProc = LocalizeProcess([locSysS],debugP=localizeDebugS,opt=opt ,debug=enableLocalizeStream)
         allProcesses.append(localizeProc)
     else:
         localizeDebugR, localizeDebugS = None, None

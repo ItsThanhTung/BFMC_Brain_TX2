@@ -46,8 +46,8 @@ class CarHandlerThread(ThreadWithStop):
         time.sleep(0.001)
         self.enListenVLX(False)
         time.sleep(0.001)
-        self.enListenSpeed(False)
-        time.sleep(0.001)
+        # self.enListenSpeed(False)
+        # time.sleep(0.001)
         self.enListenTravelled(False)
         time.sleep(0.001)
         self.setAngle(0)
@@ -134,7 +134,7 @@ class CarHandlerThread(ThreadWithStop):
             if self.__AckTimeout < 0:
                 return 0, "OK"
         
-            Status, Mess = self._shRecv(self.__shInPs["SETSPEED"])
+            Status, Mess = self._shRecv(self.__shInPs["SETSPEED"], self.__AckTimeout)
             if Status == 0:
                 return Status, Mess
 
@@ -161,7 +161,8 @@ class CarHandlerThread(ThreadWithStop):
             if self.__AckTimeout < 0:
                 return 0, "OK"
         
-            Status, Mess = self._shRecv(self.__shInPs["SETSPEED"])
+            Status, Mess = self._shRecv(self.__shInPs["STEER"], self.__AckTimeout)
+            # print("Set Angle Mess ", Mess)
             if Status == 0:
                 return Status, Mess
 

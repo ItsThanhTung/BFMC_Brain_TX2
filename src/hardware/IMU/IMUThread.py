@@ -23,7 +23,7 @@ class IMUHandlerThread(ThreadWithStop):
 
         self._accelThres =  0.2
 
-        self._sensor = adafruit_bno055.BNO055_I2C(I2C(0), 0x29)
+        self._sensor = adafruit_bno055.BNO055_I2C(I2C(1), 0x29)
         print("IMU Init Done")
 
         iscalib = self._sensor.calibrated

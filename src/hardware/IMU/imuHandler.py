@@ -5,7 +5,7 @@ import adafruit_bno055
 
 class IMUHandler:
     def __init__(self): 
-        i2c = I2C(0)  
+        i2c = I2C(1)  
         time.sleep(0.5)
         self.sensor = adafruit_bno055.BNO055_I2C(i2c, 0x29)
 
