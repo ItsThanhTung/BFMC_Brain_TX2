@@ -1,23 +1,25 @@
 from sklearn.metrics.pairwise import euclidean_distances
 from pygraphml import GraphMLParser
 import numpy as np
-
+import joblib
 
 class Point:
     def __init__(self):
         
-        self.map_arr = np.load('src/data/localisationssystem/map_arr.npy')
+        self.map_arr = joblib.load('/home/ceec/brain/BFMC_Brain_TX2/src/data/localisationssystem/data_10_37.pkl')
+        self.map_arr = [[point[1],point[0]] for point in self.map_arr]
         self.cur_pos = {'x':0,'y':0}
-        self.trajectory = np.array([10, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 0, 109, 110, 111, 112, 5, 61, 62, 116, 117, 118, 119])
-        self.trajectory_map = [self.map_arr[i] for i in self.trajectory]
-        
-        self.map_arr = np.loadtxt('trajectory.txt')[:, ::-1]
+        self.trajectory_map = self.map_arr
+        print("map len: ",len(self.map_arr))
+        # self.map_arr = np.loadtxt('trajectory.txt')[:, ::-1]
         self.trajectory = np.arange(len(self.map_arr))
     
     def getClosestNode(self):
+        print(self.cur_pos)
         dist_arr = euclidean_distances([[self.cur_pos['x'],self.cur_pos['y']]], self.map_arr)
         closest_idx = np.argmin(dist_arr)
         closest_point = self.trajectory[closest_idx]
+        print(closest_idx)
         return closest_point, self.get_point(closest_point)
     
     
