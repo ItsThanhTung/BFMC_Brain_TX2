@@ -119,12 +119,7 @@ if __name__ == '__main__':
             # plt.plot(x_tag,y_tag, marker="o",markerfacecolor='red', markersize=12)
             # data.append([x_tag,y_tag])       
             print(x_tag,y_tag)
-            # dist_arr = euclidean_distances([[x_tag,y_tag]], map_arr)
-            # print(np.argmin(dist_arr)+1)
-            # fig.canvas.draw()
-            # img =Image.frombytes('RGB', fig.canvas.get_width_height(),fig.canvas.tostring_rgb())
-            # img.save('image.jpg')
-            # line1.set_data(coora['coor'][0].real,coora['coor'][1].real)
+            
             sleep(0.005)            
         except KeyboardInterrupt:
             break
