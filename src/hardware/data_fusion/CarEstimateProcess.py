@@ -175,10 +175,11 @@ class CarEstimateProcess(WorkerProcess):
         prevTime = time.time()
         while(True):
             time.sleep(self._LogInterval)
-            DataJson = self.GetAllData()
-            self.LogFile.write(json.dumps(DataJson)+ "\r\n")
+            DataJson = self.GetAllData()            
             dt = time.time() - prevTime
             prevTime = time.time()
+            self.LogFile.write(json.dumps(DataJson)+ "\r\n")
+
             # print("dt ", dt)
             if not init:
                 pX, pY, Velo, heading = GetInitalData(DataJson)

@@ -1,6 +1,6 @@
 import numpy as np
 def GetIMUHeading(DataJson):
-    return np.deg2rad(DataJson["IMU"]["Euler"][0] - 20)
+    return np.deg2rad(DataJson["IMU"]["Euler"][0] - 2)
 
 
 def GetInitalData(DataJson):
@@ -30,3 +30,20 @@ def GetTimeStamp(DataJson):
 
 def GetAccel(DataJson):
     return DataJson["IMU"]["Linear Accel"]
+
+
+def GetGyro(DataJson):
+    return np.array(DataJson["IMU"]["Gyroscope"])
+
+def GetAccel(DataJson):
+    return np.array(DataJson["IMU"]["Accelerometer"])
+
+def GetMagnet(DataJson):
+    return np.array(DataJson["IMU"]["Magnetometer"])
+
+def GetRawIMU(DataJson):
+    return {
+        "Gyro":GetGyro(DataJson),
+        "Accel": GetAccel(DataJson),
+        "Magnet": GetMagnet(DataJson),
+    }
