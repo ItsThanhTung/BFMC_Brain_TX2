@@ -31,7 +31,7 @@ sys.path.insert(0,'.')
 
 import socket
 import json
-from complexDealer import ComplexDecoder
+from src.data.localisationssystem.complexDealer import ComplexDecoder
 
 
 

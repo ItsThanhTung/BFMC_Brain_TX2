@@ -28,13 +28,13 @@
 import joblib
 from multiprocessing import Pipe
 from threading import Thread
-from server_data import ServerData
-from server_listener import ServerListener
-from server_subscriber import ServerSubscriber
-from position_listener import PositionListener
+from src.data.localisationssystem.server_data import ServerData
+from src.data.localisationssystem.server_listener import ServerListener
+from src.data.localisationssystem.server_subscriber import ServerSubscriber
+from src.data.localisationssystem.position_listener import PositionListener
 import datetime
 import time
-from MapVisualize import MapVisualize
+# from src.data.localisationssystem.server_subscriberMapVisualize import MapVisualize
 import matplotlib.pyplot as plt
 class LocalisationSystem(Thread):
     
@@ -86,46 +86,46 @@ class LocalisationSystem(Thread):
         self.__running = False
         self.__server_listener.stop()
         self.__position_listener.stop()
-x,y = 0,0
+# x,y = 0,0
 
-def read_thread(gpsStR):
-    global x,y
-    map_vis = MapVisualize([],'/home/topo/code/new_loc/localisationsystemserver/Track_Test_White.png')
+# def read_thread(gpsStR):
+#     global x,y
+#     map_vis = MapVisualize([],'/home/topo/code/new_loc/localisationsystemserver/Track_Test_White.png')
     
-    while True:
+#     while True:
         
-        raw = gpsStR.recv()
-        x,y = raw['coor'][0],raw['coor'][1]
-        map_vis.plot([[x,y]])
+#         raw = gpsStR.recv()
+#         x,y = raw['coor'][0],raw['coor'][1]
+#         map_vis.plot([[x,y]])
 
-if __name__ == '__main__':
+# if __name__ == '__main__':
     
-    beacon = 12345
-    id = 1
-    serverpublickey = 'src/data/localisationssystem/publickey_server_test.pem'
+#     beacon = 12345
+#     id = 1
+#     serverpublickey = 'src/data/localisationssystem/publickey_server_test.pem'
     
-    gpsStR, gpsStS = Pipe(duplex = False)
+#     gpsStR, gpsStS = Pipe(duplex = False)
     
-    LocalisationSystem = LocalisationSystem(id, beacon, serverpublickey, gpsStS)
-    LocalisationSystem.start()  
-    my_thread = Thread(target=read_thread, args=(gpsStR,))
-    my_thread.daemon=True
-    my_thread.start()
-    time.sleep(5)
-    data = []
-    while True:
-        try:
-            # raw = gpsStR.recv()
-            i = input()
-            data.append([x,y])
-            print(f'{x} {y}')
-        except KeyboardInterrupt:
-            n = datetime.datetime.now()            
-            n = n.strftime('%H_%M')
-            joblib.dump(data,f'data_{n}.pkl')
-            break
+#     LocalisationSystem = LocalisationSystem(id, beacon, serverpublickey, gpsStS)
+#     LocalisationSystem.start()  
+#     my_thread = Thread(target=read_thread, args=(gpsStR,))
+#     my_thread.daemon=True
+#     my_thread.start()
+#     time.sleep(5)
+#     data = []
+#     while True:
+#         try:
+#             # raw = gpsStR.recv()
+#             i = input()
+#             data.append([x,y])
+#             print(f'{x} {y}')
+#         except KeyboardInterrupt:
+#             n = datetime.datetime.now()            
+#             n = n.strftime('%H_%M')
+#             joblib.dump(data,f'data_{n}.pkl')
+#             break
         
-    LocalisationSystem.stop()
+#     LocalisationSystem.stop()
     
-    my_thread.join()
-    LocalisationSystem.join()
+#     my_thread.join()
+#     LocalisationSystem.join()
