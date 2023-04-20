@@ -55,8 +55,9 @@ class LocalizeProcess(WorkerProcess):
                 
                 if not self.dummy:
                     coora = self.gpsStR.recv()
-                    coora = ast.literal_eval(coora)
-                    self.point=[coora['coor'][1].real,coora['coor'][0].real]
+                    # coora = ast.literal_eval(coora)
+                    # raw['coor'][0],raw['coor'][1]
+                    self.point=[coora['coor'][1],coora['coor'][0]]
                     # print(self.point)
                 else:
                     self.point = [0,1]
