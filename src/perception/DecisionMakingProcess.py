@@ -233,7 +233,6 @@ class DecisionMakingProcess(WorkerProcess):
                 speed_lane_keeping, angle_lane_keeping, lane_data = self.read_lane_keeping_data()
                 intercept_length, intercept_gap = self.read_intercept_detection_data()
                 object_result = self.read_object_detection_data()
-                print(f"{start_time}    step 1")
                 if trafficSignHanlder.detect(object_result, lane_data):
                     continue
 
@@ -249,12 +248,10 @@ class DecisionMakingProcess(WorkerProcess):
                     # print(direction)
                     # interceptionHandler.handler(direction,angle_lane_keeping)
                     # continue
-                print(f"{start_time}    step 2")
                 if self.strategy == "LANE":
                     self.historyFile.write("Lane keeping angle: {}   speed: {}\n".format(angle_lane_keeping, self.decision_maker.speed))
                     angle_lane_keeping = int(angle_lane_keeping)    
-                    # print('Angle lane: ',angle_lane_keeping)
-                    print("set speed")
+                    print('Angle lane: ',angle_lane_keeping)
                     if not self.is_stop:
                         status, messSpd = self.__CarHandlerTh.setSpeed(self.decision_maker.speed, send_attempt=1) 
                         
@@ -263,16 +260,13 @@ class DecisionMakingProcess(WorkerProcess):
                             self.historyFile.write(log_message)
                     else:
                         status, messSpd = 0, "OK"
-                    print("finish speed")
-                    print("set angle")
-                    status, messAng = self.__CarHandlerTh.setAngle(angle_lane_keeping, send_attempt=1) 
                     if status < 0:
                             log_message = "\nFail send angle: {} \t {}\n".format(status, messAng)
                             self.historyFile.write(log_message)
-                    
+                    self.__CarHandlerTh.setAngle(angle_lane_keeping)
+                    time.sleep(0.05)
                     self.prev_angle = angle_lane_keeping
 
-                    print("finish angle")
 
                 elif self.strategy == "GPS":   
                     print(self.intercept_node, "---->", current_node, f"------ {self.planer.is_end_intercept(current_node, self.intercept_node)}")
@@ -286,10 +280,9 @@ class DecisionMakingProcess(WorkerProcess):
                     # print("angle gps: ", angle)
                     self.__CarHandlerTh.setSpeed(30)
                     self.__CarHandlerTh.setAngle(angle)
-                    time.sleep(0.1)
+                    time.sleep(0.05)
                     prev_SendTime = time.time()
                     
-                print(f"{start_time}    step 4")
                     
             # print("end: ", time.time() - start_time)
             # except Exception as e:

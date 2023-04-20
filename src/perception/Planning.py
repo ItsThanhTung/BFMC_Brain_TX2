@@ -67,20 +67,20 @@ class Planning:
             #     return angle
             
     def is_end_intercept(self, current_node, intercept_node):
-        if intercept_node in [1, 0]:
-            if current_node in [4]:
+        if intercept_node in [5, 4]:
+            if current_node in [13]:
                 return True
             else:
                 return False
             
-        elif intercept_node in [5, 6]:
-            if current_node in [10, 11]:
-                return True
-            else:
-                return False
+        # elif intercept_node in [5, 6]:
+        #     if current_node in [10, 11]:
+        #         return True
+        #     else:
+        #         return False
 
-        else:
-            return False
+        # else:
+        #     return False
 
 
 
