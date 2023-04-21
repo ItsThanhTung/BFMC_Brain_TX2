@@ -6,7 +6,7 @@ import joblib
 class Point:
     def __init__(self):
         
-        self.map_arr = joblib.load('src/data/localisationssystem/data__21_04_10_26.pkl')[0:22]
+        self.map_arr = joblib.load('src/data/localisationssystem/data__21_04_10_26.pkl')[0:19]
         self.cur_pos = {'x':0,'y':0}
         self.trajectory_map = self.map_arr
         print("map len: ",len(self.map_arr))
