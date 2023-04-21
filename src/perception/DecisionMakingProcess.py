@@ -243,6 +243,7 @@ class DecisionMakingProcess(WorkerProcess):
                     self.intercept_node = current_node
                     print("self.intercept_node: ", self.intercept_node)
                     self.__CarHandlerTh.setSpeed(25,1)
+                    self.planer.reset_drive()
                     # direction = self.decision_maker.get_intercept_direction()
                     
                     # print(direction)

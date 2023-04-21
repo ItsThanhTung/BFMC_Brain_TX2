@@ -1,7 +1,7 @@
 from math import radians
 import numpy as np
 import math
-
+from collections import deque
 
 class Planning:
     def __init__(self, init_x=0, init_y=0):
@@ -11,7 +11,7 @@ class Planning:
         self.y = init_y
         self.cur_angle = 0
         self.count = 0
-        
+        self.stack = deque(maxlen=10)
         
     def update_point(self, point):
         if self.count == 5:
@@ -54,17 +54,19 @@ class Planning:
                 
             else:
                 angle = 0
-            
+            self.stack.append(angle)
             self.prev_point = curr_point
             
             self.cur_angle = angle
-            return angle
-
+            # return angle
+            
+            return np.mean(self.stack)
             if np.abs(angle-self.cur_angle) > 10:
                 return self.cur_angle
             else:
                 self.cur_angle = angle
                 return angle
+
             
     def is_end_intercept(self, current_node, intercept_node):
         if intercept_node in [1,0]:
@@ -85,6 +87,7 @@ class Planning:
                 return False
         else:
             return False
-
+    def reset_drive(self):
+        self.stack.clear()
 
 
