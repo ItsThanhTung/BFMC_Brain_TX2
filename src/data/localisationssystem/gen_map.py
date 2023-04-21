@@ -26,7 +26,7 @@ if FROM_BEGIN:
 else:
     # map_arr = np.load('src/data/localisationssystem/map_arr.npy').tolist()
     map_arr = joblib.load('src/data/localisationssystem/data__21_04_10_26.pkl')
-    map_arr = [[point[1],point[0]] for point in map_arr]
+    # map_arr = [[point[1],point[0]] for point in map_arr]
 img = plt.imread('Track_Test_White.png')
 img = np.fliplr(img)
 
