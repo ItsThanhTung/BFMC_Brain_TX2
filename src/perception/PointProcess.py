@@ -14,7 +14,6 @@ class Point:
         self.trajectory = np.arange(len(self.map_arr))
     
     def getClosestNode(self):
-        print(self.cur_pos)
         dist_arr = euclidean_distances([[self.cur_pos['x'],self.cur_pos['y']]], self.map_arr)
         closest_idx = np.argmin(dist_arr)
         closest_point = self.trajectory[closest_idx]

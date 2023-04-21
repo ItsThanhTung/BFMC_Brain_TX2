@@ -60,11 +60,11 @@ class Planning:
             self.cur_angle = angle
             return angle
 
-            # if np.abs(angle-self.cur_angle) < 2:
-            #     return self.cur_angle
-            # else:
-            #     self.cur_angle = angle
-            #     return angle
+            if np.abs(angle-self.cur_angle) > 10:
+                return self.cur_angle
+            else:
+                self.cur_angle = angle
+                return angle
             
     def is_end_intercept(self, current_node, intercept_node):
         if intercept_node in [5, 4]:

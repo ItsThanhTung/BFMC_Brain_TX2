@@ -25,8 +25,8 @@ if FROM_BEGIN:
     [map_arr.append(point) for point in map_arr_raw if point not in map_arr]
 else:
     # map_arr = np.load('src/data/localisationssystem/map_arr.npy').tolist()
-    map_arr = joblib.load('src/data/localisationssystem/data_18_17.pkl')
-    # map_arr = [[point[1],point[0]] for point in map_arr]
+    map_arr = joblib.load('src/data/localisationssystem/data__21_04_10_26.pkl')
+    map_arr = [[point[1],point[0]] for point in map_arr]
 img = plt.imread('Track_Test_White.png')
 img = np.fliplr(img)
 
@@ -58,5 +58,5 @@ while True:
     
     print(klicker.get_positions())
     plt.close()
-joblib.dump(map_arr,'src/data/localisationssystem/data_18_17.pkl')
+joblib.dump(map_arr,'src/data/localisationssystem/data__21_04_10_26.pkl')
 # np.save('src/data/localisationssystem/map_arr.npy',map_arr)

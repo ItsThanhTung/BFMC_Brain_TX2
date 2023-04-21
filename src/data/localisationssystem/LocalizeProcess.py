@@ -67,7 +67,6 @@ class LocalizeProcess(WorkerProcess):
                 # else:
                 #     self.point = [0,1]
                 point = self.point
-                print(point)
                 self.debug_data = {"x": point[0], "y": point[1]}
                 for outP in self.outPs:      # decision 
                     outP.send({"point" : point
