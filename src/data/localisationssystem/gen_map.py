@@ -55,7 +55,9 @@ while True:
             node = map_arr[np.argmin(dist_arr)]
             print(node)
             map_arr.remove(node)
-    
+    if i == 'c':
+        dist_arr = euclidean_distances([new_points[0]],map_arr)
+        map_arr[np.argmin(dist_arr)] = new_points[1]
     print(klicker.get_positions())
     plt.close()
 joblib.dump(map_arr,'src/data/localisationssystem/data__21_04_10_26.pkl')
