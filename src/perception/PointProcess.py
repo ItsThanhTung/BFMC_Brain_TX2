@@ -6,12 +6,16 @@ import joblib
 class Point:
     def __init__(self):
         
-        self.map_arr = joblib.load('src/data/localisationssystem/data__21_04_10_26.pkl')[0:19]
+        trajectory = [0,1,2,3,4,5,18,29,30,6,7,8,9,10,11,12,13,14,15,16,17]
+        map_arr_full = joblib.load('src/data/localisationssystem/data__21_04_10_26.pkl')
+        map_arr=[]
+        for i in trajectory:
+            map_arr.append(map_arr_full[i])
         self.cur_pos = {'x':0,'y':0}
         self.trajectory_map = self.map_arr
         print("map len: ",len(self.map_arr))
         # self.map_arr = np.loadtxt('trajectory.txt')[:, ::-1]
-        self.trajectory = np.arange(len(self.map_arr))
+        self.trajectory = trajectory
     
     def getClosestNode(self):
         dist_arr = euclidean_distances([[self.cur_pos['x'],self.cur_pos['y']]], self.map_arr)
