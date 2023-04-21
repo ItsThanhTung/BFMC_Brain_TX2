@@ -208,7 +208,7 @@ class DecisionMakingProcess(WorkerProcess):
 
         while True:
             if True:
-                map_intercept_node = [1,4,5,7,8,9,10]
+                map_intercept_node = [1,4,5,6,7,9,10]
                 start_time = time.time()
                 pose = self.CarPoseHandler.GetCarPose()
                 self.point.cur_pos={ 'x': pose['x'], 'y': pose['y'] }

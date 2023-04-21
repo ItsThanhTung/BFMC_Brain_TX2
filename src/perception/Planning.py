@@ -76,12 +76,12 @@ class Planning:
                 return False
             
         elif intercept_node in [5, 4]:
-            if current_node in [7,8]:
+            if current_node in [29,30]:
                 return True
             else:
                 return False
-        elif intercept_node in [9,10]:
-            if current_node in [12,13]:
+        elif intercept_node in [6,7]:
+            if current_node in [9,10]:
                 return True
             else:
                 return False
