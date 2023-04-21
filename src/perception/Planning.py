@@ -85,6 +85,11 @@ class Planning:
                 return True
             else:
                 return False
+        elif intercept_node in [16,17]:
+            if current_node in [19,20]:
+                return True
+            else:
+                return False
         else:
             return False
     def reset_drive(self):
