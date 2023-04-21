@@ -6,9 +6,9 @@ import joblib
 class Point:
     def __init__(self):
         
-        self.map_arr = joblib.load('src/data/localisationssystem/data__21_04_10_26.pkl')
+        self.map_arr = joblib.load('src/data/localisationssystem/data__21_04_10_26.pkl')[0:22]
         self.cur_pos = {'x':0,'y':0}
-        self.trajectory_map = self.map_arr[0:22]
+        self.trajectory_map = self.map_arr
         print("map len: ",len(self.map_arr))
         # self.map_arr = np.loadtxt('trajectory.txt')[:, ::-1]
         self.trajectory = np.arange(len(self.map_arr))

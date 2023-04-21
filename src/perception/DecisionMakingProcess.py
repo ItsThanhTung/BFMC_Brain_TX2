@@ -261,7 +261,7 @@ class DecisionMakingProcess(WorkerProcess):
                     else:
                         status, messSpd = 0, "OK"
                     if status < 0:
-                            log_message = "\nFail send angle: {} \t {}\n".format(status, messAng)
+                            log_message = "\nFail send angle: {} \t {}\n".format(status, 1)
                             self.historyFile.write(log_message)
                     self.__CarHandlerTh.setAngle(angle_lane_keeping)
                     time.sleep(0.05)
