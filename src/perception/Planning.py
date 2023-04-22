@@ -69,30 +69,31 @@ class Planning:
 
             
     def is_end_intercept(self, current_node, intercept_node):
-        return False
-        if intercept_node in [1,0,2]:
-            if current_node in [4,5]:
+        # return False
+        if intercept_node in [1,2,3]:
+            if current_node in [5,6,7]:
                 return True
             else:
                 return False
             
-        elif intercept_node in [5, 4]:
-            if current_node in [29,30]:
+        elif intercept_node in [20, 21, 22]:
+            if current_node in [24,25]:
                 return True
             else:
                 return False
-        elif intercept_node in [6,7]:
-            if current_node in [9,10]:
+        elif intercept_node in [26,27]:
+            if current_node in [29]:
                 return True
             else:
                 return False
-        elif intercept_node in [16,17]:
-            if current_node in [19,20]:
-                return True
-            else:
-                return False
+        # elif intercept_node in [16,17]:
+        #     if current_node in [19,20]:
+        #         return True
+        #     else:
+        #         return False
         else:
             return False
+            
     def reset_drive(self):
         self.stack.clear()
 

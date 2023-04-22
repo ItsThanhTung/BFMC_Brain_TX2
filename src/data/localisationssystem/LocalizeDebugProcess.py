@@ -89,8 +89,8 @@ class LocalizeDebugProcess(WorkerProcess):
         # x=[]
         # y=[]
         img = plt.imread('Track_Test_White.png')
-        trajectory = [0,1,2,3,4,5,18,29,30,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]
-        map_arr_full = joblib.load('src/data/localisationssystem/data__21_04_10_26.pkl')
+        trajectory = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25, 26, 27, 28, 29]
+        map_arr_full = joblib.load('src/data/localisationssystem/data__22_04_12_15.pkl')
         map_arr=[]
         for i in trajectory:
             map_arr.append(map_arr_full[i])
