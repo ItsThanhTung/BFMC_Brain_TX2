@@ -5,6 +5,7 @@ from src.perception.traffic_sign.CrossWalkHandler import CrossWalkHandler
 from src.perception.traffic_sign.TrafficLightHandler import TrafficLightHandler
 from src.perception.traffic_sign.HighWayEntryHandler import HighWayEntryHandler
 from src.perception.traffic_sign.HighWayExitHandler import HighWayExitHandler
+from src.perception.traffic_sign.CarObjectHandler import CarObjectHandler
 
 from src.perception.tracker.byte_tracker import BYTETracker
 
@@ -19,18 +20,20 @@ def mapping_distance(center_location):
     return center_location[1]
 
 class TrafficSignHandler:
-    def __init__(self, car_handler, logger, decision_maker):
+    def __init__(self, car_handler, logger, decision_maker, point_handler):
         self.car_handler = car_handler
         self.logger = logger
         
+        self.decision_maker = decision_maker
+        self.point_handler = point_handler
+
         self.handler_dict = {"stop" : StopSignHandler(car_handler, self.logger), "pedestrian" : PedestrianHandler(car_handler, self.logger),
                              "parking" : ParkingHandler(car_handler, self.logger), "crosswalk" :CrossWalkHandler(car_handler, logger),
                              "highway_entry" : HighWayEntryHandler(car_handler, self.logger), "highway_exit" : HighWayExitHandler(car_handler, self.logger),
-                             "traffic_light" : TrafficLightHandler(car_handler, self.logger)}
+                             "traffic_light" : TrafficLightHandler(car_handler, self.logger), \
+                             "car" : CarObjectHandler(car_handler, self.logger, self.point_handler)}
         self.tracker = BYTETracker()
         
-        self.decision_maker = decision_maker
-    
     def detect(self, object_result, lane_data):
         if object_result is None:
             return 

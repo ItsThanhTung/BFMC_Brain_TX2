@@ -8,10 +8,10 @@ class CarState:
     intercept = 3
     
 class DecisionMaking:
-    def __init__(self, logger):
+    def __init__(self, logger, point_handler):
         
         self.state = CarState.lane_keeping
-    
+        
         # intercep parameter
         self.min_intercept_length = 100
         self.max_intercept_gap = 40
@@ -25,7 +25,10 @@ class DecisionMaking:
         
         self.start_time = None
         self.wait_time = None
-        
+
+        self.strategy = "LANE"  
+        self.point_handler = point_handler
+
     def stop(self):
         print('set stop')
         self.speed = 0
@@ -48,6 +51,7 @@ class DecisionMaking:
         self.wait_time = wait_time
         
     def reiniate(self):
+        self.point_handler.switch_to_main_map()
         if self.start_time and self.wait_time:
             print("reinitiate")
             if time.time() - self.start_time > self.wait_time:

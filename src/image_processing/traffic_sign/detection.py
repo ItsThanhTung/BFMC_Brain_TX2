@@ -16,7 +16,7 @@ class Yolo(object):
                         imgsize= (480,640), device='0',conf_thres=0.5, iou_thres=0.1,max_det=1000): 
         
         if is_tensorRt: 
-            weights='ver3.engine'
+            weights='best3.torchscript'
         else: 
             weights='ver3.pt'
             
@@ -108,7 +108,7 @@ class Yolo(object):
 
     def detection_loop(self):
         while True:
-            try:
+            if True:
                 self.image_condition.acquire()
                 if self.image is None:
                     self.image_condition.wait()
@@ -130,8 +130,8 @@ class Yolo(object):
                 self.outP.send({"results" : results})
                 
                     
-            except Exception as e:
-                print("Object detection detection_loop error:", e)
+            # except Exception as e:
+            #     print("Object detection detection_loop error:", e)
 
     def preprocess(self,img0):
         img_resized = letterbox(img0, self.img_size, stride=self.stride, auto=False)[0]
