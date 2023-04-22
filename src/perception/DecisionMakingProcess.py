@@ -208,9 +208,11 @@ class DecisionMakingProcess(WorkerProcess):
 
         while True:
             if True:
-                map_intercept_node = [1,4,5,6,7,9,10]
+                skip_intecept_node = [29,30,10,11,12,13]
                 start_time = time.time()
                 pose = self.CarPoseHandler.GetCarPose()
+                if pose['x'] == 0 and pose['y']==0:
+                    continue
                 self.point.cur_pos={ 'x': pose['x'], 'y': pose['y'] }
                 
                 self.planer.update_point(pose)
@@ -237,7 +239,7 @@ class DecisionMakingProcess(WorkerProcess):
                 if trafficSignHanlder.detect(object_result, lane_data):
                     continue
 
-                if not self.is_intercept and self.decision_maker.is_intercept(intercept_length, intercept_gap) and not self.is_stop and current_node in map_intercept_node:
+                if not self.is_intercept and self.decision_maker.is_intercept(intercept_length, intercept_gap) and not self.is_stop and (current_node  not in skip_intecept_node):
                     # print('intercept')
                     self.strategy = "GPS"
                     self.is_intercept = "True"

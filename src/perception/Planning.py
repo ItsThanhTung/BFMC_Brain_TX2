@@ -11,7 +11,7 @@ class Planning:
         self.y = init_y
         self.cur_angle = 0
         self.count = 0
-        self.stack = deque(maxlen=10)
+        self.stack = deque(maxlen=5)
         
     def update_point(self, point):
         if self.count == 5:
@@ -69,8 +69,9 @@ class Planning:
 
             
     def is_end_intercept(self, current_node, intercept_node):
-        if intercept_node in [1,0]:
-            if current_node in [4,5,3]:
+        return False
+        if intercept_node in [1,0,2]:
+            if current_node in [4,5]:
                 return True
             else:
                 return False
