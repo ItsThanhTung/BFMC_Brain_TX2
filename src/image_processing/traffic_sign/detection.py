@@ -13,10 +13,10 @@ from multiprocessing import Condition
 
 class Yolo(object):
     def __init__(self, streamP, outP, debugP, debug, is_tensorRt, source='',\
-                        imgsize= (480,640), device='0',conf_thres=0.5, iou_thres=0.1,max_det=1000): 
+                        imgsize= (512,640), device='0',conf_thres=0.1, iou_thres=0.1,max_det=1000): 
         
         if is_tensorRt: 
-            weights='best3.torchscript'
+            weights='ver4.engine'
         else: 
             weights='ver3.pt'
             

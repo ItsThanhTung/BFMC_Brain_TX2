@@ -79,7 +79,7 @@ if __name__ == '__main__':
 
     is_remote = False
     is_show = False
-    is_stop = True
+    is_stop = False
     
     if not enableYolo and enableStreamObject:
         print("Do not enable stream object and turn off object")

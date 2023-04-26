@@ -82,4 +82,29 @@ class LocalizeProcess(WorkerProcess):
                     time.sleep(0.05)
             except Exception as e:
                 print("Localize error:", e)
+
+def read_thread(gpsStR):
+    global x,y
+    # map_vis = MapVisualize([],'/home/topo/code/new_loc/localisationsystemserver/Track_Test_White.png')
+    
+    while True:
         
+        raw = gpsStR.recv()
+        x,y = raw['coor'][0],raw['coor'][1]
+        # map_vis.plot([[x,y]])  
+        print(x,y)  
+if __name__ == '__main__':
+    
+    beacon = 12345
+    id = 1
+    serverpublickey = 'src/data/localisationssystem/publickey_server_test.pem'
+    
+    gpsStR, gpsStS = Pipe(duplex = False)
+    
+    LocalisationSystem = LocalisationSystem(id, beacon, serverpublickey, gpsStS)
+    LocalisationSystem.start()  
+    my_thread = Thread(target=read_thread, args=(gpsStR,))
+    my_thread.daemon=True
+    my_thread.start()
+    while True:
+        pass

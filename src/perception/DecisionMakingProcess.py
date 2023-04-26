@@ -204,11 +204,9 @@ class DecisionMakingProcess(WorkerProcess):
         # time.sleep(10)
         self.test_inter = False
         prev_SendTime = time.time()
-
         while True:
             if True:
                 # skip_intecept_node = [29,30,10,11,12,13]
-                start_time = time.time()
                 pose = self.CarPoseHandler.GetCarPose()
                 if pose['x'] == 0 and pose['y']==0:
                     continue
@@ -230,7 +228,7 @@ class DecisionMakingProcess(WorkerProcess):
                     self.decision_maker.strategy = "LANE"
                     print("Switch to LANE strategy")
 
-                print(f"{current_node} -----> {next_node}----- Error distance to closet node: {error_dist} ---{self.decision_maker.strategy}")
+                # print(f"{current_node} -----> {next_node}----- Error distance to closet node: {error_dist} ---{self.decision_maker.strategy}")
            
                 self.decision_maker.reiniate()
                 
