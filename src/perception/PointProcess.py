@@ -20,7 +20,7 @@ class Point:
         print("switch to sub")
         self.map_arr = self.sub_trajectory
         self.trajectory = self.sub_trajectory
-    
+        self.local_node = None
     def switch_to_main_map(self):
         print("switch to main")
         self.map_arr = self.main_map_arr
