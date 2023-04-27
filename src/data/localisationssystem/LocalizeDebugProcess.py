@@ -89,11 +89,12 @@ class LocalizeDebugProcess(WorkerProcess):
         # x=[]
         # y=[]
         img = plt.imread('Track_Test_White.png')
-        trajectory = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25, 26, 27, 28, 29]
-        map_arr_full = joblib.load('src/data/localisationssystem/data__22_04_12_15.pkl')
-        map_arr=[]
-        for i in trajectory:
-            map_arr.append(map_arr_full[i])
+        
+        main_map = joblib.load('src/data/localisationssystem/data__22_04_12_15.pkl')
+        sub_map = joblib.load('src/data/localisationssystem/data__22_04_12_24.pkl')
+        for node in sub_map:
+            main_map.append(node)
+        map_arr = main_map
         # map_arr = np.loadtxt('trajectory.txt')[:, ::-1]src/data/localisationssystem/data_10_37.pkl
         # trajectory = np.arange(len(map_arr))
         # trajectory = np.array([10, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 0, 106, 107, 108, 109, 110, 111, 112, 5, 61, 62, 113, 114, 115, 116, 117, 118, 119])
@@ -115,7 +116,7 @@ class LocalizeDebugProcess(WorkerProcess):
         
         for i,point in enumerate(zip(x,y)):
            
-            ax.annotate(trajectory[i],(point[0],point[1]),fontsize=6,weight = 'bold')
+            ax.annotate(i,(point[0],point[1]),fontsize=6,weight = 'bold')
         plt.show(block=False)
         plt.pause(0.1)
         bg = fig.canvas.copy_from_bbox(fig.bbox)
