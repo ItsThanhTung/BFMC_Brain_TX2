@@ -22,10 +22,10 @@ class DecisionMaking:
         self.speed = 50
     
         self.default_speed = 50
-        
+        self.start_switch_node = None
         self.start_time = None
         self.wait_time = None
-
+        self.trafic_strategy = "LANE"
         self.strategy = "LANE"  
         self.point_handler = point_handler
 

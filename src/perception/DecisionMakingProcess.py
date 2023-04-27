@@ -47,9 +47,8 @@ class DecisionMakingProcess(WorkerProcess):
 
         self.intercept_length = 0
         self.intercept_gap = float("inf")
-
+        
         self.object_result = None
-
         self.prev_angle = 0
         self.is_intercept = False
         
@@ -210,7 +209,9 @@ class DecisionMakingProcess(WorkerProcess):
                 pose = self.CarPoseHandler.GetCarPose()
                 if pose['x'] == 0 and pose['y']==0:
                     continue
-                
+                if self.decision_maker.start_switch_node is not None:
+                    cur_pose = np.array([pose['x'],pose['y']])
+                    print(np.linalg.norm(cur_pose-self.decision_maker.start_switch_node))
                 self.planer.update_point(pose)
                 current_node, error_dist, local_node = self.point.get_closest_node(pose)
 
@@ -220,11 +221,11 @@ class DecisionMakingProcess(WorkerProcess):
                 
                 next_node, next_point = local_node[1], self.point.get_point(local_node[1])
 
-                if self.decision_maker.strategy != "GPS" and error_dist > 0.4:
+                if (self.decision_maker.strategy != "GPS" and error_dist > 0.4) or self.decision_maker.trafic_strategy == 'GPS':
                     self.strategy = "GPS"
                     print("Switch to GPS strategy")
 
-                elif self.decision_maker.strategy == "GPS" and not self.is_intercept and error_dist < 0.2:
+                elif self.decision_maker.strategy == "GPS" and not self.is_intercept and error_dist < 0.2  :
                     self.decision_maker.strategy = "LANE"
                     self.decision_maker.reiniate()
                     print("Switch to LANE strategy")
@@ -242,7 +243,7 @@ class DecisionMakingProcess(WorkerProcess):
                 object_result = self.read_object_detection_data()
                 if len(object_result) != 0:
                     print(object_result)
-                if trafficSignHanlder.detect(object_result, lane_data):
+                if trafficSignHanlder.detect(object_result, lane_data,[pose['x'],pose['y']]) and self.decision_maker.trafic_strategy == 'LANE':
                     continue
                 if not self.is_intercept and self.decision_maker.is_intercept(intercept_length, intercept_gap) and not self.is_stop: # and (current_node  not in skip_intecept_node):
                     # print('intercept')
@@ -258,7 +259,7 @@ class DecisionMakingProcess(WorkerProcess):
                     # interceptionHandler.handler(direction,angle_lane_keeping)
                     # continue
                 
-                if self.decision_maker.strategy == "LANE":
+                if self.decision_maker.strategy == "LANE" and self.decision_maker.trafic_strategy == 'LANE':
                     self.historyFile.write("Lane keeping angle: {}   speed: {}\n".format(angle_lane_keeping, self.decision_maker.speed))
                     angle_lane_keeping = int(angle_lane_keeping)    
                     # print('Angle lane: ',angle_lane_keeping)
@@ -277,14 +278,14 @@ class DecisionMakingProcess(WorkerProcess):
                     self.prev_angle = angle_lane_keeping
 
 
-                elif self.decision_maker.strategy == "GPS":   
+                elif self.decision_maker.strategy == "GPS" or self.decision_maker.trafic_strategy == 'GPS': 
+                    
                     # print(self.intercept_node, "---->", current_node, f"------ {self.planer.is_end_intercept(current_node, self.intercept_node)}")
-                    if self.is_intercept and self.planer.is_end_intercept(current_node, self.intercept_node):
+                    if self.is_intercept and self.planer.is_end_intercept(current_node, self.intercept_node) and self.decision_maker.trafic_strategy == 'LANE':
                         self.decision_maker.strategy = "LANE"
                         self.is_intercept = False
                         continue
                         
-
                     angle = -self.planer.drive([next_point[0], next_point[1]])
                     # print('Angle gps: ',angle)
                     # print("angle gps: ", angle)
