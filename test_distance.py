@@ -1,4 +1,4 @@
-from src.utils.utils_function import MoveDistance, setAngle, EnablePID, GetDistanceStatus
+from src.utils.utils_function import MoveDistance, setAngle, EnablePID, GetDistanceStatus, setSpeed
 from src.hardware.serialhandler.SerialHandlerProcess import SerialHandlerProcess
 from multiprocessing import Pipe, Process, Event 
 import time
@@ -20,24 +20,13 @@ if __name__ == '__main__':
         proc.daemon = True
         proc.start()
 
-    time.sleep(5)
+    # time.sleep(0.05)
 
+    setSpeed(rcShS,0)
+    time.sleep(0.05)
+    setSpeed(rcShS,0)
+    time.sleep(0.05)
+    setSpeed(rcShS,0)
     # EnablePID(rcShS)
     # setAngle(rcShS , 0)
     # time.sleep(1)
-    while True:
-        # angle = float(input("Please enter angle: "))
-        # Distance = float(input("Please enter distance: "))
-
-        setAngle(rcShS , 2)
-        time.sleep(0.5)
-        # MoveDistance(rcShS , Distance, 0.5)
-        
-        # while True:
-        #     Status, message = GetDistanceStatus(DistR)
-        #     print("Status ", Status)
-        #     print("Message ", message)
-        #     if(Status == 2) : 
-        #         break
-
-

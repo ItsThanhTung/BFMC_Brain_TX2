@@ -13,17 +13,17 @@ from multiprocessing import Condition
 
 class Yolo(object):
     def __init__(self, streamP, outP, debugP, debug, is_tensorRt, source='',\
-                        imgsize= (512,640), device='0',conf_thres=0.1, iou_thres=0.1,max_det=1000): 
+                        imgsize= (640,640), device='0',conf_thres=0.1, iou_thres=0.1,max_det=1000): 
         
         if is_tensorRt: 
-            weights='ver4.engine'
+            weights = 'ver_4.torchscript'
         else: 
             weights='ver3.pt'
             
         self.img_size = imgsize
         self.device = select_device(device)
         self.model = DetectMultiBackend(weights, device=self.device, dnn=False, data='./src/image_processing/traffic_sign/yolov5_utils/data/coco128.yaml')
-        self.names=['car', 'crosswalk', 'highway_entry', 'highway_exit', 'no_entry', 'parking', 'pedestrian', 'priority', 'roundabout', 'stop', 'red','yellow','green']
+        self.names=['car', 'crosswalk', 'highway_entry', 'highway_exit', 'no_entry', 'parking', 'pedestrian', 'priority', 'roundabout', 'stop', 'red','yellow','green','roadblock']
         self.conf_thres=conf_thres
         self.iou_thres=iou_thres
         self.max_det=max_det

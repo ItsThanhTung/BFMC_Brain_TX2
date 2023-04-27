@@ -48,7 +48,7 @@ class TrafficSignHandler:
             cls = object.clss_max
             new_cls = object.new_cls
 
-            # print("cls: ", new_cls)
+            print("cls: ", new_cls)
             
             if cls in ['red', 'green', 'yellow']:
                 cls = "traffic_light"

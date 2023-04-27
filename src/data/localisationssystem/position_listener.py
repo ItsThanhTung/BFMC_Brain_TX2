@@ -52,7 +52,8 @@ class PositionListener:
 		self.__running = False
 		try :
 			self.__server_data.socket.close()
-		except: pass
+		except:
+			pass
 	
 	def listen(self):
 		""" 

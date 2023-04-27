@@ -226,11 +226,11 @@ class DecisionMakingProcess(WorkerProcess):
 
                 elif self.decision_maker.strategy == "GPS" and not self.is_intercept and error_dist < 0.2:
                     self.decision_maker.strategy = "LANE"
+                    self.decision_maker.reiniate()
                     print("Switch to LANE strategy")
 
                 # print(f"{current_node} -----> {next_node}----- Error distance to closet node: {error_dist} ---{self.decision_maker.strategy}")
            
-                self.decision_maker.reiniate()
                 
                 current_time = time.time()
                 current_time = datetime.fromtimestamp(current_time)
@@ -240,7 +240,8 @@ class DecisionMakingProcess(WorkerProcess):
                 speed_lane_keeping, angle_lane_keeping, lane_data = self.read_lane_keeping_data()
                 intercept_length, intercept_gap = self.read_intercept_detection_data()
                 object_result = self.read_object_detection_data()
-                print(object_result)
+                if len(object_result) != 0:
+                    print(object_result)
                 if trafficSignHanlder.detect(object_result, lane_data):
                     continue
                 if not self.is_intercept and self.decision_maker.is_intercept(intercept_length, intercept_gap) and not self.is_stop: # and (current_node  not in skip_intecept_node):

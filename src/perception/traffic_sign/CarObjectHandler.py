@@ -12,6 +12,7 @@ class CarObjectHandler(GeneralHandler):
     def handler(self, decision_maker, object_info):
         self.start_handler_log()
         self.point_handler.switch_to_sub_map()
+        print('handler switch to sub')
         self.end_handler_log()
         return True
     
@@ -19,7 +20,7 @@ class CarObjectHandler(GeneralHandler):
     def is_handle(self, object_info):
         dist = object_info[1]
         print(dist)
-        # if dist > 200:
-        #     return True
+        if dist > 200:
+            return True
 
         return False
