@@ -6,7 +6,7 @@ import joblib
 class Point:
     def __init__(self):
         self.main_map_arr = joblib.load('src/data/localisationssystem/data__22_04_12_15.pkl')
-        self.sub_map_arr = joblib.load('src/data/localisationssystem/data__22_04_12_15.pkl')
+        self.sub_map_arr = joblib.load('src/data/localisationssystem/data__22_04_12_24.pkl')
         self.main_trajectory = np.arange(len(self.main_map_arr))
         self.sub_trajectory = np.arange(len(self.sub_map_arr))
 
@@ -18,14 +18,14 @@ class Point:
 
     def switch_to_sub_map(self):
         print("switch to sub")
-        self.map_arr = self.sub_trajectory
+        self.map_arr = self.sub_map_arr
         self.trajectory = self.sub_trajectory
         self.local_node = None
     def switch_to_main_map(self):
         print("switch to main")
         self.map_arr = self.main_map_arr
         self.trajectory = self.main_trajectory
-
+        self.local_node = None
     def get_closest_node(self, pose):
         if self.local_node is None:
             dist_arr = euclidean_distances([[pose['x'], pose['y']]], self.map_arr)

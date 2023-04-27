@@ -34,7 +34,7 @@ class TrafficSignHandler:
                              "car" : CarObjectHandler(car_handler, self.logger, self.point_handler)}
         self.tracker = BYTETracker()
         
-    def detect(self, object_result, lane_data):
+    def detect(self, object_result, lane_data,pos):
         if object_result is None:
             return 
         
@@ -49,7 +49,8 @@ class TrafficSignHandler:
             new_cls = object.new_cls
 
             print("cls: ", new_cls)
-            
+            if cls == 'car' or cls =='road_block':
+                self.decision_maker.start_switch_node = np.array(pos)
             if cls in ['red', 'green', 'yellow']:
                 cls = "traffic_light"
             
@@ -64,6 +65,8 @@ class TrafficSignHandler:
                     is_done = self.handler_dict[cls].handler(self.decision_maker, object_info)
                     object.is_handle = is_done
                     is_run = True
+                    if cls == 'car':
+                        is_run = False
                     
         return is_run
                     
