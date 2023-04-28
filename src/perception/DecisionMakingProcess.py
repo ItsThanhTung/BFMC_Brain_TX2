@@ -215,14 +215,13 @@ class DecisionMakingProcess(WorkerProcess):
                 if self.decision_maker.start_switch_node is not None:
                     cur_pose = np.array([pose['x'],pose['y']])
                     dist_from_start = np.linalg.norm(cur_pose-self.decision_maker.start_switch_node)
+                    print(f'end switch node: {self.decision_maker.end_switch_node}')
+                    print('cur node ',current_node)
                     if dist_from_start > 1:
                         self.point.switch_to_main_map()
-                        print(f'end switch node: {self.decision_maker.end_switch_node}')
-                        print('cur node ',current_node)
-                        
                         if current_node >= self.decision_maker.end_switch_node:
                             self.decision_maker.trafic_strategy = 'LANE'
-                
+                            self.decision_maker.start_switch_node = None
                 self.planer.update_point(pose)
                 current_node, error_dist, local_node = self.point.get_closest_node(pose)
                 if len(local_node) == 1:
@@ -232,12 +231,12 @@ class DecisionMakingProcess(WorkerProcess):
 
                 if (self.decision_maker.strategy != "GPS" and error_dist > 0.4) or self.decision_maker.trafic_strategy == 'GPS':
                     self.strategy = "GPS"
-                    print("Switch to GPS strategy")
+                    # print("Switch to GPS strategy")
 
                 elif self.decision_maker.strategy == "GPS" and not self.is_intercept and error_dist < 0.2  :
                     self.decision_maker.strategy = "LANE"
                     self.decision_maker.reiniate()
-                    print("Switch to LANE strategy")
+                    # print("Switch to LANE strategy")
 
                 # print(f"{current_node} -----> {next_node}----- Error distance to closet node: {error_dist} ---{self.decision_maker.strategy}")
            
@@ -277,7 +276,7 @@ class DecisionMakingProcess(WorkerProcess):
                 if self.decision_maker.strategy == "LANE" and self.decision_maker.trafic_strategy == 'LANE':
                     self.historyFile.write("Lane keeping angle: {}   speed: {}\n".format(angle_lane_keeping, self.decision_maker.speed))
                     angle_lane_keeping = int(angle_lane_keeping)    
-                    # print('Angle lane: ',angle_lane_keeping)
+                    print('lane: ')
                     if not self.is_stop:
                         status, messSpd = self.__CarHandlerTh.setSpeed(self.decision_maker.speed, send_attempt=1) 
                         
@@ -300,7 +299,7 @@ class DecisionMakingProcess(WorkerProcess):
                         self.decision_maker.strategy = "LANE"
                         self.is_intercept = False
                         continue
-                        
+                    print('GPS')
                     angle = -self.planer.drive([next_point[0], next_point[1]])
                     # print('Angle gps: ',angle)
                     # print("angle gps: ", angle)
