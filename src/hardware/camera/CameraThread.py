@@ -39,7 +39,7 @@ from src.templates.threadwithstop import ThreadWithStop
 class CameraThread(ThreadWithStop):
     
     #================================ CAMERA =============================================
-    def __init__(self, cam_path, outPs):
+    def __init__(self, cam_path, outPs,opt):
         """The purpose of this thread is to setup the camera parameters and send the result to the CameraProcess. 
         It is able also to record videos and save them locally. You can do so by setting the self.RecordMode = True.
         
@@ -61,7 +61,7 @@ class CameraThread(ThreadWithStop):
         self.outPs        =   outPs
 
         self.cam_path = cam_path
-
+        self.opt = opt
     #================================ RUN ================================================
     def run(self):
         """Apply the initializing methods and start the thread. 
@@ -126,7 +126,7 @@ class CameraThread(ThreadWithStop):
         while self._running:
             ret, data = self.camera.read()
             lane_image = cv2.resize(data, (320, 240))
-
+            lane_image = self.region_of_interest(lane_image)
             # Note: The sending process can be blocked, when doesn't exist any consumer process and it reaches the limit size.
             self.outPs["PREPROCESS_IMAGE"].send({"image": lane_image})
             
@@ -134,6 +134,18 @@ class CameraThread(ThreadWithStop):
                 self.outPs["OBJECT_IMAGE"].send({"image": data})
 
 
-            
+    def region_of_interest(self, frame):
+        height = frame.shape[0]
+        width = frame.shape[1]
+        mask = np.zeros_like(frame)
+
+        region_of_interest_vertices = np.array([[   (0, height-1),
+                                                    (self.opt["roi"]["left"]*width, height * self.opt["roi"]["upper"]),
+                                                    (self.opt["roi"]["right"]*width, height * self.opt["roi"]["upper"]),
+                                                    (width - 1, height-1)]], np.int32)
+
+        cv2.fillPoly(mask, region_of_interest_vertices, 255)
+        masked_image = cv2.bitwise_and(frame, mask)
+        return masked_image       
 
 

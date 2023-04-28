@@ -19,7 +19,7 @@ class ImagePreprocessing():
     def process_image(self, frame):
         
         bgr_image = np.copy(frame)
-        bgr_image = self.region_of_interest(bgr_image)
+        # bgr_image = self.region_of_interest(bgr_image)
         red_channel = bgr_image[:,:,2]
 
         hls = np.float64(cv2.cvtColor(bgr_image, cv2.COLOR_BGR2HLS))

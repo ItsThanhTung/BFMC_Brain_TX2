@@ -64,11 +64,11 @@ from threading import Thread
 if __name__ == '__main__':
     
     # =============================== CONFIG =================================================
-    enableYolo               = True
+    enableYolo               = False
     
     
     enableStream             =  True
-    enableStreamObject       =  True
+    enableStreamObject       =  False
     enableLaneStream         =  False
     enableInterceptStream    =  False
     
@@ -108,7 +108,7 @@ if __name__ == '__main__':
     
     cameraSendP = {"PREPROCESS_IMAGE" : camLaneStS, "OBJECT_IMAGE" : camObjectStS}
     
-    camProc = CameraProcess([], cameraSendP, cam_opt["CAM_PATH"])
+    camProc = CameraProcess([], cameraSendP, cam_opt["CAM_PATH"],opt)
     allProcesses.append(camProc)
 
         
