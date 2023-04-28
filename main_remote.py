@@ -64,7 +64,7 @@ from threading import Thread
 if __name__ == '__main__':
     
     is_remote = True
-    is_show = False
+    is_show = True
     enableYolo = False
     enableFilter = True
     enableLocalizeStream = True
