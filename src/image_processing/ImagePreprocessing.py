@@ -19,6 +19,7 @@ class ImagePreprocessing():
     def process_image(self, frame):
         
         bgr_image = np.copy(frame)
+        bgr_image = self.region_of_interest(bgr_image)
         # bgr_image = self.region_of_interest(bgr_image)
         red_channel = bgr_image[:,:,2]
 
@@ -60,10 +61,11 @@ class ImagePreprocessing():
         mask = np.zeros_like(frame)
 
         region_of_interest_vertices = np.array([[   (0, height-1),
+                                                    (0,height*self.opt['roi']['mid']),
                                                     (self.opt["roi"]["left"]*width, height * self.opt["roi"]["upper"]),
                                                     (self.opt["roi"]["right"]*width, height * self.opt["roi"]["upper"]),
+                                                    (width-1,height*self.opt['roi']['mid']),
                                                     (width - 1, height-1)]], np.int32)
-
         cv2.fillPoly(mask, region_of_interest_vertices, 255)
         masked_image = cv2.bitwise_and(frame, mask)
         return masked_image

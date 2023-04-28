@@ -1,10 +1,10 @@
 {
   "LANE_PREPROCESSING": {
     "roi": {
-      "left": 0.3,
-      "right": 0.7,
+      "left": 0.1,
+      "right": 0.9,
       "upper": 0.2,
-      "mid" : 0.7
+      "mid" : 0.5
     },
     "sobel_x_thres": [
       50,

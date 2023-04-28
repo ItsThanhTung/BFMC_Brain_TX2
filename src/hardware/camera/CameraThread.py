@@ -126,7 +126,7 @@ class CameraThread(ThreadWithStop):
         while self._running:
             ret, data = self.camera.read()
             lane_image = cv2.resize(data, (320, 240))
-            lane_image = self.region_of_interest(lane_image)
+            # lane_image = self.region_of_interest(lane_image)
             # Note: The sending process can be blocked, when doesn't exist any consumer process and it reaches the limit size.
             self.outPs["PREPROCESS_IMAGE"].send({"image": lane_image})
             
