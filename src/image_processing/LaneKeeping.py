@@ -133,14 +133,14 @@ class LaneKeeping:
                     if left_offset < right_offset and abs(point[1] - left_anchor[1]) < self.opt["y_dist"]:
                         if left_anchor[0] != -1 and abs(point[0] - left_anchor[0]) < self.opt["x_dist"]:                # if anchor is not dummy anchor, we compare x_axis
                             current_left_anchor.append(point)
-                        else:
-                            current_left_anchor.append(point)
+                        # else:
+                        #     current_left_anchor.append(point)
 
                     elif left_offset > right_offset and abs(point[1] - right_anchor[1]) < self.opt["y_dist"]:
                         if right_anchor[0] != 320 and abs(point[0] - right_anchor[0]) < self.opt["x_dist"]:             # if anchor is not dummy anchor, we compare x_axis
                             current_right_anchor.append(point)
-                        else:
-                            current_right_anchor.append(point)
+                        # else:
+                        #     current_right_anchor.append(point)
 
                 # find the middle point
                 left_middle_point, left_middle_points = self.get_middle_point(current_left_anchor)

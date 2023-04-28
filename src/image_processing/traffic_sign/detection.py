@@ -27,7 +27,7 @@ class Yolo(object):
         for i in range(10):
             with torch.no_grad():            
                 a_ = self.model(torch.zeros(1,3,640,640).to('cuda').type(torch.float), augment=False, visualize=False)
-                print(type(a_))
+                # print(type(a_))
         self.names=['car', 'crosswalk', 'highway_entry', 'highway_exit', 'no_entry', 'parking', 'pedestrian', 'priority', 'roundabout', 'stop', 'red','yellow','green','roadblock']
         self.conf_thres=conf_thres
         self.iou_thres=iou_thres

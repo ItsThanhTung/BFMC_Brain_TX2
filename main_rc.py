@@ -64,11 +64,11 @@ from threading import Thread
 if __name__ == '__main__':
     
     # =============================== CONFIG =================================================
-    enableYolo               = True
+    enableYolo               = False
     
     
     enableStream             =  True
-    enableStreamObject       =  True
+    enableStreamObject       =  False
     enableLaneStream         =  False
     enableInterceptStream    =  False
     
@@ -79,7 +79,7 @@ if __name__ == '__main__':
 
     is_remote = False
     is_show = False
-    is_stop = False
+    is_stop = True
     
     if not enableYolo and enableStreamObject:
         print("Do not enable stream object and turn off object")
