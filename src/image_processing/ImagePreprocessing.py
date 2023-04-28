@@ -60,12 +60,12 @@ class ImagePreprocessing():
         width = frame.shape[1]
         mask = np.zeros_like(frame)
 
-        region_of_interest_vertices = np.array([[   (0, height-1),
+        region_of_interest_vertices = np.array([[   (0, height-20),
                                                     (0,height*self.opt['roi']['mid']),
                                                     (self.opt["roi"]["left"]*width, height * self.opt["roi"]["upper"]),
                                                     (self.opt["roi"]["right"]*width, height * self.opt["roi"]["upper"]),
                                                     (width-1,height*self.opt['roi']['mid']),
-                                                    (width - 1, height-1)]], np.int32)
+                                                    (width - 1, height-20)]], np.int32)
         cv2.fillPoly(mask, region_of_interest_vertices, 255)
         masked_image = cv2.bitwise_and(frame, mask)
         return masked_image
