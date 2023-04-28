@@ -143,6 +143,7 @@ class CameraThread(ThreadWithStop):
                                                     (0,height*0.8),
                                                     (self.opt["roi"]["left"]*width, height * self.opt["roi"]["upper"]),
                                                     (self.opt["roi"]["right"]*width, height * self.opt["roi"]["upper"]),
+                                                    (width-1,height*0.8),
                                                     (width - 1, height-1)]], np.int32)
 
         cv2.fillPoly(mask, region_of_interest_vertices, (255,255,255))
