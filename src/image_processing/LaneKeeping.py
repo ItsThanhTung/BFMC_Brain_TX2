@@ -110,7 +110,7 @@ class LaneKeeping:
         # From anchor height, we traverse back to the top of the image
         # we separate left and right point based on the distance to left anchor and right anchor.
 
-        for height in range(anchor_height -1-30, 120, self.opt["step"]):
+        for height in range(anchor_height -1, 120, self.opt["step"]):
             if white_map[height] != []:
                 if right_anchor[0] == 320:
                     right_anchor[1] = height
