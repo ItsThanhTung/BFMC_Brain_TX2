@@ -144,7 +144,7 @@ class CameraThread(ThreadWithStop):
                                                     (self.opt["roi"]["right"]*width, height * self.opt["roi"]["upper"]),
                                                     (width - 1, height-1)]], np.int32)
 
-        cv2.fillPoly(mask, region_of_interest_vertices, 255)
+        cv2.fillPoly(mask, region_of_interest_vertices, (255,255,255))
         masked_image = cv2.bitwise_and(frame, mask)
         return masked_image       
 
