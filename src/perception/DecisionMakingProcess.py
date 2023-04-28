@@ -230,7 +230,7 @@ class DecisionMakingProcess(WorkerProcess):
                 next_node, next_point = local_node[1], self.point.get_point(local_node[1])
                 
 
-                if (self.decision_maker.strategy != "GPS" and error_dist > 0.4) or self.decision_maker.trafic_strategy == 'GPS':
+                if (self.decision_maker.strategy != "GPS" and error_dist > 1000.4) or self.decision_maker.trafic_strategy == 'GPS':
                     self.strategy = "GPS"
                     # print("Switch to GPS strategy")
 

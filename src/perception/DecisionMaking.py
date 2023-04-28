@@ -19,9 +19,9 @@ class DecisionMaking:
         self.logger = logger
         
         self.count = 0
-        self.speed = 50
+        self.speed = 40
     
-        self.default_speed = 50
+        self.default_speed = 40
         self.start_switch_node = None
         self.end_switch_node = None
         self.start_time = None
@@ -47,7 +47,7 @@ class DecisionMaking:
         
     def speed_up(self, wait_time=None):
         print('set speed_up')
-        self.speed = 45
+        self.speed = 50
         self.start_time = time.time()
         self.wait_time = wait_time
         
