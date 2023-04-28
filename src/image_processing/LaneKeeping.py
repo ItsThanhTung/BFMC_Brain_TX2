@@ -82,7 +82,7 @@ class LaneKeeping:
         right_anchor = []                                                                   # The lowest pixel of right lane
 
         # Find the anchor of left or right line/ depend on which lane is lower
-        for anchor_height in range(image_height-1, 0, self.opt["anchor_step"]):
+        for anchor_height in range(image_height-1-30, 0, self.opt["anchor_step"]):
             if white_map[anchor_height] != []:
                 points = white_map[anchor_height]
                 for point in points:
@@ -110,7 +110,7 @@ class LaneKeeping:
         # From anchor height, we traverse back to the top of the image
         # we separate left and right point based on the distance to left anchor and right anchor.
 
-        for height in range(anchor_height -1, 120, self.opt["step"]):
+        for height in range(anchor_height -1-30, 120, self.opt["step"]):
             if white_map[height] != []:
                 if right_anchor[0] == 320:
                     right_anchor[1] = height
