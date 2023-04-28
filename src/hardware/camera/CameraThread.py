@@ -140,6 +140,7 @@ class CameraThread(ThreadWithStop):
         mask = np.zeros_like(frame)
 
         region_of_interest_vertices = np.array([[   (0, height-1),
+                                                    (0,height*0.8),
                                                     (self.opt["roi"]["left"]*width, height * self.opt["roi"]["upper"]),
                                                     (self.opt["roi"]["right"]*width, height * self.opt["roi"]["upper"]),
                                                     (width - 1, height-1)]], np.int32)
