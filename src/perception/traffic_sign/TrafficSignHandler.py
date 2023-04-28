@@ -50,7 +50,9 @@ class TrafficSignHandler:
 
             print("cls: ", new_cls)
             if cls == 'car' or cls =='road_block':
-                self.decision_maker.start_switch_node = np.array(pos)
+                self.decision_maker.start_switch_node = np.array([pos['x'],pos['y']])
+                _, _, local_nodes = self.point_handler.get_closest_node(pos)
+                self.decision_maker.end_switch_node = local_nodes[-1]
             if cls in ['red', 'green', 'yellow']:
                 cls = "traffic_light"
             
@@ -65,7 +67,8 @@ class TrafficSignHandler:
                     is_done = self.handler_dict[cls].handler(self.decision_maker, object_info)
                     object.is_handle = is_done
                     is_run = True
-                    if cls == 'car':
+                    if cls == 'car': #da switch map
+                        
                         is_run = False
                     
         return is_run

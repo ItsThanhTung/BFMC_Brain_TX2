@@ -33,6 +33,7 @@ class Point:
             closet_dist = dist_arr[0][closest_idx]
             
         else:
+           
             dist_arr = euclidean_distances([[pose['x'], pose['y']]], [self.map_arr[i] for i in self.local_node])
             closest_idx = np.argmin(dist_arr)
             closet_dist = dist_arr[0][closest_idx]

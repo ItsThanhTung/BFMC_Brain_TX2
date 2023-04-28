@@ -72,6 +72,7 @@ class Yolo(object):
                     clss.append(self.names[c])
 
         results = [boxes, confs, clss]
+        # print("yolo =====",results)
         return img_resized, results
     
     def read_image(self):

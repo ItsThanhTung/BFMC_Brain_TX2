@@ -23,6 +23,7 @@ class DecisionMaking:
     
         self.default_speed = 50
         self.start_switch_node = None
+        self.end_switch_node = None
         self.start_time = None
         self.wait_time = None
         self.trafic_strategy = "LANE"

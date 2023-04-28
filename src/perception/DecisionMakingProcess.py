@@ -101,10 +101,10 @@ class DecisionMakingProcess(WorkerProcess):
         readDataObjectDetectionTh.daemon = True
 
 
-        self.threads.append(decisionMakingTh)
+        self.threads.append(decisionMakingTh)        
+        self.threads.append(readDataObjectDetectionTh)
         self.threads.append(readDataLaneKeepingTh)
         self.threads.append(readDataInterceptDetectionTh)
-        self.threads.append(readDataObjectDetectionTh)
 
 
 
@@ -129,6 +129,7 @@ class DecisionMakingProcess(WorkerProcess):
         while True:
             try:
                 results = self.inPs["OBJECT_DETECTION"].recv()["results"]
+                # print("get objects :",results)
                 object_result = self.tracker.update(results)
                 self.data_object_detection_lock.acquire()
                 self.object_result = object_result
@@ -142,6 +143,7 @@ class DecisionMakingProcess(WorkerProcess):
         while True:
             try:
                 intercept_length, intercept_gap = self.inPs["INTERCEPT_DETECTION"].recv()
+                # print("Get Intercept ", intercept_length)
                 self.data_intercept_detection_lock.acquire()
                 self.intercept_length = intercept_length
                 self.intercept_gap = intercept_gap
@@ -203,6 +205,7 @@ class DecisionMakingProcess(WorkerProcess):
         # time.sleep(10)
         self.test_inter = False
         prev_SendTime = time.time()
+        local_node = None
         while True:
             if True:
                 # skip_intecept_node = [29,30,10,11,12,13]
@@ -211,15 +214,21 @@ class DecisionMakingProcess(WorkerProcess):
                     continue
                 if self.decision_maker.start_switch_node is not None:
                     cur_pose = np.array([pose['x'],pose['y']])
-                    print(np.linalg.norm(cur_pose-self.decision_maker.start_switch_node))
+                    dist_from_start = np.linalg.norm(cur_pose-self.decision_maker.start_switch_node)
+                    if dist_from_start > 1:
+                        self.point.switch_to_main_map()
+                        print(f'end switch node: {self.decision_maker.end_switch_node}')
+                        print('cur node ',current_node)
+                        
+                        if current_node >= self.decision_maker.end_switch_node:
+                            self.decision_maker.trafic_strategy = 'LANE'
+                
                 self.planer.update_point(pose)
                 current_node, error_dist, local_node = self.point.get_closest_node(pose)
-
-                
                 if len(local_node) == 1:
                     raise Exception("This is the end of the map")
-                
                 next_node, next_point = local_node[1], self.point.get_point(local_node[1])
+                
 
                 if (self.decision_maker.strategy != "GPS" and error_dist > 0.4) or self.decision_maker.trafic_strategy == 'GPS':
                     self.strategy = "GPS"
@@ -239,11 +248,17 @@ class DecisionMakingProcess(WorkerProcess):
 
                 
                 speed_lane_keeping, angle_lane_keeping, lane_data = self.read_lane_keeping_data()
+                
                 intercept_length, intercept_gap = self.read_intercept_detection_data()
                 object_result = self.read_object_detection_data()
                 if len(object_result) != 0:
                     print(object_result)
-                if trafficSignHanlder.detect(object_result, lane_data,[pose['x'],pose['y']]) and self.decision_maker.trafic_strategy == 'LANE':
+                if self.is_stop:
+                    for obj in object_result:
+                        obj.is_handle = True
+                        time.sleep(0.1)
+                    continue
+                if trafficSignHanlder.detect(object_result, lane_data,pose) and self.decision_maker.trafic_strategy == 'LANE':
                     continue
                 if not self.is_intercept and self.decision_maker.is_intercept(intercept_length, intercept_gap) and not self.is_stop: # and (current_node  not in skip_intecept_node):
                     # print('intercept')
