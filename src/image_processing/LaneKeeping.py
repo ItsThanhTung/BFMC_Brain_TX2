@@ -99,10 +99,10 @@ class LaneKeeping:
         right_anchor, _ = self.get_middle_point(right_anchor)
 
         if left_anchor is None:                                                             # If we could not find left or right point, init the dummy point
-            left_anchor = [-1, anchor_height]               
+            left_anchor = [30, anchor_height]               
 
         if right_anchor is None:
-            right_anchor = [320, anchor_height]
+            right_anchor = [290, anchor_height]
 
         left_points = []
         right_points = []
