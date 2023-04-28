@@ -23,6 +23,11 @@ class Yolo(object):
         self.img_size = imgsize
         self.device = select_device(device)
         self.model = DetectMultiBackend(weights, device=self.device, dnn=False, data='./src/image_processing/traffic_sign/yolov5_utils/data/coco128.yaml')
+        self.model.model.float()
+        for i in range(10):
+            with torch.no_grad():            
+                a_ = self.model(torch.zeros(1,3,640,640).to('cuda').type(torch.float), augment=False, visualize=False)
+                print(type(a_))
         self.names=['car', 'crosswalk', 'highway_entry', 'highway_exit', 'no_entry', 'parking', 'pedestrian', 'priority', 'roundabout', 'stop', 'red','yellow','green','roadblock']
         self.conf_thres=conf_thres
         self.iou_thres=iou_thres
@@ -53,8 +58,8 @@ class Yolo(object):
             img = img[None] 
         with torch.no_grad():            
             pred = self.model(img, augment=False, visualize=False)
-        pred = non_max_suppression(pred, self.conf_thres, self.iou_thres, None, False, max_det=self.max_det)
-        results = []
+        pred = non_max_suppression(pred, self.conf_thres, self.iou_thres, None, agnostic=True, max_det=self.max_det)
+        results = [[],[],[]]
         boxes=[]
         confs=[]
         clss=[]
@@ -70,9 +75,7 @@ class Yolo(object):
                     boxes.append(xyxy)
                     confs.append(float(conf))
                     clss.append(self.names[c])
-
         results = [boxes, confs, clss]
-        # print("yolo =====",results)
         return img_resized, results
     
     def read_image(self):

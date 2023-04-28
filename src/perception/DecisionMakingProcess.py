@@ -219,6 +219,7 @@ class DecisionMakingProcess(WorkerProcess):
                     print('cur node ',current_node)
                     if dist_from_start > 1:
                         self.point.switch_to_main_map()
+                        
                         if current_node >= self.decision_maker.end_switch_node:
                             self.decision_maker.trafic_strategy = 'LANE'
                             self.decision_maker.start_switch_node = None
@@ -250,8 +251,9 @@ class DecisionMakingProcess(WorkerProcess):
                 
                 intercept_length, intercept_gap = self.read_intercept_detection_data()
                 object_result = self.read_object_detection_data()
-                if len(object_result) != 0:
-                    print(object_result)
+                if object_result is not None:
+                    if len(object_result) != 0:
+                        print(object_result)
                 if self.is_stop:
                     for obj in object_result:
                         obj.is_handle = True

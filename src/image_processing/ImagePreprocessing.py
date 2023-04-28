@@ -17,7 +17,9 @@ class ImagePreprocessing():
         return binary
 
     def process_image(self, frame):
+        
         bgr_image = np.copy(frame)
+        bgr_image = self.region_of_interest(bgr_image)
         red_channel = bgr_image[:,:,2]
 
         hls = np.float64(cv2.cvtColor(bgr_image, cv2.COLOR_BGR2HLS))
@@ -50,3 +52,18 @@ class ImagePreprocessing():
         #                         np.ones((self.opt["dilate_kernel"], self.opt["dilate_kernel"]), np.uint8)) 
 
         return new_combined_binary, sybinary, grayImg
+    
+    
+    def region_of_interest(self, frame):
+        height = frame.shape[0]
+        width = frame.shape[1]
+        mask = np.zeros_like(frame)
+
+        region_of_interest_vertices = np.array([[   (0, height-1),
+                                                    (self.opt["roi"]["left"]*width, height * self.opt["roi"]["upper"]),
+                                                    (self.opt["roi"]["right"]*width, height * self.opt["roi"]["upper"]),
+                                                    (width - 1, height-1)]], np.int32)
+
+        cv2.fillPoly(mask, region_of_interest_vertices, 255)
+        masked_image = cv2.bitwise_and(frame, mask)
+        return masked_image

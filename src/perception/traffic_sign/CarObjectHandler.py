@@ -25,7 +25,7 @@ class CarObjectHandler(GeneralHandler):
     def is_handle(self, object_info):
         dist = object_info[1]
         print(dist)
-        if dist > 200:
+        if dist > 220:
             return True
 
         return False

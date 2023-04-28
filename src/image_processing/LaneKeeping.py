@@ -41,21 +41,6 @@ class LaneKeeping:
         self.prev_state = 0
 
 
-    def region_of_interest(self, frame):
-        height = frame.shape[0]
-        width = frame.shape[1]
-        mask = np.zeros_like(frame)
-
-        region_of_interest_vertices = np.array([[   (0, height-1),
-                                                    (self.opt["roi"]["left"]*width, height * self.opt["roi"]["upper"]),
-                                                    (self.opt["roi"]["right"]*width, height * self.opt["roi"]["upper"]),
-                                                    (width - 1, height-1)]], np.int32)
-
-        cv2.fillPoly(mask, region_of_interest_vertices, 255)
-        masked_image = cv2.bitwise_and(frame, mask)
-        return masked_image
-
-
     def convert_line_to_point(self, lines):
         if lines.shape[0] == 0:
             return None
@@ -185,8 +170,7 @@ class LaneKeeping:
         h = image_size[0]
         w = image_size[1]
 
-        roi_edge_image = self.region_of_interest(edge_image)
-        left_points, right_points = self.find_left_right_lanes(roi_edge_image)              # Get left lane and right lane
+        left_points, right_points = self.find_left_right_lanes(edge_image)              # Get left lane and right lane
         
         # Init dummy variables
         left_point_x, left_point_y = 0, 0           
