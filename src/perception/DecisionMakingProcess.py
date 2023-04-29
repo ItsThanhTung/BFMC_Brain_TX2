@@ -206,7 +206,7 @@ class DecisionMakingProcess(WorkerProcess):
 
         
         # interceptionHandler = InterceptionHandler(self.imu_handler, self.__CarHandlerTh, self.historyFile) # , self.localization_thr)
-        trafficSignHanlder = TrafficSignHandler(self.__CarHandlerTh, self.historyFile, self.decision_maker, self.point)
+        trafficSignHanlder = TrafficSignHandler(self.__CarHandlerTh, self.historyFile, self.decision_maker, self.point,self.CarPoseHandler)
         # self._FakeRun()
         # time.sleep(10)
         self.test_inter = False

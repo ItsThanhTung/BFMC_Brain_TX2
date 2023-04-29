@@ -20,15 +20,15 @@ def mapping_distance(center_location):
     return center_location[1]
 
 class TrafficSignHandler:
-    def __init__(self, car_handler, logger, decision_maker, point_handler):
+    def __init__(self, car_handler, logger, decision_maker, point_handler,CarPoseHandler):
         self.car_handler = car_handler
         self.logger = logger
         
         self.decision_maker = decision_maker
         self.point_handler = point_handler
-
+        self.CarPoseHandler = CarPoseHandler
         self.handler_dict = {"stop" : StopSignHandler(car_handler, self.logger), "pedestrian" : PedestrianHandler(car_handler, self.logger),
-                             "parking" : ParkingHandler(car_handler, self.logger,self.point_handler), "crosswalk" :CrossWalkHandler(car_handler, logger),
+                             "parking" : ParkingHandler(car_handler, self.logger,self.point_handler,self.CarPoseHandler), "crosswalk" :CrossWalkHandler(car_handler, logger),
                              "highway_entry" : HighWayEntryHandler(car_handler, self.logger), "highway_exit" : HighWayExitHandler(car_handler, self.logger),
                              "traffic_light" : TrafficLightHandler(car_handler, self.logger), \
                              "car" : CarObjectHandler(car_handler, self.logger, self.point_handler)}
@@ -67,7 +67,7 @@ class TrafficSignHandler:
                     is_done = self.handler_dict[cls].handler(self.decision_maker, object_info)
                     object.is_handle = is_done
                     is_run = True
-                    if cls == 'car' or cls == 'parking': #da switch map
+                    if cls == 'car' : #da switch map
                         is_run = False
                     
         return is_run
