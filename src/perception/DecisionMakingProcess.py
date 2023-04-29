@@ -253,7 +253,7 @@ class DecisionMakingProcess(WorkerProcess):
                 # print(f"{current_node} -----> {next_node}----- Error distance to closet node: {error_dist} ---{self.decision_maker.strategy}")
            
                 dist_vlxx = self.__CarHandlerTh.GetVLXData()
-                print(dist_vlxx)
+                # print(dist_vlxx)
                 current_time = time.time()
                 current_time = datetime.fromtimestamp(current_time)
                 self.historyFile.write("\n" + str(current_time))
