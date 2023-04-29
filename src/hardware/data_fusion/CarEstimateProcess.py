@@ -192,9 +192,10 @@ class CarEstimateProcess(WorkerProcess):
             self.CarFilter.predict(inputMat,dt)
 
             Coor = GetGPS(DataJson)
-            if(Coor[0] != prev_Coor[0] or Coor[1] != prev_Coor[1]):
-                self.CarFilter.GPS_Update(Coor[0], Coor[1])
-                prev_Coor = Coor
+            # if(Coor[0] != prev_Coor[0] or Coor[1] != prev_Coor[1]):
+            #     self.CarFilter.GPS_Update(Coor[0], Coor[1])
+            #     prev_Coor = Coor
+            self.CarFilter.GPS_Update(Coor[0], Coor[1])
 
             self.CarFilter.IMU_Update(GetIMUHeading(DataJson))
 
