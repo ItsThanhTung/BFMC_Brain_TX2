@@ -15,8 +15,8 @@ GPS_y_std = 0.7
 IMU_Velo_std = 1
 IMU_Heading_std = 0.1
 
-inVel_std = 0.5
-inSteer_std = 0.5 
+inVel_std = 0.2
+inSteer_std = 0.1
 
 class CarEKF(EKF):
     def __init__(self, delta_t, WheelBase):

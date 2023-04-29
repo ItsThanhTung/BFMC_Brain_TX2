@@ -26,7 +26,7 @@ class StopSignHandler(GeneralHandler):
     
     def is_handle(self, object_info):
         dist = object_info[1]
-        if dist > 250:
+        if dist > 270:
             return True
 
         return False

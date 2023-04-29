@@ -16,9 +16,9 @@ class Yolo(object):
                         imgsize= (640,640), device='0',conf_thres=0.1, iou_thres=0.1,max_det=1000): 
         
         if is_tensorRt: 
-            weights = 'ver_4.torchscript'
+            weights = 'ver4_up.torchscript'
         else: 
-            weights='ver3.pt'
+            weights = 'ver4_up.torchscript'
             
         self.img_size = imgsize
         self.device = select_device(device)
