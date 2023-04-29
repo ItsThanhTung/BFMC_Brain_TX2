@@ -37,7 +37,6 @@ class PedestrianHandler(GeneralHandler):
         left_bound = left_point + 80 
         right_bound = right_point - 30
     
-        print('left_bound: ', left_bound, " right_bound: ", right_bound, "    ", center[0])
         
         if center[1] < 350:
             return False

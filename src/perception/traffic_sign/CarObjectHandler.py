@@ -23,9 +23,23 @@ class CarObjectHandler(GeneralHandler):
     
     
     def is_handle(self, object_info):
-        dist = object_info[1]
-        print(dist)
-        if dist > 220:
+        # dist = object_info[1]
+        # center = object_info[0]
+        # if dist > 0:
+        #     return True
+        lane_data = object_info[3]
+        center = object_info[0]
+        
+        left_point, right_point = lane_data["left_point"][0] * 2, lane_data["right_point"][0] * 2
+        left_bound = left_point + 80 
+        right_bound = right_point - 30
+    
+        
+        if center[1] < 300:
+            return False
+        if center[0] > left_bound and center[0] < right_bound:
+            print('True  left_bound: ', left_bound, " right_bound: ", right_bound, "    ", center[0])
             return True
-
+        
+        # print('False  left_bound: ', left_bound, " right_bound: ", right_bound, "    ", center[0])
         return False
