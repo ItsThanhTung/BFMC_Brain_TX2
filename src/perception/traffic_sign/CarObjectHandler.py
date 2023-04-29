@@ -29,7 +29,6 @@ class CarObjectHandler(GeneralHandler):
         #     return True
         lane_data = object_info[3]
         center = object_info[0]
-        
         left_point, right_point = lane_data["left_point"][0] * 2, lane_data["right_point"][0] * 2
         left_bound = left_point + 80 
         right_bound = right_point - 30

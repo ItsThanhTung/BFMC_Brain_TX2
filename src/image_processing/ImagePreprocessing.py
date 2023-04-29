@@ -49,8 +49,8 @@ class ImagePreprocessing():
         new_combined_binary = combined_binary
         new_combined_binary[((combined_binary == 255) & (adaptive == 255))] = 255
         new_combined_binary = self.region_of_interest(new_combined_binary)
-        # new_combined_binary = cv2.dilate(new_combined_binary, \
-        #                         np.ones((self.opt["dilate_kernel"], self.opt["dilate_kernel"]), np.uint8)) 
+        new_combined_binary = cv2.dilate(new_combined_binary, \
+                                np.ones((self.opt["dilate_kernel"], self.opt["dilate_kernel"]), np.uint8)) 
 
         return new_combined_binary, sybinary, grayImg
     

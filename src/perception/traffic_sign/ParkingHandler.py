@@ -22,7 +22,7 @@ class ParkingHandler(GeneralHandler):
     def is_handle(self, object_info):
         dist = object_info[1]
         self.obj_info = object_info
-        if dist > 270:
+        if dist > 230:
             print('done parking')
             return True
 

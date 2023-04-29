@@ -104,6 +104,7 @@ class STrack(BaseTrack):
             self.clss_max=most(self.cls_arr[-10:])
             # self.clss_max=self.cls_arr[-1]
             
+            
         else:
             self.clss_max=most(self.cls_arr)
             # self.clss_max=self.cls_arr[-1]

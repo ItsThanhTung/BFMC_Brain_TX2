@@ -28,7 +28,7 @@
 
 import numpy as np
 
-from threading import Thread
+from threading import Thread, Lock
 from simple_pid import PID
 
 from src.templates.workerprocess import WorkerProcess
@@ -38,9 +38,10 @@ from src.utils.utils_function import setSpeed, setAngle, EnablePID
 
 
 class LaneKeepingProcess(WorkerProcess):
+    data_object_detection_lock = Lock()
     pid = PID(Kp = 1.0, Ki = 1.45, Kd = 0.15, output_limits = [-23, 23])
     # ===================================== INIT =========================================
-    def __init__(self, inPs, outPs, opt, debugP=None, debug=False, is_remote=False):
+    def __init__(self, inPs, outPs, opt, debugP=None, debug=False, objectP=None, is_remote=False):
         """Process used for sending images over the network to a targeted IP via UDP protocol 
         (no feedback required). The image is compressed before sending it. 
 
@@ -58,6 +59,9 @@ class LaneKeepingProcess(WorkerProcess):
         self.debug = debug
         self.debugP = debugP
         self.is_remote = is_remote
+
+        self.objectP = objectP
+        self.object_data = None
         
         super(LaneKeepingProcess,self).__init__( inPs, outPs, debug)
         
@@ -74,9 +78,24 @@ class LaneKeepingProcess(WorkerProcess):
         if self._blocker.is_set():
             return
         laneTh = Thread(name='LaneKeepingThread',target = self._run, args= (self.inPs[0], self.outPs[0]))
+        laneObjectTh = Thread(name='ReadObjectDataThread',target = self._read_object_data_thread)
         laneTh.daemon = True
+        laneObjectTh.daemon = True
+        
         self.threads.append(laneTh)
+        self.threads.append(laneObjectTh)
 
+
+    def _read_object_data_thread(self):
+        while True:
+            try:
+                data = self.objectP.recv()
+                self.data_object_detection_lock.acquire()
+                self.object_data = data
+                self.data_object_detection_lock.release()
+            except Exception as e:
+                print("Lane Keeping - read object data thread error:")
+                print(e)
 
     def _run(self, inP, outP):
         """Obtains image, applies the required image processing and computes the steering angle value. 
@@ -96,7 +115,13 @@ class LaneKeepingProcess(WorkerProcess):
                 # Obtain image
                 data = inP.recv()
                 edge_image = data["new_combined_binary"]
-                speed, angle, state, debug_data = LaneKeeper.lane_keeping(edge_image) 
+
+                self.data_object_detection_lock.acquire()
+                object_info = self.object_data
+                self.object_data = None
+                self.data_object_detection_lock.release()
+
+                speed, angle, state, debug_data = LaneKeeper.lane_keeping(edge_image, object_info) 
                 # new_angle = self.pid(angle)
                 # setSpeed(outP[0], float(speed * 0.35))
                 if not self.is_remote:

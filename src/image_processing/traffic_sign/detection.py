@@ -66,8 +66,12 @@ class Yolo(object):
         for i, det in enumerate(pred):  # per image
             # annotator = Annotator(img_resized, line_width=3, example=str(self.names))
             det=det.cpu().detach().numpy()
+            
             if len(det):
-                # det[:, :4] = scale_coords(im.shape, det[:, :4], im0.shape).round()
+                # print(det)
+                det[:, :4] = scale_coords(img.shape[2:], det[:, :4], img0.shape).round()
+                # print(img.shape, img0.shape)
+                # print(det)
                 for (*xyxy, conf, cls) in reversed(det): 
                     c = int(cls)  # integer class
                     label = f'{self.names[c]} {conf:.2f}'

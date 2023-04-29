@@ -24,7 +24,7 @@ class DecisionMakingProcess(WorkerProcess):
     data_object_detection_lock = Lock()
     historyFile = FileHandler("carControlHistory.txt")
 
-    def __init__(self, inPs, outPs, serInPs, opt, is_stop):
+    def __init__(self, inPs, outPs, serInPs, opt, objectP, is_stop):
         """Process used for sending images over the network to a targeted IP via UDP protocol 
         (no feedback required). The image is compressed before sending it. 
 
@@ -44,6 +44,7 @@ class DecisionMakingProcess(WorkerProcess):
         self.speed_lane_keeping = 0 
         self.angle_lane_keeping = 0 
         self.lane_data = None
+        self.objectP = objectP
 
         self.intercept_length = 0
         self.intercept_gap = float("inf")
@@ -257,15 +258,19 @@ class DecisionMakingProcess(WorkerProcess):
                 intercept_length, intercept_gap = self.read_intercept_detection_data()
                 object_result = self.read_object_detection_data()
             
-                if object_result is not None:
-                    if len(object_result) != 0:
-                        print(object_result)
+                # if object_result is not None:
+                #     if len(object_result) != 0:
+                #         print(object_result)
+                        
                 if trafficSignHanlder.detect(object_result, lane_data,pose) and self.decision_maker.trafic_strategy == 'LANE':
                     continue
 
-                print(self.decision_maker.is_parking)
+                # print(self.decision_maker.is_parking)
                 if self.decision_maker.is_parking:
-                    self.decision_maker.speed = 30
+                    self.decision_maker.speed = 25
+                    self.objectP.send(object_result)
+
+                    # send pipe object result 
                 
                 if not self.decision_maker.is_parking \
                         and not self.is_intercept \
