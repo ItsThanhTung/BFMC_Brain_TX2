@@ -14,9 +14,7 @@ class ParkingHandler(GeneralHandler):
 
     def handler(self, decision_maker, object_info):
         self.start_handler_log()  
-        decision_maker.is_parking = True
-        print(self.car_handler.GetVLXData())
-        
+        decision_maker.is_parking = True        
         self.end_handler_log()
         return False
     
@@ -24,7 +22,6 @@ class ParkingHandler(GeneralHandler):
     def is_handle(self, object_info):
         dist = object_info[1]
         self.obj_info = object_info
-        print(dist)
         if dist > 270:
             print('done parking')
             return True

@@ -214,6 +214,7 @@ class DecisionMakingProcess(WorkerProcess):
         local_node = None
         while True:
             if True:
+                self.decision_maker.reiniate_speed()
                 # skip_intecept_node = [29,30,10,11,12,13]
                 pose = self.CarPoseHandler.GetCarPose()
                 if pose['x'] == 0 and pose['y']==0:
@@ -242,18 +243,10 @@ class DecisionMakingProcess(WorkerProcess):
 
                 elif self.decision_maker.strategy == "GPS" and not self.is_intercept and error_dist < 0.2  :
                     self.decision_maker.strategy = "LANE"
-                    self.decision_maker.reiniate()
+                    self.decision_maker.reiniate_map()
                     # print("Switch to LANE strategy")
                     
-                if self.decision_maker.is_parking:
-                    print("Parking")
-                    self.strategy = "LANE"
-                    self.decision_maker.speed = 35
 
-                # print(f"{current_node} -----> {next_node}----- Error distance to closet node: {error_dist} ---{self.decision_maker.strategy}")
-           
-                # dist_vlxx = self.__CarHandlerTh.GetVLXData()
-                # print(dist_vlxx)
                 current_time = time.time()
                 current_time = datetime.fromtimestamp(current_time)
                 self.historyFile.write("\n" + str(current_time))
@@ -269,9 +262,16 @@ class DecisionMakingProcess(WorkerProcess):
                         print(object_result)
                 if trafficSignHanlder.detect(object_result, lane_data,pose) and self.decision_maker.trafic_strategy == 'LANE':
                     continue
+
+                print(self.decision_maker.is_parking)
+                if self.decision_maker.is_parking:
+                    self.decision_maker.speed = 30
                 
-                if not self.is_intercept and self.decision_maker.is_intercept(intercept_length, intercept_gap) and not self.is_stop: # and (current_node  not in skip_intecept_node):
-                    # print('intercept')
+                if not self.decision_maker.is_parking \
+                        and not self.is_intercept \
+                        and self.decision_maker.is_intercept(intercept_length, intercept_gap) \
+                        and not self.is_stop: # and (current_node  not in skip_intecept_node):
+    
                     self.decision_maker.strategy = "GPS"
                     self.is_intercept = "True"
                     self.intercept_node = current_node
@@ -290,7 +290,6 @@ class DecisionMakingProcess(WorkerProcess):
                     print('lane: ',angle_lane_keeping)
                     if not self.is_stop:
                         status, messSpd = self.__CarHandlerTh.setSpeed(self.decision_maker.speed, send_attempt=1) 
-                        
                         if status < 0:
                             log_message = "\nFail send speed: {} \t {}\n".format(status, messSpd)
                             self.historyFile.write(log_message)
@@ -320,7 +319,6 @@ class DecisionMakingProcess(WorkerProcess):
                     prev_SendTime = time.time()
                     
                     
-                time.sleep(0.1)
             # print("end: ", time.time() - start_time)
             # except Exception as e:
             #     print("Decision Making - decision making thread error:")

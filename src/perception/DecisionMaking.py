@@ -52,14 +52,16 @@ class DecisionMaking:
         self.speed = 50
         self.start_time = time.time()
         self.wait_time = wait_time
-        
-    def reiniate(self):
-        self.point_handler.switch_to_main_map()
+
+    def reiniate_speed(self):
         if self.start_time and self.wait_time:
-            print("reinitiate")
             if time.time() - self.start_time > self.wait_time:
                 self.speed = self.default_speed
                 self.start_time = None
+    
+    def reiniate_map(self):
+        self.point_handler.switch_to_main_map()
+       
                 
     
     def is_intercept(self, intercept_length, intercept_gap):        
