@@ -34,13 +34,13 @@ class PedestrianHandler(GeneralHandler):
         center = object_info[0]
         
         left_point, right_point = lane_data["left_point"][0] * 2, lane_data["right_point"][0] * 2
-        left_bound = left_point + 20 
-        right_bound = right_point - 20
+        left_bound = left_point + 80 
+        right_bound = right_point - 30
     
+        print('left_bound: ', left_bound, " right_bound: ", right_bound, "    ", center[0])
         
-        if center[1] < 200:
+        if center[1] < 350:
             return False
-        
         if center[0] > left_bound and center[0] < right_bound:
             print('True  left_bound: ', left_bound, " right_bound: ", right_bound, "    ", center[0])
             return True
