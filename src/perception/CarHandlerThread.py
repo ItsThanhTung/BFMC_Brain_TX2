@@ -80,7 +80,8 @@ class CarHandlerThread(ThreadWithStop):
     def run(self):
         readers=[]
         readers.append(self.__shInPs["VLX"])
-        
+        readers.append(self.__shInPs["DIST"])
+
         vlxx_queue = deque(maxlen=5)
         
         while(self._running):
@@ -91,18 +92,40 @@ class CarHandlerThread(ThreadWithStop):
                         vlxx_queue.append(data)
                         self.VLXData = np.mean(vlxx_queue, axis=0)
                         # print("DM VLX ", self.VLXData)
+                    elif inP == self.__shInPs["DIST"]:
+                        print("Pipe ",self.__shInPs["DIST"])
+                        self._distanceProcess(data["data"])
                 except:
                     print("Pipe Error ", inP)
 
     def _distanceProcess(self, Data):
-        self.__DistanceLock.acquire()
         try:
             # print("Data", Data)
-            self.__DistanceStatus, self.__DistanceMess = Data.split(";", 2)[:2]
+            Status, Mess = Data.split(";", 2)[:2]
         except:
             print("Split Error")
-        self.__DistanceLock.release()
-        
+        if Status == "1":
+            self.__DistanceLock.acquire()
+            self.__DistanceStatus, self.__DistanceMess = int(Status), int(Mess)
+            self.__DistanceLock.release()
+        # print(Status, mess)
+    
+    def moveDistance_Block(self, Distance, AllowError = 0.05):
+        self.moveDistance(float(Distance))
+        cnt = 0
+        while(True):
+            Status, getDist = self.getDistanceStatus()
+            print("Status Dist ", Status, getDist)
+            if Status < 0:
+                cnt+= 1
+            if cnt > 5:
+                self.moveDistance(Distance)
+                cnt = 0
+            if Distance - getDist < AllowError:
+                return
+            time.sleep(0.01)
+
+
     def enablePID(self, Enable = True):
         data = {
         "action": '4',
@@ -202,6 +225,9 @@ class CarHandlerThread(ThreadWithStop):
             "data":"OK"
         }
         # print("sh Pipe ", self.__shOutP)
+        self.__DistanceLock.acquire()
+        self.__DistanceStatus, self.__DistanceMess = -1, 0
+        self.__DistanceLock.release()
         self._shSend(self.__shOutP, data)
         return 0, "OK"
 
@@ -209,7 +235,7 @@ class CarHandlerThread(ThreadWithStop):
 
     def getDistanceStatus(self):
         self.__DistanceLock.acquire()
-        Status, mess = int(self.__DistanceStatus), self.__DistanceMess
+        Status, mess = self.__DistanceStatus, self.__DistanceMess
         self.__DistanceLock.release()
         return Status, mess
 

@@ -53,7 +53,6 @@ class IMUHandlerThread(ThreadWithStop):
     def run(self):
         self._prevVelo = 0
         while self._running:
-            time.sleep(self._readInterval)
             Data = {
                 "Accelerometer": self._sensor.acceleration,
                 "Magnetometer": self._sensor.magnetic,
@@ -64,3 +63,5 @@ class IMUHandlerThread(ThreadWithStop):
                 "Gravity": self._sensor.gravity
             }
             self._outPs.send(Data)
+            time.sleep(self._readInterval)
+

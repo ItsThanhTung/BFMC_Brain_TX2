@@ -38,7 +38,7 @@ class NucleoListener(ThreadWithStop):
                         self._outPs["VLX"].send(data)
                     elif mess["action"] == "9":
                         data = self._TravelledParser(mess["data"])
-                        # print("Travelled ", data)
+                        print("Travelled ", data)
 
     
     def _VLXParser(self, rawData):
@@ -64,6 +64,8 @@ class NucleoListener(ThreadWithStop):
             return 0
     
     def _TravelledParser(self, rawData):
+        # return 0
+        print("Travelled Run ", rawData)
         return 0
         Status, Data = rawData.split(";",2)[:2]
         Status = int(Status)
