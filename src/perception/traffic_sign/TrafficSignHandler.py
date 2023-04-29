@@ -67,8 +67,7 @@ class TrafficSignHandler:
                     is_done = self.handler_dict[cls].handler(self.decision_maker, object_info)
                     object.is_handle = is_done
                     is_run = True
-                    if cls == 'car': #da switch map
-                        
+                    if cls == 'car' or cls == 'parking': #da switch map
                         is_run = False
                     
         return is_run

@@ -198,7 +198,13 @@ class DecisionMakingProcess(WorkerProcess):
 
             self.CarPoseHandler.waitInitDone()
             print("DM Wait EKF Done")
+        status, messSpd = self.__CarHandlerTh.enListenVLX()
+        time.sleep(0.01)
 
+        status, messSpd = self.__CarHandlerTh.enListenVLX()
+        time.sleep(0.01)
+
+        
         # interceptionHandler = InterceptionHandler(self.imu_handler, self.__CarHandlerTh, self.historyFile) # , self.localization_thr)
         trafficSignHanlder = TrafficSignHandler(self.__CarHandlerTh, self.historyFile, self.decision_maker, self.point)
         # self._FakeRun()
@@ -238,10 +244,16 @@ class DecisionMakingProcess(WorkerProcess):
                     self.decision_maker.strategy = "LANE"
                     self.decision_maker.reiniate()
                     # print("Switch to LANE strategy")
+                    
+                if self.decision_maker.is_parking:
+                    print("Parking")
+                    self.strategy = "LANE"
+                    self.decision_maker.speed = 35
 
                 # print(f"{current_node} -----> {next_node}----- Error distance to closet node: {error_dist} ---{self.decision_maker.strategy}")
            
-                
+                dist_vlxx = self.__CarHandlerTh.GetVLXData()
+                print(dist_vlxx)
                 current_time = time.time()
                 current_time = datetime.fromtimestamp(current_time)
                 self.historyFile.write("\n" + str(current_time))
@@ -251,16 +263,13 @@ class DecisionMakingProcess(WorkerProcess):
                 
                 intercept_length, intercept_gap = self.read_intercept_detection_data()
                 object_result = self.read_object_detection_data()
+            
                 if object_result is not None:
                     if len(object_result) != 0:
                         print(object_result)
-                if self.is_stop:
-                    for obj in object_result:
-                        obj.is_handle = True
-                        time.sleep(0.1)
-                    continue
                 if trafficSignHanlder.detect(object_result, lane_data,pose) and self.decision_maker.trafic_strategy == 'LANE':
                     continue
+                
                 if not self.is_intercept and self.decision_maker.is_intercept(intercept_length, intercept_gap) and not self.is_stop: # and (current_node  not in skip_intecept_node):
                     # print('intercept')
                     self.decision_maker.strategy = "GPS"
@@ -278,7 +287,7 @@ class DecisionMakingProcess(WorkerProcess):
                 if self.decision_maker.strategy == "LANE" and self.decision_maker.trafic_strategy == 'LANE':
                     self.historyFile.write("Lane keeping angle: {}   speed: {}\n".format(angle_lane_keeping, self.decision_maker.speed))
                     angle_lane_keeping = int(angle_lane_keeping)    
-                    print('lane: ')
+                    print('lane: ',angle_lane_keeping)
                     if not self.is_stop:
                         status, messSpd = self.__CarHandlerTh.setSpeed(self.decision_maker.speed, send_attempt=1) 
                         
@@ -291,6 +300,7 @@ class DecisionMakingProcess(WorkerProcess):
                             log_message = "\nFail send angle: {} \t {}\n".format(status, 1)
                             self.historyFile.write(log_message)
                     self.__CarHandlerTh.setAngle(angle_lane_keeping)
+                    
                     self.prev_angle = angle_lane_keeping
 
 

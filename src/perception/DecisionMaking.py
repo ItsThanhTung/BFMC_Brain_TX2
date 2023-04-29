@@ -29,7 +29,9 @@ class DecisionMaking:
         self.trafic_strategy = "LANE"
         self.strategy = "LANE"  
         self.point_handler = point_handler
-
+        self.is_parking = False
+        
+        
     def stop(self):
         print('set stop')
         self.speed = 0

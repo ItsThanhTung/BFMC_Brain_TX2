@@ -2,6 +2,10 @@ from src.templates.threadwithstop import ThreadWithStop
 from multiprocessing.connection import wait
 from threading import Lock
 import time
+import numpy as np 
+from collections import deque
+
+
 class CarHandlerThread(ThreadWithStop):
     def __init__(self, shInPs, shOutP, enablePID = True, AckTimeout = 0.05, sendAttempTimes:int = 2):
         """
@@ -41,6 +45,8 @@ class CarHandlerThread(ThreadWithStop):
         else:
             self.__sendAttemp = sendAttempTimes
         
+        self._VLXData = None
+        self.__VLXLock = Lock()
         
         self.enablePID(enablePID)
         time.sleep(0.001)
@@ -54,21 +60,37 @@ class CarHandlerThread(ThreadWithStop):
         time.sleep(0.001)
         self.setSpeed(0.001)
 
+    def GetVLXData(self):
+        return self.VLXData
+    
+    @property
+    def VLXData(self):
+        with self.__VLXLock:
+            data = self._VLXData
+        return data
+    
+    @VLXData.setter
+    def VLXData(self, newData):
+        with self.__VLXLock:
+            self._VLXData = newData
+    
 
-        
-
+    
     
     def run(self):
         readers=[]
-        readers.append(self.__shInPs["DIST"])
-        readers.append(self.__shInPs["GETSPEED"])
+        readers.append(self.__shInPs["VLX"])
+        
+        vlxx_queue = deque(maxlen=5)
+        
         while(self._running):
             for inP in wait(readers):
                 try:
-                    mess = inP.recv()
-                    if mess['action'] =='7':
-                        # print("Car Handler Mess", mess)
-                        self._distanceProcess(mess['data'])
+                    data = inP.recv()
+                    if inP == self.__shInPs["VLX"]:
+                        vlxx_queue.append(data)
+                        self.VLXData = np.mean(vlxx_queue, axis=0)
+                        # print("DM VLX ", self.VLXData)
                 except:
                     print("Pipe Error ", inP)
 

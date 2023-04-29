@@ -34,7 +34,8 @@ class NucleoListener(ThreadWithStop):
                         # print("Encoder Speed ", data)
                     elif mess["action"] == "8":
                         data = self._VLXParser(mess["data"])
-                        # self._outPs["VLX"].send(data)
+                        # print("VLX Data ",data)
+                        self._outPs["VLX"].send(data)
                     elif mess["action"] == "9":
                         data = self._TravelledParser(mess["data"])
                         # print("Travelled ", data)
@@ -43,7 +44,7 @@ class NucleoListener(ThreadWithStop):
     def _VLXParser(self, rawData):
         Data = rawData.split(";",4)
         try:
-            DataInt = [int(i) for i in Data[:4]]
+            DataInt = [int(i) for i in Data[1:5]]
         except:
             return [0,0,0,0]
         return DataInt
