@@ -78,12 +78,15 @@ class LaneKeepingProcess(WorkerProcess):
         if self._blocker.is_set():
             return
         laneTh = Thread(name='LaneKeepingThread',target = self._run, args= (self.inPs[0], self.outPs[0]))
-        laneObjectTh = Thread(name='ReadObjectDataThread',target = self._read_object_data_thread)
         laneTh.daemon = True
-        laneObjectTh.daemon = True
+        
         
         self.threads.append(laneTh)
-        self.threads.append(laneObjectTh)
+
+        if not self.is_remote:
+            laneObjectTh = Thread(name='ReadObjectDataThread',target = self._read_object_data_thread)
+            laneObjectTh.daemon = True
+            self.threads.append(laneObjectTh)
 
 
     def _read_object_data_thread(self):
