@@ -28,7 +28,7 @@ class TrafficSignHandler:
         self.point_handler = point_handler
 
         self.handler_dict = {"stop" : StopSignHandler(car_handler, self.logger), "pedestrian" : PedestrianHandler(car_handler, self.logger),
-                             "parking" : ParkingHandler(car_handler, self.logger), "crosswalk" :CrossWalkHandler(car_handler, logger),
+                             "parking" : ParkingHandler(car_handler, self.logger,self.point_handler), "crosswalk" :CrossWalkHandler(car_handler, logger),
                              "highway_entry" : HighWayEntryHandler(car_handler, self.logger), "highway_exit" : HighWayExitHandler(car_handler, self.logger),
                              "traffic_light" : TrafficLightHandler(car_handler, self.logger), \
                              "car" : CarObjectHandler(car_handler, self.logger, self.point_handler)}
@@ -60,10 +60,10 @@ class TrafficSignHandler:
                 object_info = [center, dist, object, lane_data, object.new_cls]   # still missing
 
                 if self.handler_dict[cls].is_handle(object_info):
-                    if cls == 'car' or cls =='road_block':
-                        self.decision_maker.start_switch_node = np.array([pos['x'],pos['y']])
-                        _, _, local_nodes = self.point_handler.get_closest_node(pos)
-                        self.decision_maker.end_switch_node = local_nodes[-1]+3
+                    # if cls == 'car' or cls =='road_block':
+                    #     self.decision_maker.start_switch_node = np.array([pos['x'],pos['y']])
+                    #     _, _, local_nodes = self.point_handler.get_closest_node(pos)
+                    #     self.decision_maker.end_switch_node = local_nodes[-1]+3
                     is_done = self.handler_dict[cls].handler(self.decision_maker, object_info)
                     object.is_handle = is_done
                     is_run = True
