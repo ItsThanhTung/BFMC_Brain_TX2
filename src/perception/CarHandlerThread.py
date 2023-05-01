@@ -82,21 +82,22 @@ class CarHandlerThread(ThreadWithStop):
         readers.append(self.__shInPs["VLX"])
         readers.append(self.__shInPs["DIST"])
 
-        vlxx_queue = deque(maxlen=5)
+        vlxx_queue = deque(maxlen=10)
         
         while(self._running):
             for inP in wait(readers):
-                try:
+                # try:
+                if True:
                     data = inP.recv()
                     if inP == self.__shInPs["VLX"]:
                         vlxx_queue.append(data)
                         self.VLXData = np.mean(vlxx_queue, axis=0)
                         # print("DM VLX ", self.VLXData)
                     elif inP == self.__shInPs["DIST"]:
-                        print("Pipe ",self.__shInPs["DIST"])
+                        # print("Pipe ",self.__shInPs["DIST"])
                         self._distanceProcess(data["data"])
-                except:
-                    print("Pipe Error ", inP)
+                # except:
+                    # print(" DM Car Handler Pipe Error ", inP)
 
     def _distanceProcess(self, Data):
         try:
@@ -106,7 +107,7 @@ class CarHandlerThread(ThreadWithStop):
             print("Split Error")
         if Status == "1":
             self.__DistanceLock.acquire()
-            self.__DistanceStatus, self.__DistanceMess = int(Status), int(Mess)
+            self.__DistanceStatus, self.__DistanceMess = int(Status), float(Mess)
             self.__DistanceLock.release()
         # print(Status, mess)
     
@@ -121,7 +122,7 @@ class CarHandlerThread(ThreadWithStop):
             if cnt > 5:
                 self.moveDistance(Distance)
                 cnt = 0
-            if Distance - getDist < AllowError:
+            if np.abs(Distance - getDist) < AllowError:
                 return
             time.sleep(0.01)
 

@@ -269,22 +269,47 @@ class DecisionMakingProcess(WorkerProcess):
 
                 # print(self.decision_maker.is_parking)
                 if self.decision_maker.is_parking:
-                    self.decision_maker.speed = 25
+                    self.decision_maker.speed = 35
                     self.objectP.send(object_result)
                     data = self.__CarHandlerTh.GetVLXData()
                     print("VLXX data: ", data)
                     # if data[3] < 200:
                     #     self.decision_maker.speed = 20
                     if data[2] < 400:
+                        print('cur node: ',current_node)
+                        self.__CarHandlerTh.setSpeed(0, send_attempt=100) 
+                        time.sleep(100)
+                        
+                        
+                        
+                        
                         self.__CarHandlerTh.setSpeed(0, send_attempt=100) 
                         # self.__CarHandlerTh.moveDistance()
-                        time.sleep(3)
+                        time.sleep(2)
                         self.__CarHandlerTh.setAngle(-2, send_attempt= 10)
-                        self.__CarHandlerTh.moveDistance_Block(0.2)
+                        self.__CarHandlerTh.moveDistance_Block(0.7, 0.05)
+                        self.__CarHandlerTh.setSpeed(0)
+                        time.sleep(2)
+                        self.__CarHandlerTh.setAngle(-2, send_attempt= 10)
+                        self.__CarHandlerTh.moveDistance_Block(0.4, 0.05)
+                        self.__CarHandlerTh.setSpeed(0)
+                        time.sleep(2)
+                        self.__CarHandlerTh.setAngle(-15, send_attempt= 10)
+                        self.__CarHandlerTh.moveDistance_Block(0.4, 0.05)
+                        self.__CarHandlerTh.setSpeed(0)
+                        time.sleep(2)
                         self.__CarHandlerTh.setAngle(10, send_attempt= 10)
-                        self.__CarHandlerTh.moveDistance_Block(0.2)
-
-
+                        self.__CarHandlerTh.moveDistance_Block(-0.5, 0.05)
+                        self.__CarHandlerTh.setSpeed(0)
+                        time.sleep(2)
+                        self.__CarHandlerTh.setAngle(-20, send_attempt= 10)
+                        self.__CarHandlerTh.moveDistance_Block(-0.5, 0.05)
+                        self.__CarHandlerTh.setSpeed(0)
+                        time.sleep(2)
+                        self.__CarHandlerTh.setAngle(0, send_attempt= 10)
+                        self.__CarHandlerTh.moveDistance_Block(0.2, 0.05)
+                        self.__CarHandlerTh.setSpeed(0)
+                        time.sleep(2)
                         print("End Move")
                         time.sleep(100)
 
@@ -362,7 +387,7 @@ class DecisionMakingProcess(WorkerProcess):
 
     def _TestRun2(self):
         print("Test Run 2")
-        self.__CarHandlerTh.moveDistance(0.5)
+        self.__CarHandlerTh.moveDistance(-0.5)
         # time.sleep(0.1)
         # self.__CarHandlerTh.moveDistance(0.5)
 

@@ -37,8 +37,9 @@ class NucleoListener(ThreadWithStop):
                         # print("VLX Data ",data)
                         self._outPs["VLX"].send(data)
                     elif mess["action"] == "9":
-                        data = self._TravelledParser(mess["data"])
-                        print("Travelled ", data)
+                        # data = self._TravelledParser(mess["data"])
+                        # print("Travelled ", data)
+                        pass
 
     
     def _VLXParser(self, rawData):
