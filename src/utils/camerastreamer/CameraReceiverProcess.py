@@ -34,7 +34,7 @@ import socket
 import struct
 import numpy as np
 
-
+import os 
 import cv2
 from threading import Thread
 
@@ -46,7 +46,7 @@ from src.templates.workerprocess import WorkerProcess
 
 class CameraReceiverProcess(WorkerProcess):
     # ===================================== INIT =========================================
-    def __init__(self, inPs, outPs, imgSize, port):
+    def __init__(self, inPs, outPs, imgSize, port, path, is_spoof):
         """Process used for debugging. Can be used as a direct frame analyzer, instead of using the VNC
         It receives the images from the raspberry and displays them.
 
@@ -60,11 +60,15 @@ class CameraReceiverProcess(WorkerProcess):
         super(CameraReceiverProcess,self).__init__(inPs, outPs)
         self.port       =   port
         self.imgSize    = imgSize
+        self.count      = 0
+        self.path       = path
+        self.is_spoof   = is_spoof
     # ===================================== RUN ==========================================
     def run(self):
         """Apply the initializers and start the threads. 
         """
-        self._init_socket()
+        if not self.is_spoof:
+            self._init_socket()
         super(CameraReceiverProcess,self).run()
 
     # ===================================== INIT SOCKET ==================================
@@ -84,8 +88,15 @@ class CameraReceiverProcess(WorkerProcess):
     def _init_threads(self):
         """Initialize the read thread to receive and display the frames.
         """
-        readTh = Thread(name='StreamReceivingThread',target = self._read_stream, args= (self.outPs,))
-        self.threads.append(readTh)
+        if not self.is_spoof:
+            print("INITINITINITINITINITINITINITINITINITINITINITINITINITINITINITINITINITINITINITINITINITINITINITINITINITINITINITINITINITINIT")
+            readTh = Thread(name='StreamReceivingThread',target = self._read_stream, args= (self.outPs,))
+            self.threads.append(readTh)
+        else:
+            print("NOT INITNOT INITNOT INITNOT INITNOT INITNOT INITNOT INITNOT INITNOT INITNOT INIT")
+            readTh = Thread(name='SpoofReceivingThread',target = self._read_spoof)
+            self.threads.append(readTh)
+
 
     # ===================================== READ STREAM ==================================
     def _read_stream(self, outPs):
@@ -104,8 +115,34 @@ class CameraReceiverProcess(WorkerProcess):
                 image = np.reshape(image, self.imgSize)
             
                 stamp = time.time()
+             
+                if self.path is not None:
+                    self.count+=1
+                    image_path = os.path.join(self.path, str(self.count).zfill(7) + ".jpg")
+                    cv2.imwrite(image_path, image)
+
                 for outP in outPs:
                     outP.send({"image": image})
+
+        except:
+            pass
+        finally:
+            self.connection.close()
+            self.server_socket.close()
+
+
+    def _read_spoof(self):
+        """Read the image from input stream, decode it and display it with the CV2 library.
+        """
+        try:
+            while True:
+                # decode image
+                for path in os.listdir(self.path):
+                    image_path = os.path.join(self.path, path)
+
+                    image = cv2.imread(image_path)
+                    for outP in self.outPs:
+                        outP.send({"image": image})
 
         except:
             pass
