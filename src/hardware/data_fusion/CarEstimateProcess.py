@@ -231,7 +231,7 @@ class CarEstimateProcess(WorkerProcess):
                     Data = inP.recv()
                     # print("Pipe rcv ", Data)
                 except:
-                    print("Pipe Error ", inP)
+                    print("Car Estimate Pipe Error ", inP)
                 else:
                     if inP == self.inPs["IMU"]:
                         self.IMU = Data

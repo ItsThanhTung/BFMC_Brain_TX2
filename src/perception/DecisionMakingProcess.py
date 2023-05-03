@@ -208,7 +208,7 @@ class DecisionMakingProcess(WorkerProcess):
         
         # interceptionHandler = InterceptionHandler(self.imu_handler, self.__CarHandlerTh, self.historyFile) # , self.localization_thr)
         trafficSignHanlder = TrafficSignHandler(self.__CarHandlerTh, self.historyFile, self.decision_maker, self.point,self.CarPoseHandler)
-        # self._FakeRun()
+        # self._TestRun2()
         # time.sleep(10)
         self.test_inter = False
         prev_SendTime = time.time()
@@ -234,6 +234,8 @@ class DecisionMakingProcess(WorkerProcess):
                 self.planer.update_point(pose)
                 current_node, error_dist, local_node = self.point.get_closest_node(pose)
                 if len(local_node) == 1:
+                    self.__CarHandlerTh.setSpeed(0,send_attempt=100)
+                    time.sleep(100)
                     raise Exception("This is the end of the map")
                 next_node, next_point = local_node[1], self.point.get_point(local_node[1])
                 
@@ -267,8 +269,50 @@ class DecisionMakingProcess(WorkerProcess):
 
                 # print(self.decision_maker.is_parking)
                 if self.decision_maker.is_parking:
-                    self.decision_maker.speed = 25
+                    self.decision_maker.speed = 35
                     self.objectP.send(object_result)
+                    data = self.__CarHandlerTh.GetVLXData()
+                    print("VLXX data: ", data)
+                    # if data[3] < 200:
+                    #     self.decision_maker.speed = 20
+                    if data[2] < 400:
+                        print('cur node: ',current_node)
+                        self.__CarHandlerTh.setSpeed(0, send_attempt=100) 
+                        time.sleep(100)
+                        
+                        
+                        
+                        
+                        self.__CarHandlerTh.setSpeed(0, send_attempt=100) 
+                        # self.__CarHandlerTh.moveDistance()
+                        time.sleep(2)
+                        self.__CarHandlerTh.setAngle(-2, send_attempt= 10)
+                        self.__CarHandlerTh.moveDistance_Block(0.7, 0.05)
+                        self.__CarHandlerTh.setSpeed(0)
+                        time.sleep(2)
+                        self.__CarHandlerTh.setAngle(-2, send_attempt= 10)
+                        self.__CarHandlerTh.moveDistance_Block(0.4, 0.05)
+                        self.__CarHandlerTh.setSpeed(0)
+                        time.sleep(2)
+                        self.__CarHandlerTh.setAngle(-15, send_attempt= 10)
+                        self.__CarHandlerTh.moveDistance_Block(0.4, 0.05)
+                        self.__CarHandlerTh.setSpeed(0)
+                        time.sleep(2)
+                        self.__CarHandlerTh.setAngle(10, send_attempt= 10)
+                        self.__CarHandlerTh.moveDistance_Block(-0.5, 0.05)
+                        self.__CarHandlerTh.setSpeed(0)
+                        time.sleep(2)
+                        self.__CarHandlerTh.setAngle(-20, send_attempt= 10)
+                        self.__CarHandlerTh.moveDistance_Block(-0.5, 0.05)
+                        self.__CarHandlerTh.setSpeed(0)
+                        time.sleep(2)
+                        self.__CarHandlerTh.setAngle(0, send_attempt= 10)
+                        self.__CarHandlerTh.moveDistance_Block(0.2, 0.05)
+                        self.__CarHandlerTh.setSpeed(0)
+                        time.sleep(2)
+                        print("End Move")
+                        time.sleep(100)
+
 
                     # send pipe object result 
                 
@@ -337,13 +381,22 @@ class DecisionMakingProcess(WorkerProcess):
                     # if np.abs(self.prev_angle - angle_lane_keeping) > 10:
                     #     self.historyFile.write("\n \n \n ******************* OFF ANGLE ***************************\n \n \n")
 
+
+            # print("Status {} Mess {}".format(Status, Mess))
+
+
     def _TestRun2(self):
-        self.__CarHandlerTh.moveDistance(2)
-        time.sleep(1)
+        print("Test Run 2")
+        self.__CarHandlerTh.moveDistance(-0.5)
+        # time.sleep(0.1)
+        # self.__CarHandlerTh.moveDistance(0.5)
+
+        # time.sleep(1)
         while(True):
             time.sleep(0.2)
             Status, Mess = self.__CarHandlerTh.getDistanceStatus()
             print("Status {} Mess {}".format(Status, Mess))
+        
     def _FakeRun(self):
         time.sleep(10)
         print("Start Run")

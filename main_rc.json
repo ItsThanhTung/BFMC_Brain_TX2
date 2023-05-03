@@ -31,9 +31,9 @@
     "x_ratio": 0.8,
     "y_ratio": 0.2,
     "y_dist": 100,
-    "x_dist": 30,
-    "min_length": 20,
-    "middle_point_ratio": 0.45,
+    "x_dist": 50,
+    "min_length": 50,
+    "middle_point_ratio": 0.25,
     "angle_scale_ratio": 0.4
   },
   "REMOTE": {

@@ -6,8 +6,10 @@ import joblib
 class Point:
     def __init__(self):
         self.main_map_arr = joblib.load('src/data/localisationssystem/data__22_04_12_15.pkl')
+        
         self.sub_map_arr = joblib.load('src/data/localisationssystem/data__22_04_12_24.pkl')
         self.main_trajectory = np.arange(len(self.main_map_arr))
+        # self.main_trajectory.append(0)
         self.sub_trajectory = np.arange(len(self.sub_map_arr))
 
         self.local_node = None

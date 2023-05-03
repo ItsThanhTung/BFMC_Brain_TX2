@@ -168,18 +168,12 @@ class LaneKeeping:
     
 
     def lane_keeping(self, edge_image, object_info):
-        print(object_info)
         if object_info is not None:
-            print("Lane: ", object_info)
             for object_box in object_info:
                 if object_box.clss_max == 'car':
-                    tlwh=object_box.tlwh/2
-                    # tlwh=[0,0,100,100]
-                    # mask=np.zeros_like(edge_image)
-                    # print(".")
-                    # print((int(tlwh[0]),int(tlwh[1])), (int(tlwh[0]+tlwh[2]),int(tlwh[1]+tlwh[3])))
+                    tlwh=object_box.tlwh/2  # scale to 240 320
+              
                     edge_image=cv2.rectangle(edge_image, (int(tlwh[0]),int(tlwh[1])), (int(tlwh[0]+tlwh[2]),int(tlwh[1]+tlwh[3])), 0, -1)
-                    # cv2.imwrite("debug.jpg",edge_image)
 
 
         image_size = edge_image.shape
