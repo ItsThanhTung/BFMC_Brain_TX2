@@ -254,7 +254,12 @@ class LaneKeeping:
 
             angle = angle * self.opt["angle_scale_ratio"]                                   # Scale angle to the small value to maintain the stability    
             
-        angle = np.clip(angle, -23, 23)                                                     
+        angle = np.clip(angle, -23, 23)     
+        if np.abs(self.prev_angle - angle) > 23:
+            angle = self.prev_angle
+        else:
+            self.prev_angle = angle
+
         speed = calculate_speed(angle, max_speed = 100)                                     # Calculate speed using gaussian function
 
         if self.debug:
