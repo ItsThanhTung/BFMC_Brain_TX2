@@ -68,6 +68,10 @@ if __name__ == '__main__':
     enableYolo = False
     enableFilter = True
     enableLocalizeStream = True
+
+    lane_path = r'D:\bosch\lane_video_4'
+    object_path = r'D:\bosch\object_video_3'
+    is_spoof = True
     
     # =========================== Object Detection ===========================================
     
@@ -90,12 +94,12 @@ if __name__ == '__main__':
     camLaneStR, camLaneStS = Pipe(duplex = False)           # camera  ->  streamer
     
     
-    camProc = CameraReceiverProcess([],[camLaneStS], (240, 320, 3), 2244)
+    camProc = CameraReceiverProcess([],[camLaneStS], (240, 320, 3), 2244, path=lane_path, is_spoof=is_spoof)
     allProcesses.append(camProc)
     
     
     if enableYolo:
-        camObjectProc = CameraReceiverProcess([],[camObjectStS], (480, 640, 3), 2233)
+        camObjectProc = CameraReceiverProcess([],[camObjectStS], (480, 640, 3), 2233, path=object_path, is_spoof=is_spoof)
         allProcesses.append(camObjectProc)
 
     if enableLocalizeStream:

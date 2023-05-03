@@ -5,7 +5,7 @@ from src.image_processing.LaneDebugging import LaneDebugging
 from src.image_processing.LaneKeeping import LaneKeeping
 from src.utils.utils_function import load_config_file
 
-opt = load_config_file("main_remote.json")
+opt = load_config_file("main_rc.json")
 
 LaneDebugger = LaneDebugging()
 LaneKeeper = LaneKeeping(opt, True)
@@ -84,36 +84,38 @@ cv2.createTrackbar("value", "adaptive_block_size", 2, 255, nothing)
 cv2.namedWindow('adaptive_offset')
 cv2.createTrackbar("value", "adaptive_offset", 0, 255, nothing)
 
-while vid.isOpened():
-    ret, frame = vid.read()
-
-    if ret:
-        frame = cv2.resize(frame, (320, 240))
-        sobel_x_thres = [int(cv2.getTrackbarPos('lower_value','sobelx')), \
-                        int(cv2.getTrackbarPos('upper_value','sobelx'))]
-
-        sobel_y_thres = [int(cv2.getTrackbarPos('lower_value','sobely')), \
-                        int(cv2.getTrackbarPos('upper_value','sobely'))]
-
-        red_thres = [int(cv2.getTrackbarPos('lower_value','red')), \
-                        int(cv2.getTrackbarPos('upper_value','red'))]
-
-        adaptive_block_size = int(cv2.getTrackbarPos('value','adaptive_block_size'))
-        if adaptive_block_size % 2 == 0:
-            adaptive_block_size += 1
-
-        adaptive_offset = - int(cv2.getTrackbarPos('value','adaptive_offset'))
-
-        new_combined_binary, sybinary, image_ff = process_image(frame, sobel_x_thres, sobel_y_thres, \
-                                                                red_thres, adaptive_block_size, adaptive_offset, 3)
 
 
+while True:
+    frame = cv2.imread(r'D:\bosch\lane_video_test\0001325.jpg')
 
-        cv2.imshow("frame", frame)
-        cv2.imshow("preprocessed_image", new_combined_binary)
 
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
+    frame = cv2.resize(frame, (320, 240))
+    sobel_x_thres = [int(cv2.getTrackbarPos('lower_value','sobelx')), \
+                    int(cv2.getTrackbarPos('upper_value','sobelx'))]
+
+    sobel_y_thres = [int(cv2.getTrackbarPos('lower_value','sobely')), \
+                    int(cv2.getTrackbarPos('upper_value','sobely'))]
+
+    red_thres = [int(cv2.getTrackbarPos('lower_value','red')), \
+                    int(cv2.getTrackbarPos('upper_value','red'))]
+
+    adaptive_block_size = int(cv2.getTrackbarPos('value','adaptive_block_size'))
+    if adaptive_block_size % 2 == 0:
+        adaptive_block_size += 1
+
+    adaptive_offset = - int(cv2.getTrackbarPos('value','adaptive_offset'))
+
+    new_combined_binary, sybinary, image_ff = process_image(frame, sobel_x_thres, sobel_y_thres, \
+                                                            red_thres, adaptive_block_size, adaptive_offset, 3)
+
+
+
+    cv2.imshow("frame", frame)
+    cv2.imshow("preprocessed_image", new_combined_binary)
+
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
 
     
 
