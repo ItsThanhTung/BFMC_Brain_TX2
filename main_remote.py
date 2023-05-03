@@ -65,13 +65,13 @@ if __name__ == '__main__':
     
     is_remote = True
     is_show = True
-    enableYolo = False
+    enableYolo = True
     enableFilter = True
     enableLocalizeStream = True
 
-    lane_path = r'D:\bosch\lane_video_4'
-    object_path = r'D:\bosch\object_video_3'
-    is_spoof = True
+    lane_path =  None # r'D:\bosch\afternoon\lane_video_4'
+    object_path = None # r'D:\bosch\afternoon\object_video_4'
+    is_spoof = False
     
     # =========================== Object Detection ===========================================
     

@@ -89,11 +89,9 @@ class CameraReceiverProcess(WorkerProcess):
         """Initialize the read thread to receive and display the frames.
         """
         if not self.is_spoof:
-            print("INITINITINITINITINITINITINITINITINITINITINITINITINITINITINITINITINITINITINITINITINITINITINITINITINITINITINITINITINITINIT")
             readTh = Thread(name='StreamReceivingThread',target = self._read_stream, args= (self.outPs,))
             self.threads.append(readTh)
         else:
-            print("NOT INITNOT INITNOT INITNOT INITNOT INITNOT INITNOT INITNOT INITNOT INITNOT INIT")
             readTh = Thread(name='SpoofReceivingThread',target = self._read_spoof)
             self.threads.append(readTh)
 
