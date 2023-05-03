@@ -99,10 +99,10 @@ class LaneKeeping:
         right_anchor, _ = self.get_middle_point(right_anchor)
 
         if left_anchor is None:                                                             # If we could not find left or right point, init the dummy point
-            left_anchor = [30, anchor_height]               
+            left_anchor = [-1, anchor_height]               
 
         if right_anchor is None:
-            right_anchor = [290, anchor_height]
+            right_anchor = [320, anchor_height]
 
         left_points = []
         right_points = []
@@ -133,11 +133,13 @@ class LaneKeeping:
                     if left_offset < right_offset and abs(point[1] - left_anchor[1]) < self.opt["y_dist"]:
                         if  abs(point[0] - left_anchor[0]) < self.opt["x_dist"]:                # if anchor is not dummy anchor, we compare x_axis
                             current_left_anchor.append(point)
-                        # else:
-                        #     current_left_anchor.append(point)
+                        elif left_anchor[0] == -1:
+                            current_left_anchor.append(point)
 
                     elif left_offset > right_offset and abs(point[1] - right_anchor[1]) < self.opt["y_dist"]:
                         if  abs(point[0] - right_anchor[0]) < self.opt["x_dist"]:             # if anchor is not dummy anchor, we compare x_axis
+                            current_right_anchor.append(point)
+                        elif right_anchor[0] == 320:
                             current_right_anchor.append(point)
                         # else:
                         #     current_right_anchor.append(point)
@@ -206,7 +208,7 @@ class LaneKeeping:
         if len(left_points) == 0 and len(right_points) == 0:                                # If there is no lane
             state = self.prev_state                                                         # Remain the same angle and the same state
             angle = self.prev_angle
-            middle_point_x = w//2
+            middle_point_x = w//2 
 
         elif len(left_points) == 0 and len(right_points) != 0:                              # If there is only right lane
             state = -1                                                                      # Turn max angle to the left                   

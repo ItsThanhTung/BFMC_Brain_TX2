@@ -82,7 +82,7 @@ class CarHandlerThread(ThreadWithStop):
         readers.append(self.__shInPs["VLX"])
         readers.append(self.__shInPs["DIST"])
 
-        vlxx_queue = deque(maxlen=10)
+        vlxx_queue = deque(maxlen=5)
         
         while(self._running):
             for inP in wait(readers):

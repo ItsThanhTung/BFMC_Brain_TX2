@@ -7,7 +7,7 @@
       "mid" : 0.5
     },
     "sobel_x_thres": [
-      50,
+      25,
       255
     ],
     "sobel_y_thres": [
@@ -33,16 +33,16 @@
     "y_dist": 100,
     "x_dist": 50,
     "min_length": 50,
-    "middle_point_ratio": 0.25,
-    "angle_scale_ratio": 0.4
+    "middle_point_ratio": 0.45,
+    "angle_scale_ratio": 0.3
   },
   "REMOTE": {
     "CAM_PATH": "/dev/video0",
-    "IP_ADDRESS": "192.168.1.150"
+    "IP_ADDRESS": "192.168.137.103"
   },
   "RC": {
     "CAM_PATH": "/dev/video0",
-    "IP_ADDRESS": "192.168.1.150"
+    "IP_ADDRESS": "192.168.137.103"
   },
   "INTERCEPT_DETECTION": {
     "crop_ratio": 0.8,
