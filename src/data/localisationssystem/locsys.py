@@ -110,7 +110,7 @@ if __name__ == '__main__':
     
     beacon = 12345
     id = 1
-    serverpublickey = 'src/data/localisationssystem/publickey_server_test.pem'
+    serverpublickey = 'src/data/localisationssystem/publickey_server.pem'
     
     gpsStR, gpsStS = Pipe(duplex = False)
     
