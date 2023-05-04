@@ -84,16 +84,18 @@ class ReadThread(ThreadWithStop):
         except:
             return
         # print("resp ",f_response)
-        
-        if l_key in self.__subscribers:
-            subscribers = self.__subscribers[l_key]
-            l_arrInfo = f_response[1:].split(":")
-            l_info = {
-                        "action":l_arrInfo[0],
-                        "data": l_arrInfo[1]
-                    }
-            for outP in subscribers:
-                outP.send(l_info)
+        try:
+            if l_key in self.__subscribers:
+                subscribers = self.__subscribers[l_key]
+                l_arrInfo = f_response[1:].split(":")
+                l_info = {
+                            "action":l_arrInfo[0],
+                            "data": l_arrInfo[1]
+                        }
+                for outP in subscribers:
+                    outP.send(l_info)
+        except:
+            return
 
     def subscribe(self, subscribing, f_key, outP):
         """Subscribe a connection to specified response from the other device in order to check the delivery of the messages or feedback form car.. 

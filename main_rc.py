@@ -64,11 +64,11 @@ from threading import Thread
 if __name__ == '__main__':
     
     # =============================== CONFIG =================================================
-    enableYolo               = False
+    enableYolo               =  True
     
     
     enableStream             =  True
-    enableStreamObject       =  False
+    enableStreamObject       =  True
     enableLaneStream         =  False
     enableInterceptStream    =  False
     
@@ -108,7 +108,7 @@ if __name__ == '__main__':
     
     cameraSendP = {"PREPROCESS_IMAGE" : camLaneStS, "OBJECT_IMAGE" : camObjectStS}
     
-    camProc = CameraProcess([], cameraSendP, cam_opt["CAM_PATH"])
+    camProc = CameraProcess([], cameraSendP, cam_opt["CAM_PATH"],opt)
     allProcesses.append(camProc)
 
         
@@ -203,14 +203,16 @@ if __name__ == '__main__':
     }
     NucListenerProc = NucleoProcess(NucListenerInPs, NucOutPs)
     allProcesses.append(NucListenerProc)
-
+    
+    objectLaneR, objectLaneS = Pipe(duplex = False) 
 
     # =============================== PreProcessing Layer ===================================================
     imagePreprocess = ImagePreprocessingProcess({"LANE_IMAGE" : camLaneStR}, {"LANE_KEEPING" : imagePreprocessS, "INTERCEPT_DETECTION" : imagePreprocessInterceptS},\
                                                                 opt , is_show, debugP=imagePreprocessStreamS, debug=enableStream)
     allProcesses.append(imagePreprocess)
 
-    laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [laneKeepingDecisionS], opt, debugP=laneKeepingDebugS, debug=enableLaneStream, is_remote=is_remote)
+    laneKeepingProcess = LaneKeepingProcess([imagePreprocessR], [laneKeepingDecisionS], opt, \
+                                    debugP=laneKeepingDebugS, debug=enableLaneStream, objectP=objectLaneR, is_remote=is_remote)
     allProcesses.append(laneKeepingProcess)
 
     interceptDetectionProcess = InterceptDetectionProcess({"IMAGE_PREPROCESSING" : imagePreprocessInterceptR}, {"DECISION_MAKING" : interceptDecisionS}, \
@@ -242,7 +244,8 @@ if __name__ == '__main__':
         "ENPID": shEnPIDR,
         "GETSPEED": shGetSpdR,
         "DIST": shDistR,
-        "TRAVELLED": TravelledR 
+        "TRAVELLED": TravelledR,
+        "VLX":VLXDataR
     }
     dmInps = {"LANE_KEEPING" : laneKeepingDecisionR, 
               "INTERCEPT_DETECTION" : interceptDecisionR, 
@@ -255,7 +258,7 @@ if __name__ == '__main__':
         "StateEstimate": SetStateS
     }
     if not is_remote:
-        decisionMakingProcess = DecisionMakingProcess(dmInps, dmOutPs, shInps, opt["DECISION"], is_stop=is_stop)
+        decisionMakingProcess = DecisionMakingProcess(dmInps, dmOutPs, shInps, opt["DECISION"], objectP=objectLaneS, is_stop=is_stop)
         allProcesses.append(decisionMakingProcess)
         
     # SerialHandler Process

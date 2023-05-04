@@ -2,6 +2,10 @@ from src.templates.threadwithstop import ThreadWithStop
 from multiprocessing.connection import wait
 from threading import Lock
 import time
+import numpy as np 
+from collections import deque
+
+
 class CarHandlerThread(ThreadWithStop):
     def __init__(self, shInPs, shOutP, enablePID = True, AckTimeout = 0.05, sendAttempTimes:int = 2):
         """
@@ -41,6 +45,8 @@ class CarHandlerThread(ThreadWithStop):
         else:
             self.__sendAttemp = sendAttempTimes
         
+        self._VLXData = None
+        self.__VLXLock = Lock()
         
         self.enablePID(enablePID)
         time.sleep(0.001)
@@ -54,33 +60,73 @@ class CarHandlerThread(ThreadWithStop):
         time.sleep(0.001)
         self.setSpeed(0.001)
 
+    def GetVLXData(self):
+        return self.VLXData
+    
+    @property
+    def VLXData(self):
+        with self.__VLXLock:
+            data = self._VLXData
+        return data
+    
+    @VLXData.setter
+    def VLXData(self, newData):
+        with self.__VLXLock:
+            self._VLXData = newData
+    
 
-        
-
+    
     
     def run(self):
         readers=[]
+        readers.append(self.__shInPs["VLX"])
         readers.append(self.__shInPs["DIST"])
-        readers.append(self.__shInPs["GETSPEED"])
+
+        vlxx_queue = deque(maxlen=5)
+        
         while(self._running):
             for inP in wait(readers):
-                try:
-                    mess = inP.recv()
-                    if mess['action'] =='7':
-                        # print("Car Handler Mess", mess)
-                        self._distanceProcess(mess['data'])
-                except:
-                    print("Pipe Error ", inP)
+                # try:
+                if True:
+                    data = inP.recv()
+                    if inP == self.__shInPs["VLX"]:
+                        vlxx_queue.append(data)
+                        self.VLXData = np.mean(vlxx_queue, axis=0)
+                        # print("DM VLX ", self.VLXData)
+                    elif inP == self.__shInPs["DIST"]:
+                        # print("Pipe ",self.__shInPs["DIST"])
+                        self._distanceProcess(data["data"])
+                # except:
+                    # print(" DM Car Handler Pipe Error ", inP)
 
     def _distanceProcess(self, Data):
-        self.__DistanceLock.acquire()
         try:
             # print("Data", Data)
-            self.__DistanceStatus, self.__DistanceMess = Data.split(";", 2)[:2]
+            Status, Mess = Data.split(";", 2)[:2]
         except:
             print("Split Error")
-        self.__DistanceLock.release()
-        
+        if Status == "1":
+            self.__DistanceLock.acquire()
+            self.__DistanceStatus, self.__DistanceMess = int(Status), float(Mess)
+            self.__DistanceLock.release()
+        # print(Status, mess)
+    
+    def moveDistance_Block(self, Distance, AllowError = 0.05):
+        self.moveDistance(float(Distance))
+        cnt = 0
+        while(True):
+            Status, getDist = self.getDistanceStatus()
+            print("Status Dist ", Status, getDist)
+            if Status < 0:
+                cnt+= 1
+            if cnt > 5:
+                self.moveDistance(Distance)
+                cnt = 0
+            if np.abs(Distance - getDist) < AllowError:
+                return
+            time.sleep(0.01)
+
+
     def enablePID(self, Enable = True):
         data = {
         "action": '4',
@@ -180,6 +226,9 @@ class CarHandlerThread(ThreadWithStop):
             "data":"OK"
         }
         # print("sh Pipe ", self.__shOutP)
+        self.__DistanceLock.acquire()
+        self.__DistanceStatus, self.__DistanceMess = -1, 0
+        self.__DistanceLock.release()
         self._shSend(self.__shOutP, data)
         return 0, "OK"
 
@@ -187,7 +236,7 @@ class CarHandlerThread(ThreadWithStop):
 
     def getDistanceStatus(self):
         self.__DistanceLock.acquire()
-        Status, mess = int(self.__DistanceStatus), self.__DistanceMess
+        Status, mess = self.__DistanceStatus, self.__DistanceMess
         self.__DistanceLock.release()
         return Status, mess
 

@@ -101,11 +101,13 @@ class STrack(BaseTrack):
         self.new_cls = new_track.cls
         
         if len(self.cls_arr)>10:
-            self.clss_max=most(self.cls_arr)
+            self.clss_max=most(self.cls_arr[-10:])
+            # self.clss_max=self.cls_arr[-1]
             
             
         else:
             self.clss_max=most(self.cls_arr)
+            # self.clss_max=self.cls_arr[-1]
         
         
             
@@ -184,7 +186,7 @@ class BYTETracker(object):
 
         self.frame_id = 0
         #self.det_thresh = args.track_thresh
-        self.det_thresh = 0.8
+        self.det_thresh = 0.7
         self.buffer_size = int(30)
         self.max_time_lost = self.buffer_size
         self.kalman_filter = KalmanFilter()

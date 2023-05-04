@@ -193,9 +193,10 @@ class CarEstimateProcess(WorkerProcess):
             self.CarFilter.predict(inputMat,dt)
 
             Coor = GetGPS(DataJson)
-            if(Coor[0] != prev_Coor[0] or Coor[1] != prev_Coor[1]):
-                self.CarFilter.GPS_Update(Coor[0], Coor[1])
-                prev_Coor = Coor
+            # if(Coor[0] != prev_Coor[0] or Coor[1] != prev_Coor[1]):
+            #     self.CarFilter.GPS_Update(Coor[0], Coor[1])
+            #     prev_Coor = Coor
+            self.CarFilter.GPS_Update(Coor[0], Coor[1])
 
             self.CarFilter.IMU_Update(GetIMUHeading(DataJson))
 
@@ -231,7 +232,7 @@ class CarEstimateProcess(WorkerProcess):
                     Data = inP.recv()
                     # print("Pipe rcv ", Data)
                 except:
-                    print("Pipe Error ", inP)
+                    print("Car Estimate Pipe Error ", inP)
                 else:
                     if inP == self.inPs["IMU"]:
                         self.IMU = Data

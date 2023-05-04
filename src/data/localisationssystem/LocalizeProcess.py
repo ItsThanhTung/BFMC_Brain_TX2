@@ -13,13 +13,15 @@ class LocalizeProcess(WorkerProcess):
         self.debugP = debugP
         self.point= None
         self.beacon = 12345
-        self.id = 0x8704
-        self.dummy = False
+        self.id = 1
+        self.dummy = True
         self.localizeCondition = Condition()
         self.gpsStR,self.gpsStS  = Pipe(duplex = False)
         self.serverpublickey = 'src/data/localisationssystem/publickey_server_test.pem'
         super(LocalizeProcess,self).__init__( None, outPs)
-        
+        self.point=[0,0]
+
+
     def run(self):
         """Apply the initializing methods and start the threads.
         """
@@ -35,8 +37,19 @@ class LocalizeProcess(WorkerProcess):
             LocalizeSytem = None
         readTh = Thread(name='LocalizeThread',target = self._run )
         readTh.daemon = True
+        update_data = Thread(name='Update localize',target=self.update_data_func)
+        update_data.daemon=True
+        self.threads.append(update_data)
         self.threads.append(readTh)
         self.threads.append(LocalizeSytem)
+
+
+    def update_data_func(self):
+        while True:
+            coora = self.gpsStR.recv()
+            self.point=[coora['coor'][1],coora['coor'][0]]
+
+
     def _run(self):
         """Obtains image, applies the required image processing and computes the steering angle value. 
         
@@ -53,17 +66,16 @@ class LocalizeProcess(WorkerProcess):
         while True:
             try:
                 
-                if not self.dummy:
-                    coora = self.gpsStR.recv()
-                    coora = ast.literal_eval(coora)
-                    self.point=[coora['coor'][1].real,coora['coor'][0].real]
-                    # print(self.point)
-                else:
-                    self.point = [0,1]
-                self.debug_data = {"x": self.point[0], "y": self.point[1]}
-                # print(self.debug_data)
+                # if not self.dummy:
+                #     # coora = self.gpsStR.recv()
+                #     # self.point=[coora['coor'][0],coora['coor'][1]]
+                #     # print(self.point)
+                # else:
+                #     self.point = [0,1]
+                point = self.point
+                self.debug_data = {"x": point[0], "y": point[1]}
                 for outP in self.outPs:      # decision 
-                    outP.send({"point" : self.point
+                    outP.send({"point" : point
                             })
 
                      
@@ -71,8 +83,34 @@ class LocalizeProcess(WorkerProcess):
                 
                 if self.debug:
                     self.debugP.send(self.debug_data)
+                time.sleep(0.05)
                 if self.dummy:
                     time.sleep(0.05)
             except Exception as e:
                 print("Localize error:", e)
+
+def read_thread(gpsStR):
+    global x,y
+    # map_vis = MapVisualize([],'/home/topo/code/new_loc/localisationsystemserver/Track_Test_White.png')
+    
+    while True:
         
+        raw = gpsStR.recv()
+        x,y = raw['coor'][0],raw['coor'][1]
+        # map_vis.plot([[x,y]])  
+        print(x,y)  
+if __name__ == '__main__':
+    
+    beacon = 12345
+    id = 1
+    serverpublickey = 'src/data/localisationssystem/publickey_server_test.pem'
+    
+    gpsStR, gpsStS = Pipe(duplex = False)
+    
+    LocalisationSystem = LocalisationSystem(id, beacon, serverpublickey, gpsStS)
+    LocalisationSystem.start()  
+    my_thread = Thread(target=read_thread, args=(gpsStR,))
+    my_thread.daemon=True
+    my_thread.start()
+    while True:
+        pass

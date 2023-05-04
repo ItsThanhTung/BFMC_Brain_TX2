@@ -17,7 +17,10 @@ class ImagePreprocessing():
         return binary
 
     def process_image(self, frame):
+        frame = cv2.GaussianBlur(frame, (3, 3), 0)
         bgr_image = np.copy(frame)
+        
+        # bgr_image = self.region_of_interest(bgr_image)
         red_channel = bgr_image[:,:,2]
 
         hls = np.float64(cv2.cvtColor(bgr_image, cv2.COLOR_BGR2HLS))
@@ -45,8 +48,29 @@ class ImagePreprocessing():
         
         new_combined_binary = combined_binary
         new_combined_binary[((combined_binary == 255) & (adaptive == 255))] = 255
+        new_combined_binary = self.region_of_interest(new_combined_binary)
+        
+        new_combined_binary = cv2.dilate(new_combined_binary, \
+                                np.ones((self.opt["dilate_kernel"], self.opt["dilate_kernel"]), np.uint8)) 
 
-        # new_combined_binary = cv2.dilate(new_combined_binary, \
-        #                         np.ones((self.opt["dilate_kernel"], self.opt["dilate_kernel"]), np.uint8)) 
+        new_combined_binary = cv2.erode(new_combined_binary, \
+                                np.ones((self.opt["dilate_kernel"], self.opt["dilate_kernel"]), np.uint8)) 
+        
 
         return new_combined_binary, sybinary, grayImg
+    
+    
+    def region_of_interest(self, frame):
+        height = frame.shape[0]
+        width = frame.shape[1]
+        mask = np.zeros_like(frame)
+
+        region_of_interest_vertices = np.array([[   (0, height-30),
+                                                    (0,height*self.opt['roi']['mid']),
+                                                    (self.opt["roi"]["left"]*width, height * self.opt["roi"]["upper"]),
+                                                    (self.opt["roi"]["right"]*width, height * self.opt["roi"]["upper"]),
+                                                    (width-1,height*self.opt['roi']['mid']),
+                                                    (width - 1, height-30)]], np.int32)
+        cv2.fillPoly(mask, region_of_interest_vertices, 255)
+        masked_image = cv2.bitwise_and(frame, mask)
+        return masked_image

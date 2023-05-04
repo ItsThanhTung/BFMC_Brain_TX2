@@ -52,7 +52,8 @@ class PositionListener:
 		self.__running = False
 		try :
 			self.__server_data.socket.close()
-		except: pass
+		except:
+			pass
 	
 	def listen(self):
 		""" 
@@ -77,7 +78,7 @@ class PositionListener:
 						continue
 					self.__streamP_pipe.send(coor)
 				except socket.timeout:
-					print("position listener socket_timeout")
+					print("position listener socket_timeout. Check if device is working")
 					# the socket was created successfully, but it wasn't received any message. Car with id wasn't detected before. 
 					pass
 				except Exception as e:

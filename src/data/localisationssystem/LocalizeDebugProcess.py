@@ -6,7 +6,7 @@ import numpy as np
 from sklearn.metrics.pairwise import euclidean_distances
 from matplotlib.markers import MarkerStyle
 from threading import Thread, Condition
-
+import joblib
 
 class LocalizeDebugProcess(WorkerProcess):
     localize_condition = Condition()
@@ -30,8 +30,28 @@ class LocalizeDebugProcess(WorkerProcess):
         self.filter = filter
         self.localize_data = {"x":0, "y":0}
         self.filter_data = {"x":0, "y":0, "Heading":0}
-        
+        self.main_map_path = 'src/data/localisationssystem/semifinal.txtt'
+        self.sub_map_path='src/data/localisationssystem/sub_semifinal.txtt'
+        self.main_map = None
+        self.sub_map = None
+        self.map_bg_path  = 'src/data/localisationssystem/gray_not.jpg'
     # ===================================== RUN ==========================================
+    def load_map(self,main_map=True):
+        map_arr = []
+        if main_map:
+            with open(self.main_map_path,'r') as f:
+                lines = f.readlines()
+                for line in lines:
+                    line = line[:-1].split(' ')
+                    map_arr.append([float(line[0]),float(line[1])])
+            self.main_map = map_arr
+        else:
+            with open(self.sub_map_path,'r') as f:
+                lines = f.readlines()
+                for line in lines:
+                    line = line[:-1].split(' ')
+                    map_arr.append([float(line[0]),float(line[1])])
+            self.sub_map = map_arr
     def run(self):
         """Apply the initializing methods and start the threads.
         """
@@ -84,45 +104,38 @@ class LocalizeDebugProcess(WorkerProcess):
             
             
     def _run(self):
-        # parser = GraphMLParser()
-        # map = parser.parse('src/data/localisationssystem/Test_track.graphml')
-        # x=[]
-        # y=[]
-        img = plt.imread('Track_Test_White.png')
-        map_arr = np.load('src/data/localisationssystem/map_arr.npy')
-        map_arr = np.loadtxt('trajectory.txt')[:, ::-1]
-        print(map_arr.shape)
-        trajectory = np.arange(len(map_arr))
-        # trajectory = np.array([10, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 0, 106, 107, 108, 109, 110, 111, 112, 5, 61, 62, 113, 114, 115, 116, 117, 118, 119])
-        # map_arr = [map_arr[i] for i in trajectory]
+        img = plt.imread(self.map_bg_path)
+        self.load_map()
+        self.load_map(main_map=False)
+        map_arr =  self.main_map
 
-        x = [row[0] for row in map_arr]
-        y = [row[1] for row in map_arr]
-        # for node in map.nodes():
-        #     x.append(node['d0'])
-        #     y.append(node['d1'])
-        # x = np.array(x).astype(float)
-        # y = np.array(y).astype(float)
+        x = [row[0] for row in self.main_map]
+        y = [row[1] for row in self.main_map]
 
-        fig, ax = plt.subplots(figsize=(6.4, 4.8))
-        img = np.fliplr(img)
-        ax.imshow(img,extent=[0,6,0,6])
+        fig, ax = plt.subplots(figsize=(13.0, 7.0))
+        # img = np.fliplr(img)
+        ax.imshow(np.flipud(img), origin='upper',extent=[0,14.65,0,15])
         fig.gca().invert_yaxis()
         (ln,) = ax.plot(x, y,marker='o', markerfacecolor='blue',linestyle='None', markersize=6,)
-        
         for i,point in enumerate(zip(x,y)):
-           
-            ax.annotate(trajectory[i],(point[0],point[1]),fontsize=6,weight = 'bold')
+            ax.annotate(i,(point[0],point[1]),fontsize=6,weight = 'bold')
+            
+        #plot sub
+        x = [row[0] for row in self.sub_map]
+        y = [row[1] for row in self.sub_map]
+        (ln,) = ax.plot(x, y,marker='o', markerfacecolor='pink',linestyle='None', markersize=6,)
+        
+        
         plt.show(block=False)
         plt.pause(0.1)
         bg = fig.canvas.copy_from_bbox(fig.bbox)
         # ax.draw_artist(ln)
         fig.canvas.blit(fig.bbox)
 
-        map_arr=[[x,y]for x,y in zip(x,y)]
+        # map_arr=[[x,y]for x,y in zip(x,y)]
         
         while True:
-            try:
+            if True:
                 # Obtain image
 
                 
@@ -158,7 +171,7 @@ class LocalizeDebugProcess(WorkerProcess):
                 fig.canvas.blit(fig.bbox)
                 fig.canvas.flush_events()
                 # fig.pause(0.1)
-            except Exception as e:
-                print("Localize show error:")
-                print(e)
+            # except Exception as e:
+            #     print("Localize show error:")
+            #     print(e)
 

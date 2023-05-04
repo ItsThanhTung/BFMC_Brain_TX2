@@ -314,6 +314,15 @@ class DetectMultiBackend(nn.Module):
             names = model.module.names if hasattr(model, 'module') else model.names  # get class names
             self.model = model  # explicitly assign for to(), cpu(), cuda(), half()
 
+        elif jit:  # TorchScript
+            LOGGER.info(f'Loading {w} for TorchScript inference...')
+            extra_files = {'config.txt': ''}  # model metadata
+            model = torch.jit.load(w, _extra_files=extra_files)
+            if extra_files['config.txt']:
+                d = json.loads(extra_files['config.txt'])  # extra_files dict
+                stride, names = int(d['stride']), d['names']
+            self.model = model  
+
         elif engine:  # TensorRT
             LOGGER.info(f'Loading {w} for TensorRT inference...')
             import tensorrt as trt  # https://developer.nvidia.com/nvidia-tensorrt-download
@@ -338,13 +347,14 @@ class DetectMultiBackend(nn.Module):
 
         self.engine=engine
         self.pt=pt
+        self.jit=jit
         # self.__dict__.update(locals())  # assign all variables to self
 
     def forward(self, im, augment=False, visualize=False, val=False):
         # YOLOv5 MultiBackend inference
         b, ch, h, w = im.shape  # batch, channel, height, width
-        if self.pt :  # PyTorch
-            y = self.model(im, augment=augment, visualize=visualize)
+        if self.pt or self.jit:  # PyTorch
+            y = self.model(im) if self.jit else self.model(im, augment=augment, visualize=visualize)
             return y if val else y[0]
 
         elif self.engine:  # TensorRT
@@ -360,9 +370,9 @@ class DetectMultiBackend(nn.Module):
     def warmup(self, imgsz=(1, 3, 640, 640), half=False):
         # Warmup model by running inference once
         if self.pt or self.jit or self.onnx or self.engine:  # warmup types
-            if isinstance(self.device, torch.device) and self.device.type != 'cpu':  # only warmup GPU models
-                im = torch.zeros(*imgsz).to(self.device).type(torch.half if half else torch.float)  # input image
-                self.forward(im)  # warmup
+            # if isinstance(self.device, torch.device):  # only warmup GPU models
+            im = torch.zeros(*imgsz).to('cuda').type(torch.half if half else torch.float)  # input image
+            self.forward(im)  # warmup
 
     @staticmethod
     def model_type(p='path/to/model.pt'):

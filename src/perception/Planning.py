@@ -1,7 +1,7 @@
 from math import radians
 import numpy as np
 import math
-
+from collections import deque
 
 class Planning:
     def __init__(self, init_x=0, init_y=0):
@@ -11,7 +11,7 @@ class Planning:
         self.y = init_y
         self.cur_angle = 0
         self.count = 0
-        
+        self.stack = deque(maxlen=5)
         
     def update_point(self, point):
         if self.count == 5:
@@ -54,33 +54,47 @@ class Planning:
                 
             else:
                 angle = 0
-            
+            self.stack.append(angle)
             self.prev_point = curr_point
             
             self.cur_angle = angle
-            return angle
+            # return angle
+            
+            return np.mean(self.stack)
+            if np.abs(angle-self.cur_angle) > 10:
+                return self.cur_angle
+            else:
+                self.cur_angle = angle
+                return angle
 
-            # if np.abs(angle-self.cur_angle) < 2:
-            #     return self.cur_angle
-            # else:
-            #     self.cur_angle = angle
-            #     return angle
             
     def is_end_intercept(self, current_node, intercept_node):
-        if intercept_node in [45, 46, 0]:
-            if current_node in [112, 5]:
+        # return False
+        if intercept_node in [0,1]:
+            if current_node in [3,4,5]:
                 return True
             else:
                 return False
             
-        elif intercept_node in [61, 62]:
-            if current_node in [119, 10, 32]:
+        elif intercept_node in [3,4,5]:
+            if current_node in [9,10,11]:
                 return True
             else:
                 return False
-
+        elif intercept_node in [11,10,9]:
+            if current_node in [15,16,17]:
+                return True
+            else:
+                return False
+        # elif intercept_node in [16,17]:
+        #     if current_node in [19,20]:
+        #         return True
+        #     else:
+        #         return False
         else:
             return False
-
+            
+    def reset_drive(self):
+        self.stack.clear()
 
 

@@ -40,7 +40,7 @@ class InterceptDetection:
 
 
     def find_maximum_connected_line(self, sybinary):
-        white_pixel_idx = np.argwhere(sybinary == 255)[:, ::-1]                     
+        white_pixel_idx = np.argwhere(sybinary == 255)[:, ::-1]    
         white_pixel_idx  = white_pixel_idx[np.argsort(white_pixel_idx[::, 0])]
         
         white_map = defaultdict(list)                                                                                 

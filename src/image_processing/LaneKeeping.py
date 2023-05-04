@@ -41,21 +41,6 @@ class LaneKeeping:
         self.prev_state = 0
 
 
-    def region_of_interest(self, frame):
-        height = frame.shape[0]
-        width = frame.shape[1]
-        mask = np.zeros_like(frame)
-
-        region_of_interest_vertices = np.array([[   (0, height-1),
-                                                    (self.opt["roi"]["left"]*width, height * self.opt["roi"]["upper"]),
-                                                    (self.opt["roi"]["right"]*width, height * self.opt["roi"]["upper"]),
-                                                    (width - 1, height-1)]], np.int32)
-
-        cv2.fillPoly(mask, region_of_interest_vertices, 255)
-        masked_image = cv2.bitwise_and(frame, mask)
-        return masked_image
-
-
     def convert_line_to_point(self, lines):
         if lines.shape[0] == 0:
             return None
@@ -97,7 +82,7 @@ class LaneKeeping:
         right_anchor = []                                                                   # The lowest pixel of right lane
 
         # Find the anchor of left or right line/ depend on which lane is lower
-        for anchor_height in range(image_height-1, 0, self.opt["anchor_step"]):
+        for anchor_height in range(image_height-1-30, 0, self.opt["anchor_step"]):
             if white_map[anchor_height] != []:
                 points = white_map[anchor_height]
                 for point in points:
@@ -146,16 +131,18 @@ class LaneKeeping:
                                     + abs(point[1] - right_anchor[1]) * self.opt["y_ratio"]
 
                     if left_offset < right_offset and abs(point[1] - left_anchor[1]) < self.opt["y_dist"]:
-                        if left_anchor[0] != -1 and abs(point[0] - left_anchor[0]) < self.opt["x_dist"]:                # if anchor is not dummy anchor, we compare x_axis
+                        if  abs(point[0] - left_anchor[0]) < self.opt["x_dist"]:                # if anchor is not dummy anchor, we compare x_axis
                             current_left_anchor.append(point)
-                        else:
+                        elif left_anchor[0] == -1:
                             current_left_anchor.append(point)
 
                     elif left_offset > right_offset and abs(point[1] - right_anchor[1]) < self.opt["y_dist"]:
-                        if right_anchor[0] != 320 and abs(point[0] - right_anchor[0]) < self.opt["x_dist"]:             # if anchor is not dummy anchor, we compare x_axis
+                        if  abs(point[0] - right_anchor[0]) < self.opt["x_dist"]:             # if anchor is not dummy anchor, we compare x_axis
                             current_right_anchor.append(point)
-                        else:
+                        elif right_anchor[0] == 320:
                             current_right_anchor.append(point)
+                        # else:
+                        #     current_right_anchor.append(point)
 
                 # find the middle point
                 left_middle_point, left_middle_points = self.get_middle_point(current_left_anchor)
@@ -180,13 +167,20 @@ class LaneKeeping:
         return pointY
     
 
-    def lane_keeping(self, edge_image):
+    def lane_keeping(self, edge_image, object_info):
+        if object_info is not None:
+            for object_box in object_info:
+                if object_box.clss_max == 'car':
+                    tlwh=object_box.tlwh/2  # scale to 240 320
+              
+                    edge_image=cv2.rectangle(edge_image, (int(tlwh[0]),int(tlwh[1])), (int(tlwh[0]+tlwh[2]),int(tlwh[1]+tlwh[3])), 0, -1)
+
+
         image_size = edge_image.shape
         h = image_size[0]
         w = image_size[1]
 
-        roi_edge_image = self.region_of_interest(edge_image)
-        left_points, right_points = self.find_left_right_lanes(roi_edge_image)              # Get left lane and right lane
+        left_points, right_points = self.find_left_right_lanes(edge_image)              # Get left lane and right lane
         
         # Init dummy variables
         left_point_x, left_point_y = 0, 0           
@@ -214,7 +208,7 @@ class LaneKeeping:
         if len(left_points) == 0 and len(right_points) == 0:                                # If there is no lane
             state = self.prev_state                                                         # Remain the same angle and the same state
             angle = self.prev_angle
-            middle_point_x = w//2
+            middle_point_x = w//2 
 
         elif len(left_points) == 0 and len(right_points) != 0:                              # If there is only right lane
             state = -1                                                                      # Turn max angle to the left                   
@@ -260,7 +254,12 @@ class LaneKeeping:
 
             angle = angle * self.opt["angle_scale_ratio"]                                   # Scale angle to the small value to maintain the stability    
             
-        angle = np.clip(angle, -23, 23)                                                     
+        angle = np.clip(angle, -23, 23)     
+        if np.abs(self.prev_angle - angle) > 23:
+            angle = self.prev_angle
+        else:
+            self.prev_angle = angle
+
         speed = calculate_speed(angle, max_speed = 100)                                     # Calculate speed using gaussian function
 
         if self.debug:
