@@ -117,14 +117,15 @@ class LocalizeDebugProcess(WorkerProcess):
         ax.imshow(np.flipud(img), origin='upper',extent=[0,14.65,0,15])
         fig.gca().invert_yaxis()
         (ln,) = ax.plot(x, y,marker='o', markerfacecolor='blue',linestyle='None', markersize=6,)
+        for i,point in enumerate(zip(x,y)):
+            ax.annotate(i,(point[0],point[1]),fontsize=6,weight = 'bold')
+            
+        #plot sub
         x = [row[0] for row in self.sub_map]
         y = [row[1] for row in self.sub_map]
         (ln,) = ax.plot(x, y,marker='o', markerfacecolor='pink',linestyle='None', markersize=6,)
         
         
-        for i,point in enumerate(zip(x,y)):
-           
-            ax.annotate(i,(point[0],point[1]),fontsize=6,weight = 'bold')
         plt.show(block=False)
         plt.pause(0.1)
         bg = fig.canvas.copy_from_bbox(fig.bbox)

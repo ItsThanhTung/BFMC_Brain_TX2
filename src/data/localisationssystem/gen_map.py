@@ -8,22 +8,6 @@ from sklearn.metrics.pairwise import euclidean_distances
 import joblib
 FROM_BEGIN = False
 filename = 'src/data/localisationssystem/compe.pkl'
-if FROM_BEGIN:
-    parser = GraphMLParser()
-    map = parser.parse('src/data/localisationssystem/Test_track.graphml')
-    x=[]
-    y=[]
-
-    for i,node in enumerate(map.nodes()):
-        if i==0:
-            continue
-        x.append(node['d0'])
-        y.append(node['d1'])
-    x = np.array(x).astype(float)
-    y = np.array(y).astype(float)
-    map_arr_raw=[[x,y]for x,y in zip(x,y)]
-    map_arr=[]
-    [map_arr.append(point) for point in map_arr_raw if point not in map_arr]
 else:
     # map_arr = np.load('src/data/localisationssystem/map_arr.npy').tolist()
     map_arr = joblib.load(filename)
