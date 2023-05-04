@@ -240,12 +240,12 @@ class DecisionMakingProcess(WorkerProcess):
 
                 if (self.decision_maker.strategy != "GPS" and error_dist > 1000.4) or self.decision_maker.trafic_strategy == 'GPS':
                     self.strategy = "GPS"
-                    # print("Switch to GPS strategy")
+                    print("Switch to GPS strategy")
 
                 elif self.decision_maker.strategy == "GPS" and not self.is_intercept and error_dist < 0.2  :
                     self.decision_maker.strategy = "LANE"
                     self.decision_maker.reiniate_map()
-                    # print("Switch to LANE strategy")
+                    print("Switch to LANE strategy")
                     
 
                 current_time = time.time()
@@ -258,22 +258,17 @@ class DecisionMakingProcess(WorkerProcess):
                 intercept_length, intercept_gap = self.read_intercept_detection_data()
                 object_result = self.read_object_detection_data()
             
-                # if object_result is not None:
-                #     if len(object_result) != 0:
-                #         print(object_result)
                         
                 if trafficSignHanlder.detect(object_result, lane_data,pose) and self.decision_maker.trafic_strategy == 'LANE':
                     continue
 
-                # print(self.decision_maker.is_parking)
                 
                 if self.decision_maker.is_parking:
                     self.decision_maker.speed = 35
                     self.objectP.send(object_result)
                     data = self.__CarHandlerTh.GetVLXData()
                     print("VLXX data: ", data)
-                    # if data[3] < 200:
-                    #     self.decision_maker.speed = 20
+              
                     
                     if data[2] < 400:
                         print('cur node: ',current_node)
@@ -351,8 +346,6 @@ class DecisionMakingProcess(WorkerProcess):
     
 
              
-
-            # print("Status {} Mess {}".format(Status, Mess))
 
 
     def _TestRun2(self):
