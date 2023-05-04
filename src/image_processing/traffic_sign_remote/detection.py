@@ -14,12 +14,12 @@ from multiprocessing import Condition
 
 class Yolo(object):
     def __init__(self, streamP, outP, is_tensorRt, source='',\
-                        imgsize= (480,640), device='0',conf_thres=0.1, iou_thres=0.45,max_det=1000): 
+                        imgsize= (640,640), device='0',conf_thres=0.1, iou_thres=0.1,max_det=1000): 
         
         if is_tensorRt: 
-            weights='ver3.engine'
+            weights='ver4_up.torchscript'
         else: 
-            weights='sign2.pt'
+            weights='ver4_up.pt'
             
         self.img_size = imgsize
         self.device = select_device(device)
@@ -56,10 +56,10 @@ class Yolo(object):
         clss=[]
         
         for i, det in enumerate(pred):  # per image
-            # annotator = Annotator(img_resized, line_width=3, example=str(self.names))
+            # annotator = Annotator(img0, line_width=3, example=str(self.names))
             det=det.cpu().detach().numpy()
             if len(det):
-                # det[:, :4] = scale_coords(im.shape, det[:, :4], im0.shape).round()
+                det[:, :4] = scale_coords(img.shape[2:], det[:, :4], img0.shape).round()
                 for (*xyxy, conf, cls) in reversed(det): 
                     c = int(cls)  # integer class
                     label = f'{self.names[c]} {conf:.2f}'
@@ -90,7 +90,7 @@ class Yolo(object):
             online_scores.append(t.score)
               
 
-        img_resized = plot_tracking(img_resized, online_tlwhs, online_centers, online_ids, frame_id=1, fps=20)
+        img_resized = plot_tracking(img0, online_tlwhs, online_centers, online_ids, frame_id=1, fps=20)
             
         
         return img_resized, results
