@@ -70,19 +70,19 @@ class Planning:
             
     def is_end_intercept(self, current_node, intercept_node):
         # return False
-        if intercept_node in [1,2,3]:
-            if current_node in [5,6,7]:
+        if intercept_node in [0,1]:
+            if current_node in [3,4,5]:
                 return True
             else:
                 return False
             
-        elif intercept_node in [20, 21, 22]:
-            if current_node in [24,25]:
+        elif intercept_node in [3,4,5]:
+            if current_node in [9,10,11]:
                 return True
             else:
                 return False
-        elif intercept_node in [26,27]:
-            if current_node in [29]:
+        elif intercept_node in [11,10,9]:
+            if current_node in [15,16,17]:
                 return True
             else:
                 return False
