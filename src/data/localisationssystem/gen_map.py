@@ -7,7 +7,7 @@ from mpl_point_clicker import clicker
 from sklearn.metrics.pairwise import euclidean_distances
 import joblib
 FROM_BEGIN = False
-filename = 'src/data/localisationssystem/data__22_04_12_15.pkl'
+filename = 'src/data/localisationssystem/compe.pkl'
 if FROM_BEGIN:
     parser = GraphMLParser()
     map = parser.parse('src/data/localisationssystem/Test_track.graphml')
@@ -28,13 +28,13 @@ else:
     # map_arr = np.load('src/data/localisationssystem/map_arr.npy').tolist()
     map_arr = joblib.load(filename)
     # map_arr = [[point[1],point[0]] for point in map_arr]
-img = plt.imread('Track_Test_White.png')
+img = plt.imread('Competition_track.png')
 img = np.fliplr(img)
 
 
 while True:
     fig, ax = plt.subplots(figsize=(6.4, 4.8))
-    ax.imshow(img,extent=[0,6,0,6])
+    ax.imshow(img,extent=[0,16,0,16])
     fig.gca().invert_yaxis()
     x = [row[0] for row in map_arr]
     y = [row[1] for row in map_arr]
