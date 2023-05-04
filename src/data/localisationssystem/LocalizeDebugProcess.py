@@ -38,13 +38,20 @@ class LocalizeDebugProcess(WorkerProcess):
     # ===================================== RUN ==========================================
     def load_map(self,main_map=True):
         map_arr = []
-        with open(self.main_map_path,'r') as f:
-            lines = f.readlines()
-            for line in lines:
-                line = line[:-1].split(' ')
-                map_arr.append([float(line[0]),float(line[1])])
         if main_map:
+            with open(self.main_map_path,'r') as f:
+                lines = f.readlines()
+                for line in lines:
+                    line = line[:-1].split(' ')
+                    map_arr.append([float(line[0]),float(line[1])])
             self.main_map = map_arr
+        else:
+            with open(self.sub_map_path,'r') as f:
+                lines = f.readlines()
+                for line in lines:
+                    line = line[:-1].split(' ')
+                    map_arr.append([float(line[0]),float(line[1])])
+            self.sub_map = map_arr
     def run(self):
         """Apply the initializing methods and start the threads.
         """
@@ -99,16 +106,21 @@ class LocalizeDebugProcess(WorkerProcess):
     def _run(self):
         img = plt.imread(self.map_bg_path)
         self.load_map()
+        self.load_map(main_map=False)
         map_arr =  self.main_map
 
-        x = [row[0] for row in map_arr]
-        y = [row[1] for row in map_arr]
+        x = [row[0] for row in self.main_map]
+        y = [row[1] for row in self.main_map]
 
         fig, ax = plt.subplots(figsize=(13.0, 7.0))
         # img = np.fliplr(img)
         ax.imshow(np.flipud(img), origin='upper',extent=[0,14.65,0,15])
         fig.gca().invert_yaxis()
         (ln,) = ax.plot(x, y,marker='o', markerfacecolor='blue',linestyle='None', markersize=6,)
+        x = [row[0] for row in self.sub_map]
+        y = [row[1] for row in self.sub_map]
+        (ln,) = ax.plot(x, y,marker='o', markerfacecolor='pink',linestyle='None', markersize=6,)
+        
         
         for i,point in enumerate(zip(x,y)):
            
