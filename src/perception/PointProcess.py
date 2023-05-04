@@ -5,19 +5,40 @@ import joblib
 
 class Point:
     def __init__(self):
-        self.main_map_arr = joblib.load('src/data/localisationssystem/data__22_04_12_15.pkl')
+        self.load_map(main_map=True)
+        self.load_map(main_map=False)
+        self.main_map_path = 'src/data/localisationssystem/semifinal.txtt'
+        self.sub_map_arr = 'src/data/localisationssystem/sub_semifinal.txtt'
         
-        self.sub_map_arr = joblib.load('src/data/localisationssystem/data__22_04_12_24.pkl')
+        
+        self.main_map_arr = None
+        self.sub_map_arr = None
+        
+        self.map_arr = self.main_map_arr
+        
         self.main_trajectory = np.arange(len(self.main_map_arr))
-        # self.main_trajectory.append(0)
         self.sub_trajectory = np.arange(len(self.sub_map_arr))
 
+        self.trajectory = self.main_trajectory
         self.local_node = None
 
-        self.map_arr = self.main_map_arr
-        self.trajectory = self.main_trajectory
     
-
+    def load_map(self,main_map=True):
+        map_arr = []
+        if main_map:
+            with open(self.main_map_path,'r') as f:
+                lines = f.readlines()
+                for line in lines:
+                    line = line[:-1].split(' ')
+                    map_arr.append([float(line[0]),float(line[1])])
+            self.main_map_arr = map_arr
+        else:
+            with open(self.sub_map_arr,'r') as f:
+                lines = f.readlines()
+                for line in lines:
+                    line = line[:-1].split(' ')
+                    map_arr.append([float(line[0]),float(line[1])])
+            self.sub_map_arr = map_arr
     def switch_to_sub_map(self):
         print("switch to sub")
         self.map_arr = self.sub_map_arr
