@@ -97,28 +97,12 @@ class LocalizeDebugProcess(WorkerProcess):
             
             
     def _run(self):
-        # parser = GraphMLParser()
-        # map = parser.parse('src/data/localisationssystem/Test_track.graphml')
-        # x=[]
-        # y=[]
         img = plt.imread(self.map_bg_path)
         self.load_map()
         map_arr =  self.main_map
-        # for node in sub_map:
-        #     main_map.append(node)
-        # map_arr = main_map
-        # map_arr = np.loadtxt('trajectory.txt')[:, ::-1]src/data/localisationssystem/data_10_37.pkl
-        # trajectory = np.arange(len(map_arr))
-        # trajectory = np.array([10, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 0, 106, 107, 108, 109, 110, 111, 112, 5, 61, 62, 113, 114, 115, 116, 117, 118, 119])
-        # map_arr = [map_arr[i] for i in trajectory]
 
         x = [row[0] for row in map_arr]
         y = [row[1] for row in map_arr]
-        # for node in map.nodes():
-        #     x.append(node['d0'])
-        #     y.append(node['d1'])
-        # x = np.array(x).astype(float)
-        # y = np.array(y).astype(float)
 
         fig, ax = plt.subplots(figsize=(13.0, 7.0))
         # img = np.fliplr(img)

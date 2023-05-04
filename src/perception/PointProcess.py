@@ -30,6 +30,7 @@ class Point:
                     map_arr.append([float(line[0]),float(line[1])])
                 self.main_map_arr = map_arr
         else:
+            with open(self)
             self.sub_map_arr = map_arr
     def switch_to_sub_map(self):
         print("switch to sub")

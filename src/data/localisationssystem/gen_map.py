@@ -29,12 +29,13 @@ else:
     map_arr = joblib.load(filename)
     # map_arr = [[point[1],point[0]] for point in map_arr]
 img = plt.imread('Competition_track.png')
-img = np.fliplr(img)
+# img = np.fliplr(img)
 
 
 while True:
-    fig, ax = plt.subplots(figsize=(6.4, 4.8))
-    ax.imshow(img,extent=[0,16,0,16])
+    fig, ax = plt.subplots(figsize=(13.0, 7.0))
+        # img = np.fliplr(img)
+    ax.imshow(np.flipud(img), origin='upper',extent=[0,14.65,0,15])
     fig.gca().invert_yaxis()
     x = [row[0] for row in map_arr]
     y = [row[1] for row in map_arr]
