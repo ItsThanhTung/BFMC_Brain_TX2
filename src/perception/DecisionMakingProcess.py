@@ -50,7 +50,6 @@ class DecisionMakingProcess(WorkerProcess):
         self.intercept_gap = float("inf")
         
         self.object_result = None
-        self.prev_angle = 0
         self.is_intercept = False
         
         # self.imu_handler = IMUHandler()
@@ -199,18 +198,15 @@ class DecisionMakingProcess(WorkerProcess):
 
             self.CarPoseHandler.waitInitDone()
             print("DM Wait EKF Done")
-        # status, messSpd = self.__CarHandlerTh.enListenVLX()
-        # time.sleep(0.01)
+        status, messSpd = self.__CarHandlerTh.enListenVLX()
+        time.sleep(0.01)
 
-        # status, messSpd = self.__CarHandlerTh.enListenVLX()
-        # time.sleep(0.01)
+        status, messSpd = self.__CarHandlerTh.enListenVLX()
+        time.sleep(0.01)
 
         
-        # interceptionHandler = InterceptionHandler(self.imu_handler, self.__CarHandlerTh, self.historyFile) # , self.localization_thr)
         trafficSignHanlder = TrafficSignHandler(self.__CarHandlerTh, self.historyFile, self.decision_maker, self.point,self.CarPoseHandler)
-        # self._TestRun2()
-        # time.sleep(10)
-        self.test_inter = False
+
         prev_SendTime = time.time()
         local_node = None
         while True:
@@ -234,10 +230,10 @@ class DecisionMakingProcess(WorkerProcess):
                 self.planer.update_point(pose)
                 current_node, error_dist, local_node = self.point.get_closest_node(pose)
                 if len(local_node) == 1:
-                    # self.__CarHandlerTh.setSpeed(0,send_attempt=100)
-                    # time.sleep(100)
-                    # raise Exception("This is the end of the map")
-                    next_node, next_point = local_node[0], self.point.get_point(local_node[0])
+                    self.__CarHandlerTh.setSpeed(0,send_attempt=100)
+                    print("This is the end of the map")
+                    time.sleep(100)
+                    raise Exception("This is the end of the map")
                 else:
                     next_node, next_point = local_node[1], self.point.get_point(local_node[1])
                 
@@ -294,9 +290,10 @@ class DecisionMakingProcess(WorkerProcess):
                         and not self.is_intercept \
                         and self.decision_maker.is_intercept(intercept_length, intercept_gap) \
                         and not self.is_stop: # and (current_node  not in skip_intecept_node):
-                    status, messSpd = self.__CarHandlerTh.setSpeed(0, send_attempt=100) 
-                    time.sleep(5)
-                    continue
+                    # status, messSpd = self.__CarHandlerTh.setSpeed(0, send_attempt=100) 
+                    # time.sleep(5)
+                    # continue          for testing 
+
                     self.decision_maker.strategy = "GPS"
                     self.is_intercept = "True"
                     self.intercept_node = current_node
@@ -325,7 +322,6 @@ class DecisionMakingProcess(WorkerProcess):
                             self.historyFile.write(log_message)
                     self.__CarHandlerTh.setAngle(angle_lane_keeping)
                     
-                    self.prev_angle = angle_lane_keeping
 
 
                 elif self.decision_maker.strategy == "GPS" or self.decision_maker.trafic_strategy == 'GPS': 
@@ -354,9 +350,7 @@ class DecisionMakingProcess(WorkerProcess):
         
     
 
-                    # if np.abs(self.prev_angle - angle_lane_keeping) > 10:
-                    #     self.historyFile.write("\n \n \n ******************* OFF ANGLE ***************************\n \n \n")
-
+             
 
             # print("Status {} Mess {}".format(Status, Mess))
 
