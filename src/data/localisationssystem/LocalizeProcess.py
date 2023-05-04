@@ -20,6 +20,8 @@ class LocalizeProcess(WorkerProcess):
         self.serverpublickey = 'src/data/localisationssystem/publickey_server_test.pem'
         super(LocalizeProcess,self).__init__( None, outPs)
         self.point=[0,0]
+
+
     def run(self):
         """Apply the initializing methods and start the threads.
         """
@@ -40,10 +42,14 @@ class LocalizeProcess(WorkerProcess):
         self.threads.append(update_data)
         self.threads.append(readTh)
         self.threads.append(LocalizeSytem)
+
+
     def update_data_func(self):
         while True:
             coora = self.gpsStR.recv()
             self.point=[coora['coor'][1],coora['coor'][0]]
+
+
     def _run(self):
         """Obtains image, applies the required image processing and computes the steering angle value. 
         

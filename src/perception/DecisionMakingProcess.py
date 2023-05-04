@@ -216,6 +216,7 @@ class DecisionMakingProcess(WorkerProcess):
                 pose = self.CarPoseHandler.GetCarPose()
                 if pose['x'] == 0 and pose['y']==0:
                     continue
+                    
                 if self.decision_maker.start_switch_node is not None:
                     cur_pose = np.array([pose['x'],pose['y']])
                     dist_from_start = np.linalg.norm(cur_pose-self.decision_maker.start_switch_node)

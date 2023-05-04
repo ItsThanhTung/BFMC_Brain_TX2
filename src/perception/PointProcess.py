@@ -5,14 +5,14 @@ import joblib
 
 class Point:
     def __init__(self):
-        self.load_map(main_map=True)
-        self.load_map(main_map=False)
         self.main_map_path = 'src/data/localisationssystem/semifinal.txtt'
-        self.sub_map_arr = 'src/data/localisationssystem/sub_semifinal.txtt'
-        
-        
+        self.sub_map_path = 'src/data/localisationssystem/sub_semifinal.txtt'
         self.main_map_arr = None
         self.sub_map_arr = None
+
+        self.load_map(main_map=True)
+        self.load_map(main_map=False)
+        
         
         self.map_arr = self.main_map_arr
         
@@ -33,12 +33,14 @@ class Point:
                     map_arr.append([float(line[0]),float(line[1])])
             self.main_map_arr = map_arr
         else:
-            with open(self.sub_map_arr,'r') as f:
+            with open(self.sub_map_path,'r') as f:
                 lines = f.readlines()
                 for line in lines:
                     line = line[:-1].split(' ')
                     map_arr.append([float(line[0]),float(line[1])])
             self.sub_map_arr = map_arr
+
+
     def switch_to_sub_map(self):
         print("switch to sub")
         self.map_arr = self.sub_map_arr
