@@ -1,10 +1,6 @@
 import numpy as np
 def GetIMUHeading(DataJson):
-<<<<<<< HEAD
-    return np.deg2rad(DataJson["IMU"]["Euler"][0] - 110)*1.005
-=======
-    return np.deg2rad(DataJson["IMU"]["Euler"][0] - 2)
->>>>>>> master
+    return np.deg2rad(DataJson["IMU"]["Euler"][0] + 165)*0.998
 
 
 def GetInitalData(DataJson):
@@ -12,22 +8,18 @@ def GetInitalData(DataJson):
     pY = DataJson["GPS"][1]
     # Velo = DataJson["Encoder"]
     Velo = DataJson["inVelocity"]
-    Velo = 0
+    # Velo = 0
 
     Heading = GetIMUHeading(DataJson)
     return pX, pY, Velo, Heading
 
 def GetCommandData(DataJson):
-    Velo = DataJson["inVelocity"]
-    Steer = np.deg2rad(DataJson["inSteer"])
+    Velo = DataJson["inVelocity"]*1.1
+    Steer = np.deg2rad(DataJson["inSteer"])*0.998
     return Velo, Steer
 
 def GetEncoderSpeed(DataJson):
-<<<<<<< HEAD
-    return DataJson["Encoder"]*1.5
-=======
-    return DataJson["Encoder"]*1.1
->>>>>>> master
+    return DataJson["Encoder"]*1
 
 
 def GetGPS(DataJson):
@@ -55,3 +47,6 @@ def GetRawIMU(DataJson):
         "Accel": GetAccel(DataJson),
         "Magnet": GetMagnet(DataJson),
     }
+
+def GetEuler(DataJson):
+    return DataJson["IMU"]["Euler"]

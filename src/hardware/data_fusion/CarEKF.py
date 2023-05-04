@@ -33,7 +33,7 @@ class CarEKF(EKF):
         self.x[0,0] = X
         self.x[1,0] = Y
         self.x[2,0] = Velo
-        self.x[3,0] = Heading
+        self.x[3,0] = self.wrapAngle(Heading)
         # self.P = np.array([[0.3**2, 0, 0, 0],
         #                    [0, 0.3**2, 0, 0],
         #                    [0, 0, 0.5**2, 0],
@@ -46,7 +46,7 @@ class CarEKF(EKF):
         # _Velo = self.x[2,0]
         # _Velo, _alpha = u["Velo"], u["Angle"]
         _Velo, _alpha = u["Velo"], u["Angle"]
-
+        _Velo = self.x[2,0]
         _dt = dt
         _wheelbase = self._WheelBase
 
@@ -132,11 +132,11 @@ class CarEKF(EKF):
     def GPS_Update(self, x, y):
         if not self.isIntial:
             return
-        Velo = self.x[2,0]
-        GPS_x_std = (Velo+0.15)**2
-        GPS_y_std = (Velo+0.15)**2
-        GPS_NoiseMat = np.array([[GPS_x_std**2, 0],
-                                 [0, GPS_y_std**2]])
+        Velo = self.x[2,0]/1.1
+        GPS_x_std = (Velo+0)**2
+        GPS_y_std = (Velo+0)**2
+        GPS_NoiseMat = np.array([[GPS_x_std, 0],
+                                 [0, GPS_y_std]])
         z = np.array([[x], [y]])
         self.update(z, self._GPS_H_j, self._GPS_hx, GPS_NoiseMat)
 
