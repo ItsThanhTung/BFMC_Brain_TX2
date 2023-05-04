@@ -30,8 +30,8 @@ class LocalizeDebugProcess(WorkerProcess):
         self.filter = filter
         self.localize_data = {"x":0, "y":0}
         self.filter_data = {"x":0, "y":0, "Heading":0}
-        self.main_map_path = 'src/data/localisationssystem/semifinal.txt'
-        self.sub_map_path=None
+        self.main_map_path = 'src/data/localisationssystem/semifinal.txtt'
+        self.sub_map_path='src/data/localisationssystem/sub_semifinal.txtt'
         self.main_map = None
         self.sub_map = None
         self.map_bg_path  = 'src/data/localisationssystem/gray_not.jpg'
