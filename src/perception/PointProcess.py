@@ -5,8 +5,11 @@ import joblib
 
 class Point:
     def __init__(self):
+        self.load_map(main_map=True)
+        self.load_map(main_map=False)
         self.main_map_path = 'src/data/localisationssystem/semifinal.txtt'
         self.sub_map_arr = 'src/data/localisationssystem/sub_semifinal.txtt'
+        
         
         self.main_map_arr = None
         self.sub_map_arr = None
