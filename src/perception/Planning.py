@@ -11,10 +11,10 @@ class Planning:
         self.y = init_y
         self.cur_angle = 0
         self.count = 0
-        self.stack = deque(maxlen=5)
+        self.stack = deque(maxlen=2)
         
     def update_point(self, point):
-        if self.count == 5:
+        if self.count == 8:
             self.prev_point = (self.x, self.y)
             self.count = 0
             
@@ -50,7 +50,7 @@ class Planning:
                 angle = 180 - math.degrees(math.acos(np.dot(vec1, vec2) / (np.linalg.norm(vec1) * np.linalg.norm(vec2))))
                 angle *= direction
                 
-                angle = np.clip(angle * 1, -23, 23)
+                angle = np.clip(angle * 1.5, -23, 23)
                 
             else:
                 angle = 0
@@ -70,19 +70,31 @@ class Planning:
             
     def is_end_intercept(self, current_node, intercept_node):
         # return False
-        if intercept_node in [0,1]:
+        if intercept_node in [0,1, 2]:
             if current_node in [3,4,5]:
                 return True
             else:
                 return False
             
-        elif intercept_node in [3,4,5]:
-            if current_node in [9,10,11]:
+        elif intercept_node in [3,4,5, 6]:
+            if current_node in [8, 9,10,11]:
                 return True
             else:
                 return False
         elif intercept_node in [11,10,9]:
-            if current_node in [15,16,17]:
+            if current_node in [14, 13, 16,17]:
+                return True
+            else:
+                return False
+        
+        elif intercept_node in [16, 17, 18]:
+            if current_node in [19, 20]:
+                return True
+            else:
+                return False
+        
+        elif intercept_node in [19, 20]:
+            if current_node in [22, 23]:
                 return True
             else:
                 return False

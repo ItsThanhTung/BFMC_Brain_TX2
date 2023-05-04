@@ -13,11 +13,11 @@ class LocalizeProcess(WorkerProcess):
         self.debugP = debugP
         self.point= None
         self.beacon = 12345
-        self.id = 1
-        self.dummy = True
+        self.id = 4
+        self.dummy = False
         self.localizeCondition = Condition()
         self.gpsStR,self.gpsStS  = Pipe(duplex = False)
-        self.serverpublickey = 'src/data/localisationssystem/publickey_server_test.pem'
+        self.serverpublickey = 'src/data/localisationssystem/publickey_server.pem'
         super(LocalizeProcess,self).__init__( None, outPs)
         self.point=[0,0]
 
@@ -47,7 +47,7 @@ class LocalizeProcess(WorkerProcess):
     def update_data_func(self):
         while True:
             coora = self.gpsStR.recv()
-            self.point=[coora['coor'][1],coora['coor'][0]]
+            self.point=[coora['pos'].real, coora['pos'].imag]
 
 
     def _run(self):

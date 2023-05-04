@@ -33,16 +33,18 @@
     "y_dist": 100,
     "x_dist": 50,
     "min_length": 50,
-    "middle_point_ratio": 0.45,
+    "middle_point_ratio": 0.5,
     "angle_scale_ratio": 0.3
   },
   "REMOTE": {
     "CAM_PATH": "/dev/video0",
-    "IP_ADDRESS": "192.168.137.103"
+    "IP_ADDRESS_main": "192.168.137.103",
+    "IP_ADDRESS": "192.168.1.215"
   },
   "RC": {
     "CAM_PATH": "/dev/video0",
-    "IP_ADDRESS": "192.168.137.103"
+    "IP_ADDRESS_main": "192.168.137.103",
+    "IP_ADDRESS": "192.168.1.215"
   },
   "INTERCEPT_DETECTION": {
     "crop_ratio": 0.8,

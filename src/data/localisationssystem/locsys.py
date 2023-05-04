@@ -25,7 +25,6 @@
 # CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
-import joblib
 from multiprocessing import Pipe
 from threading import Thread
 if __name__ == '__main__':
@@ -102,14 +101,15 @@ def read_thread(gpsStR):
     while True:
         
         raw = gpsStR.recv()
-        x,y = raw['coor'][0],raw['coor'][1]
+        x,y = raw['pos'].real, raw['pos'].imag
         # map_vis.plot([[x,y]])
-        # print([x,y])
+        print([x,y])
+        print(raw)
 
 if __name__ == '__main__':
     
     beacon = 12345
-    id = 1
+    id = 2
     serverpublickey = 'src/data/localisationssystem/publickey_server.pem'
     
     gpsStR, gpsStS = Pipe(duplex = False)
@@ -122,16 +122,13 @@ if __name__ == '__main__':
     time.sleep(5)
     data = []
     while True:
-        try:
-            # raw = gpsStR.recv()
-            i = input()
-            data.append([x,y])
-            print(f'{x} {y}')
-        except KeyboardInterrupt:
-            n = datetime.datetime.now()            
-            n = n.strftime('%H_%M')
-            joblib.dump(data,f'data_{n}.pkl')
-            break
+    
+        # raw = gpsStR.recv()
+        i = input()
+        data.append([x,y])
+
+        # print(f'{x} {y}')
+     
         
     LocalisationSystem.stop()
     
