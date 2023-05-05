@@ -48,7 +48,7 @@ class Yolo(object):
             img = img[None] 
         with torch.no_grad():            
             pred = self.model(img, augment=False, visualize=False)
-        pred = non_max_suppression(pred, self.conf_thres, self.iou_thres, None, , agnostic=True, max_det=self.max_det)
+        pred = non_max_suppression(pred, self.conf_thres, self.iou_thres, None , agnostic=True, max_det=self.max_det)
         results=[]
         
         boxes=[]

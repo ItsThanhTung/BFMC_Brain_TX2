@@ -65,7 +65,7 @@ if __name__ == '__main__':
     
     is_remote = True
     is_show = True
-    enableYolo = False
+    enableYolo = True
     enableFilter = True
     enableLocalizeStream = True
 
