@@ -8,7 +8,7 @@ from src.perception.CarHandlerThread import CarHandlerThread
 from src.perception.traffic_sign.TrafficSignHandler import TrafficSignHandler
 from src.perception.DecisionMaking import DecisionMaking
 from src.perception.tracker.byte_tracker import BYTETracker
-
+from src.data.livetraffic.livetraffic import EnvironmentalHandler
 from datetime import datetime
 import time
 import numpy as np
@@ -58,6 +58,9 @@ class DecisionMakingProcess(WorkerProcess):
         self.__CarHandlerTh.daemon = True
         self.threads.append(self.__CarHandlerTh)
         
+        env_server_public_key = 'src\data\livetraffic\privatekey_livetraffic_client_test.pem'
+        self.EnvironmentalHandler = EnvironmentalHandler(120,23456,)
+
         self.is_stop = is_stop
         
         self.decision_maker = DecisionMaking(self.historyFile)
