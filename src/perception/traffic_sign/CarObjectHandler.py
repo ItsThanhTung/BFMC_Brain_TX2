@@ -2,13 +2,13 @@ import  time
 from src.perception.traffic_sign.GeneralHandler import GeneralHandler
 
 class CarObjectHandler(GeneralHandler):
-    def __init__(self, car_handler, logger, point_handler):
+    def __init__(self, car_handler, logger):
         super(CarObjectHandler, self).__init__(car_handler, logger)
         
         self.name = "CAR"
         self.time_stop = 2
-        self.point_handler = point_handler
         self.car_handler = car_handler
+        
     def handler(self, decision_maker, object_info):
         self.start_handler_log()
         

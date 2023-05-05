@@ -7,6 +7,7 @@ from src.perception.traffic_sign.HighWayEntryHandler import HighWayEntryHandler
 from src.perception.traffic_sign.HighWayExitHandler import HighWayExitHandler
 from src.perception.traffic_sign.CarObjectHandler import CarObjectHandler
 from src.perception.traffic_sign.RoundaboutHandler import RoundaboutHandler
+from src.perception.traffic_sign.RoadBlockHandler import RoadBlockHandler
 
 from src.perception.tracker.byte_tracker import BYTETracker
 
@@ -33,7 +34,8 @@ class TrafficSignHandler:
                              "highway_entry" : HighWayEntryHandler(car_handler, self.logger), "highway_exit" : HighWayExitHandler(car_handler, self.logger),
                              "traffic_light" : TrafficLightHandler(car_handler, self.logger), \
                              "car" : CarObjectHandler(car_handler, self.logger),\
-                             "roundabout": RoundaboutHandler(car_handler, self.logger)}
+                             "roundabout": RoundaboutHandler(car_handler, self.logger),\
+                             "roadblock": RoadBlockHandler(car_handler, self.logger)}
 
         self.tracker = BYTETracker()
         
@@ -62,7 +64,7 @@ class TrafficSignHandler:
                 
                 object_info = [center, dist, object, lane_data, object.new_cls]   # still missing
 
-                if self.handler_dict[cls].is_handle(object_info, is_tune=False):
+                if self.handler_dict[cls].is_handle(object_info, is_tune=True):
                     # if cls == 'car' or cls =='road_block':
                     #     self.decision_maker.start_switch_node = np.array([pos['x'],pos['y']])
                     #     _, _, local_nodes = self.point_handler.get_closest_node(pos)

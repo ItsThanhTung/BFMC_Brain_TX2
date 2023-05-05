@@ -3,7 +3,7 @@ from src.perception.traffic_sign.GeneralHandler import GeneralHandler
 
 class RoadBlockHandler(GeneralHandler):
     def __init__(self, car_handler, logger):
-        super(RoundaboutHandler, self).__init__(car_handler, logger)
+        super(RoadBlockHandler, self).__init__(car_handler, logger)
         
         self.name = "RoadBlock"
         self.time_stop = 2

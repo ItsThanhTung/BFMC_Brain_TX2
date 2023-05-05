@@ -11,7 +11,6 @@ from src.perception.tracker.byte_tracker import BYTETracker
 
 from src.perception.CarPoseHandlerThread import CarPoseThread
 from src.perception.Planning import Planning
-from src.data.livetraffic.livetraffic import EnvironmentalHandler
 
 from datetime import datetime
 import time
@@ -60,14 +59,6 @@ class DecisionMakingProcess(WorkerProcess):
         self.__CarHandlerTh.daemon = True
         self.threads.append(self.__CarHandlerTh)
 
-        #Env handler
-        # env_id = 120
-        # env_beacon = 23456
-        # env_ser_pub_key = 'src/data/livetraffic/publickey_livetraffic_server_test.pem'
-        # env_clien_private_key = 'src/data/livetraffic/privatekey_livetraffic_client_test.pem'
-        # self.envR, self.envS = Pipe(duplex = False)
-        # self.EnvironmentalHandler = EnvironmentalHandler(env_id, env_beacon, env_ser_pub_key, envR, env_clien_private_key)
-        # self.envForm = {"obstacle_id": 1, "x": 1, "y": 1}
 
         self.enableEKF = opt["ENABLE_EKF"]
         if self.enableEKF:
@@ -296,12 +287,14 @@ class DecisionMakingProcess(WorkerProcess):
 
                     # send pipe object result 
                 print(intercept_length, intercept_gap)
+                
                 if not self.decision_maker.is_parking \
                         and not self.is_intercept \
                         and self.decision_maker.is_intercept(intercept_length, intercept_gap) \
                         and not self.is_stop: # and (current_node  not in skip_intecept_node):
                     status, messSpd = self.__CarHandlerTh.setSpeed(0, send_attempt=100) 
                     self.interception_handler.handler()
+                    continue
                     # if self.interception_handler.handler():
                     #     continue
                     # else:
