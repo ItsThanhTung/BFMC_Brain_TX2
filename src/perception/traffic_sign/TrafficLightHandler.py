@@ -32,7 +32,7 @@ class TrafficLightHandler(GeneralHandler):
             print(dist)
             return False
 
-        if dist > 190:
+        if dist > 240:
             return True
 
         return False

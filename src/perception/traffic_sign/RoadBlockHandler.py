@@ -31,7 +31,7 @@ class RoadBlockHandler(GeneralHandler):
             print(dist)
             return False
 
-        if dist > 270:
+        if dist > 275:
             return True
 
         return False

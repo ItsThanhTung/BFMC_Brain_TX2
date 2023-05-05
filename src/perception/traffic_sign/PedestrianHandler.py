@@ -32,8 +32,9 @@ class PedestrianHandler(GeneralHandler):
             print(dist)
             return False
         # center = object_info[0]
-        # if dist > 0:
-        #     return True
+        if dist < 250:
+            return False
+
         lane_data = object_info[3]
         center = object_info[0]
         
