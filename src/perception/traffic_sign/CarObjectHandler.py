@@ -28,8 +28,9 @@ class CarObjectHandler(GeneralHandler):
             print(dist)
             return False
         # center = object_info[0]
-        # if dist > 0:
-        #     return True
+        if dist < 230:
+            return 
+            
         lane_data = object_info[3]
         center = object_info[0]
         left_point, right_point = lane_data["left_point"][0] * 2, lane_data["right_point"][0] * 2

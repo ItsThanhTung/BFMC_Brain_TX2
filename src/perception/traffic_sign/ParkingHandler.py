@@ -25,7 +25,7 @@ class ParkingHandler(GeneralHandler):
             print(dist)
             return False
 
-        if dist > 230:
+        if dist > 220:
             print('start parking')
             return True
 

@@ -31,7 +31,7 @@ class StopSignHandler(GeneralHandler):
             print(dist)
             return False
 
-        if dist > 270:
+        if dist > 230:
             return True
 
         return False

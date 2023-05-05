@@ -25,7 +25,7 @@ class HighWayExitHandler(GeneralHandler):
             print(dist)
             return False
 
-        if dist > 270:
+        if dist > 240:
             return True
 
         return False
