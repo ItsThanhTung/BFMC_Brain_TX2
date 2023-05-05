@@ -6,6 +6,7 @@ from src.perception.traffic_sign.TrafficLightHandler import TrafficLightHandler
 from src.perception.traffic_sign.HighWayEntryHandler import HighWayEntryHandler
 from src.perception.traffic_sign.HighWayExitHandler import HighWayExitHandler
 from src.perception.traffic_sign.CarObjectHandler import CarObjectHandler
+from src.perception.traffic_sign.RoundaboutHandler import RoundaboutHandler
 
 from src.perception.tracker.byte_tracker import BYTETracker
 
@@ -31,7 +32,9 @@ class TrafficSignHandler:
                              "parking" : ParkingHandler(car_handler, self.logger,self.point_handler,self.CarPoseHandler), "crosswalk" :CrossWalkHandler(car_handler, logger),
                              "highway_entry" : HighWayEntryHandler(car_handler, self.logger), "highway_exit" : HighWayExitHandler(car_handler, self.logger),
                              "traffic_light" : TrafficLightHandler(car_handler, self.logger), \
-                             "car" : CarObjectHandler(car_handler, self.logger, self.point_handler)}
+                             "car" : CarObjectHandler(car_handler, self.logger, self.point_handler),\
+                             "roundabout": RoundaboutHandler(car_handler, self.logger)}
+
         self.tracker = BYTETracker()
         
     def detect(self, object_result, lane_data, pos):

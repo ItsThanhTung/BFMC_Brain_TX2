@@ -3,7 +3,6 @@ from src.templates.workerprocess import WorkerProcess
 from src.hardware.serialhandler.filehandler import FileHandler
 from src.perception.InterceptionHandler import InterceptionHandler
 import sys
-from src.hardware.IMU.imuHandler import IMUHandler
 from src.perception.CarHandlerThread import CarHandlerThread
 from src.perception.traffic_sign.TrafficSignHandler import TrafficSignHandler
 from src.perception.DecisionMaking import DecisionMaking
@@ -52,7 +51,6 @@ class DecisionMakingProcess(WorkerProcess):
         self.object_result = None
         self.is_intercept = False
         
-        # self.imu_handler = IMUHandler()
         
         self.is_sign = False
         self.count_sign_step = 0
@@ -75,6 +73,7 @@ class DecisionMakingProcess(WorkerProcess):
         self.decision_maker = DecisionMaking(self.historyFile, self.point)
         self.tracker = BYTETracker()
         self.planer = Planning()
+        self.interception_handler = InterceptionHandler(self.__CarHandlerTh, self.historyFile)
 
     # ===================================== RUN ==========================================
     def run(self):
@@ -209,8 +208,13 @@ class DecisionMakingProcess(WorkerProcess):
 
         prev_SendTime = time.time()
         local_node = None
+    
+
         while True:
             if True:
+                # self.interception_handler.handler()
+                # self.__CarHandlerTh.setSpeed(0, send_attempt=100) 
+                # time.sleep(10)
                 self.decision_maker.reiniate_speed()
                 # skip_intecept_node = [29,30,10,11,12,13]
                 pose = self.CarPoseHandler.GetCarPose()
@@ -286,16 +290,17 @@ class DecisionMakingProcess(WorkerProcess):
                         and not self.is_intercept \
                         and self.decision_maker.is_intercept(intercept_length, intercept_gap) \
                         and not self.is_stop: # and (current_node  not in skip_intecept_node):
-                    # status, messSpd = self.__CarHandlerTh.setSpeed(0, send_attempt=100) 
-                    # time.sleep(5)
-                    # continue          for testing 
+                    status, messSpd = self.__CarHandlerTh.setSpeed(0, send_attempt=100) 
+                    if self.interception_handler.handler():
+                        continue
+                    else:
+                        self.decision_maker.strategy = "GPS"
+                        self.is_intercept = "True"
+                        self.intercept_node = current_node
+                        print("self.intercept_node: ", self.intercept_node)
+                        self.__CarHandlerTh.setSpeed(25, 1)
+                        self.planer.reset_drive()
 
-                    self.decision_maker.strategy = "GPS"
-                    self.is_intercept = "True"
-                    self.intercept_node = current_node
-                    print("self.intercept_node: ", self.intercept_node)
-                    self.__CarHandlerTh.setSpeed(25,1)
-                    self.planer.reset_drive()
                     # direction = self.decision_maker.get_intercept_direction()
                     
                     # print(direction)

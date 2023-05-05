@@ -14,7 +14,7 @@ class LocalizeProcess(WorkerProcess):
         self.point= None
         self.beacon = 12345
         self.id = 4
-        self.dummy = False
+        self.dummy = True
         self.localizeCondition = Condition()
         self.gpsStR,self.gpsStS  = Pipe(duplex = False)
         self.serverpublickey = 'src/data/localisationssystem/publickey_server.pem'

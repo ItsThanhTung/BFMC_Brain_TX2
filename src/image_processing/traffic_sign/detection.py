@@ -16,9 +16,9 @@ class Yolo(object):
                         imgsize= (640,640), device='0',conf_thres=0.1, iou_thres=0.1,max_det=1000): 
         
         if is_tensorRt: 
-            weights = 'ver4_up.torchscript'
+            weights = 'ver5_up.torchscript'
         else: 
-            weights = 'ver4_up.torchscript'
+            weights = 'ver5_up.torchscript'
             
         self.img_size = imgsize
         self.device = select_device(device)
@@ -28,7 +28,7 @@ class Yolo(object):
             with torch.no_grad():            
                 a_ = self.model(torch.zeros(1,3,640,640).to('cuda').type(torch.float), augment=False, visualize=False)
                 # print(type(a_))
-        self.names=['car', 'crosswalk', 'highway_entry', 'highway_exit', 'no_entry', 'parking', 'pedestrian', 'priority', 'roundabout', 'stop', 'red','yellow','green','roadblock']
+        self.names=['car', 'crosswalk', 'highway_entry', 'highway_exit', 'no_entry', 'parking', 'pedestrian', 'priority', 'roundabout', 'stop', 'red','yellow','green','roadblock','go_straight']
         self.conf_thres=conf_thres
         self.iou_thres=iou_thres
         self.max_det=max_det
@@ -58,7 +58,7 @@ class Yolo(object):
             img = img[None] 
         with torch.no_grad():            
             pred = self.model(img, augment=False, visualize=False)
-        pred = non_max_suppression(pred, self.conf_thres, self.iou_thres, None, agnostic=False, max_det=self.max_det)
+        pred = non_max_suppression(pred, self.conf_thres, self.iou_thres, None, agnostic=True, max_det=self.max_det)
         results = [[],[],[]]
         boxes=[]
         confs=[]

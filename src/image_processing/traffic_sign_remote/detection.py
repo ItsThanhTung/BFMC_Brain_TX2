@@ -17,14 +17,14 @@ class Yolo(object):
                         imgsize= (640,640), device='0',conf_thres=0.1, iou_thres=0.1,max_det=1000): 
         
         if is_tensorRt: 
-            weights='ver4_up.torchscript'
+            weights='ver5_up.torchscript'
         else: 
-            weights='ver4_up.pt'
+            weights='ver5_up.pt'
             
         self.img_size = imgsize
         self.device = select_device(device)
         self.model = DetectMultiBackend(weights, device=self.device, dnn=False, data='./src/image_processing/traffic_sign/yolov5_utils/data/coco128.yaml')
-        self.names=['car', 'crosswalk', 'highway_entry', 'highway_exit', 'no_entry', 'parking', 'pedestrian', 'priority', 'roundabout', 'stop', 'red','yellow','green']
+        self.names=['car', 'crosswalk', 'highway_entry', 'highway_exit', 'no_entry', 'parking', 'pedestrian', 'priority', 'roundabout', 'stop', 'red','yellow','green','roadblock','go_straight']
         self.conf_thres=conf_thres
         self.iou_thres=iou_thres
         self.max_det=max_det
@@ -48,7 +48,7 @@ class Yolo(object):
             img = img[None] 
         with torch.no_grad():            
             pred = self.model(img, augment=False, visualize=False)
-        pred = non_max_suppression(pred, self.conf_thres, self.iou_thres, None, False, max_det=self.max_det)
+        pred = non_max_suppression(pred, self.conf_thres, self.iou_thres, None, , agnostic=True, max_det=self.max_det)
         results=[]
         
         boxes=[]
