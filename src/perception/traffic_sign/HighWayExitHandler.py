@@ -18,8 +18,13 @@ class HighWayExitHandler(GeneralHandler):
         return True
     
     
-    def is_handle(self, object_info):
+    def is_handle(self, object_info, is_tune=False):
         dist = object_info[1]
+
+        if is_tune:
+            print(dist)
+            return False
+
         if dist > 270:
             return True
 

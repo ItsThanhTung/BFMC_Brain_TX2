@@ -38,13 +38,13 @@
   },
   "REMOTE": {
     "CAM_PATH": "/dev/video0",
-    "IP_ADDRESS": "192.168.137.103",
-    "IP_ADDRESS_main": "192.168.1.215"
+    "IP_ADDRESS_main": "192.168.137.103",
+    "IP_ADDRESS": "192.168.1.215"
   },
   "RC": {
     "CAM_PATH": "/dev/video0",
-    "IP_ADDRESS": "192.168.137.103",
-    "IP_ADDRESS_main": "192.168.1.215"
+    "IP_ADDRESS_main": "192.168.137.103",
+    "IP_ADDRESS": "192.168.1.215"
   },
   "INTERCEPT_DETECTION": {
     "crop_ratio": 0.8,

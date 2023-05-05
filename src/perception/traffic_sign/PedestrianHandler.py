@@ -25,8 +25,12 @@ class PedestrianHandler(GeneralHandler):
         return False
     
     
-    def is_handle(self, object_info):
-        # dist = object_info[1]
+    def is_handle(self, object_info, is_tune=False):
+        dist = object_info[1]
+
+        if is_tune:
+            print(dist)
+            return False
         # center = object_info[0]
         # if dist > 0:
         #     return True

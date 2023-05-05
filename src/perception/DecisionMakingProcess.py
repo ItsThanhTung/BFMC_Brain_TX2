@@ -285,21 +285,22 @@ class DecisionMakingProcess(WorkerProcess):
                             self.parking_1()
 
                     # send pipe object result 
-                
+                print(intercept_length, intercept_gap)
                 if not self.decision_maker.is_parking \
                         and not self.is_intercept \
                         and self.decision_maker.is_intercept(intercept_length, intercept_gap) \
                         and not self.is_stop: # and (current_node  not in skip_intecept_node):
                     status, messSpd = self.__CarHandlerTh.setSpeed(0, send_attempt=100) 
-                    if self.interception_handler.handler():
-                        continue
-                    else:
-                        self.decision_maker.strategy = "GPS"
-                        self.is_intercept = "True"
-                        self.intercept_node = current_node
-                        print("self.intercept_node: ", self.intercept_node)
-                        self.__CarHandlerTh.setSpeed(25, 1)
-                        self.planer.reset_drive()
+                    self.interception_handler.handler()
+                    # if self.interception_handler.handler():
+                    #     continue
+                    # else:
+                    #     self.decision_maker.strategy = "GPS"
+                    #     self.is_intercept = "True"
+                    #     self.intercept_node = current_node
+                    #     print("self.intercept_node: ", self.intercept_node)
+                    #     self.__CarHandlerTh.setSpeed(25, 1)
+                    #     self.planer.reset_drive()
 
                     # direction = self.decision_maker.get_intercept_direction()
                     

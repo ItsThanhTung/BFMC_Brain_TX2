@@ -129,6 +129,7 @@ class CarHandlerThread(ThreadWithStop):
             error = np.abs(Distance - getDist)
             if error < AllowError:
                 return error
+                
             time.sleep(0.01)
 
 
