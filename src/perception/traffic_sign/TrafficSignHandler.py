@@ -64,7 +64,7 @@ class TrafficSignHandler:
                 
                 object_info = [center, dist, object, lane_data, object.new_cls]   # still missing
 
-                if self.handler_dict[cls].is_handle(object_info, is_tune=True):
+                if self.handler_dict[cls].is_handle(object_info, is_tune=False):
                     # if cls == 'car' or cls =='road_block':
                     #     self.decision_maker.start_switch_node = np.array([pos['x'],pos['y']])
                     #     _, _, local_nodes = self.point_handler.get_closest_node(pos)

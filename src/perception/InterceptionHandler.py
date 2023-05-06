@@ -7,7 +7,7 @@ class InterceptionHandler:
     def __init__(self, car_handler, logger):
         self.car_handler = car_handler
         self.logger = logger
-        self.count = 0
+        self.count = 3
         
     def handler(self):
         print("handler")
@@ -15,96 +15,139 @@ class InterceptionHandler:
         # time.sleep(1)
         print(self.count)
         if self.count == 0:
+            print("First intercept right")
             self.start_handler_log("First intercept right")
-            status, mess_angle = self.car_handler.setAngle(-2, send_attempt=100)
-            self.car_handler.moveDistance_Block(0.4, 0.04)
-            # status, messSpd = self.car_handler.setSpeed(0, send_attempt=100) 
+            status, mess_angle = self.car_handler.setAngle(-1, send_attempt=100)
+            self.car_handler.moveDistance_Block(0.3, 0.05)
+
             status, mess_angle = self.car_handler.setAngle(23, send_attempt=100)
-            self.car_handler.moveDistance_Block(0.8, 0.04)
+            self.car_handler.moveDistance_Block(0.85, 0.05)
             self.count += 1
-            time.sleep(1)
+            print("End first intercept right")
             return True
 
-        elif self.count == -1:
-            self.start_handler_log("Roundabout")
-            return True
 
         elif self.count == 1:
+            print("Second intercept left")
             self.start_handler_log("Third intercept left")
-            status, mess_angle = self.car_handler.setAngle(-2, send_attempt=100)
+            status, mess_angle = self.car_handler.setAngle(-2, send_attempt=1000)
             self.car_handler.moveDistance_Block(0.75, 0.04)
             # status, messSpd = self.car_handler.setSpeed(0, send_attempt=100) 
-            status, mess_angle = self.car_handler.setAngle(-23, send_attempt=100)
-            self.car_handler.moveDistance_Block(0.8, 0.04)
+            status, mess_angle = self.car_handler.setAngle(-22, send_attempt=1000)
+            self.car_handler.moveDistance_Block(0.75, 0.04)
 
-            status, mess_angle = self.car_handler.setAngle(0, send_attempt=100)
+            status, mess_angle = self.car_handler.setAngle(0, send_attempt=1000)
             self.car_handler.moveDistance_Block(0.3, 0.04)
-
+            
             self.count += 1
-            time.sleep(1)
+            print("End second intercept left")
             return True
 
         elif self.count == 2:
+            print("Third intercept straight")
             self.start_handler_log("Third intercept straight")
             status, mess_angle = self.car_handler.setAngle(0, send_attempt=100)
             self.car_handler.moveDistance_Block(1.5, 0.04)
             self.count += 1
+
+            print("End Third intercept straight")
             return True
 
         elif self.count == 3:
-            self.start_handler_log("Third intercept left")
-            status, mess_angle = self.car_handler.setAngle(-2, send_attempt=100)
-            self.car_handler.moveDistance_Block(0.23, 0.04)
+            print("Fourth intercept special left")
+            self.start_handler_log("Fourth intercept special left")
+            status, mess_angle = self.car_handler.setAngle(-1, send_attempt=100)
+            self.car_handler.moveDistance_Block(0.65, 0.04)
             # status, messSpd = self.car_handler.setSpeed(0, send_attempt=100) 
-            status, mess_angle = self.car_handler.setAngle(23, send_attempt=100)
-            self.car_handler.moveDistance_Block(1.1, 0.04)
-            time.sleep(5)
+            status, mess_angle = self.car_handler.setAngle(-22, send_attempt=100)
+            self.car_handler.moveDistance_Block(1, 0.04)
             self.count += 1
+
+            print("End fourth intercept special left")
             return True
 
         elif self.count == 4:
-            self.start_handler_log("Fourth intercept right")
-            status, mess_angle = self.car_handler.setAngle(-2, send_attempt=100)
-            self.car_handler.moveDistance_Block(0.23, 0.04)
-            # status, messSpd = self.car_handler.setSpeed(0, send_attempt=100) 
+            print("Fifth intercept right")
+            self.start_handler_log("Fifth intercept right")
+            status, mess_angle = self.car_handler.setAngle(-1, send_attempt=100)
+            self.car_handler.moveDistance_Block(0.3, 0.05)
+
             status, mess_angle = self.car_handler.setAngle(23, send_attempt=100)
-            self.car_handler.moveDistance_Block(1.1, 0.04)
-            time.sleep(5)
+            self.car_handler.moveDistance_Block(0.85, 0.05)
             self.count += 1
+
+            print("End fifth intercept right")
             return True
 
         elif self.count == 5:
-            self.start_handler_log("Fifth intercept right")
-            status, mess_angle = self.car_handler.setAngle(-2, send_attempt=100)
-            self.car_handler.moveDistance_Block(0.23, 0.04)
-            # status, messSpd = self.car_handler.setSpeed(0, send_attempt=100) 
+            self.start_handler_log("Roundabout")
+            print("Roundabout")
+            status, mess_angle = self.car_handler.setAngle(-1, send_attempt=100)
+            error = self.car_handler.moveDistance_Block(0.4, 0.05)
+            print("1: ", error)
+
+            self.car_handler.setSpeed(0, send_attempt= 10)
+            status, mess_angle = self.car_handler.setAngle(15, send_attempt=100)
+            error = self.car_handler.moveDistance_Block(0.3, 0.05)
+            print("2: ", error)
+
+            self.car_handler.setSpeed(0, send_attempt= 10)
+            status, mess_angle = self.car_handler.setAngle(5, send_attempt=100)
+            error = self.car_handler.moveDistance_Block(0.4, 0.05)
+            print("3: ", error)
+
+            self.car_handler.setSpeed(0, send_attempt= 10)
+            status, mess_angle = self.car_handler.setAngle(-20, send_attempt=100)
+            error = self.car_handler.moveDistance_Block(0.6, 0.05)
+            print("4: ", error)
+
+            self.car_handler.setSpeed(0, send_attempt= 10)
+            status, mess_angle = self.car_handler.setAngle(-21, send_attempt=100)
+            error = self.car_handler.moveDistance_Block(1.2, 0.05)
+            print("5: ", error)
+            # time.sleep(1)
+
+            self.car_handler.setSpeed(0, send_attempt= 10)
             status, mess_angle = self.car_handler.setAngle(23, send_attempt=100)
-            self.car_handler.moveDistance_Block(1.1, 0.04)
-            time.sleep(5)
+            error = self.car_handler.moveDistance_Block(0.7, 0.05)
+            print("7: ", error)
+            # time.sleep(1)
+            
+
+            self.car_handler.setSpeed(0, send_attempt= 10)
+            status, mess_angle = self.car_handler.setAngle(-23, send_attempt=100)
+            error = self.car_handler.moveDistance_Block(0.2, 0.05)
+            print("8: ", error)
+
             self.count += 1
+            print("End roundabout")
             return True
 
         elif self.count == 6:
-            self.start_handler_log("Sixth intercept left")
-            status, mess_angle = self.car_handler.setAngle(-2, send_attempt=100)
-            self.car_handler.moveDistance_Block(0.23, 0.04)
-            # status, messSpd = self.car_handler.setSpeed(0, send_attempt=100) 
-            status, mess_angle = self.car_handler.setAngle(23, send_attempt=100)
-            self.car_handler.moveDistance_Block(1.1, 0.04)
-            time.sleep(5)
+            print("Sixth intercept straight")
+            self.start_handler_log("Sixth intercept straight")
+            status, mess_angle = self.car_handler.setAngle(0, send_attempt=100)
+            self.car_handler.moveDistance_Block(1.5, 0.04)
+            
             self.count += 1
+            print("End sixth intercept straight")
             return True
 
         elif self.count == 7:
-            self.start_handler_log("Seventh intercept left")
-            status, mess_angle = self.car_handler.setAngle(-2, send_attempt=100)
-            self.car_handler.moveDistance_Block(0.23, 0.04)
+            print("Seventh intercept final left")
+            self.start_handler_log("Seventh intercept final left")
+            status, mess_angle = self.car_handler.setAngle(-2, send_attempt=1000)
+            self.car_handler.moveDistance_Block(0.75, 0.04)
             # status, messSpd = self.car_handler.setSpeed(0, send_attempt=100) 
-            status, mess_angle = self.car_handler.setAngle(23, send_attempt=100)
-            self.car_handler.moveDistance_Block(1.1, 0.04)
-            time.sleep(5)
+            status, mess_angle = self.car_handler.setAngle(-22, send_attempt=1000)
+            self.car_handler.moveDistance_Block(0.75, 0.04)
+
+            status, mess_angle = self.car_handler.setAngle(0, send_attempt=1000)
+            self.car_handler.moveDistance_Block(0.3, 0.04)
+            
             self.count += 1
-            return False
+            print("End seventh intercept final left")
+            return True
 
 
         

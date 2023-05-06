@@ -211,47 +211,56 @@ class DecisionMakingProcess(WorkerProcess):
         local_node = None
     
 
+        ## ne vat can
+        # status, mess_angle = self.__CarHandlerTh.setAngle(-23, send_attempt=100)
+        # error = self.__CarHandlerTh.moveDistance_Block(0.45, 0.05)
+
+        # status, mess_angle = self.__CarHandlerTh.setAngle(23, send_attempt=100)
+        # error = self.__CarHandlerTh.moveDistance_Block(0.6, 0.05)
+        # het ne vat can
+        # for i in range(10):
+        #     data = self.__CarHandlerTh.GetVLXData()
+        #     print("VLXX data wu: ", data)
+        
         while True:
             if True:
-                # self.interception_handler.handler()
-                # self.__CarHandlerTh.setSpeed(0, send_attempt=100) 
-                # time.sleep(10)
-                self.decision_maker.reiniate_speed()
+            
+                self.decision_maker.reiniate_speed(self.__CarHandlerTh)
                 # skip_intecept_node = [29,30,10,11,12,13]
-                pose = self.CarPoseHandler.GetCarPose()
-                if pose['x'] == 0 and pose['y']==0:
-                    continue
+                # pose = self.CarPoseHandler.GetCarPose()
+                # if pose['x'] == 0 and pose['y']==0:
+                #     continue
                     
-                if self.decision_maker.start_switch_node is not None:
-                    cur_pose = np.array([pose['x'],pose['y']])
-                    dist_from_start = np.linalg.norm(cur_pose-self.decision_maker.start_switch_node)
-                    print(f'end switch node: {self.decision_maker.end_switch_node}')
-                    print('cur node ',current_node)
-                    if dist_from_start > 1:
-                        self.point.switch_to_main_map()
+                # if self.decision_maker.start_switch_node is not None:
+                #     cur_pose = np.array([pose['x'],pose['y']])
+                #     dist_from_start = np.linalg.norm(cur_pose-self.decision_maker.start_switch_node)
+                #     print(f'end switch node: {self.decision_maker.end_switch_node}')
+                #     print('cur node ',current_node)
+                #     if dist_from_start > 1:
+                #         self.point.switch_to_main_map()
                         
-                        if current_node >= self.decision_maker.end_switch_node:
-                            self.decision_maker.trafic_strategy = 'LANE'
-                            self.decision_maker.start_switch_node = None
-                self.planer.update_point(pose)
-                current_node, error_dist, local_node = self.point.get_closest_node(pose)
-                if len(local_node) == 1:
-                    self.__CarHandlerTh.setSpeed(0,send_attempt=100)
-                    print("This is the end of the map")
-                    time.sleep(100)
-                    raise Exception("This is the end of the map")
-                else:
-                    next_node, next_point = local_node[1], self.point.get_point(local_node[1])
+                #         if current_node >= self.decision_maker.end_switch_node:
+                #             self.decision_maker.trafic_strategy = 'LANE'
+                #             self.decision_maker.start_switch_node = None
+                # self.planer.update_point(pose)
+                # current_node, error_dist, local_node = self.point.get_closest_node(pose)
+                # if len(local_node) == 1:
+                #     self.__CarHandlerTh.setSpeed(0,send_attempt=100)
+                #     print("This is the end of the map")
+                #     time.sleep(100)
+                #     raise Exception("This is the end of the map")
+                # else:
+                #     next_node, next_point = local_node[1], self.point.get_point(local_node[1])
                 
 
-                if (self.decision_maker.strategy != "GPS" and error_dist > 1000.4) or self.decision_maker.trafic_strategy == 'GPS':
-                    self.strategy = "GPS"
-                    print("Switch to GPS strategy")
+                # if (self.decision_maker.strategy != "GPS" and error_dist > 1000.4) or self.decision_maker.trafic_strategy == 'GPS':
+                #     self.strategy = "GPS"
+                #     print("Switch to GPS strategy")
 
-                elif self.decision_maker.strategy == "GPS" and not self.is_intercept and error_dist < 0.2  :
-                    self.decision_maker.strategy = "LANE"
-                    self.decision_maker.reiniate_map()
-                    print("Switch to LANE strategy")
+                # elif self.decision_maker.strategy == "GPS" and not self.is_intercept and error_dist < 0.2  :
+                #     self.decision_maker.strategy = "LANE"
+                #     self.decision_maker.reiniate_map()
+                #     print("Switch to LANE strategy")
                     
 
                 current_time = time.time()
@@ -265,7 +274,7 @@ class DecisionMakingProcess(WorkerProcess):
                 object_result = self.read_object_detection_data()
             
                         
-                if trafficSignHanlder.detect(object_result, lane_data,pose) and self.decision_maker.trafic_strategy == 'LANE':
+                if trafficSignHanlder.detect(object_result, lane_data,None) and self.decision_maker.trafic_strategy == 'LANE':
                     continue
 
                 
@@ -275,19 +284,12 @@ class DecisionMakingProcess(WorkerProcess):
                     data = self.__CarHandlerTh.GetVLXData()
                     print("VLXX data: ", data)
               
-                    
                     if data[2] < 400:
-                        print('cur node: ',current_node)
-                        self.__CarHandlerTh.setSpeed(0, send_attempt=100) 
-                        time.sleep(1)
-                        if current_node == 30:
-                            self.parking_2()
-                        elif current_node == 31:
-                            self.parking_1()
+                        self.parking_2()
+            
 
                     # send pipe object result 
-                print(intercept_length, intercept_gap)
-                
+                # print(intercept_length, intercept_gap)
                 if not self.decision_maker.is_parking \
                         and not self.is_intercept \
                         and self.decision_maker.is_intercept(intercept_length, intercept_gap) \
@@ -396,37 +398,36 @@ class DecisionMakingProcess(WorkerProcess):
             time.sleep(5)
             
     def parking_2(self):
-        print('park slot 2')
-        self.__CarHandlerTh.setAngle(0, send_attempt= 10)
-        self.__CarHandlerTh.moveDistance_Block(0.7, 0.05)
-        self.__CarHandlerTh.setSpeed(0)
-        time.sleep(2)
-        self.__CarHandlerTh.setAngle(0, send_attempt= 10)
-        self.__CarHandlerTh.moveDistance_Block(0.4, 0.05)
-        self.__CarHandlerTh.setSpeed(0)
-        time.sleep(2)
-        self.__CarHandlerTh.setAngle(-15, send_attempt= 10)
-        self.__CarHandlerTh.moveDistance_Block(0.4, 0.05)
-        self.__CarHandlerTh.setSpeed(0)
-        time.sleep(2)
-        self.__CarHandlerTh.setAngle(10, send_attempt= 10)
-        self.__CarHandlerTh.moveDistance_Block(-0.4, 0.05)
-        self.__CarHandlerTh.setSpeed(0)
-        time.sleep(2)
-        self.__CarHandlerTh.setAngle(-20, send_attempt= 10)
-        self.__CarHandlerTh.moveDistance_Block(-0.4, 0.05)
-        self.__CarHandlerTh.setSpeed(0)
+        self.__CarHandlerTh.setSpeed(0, 100)
+        time.sleep(1)
+
+        status, mess_angle = self.__CarHandlerTh.setAngle(0, send_attempt=100)
+        error = self.__CarHandlerTh.moveDistance_Block(0.3, 0.05)
+
+        status, mess_angle = self.__CarHandlerTh.setAngle(-15, send_attempt=100)
+        error = self.__CarHandlerTh.moveDistance_Block(0.6, 0.05)
+
+        status, mess_angle = self.__CarHandlerTh.setAngle(18, send_attempt=100)
+        error = self.__CarHandlerTh.moveDistance_Block(-0.6, 0.05)
+
+        time.sleep(1)
+        self.__CarHandlerTh.setSpeed(0, 100)
+        status, mess_angle = self.__CarHandlerTh.setAngle(5, send_attempt=100)
+        error = self.__CarHandlerTh.moveDistance_Block(-0.5, 0.05)
+
+        self.__CarHandlerTh.setSpeed(0, 100)
+        time.sleep(1)
+
+        status, mess_angle = self.__CarHandlerTh.setAngle(10, send_attempt=100)
+        error = self.__CarHandlerTh.moveDistance_Block(0.9, 0.05)
+
+        status, mess_angle = self.__CarHandlerTh.setAngle(-23, send_attempt=100)
+        error = self.__CarHandlerTh.moveDistance_Block(-0.6, 0.05)
+
+        self.__CarHandlerTh.setSpeed(0, 100)
+        time.sleep(1)
+
         
-        time.sleep(2)
-        self.__CarHandlerTh.setAngle(-15, send_attempt= 10)
-        self.__CarHandlerTh.moveDistance_Block(0.6, 0.05)
-        self.__CarHandlerTh.setAngle(15, send_attempt= 10)
-        self.__CarHandlerTh.moveDistance_Block(0.5, 0.05)
-        time.sleep(2)
-        
-        
-        print("End Move")
-        time.sleep(100)
     def parking_1(self):
         print('park slot 1')
         self.__CarHandlerTh.setAngle(15, send_attempt= 10)

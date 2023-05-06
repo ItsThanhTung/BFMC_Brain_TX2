@@ -60,7 +60,10 @@ class NucleoListener(ThreadWithStop):
         except: 
             return 0
         if Status == 1:
-            return float(Data)
+            try:
+                return float(Data)
+            except:
+                return 0
         else:
             return 0
     

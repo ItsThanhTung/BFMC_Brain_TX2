@@ -11,14 +11,11 @@ class RoadBlockHandler(GeneralHandler):
 
     def handler(self, decision_maker, object_info):
         self.start_handler_log()    
-        status, mess_angle = self.car_handler.setAngle(-1, send_attempt=100)
-        error = self.car_handler.moveDistance_Block(0.42, 0.05)
-        print("1: ", error)
+        status, mess_angle = self.__CarHandlerTh.setAngle(-23, send_attempt=100)
+        error = self.__CarHandlerTh.moveDistance_Block(0.45, 0.05)
 
-        self.car_handler.setSpeed(0, send_attempt= 10)
-        status, mess_angle = self.car_handler.setAngle(20, send_attempt=100)
-        error = self.car_handler.moveDistance_Block(0.4, 0.05)
-        print("2: ", error)
+        status, mess_angle = self.__CarHandlerTh.setAngle(23, send_attempt=100)
+        error = self.__CarHandlerTh.moveDistance_Block(0.6, 0.05)
 
         self.end_handler_log()
         return True
@@ -31,7 +28,7 @@ class RoadBlockHandler(GeneralHandler):
             print(dist)
             return False
 
-        if dist > 275:
+        if dist > 255:
             return True
 
         return False

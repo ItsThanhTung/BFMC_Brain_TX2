@@ -7,6 +7,7 @@ class HighWayExitHandler(GeneralHandler):
         
         self.name = "HighWay exit"
         self.time_stop = 2
+        self.car_handler = car_handler
         
         
     def handler(self, decision_maker, object_info):
@@ -14,6 +15,10 @@ class HighWayExitHandler(GeneralHandler):
         
         decision_maker.start()
         
+
+        status, mess_angle = self.car_handler.setAngle(-3, send_attempt=100)
+        self.car_handler.moveDistance_Block(1.5, 0.04)
+
         self.end_handler_log()
         return True
     

@@ -13,7 +13,7 @@ class CrossWalkHandler(GeneralHandler):
         self.start_handler_log()
         
         decision_maker.slow_down(wait_time=3)
-        
+        decision_maker.is_crosswalk = True
         self.end_handler_log()
         return True
     

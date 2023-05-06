@@ -30,7 +30,10 @@ class DecisionMaking:
         self.strategy = "LANE"  
         self.point_handler = point_handler
         self.is_parking = False
+        self.is_crosswalk = True
         self.processing_trafic = False
+
+        self.is_overtaking = False
         
     def stop(self):
         print('set stop')
@@ -53,11 +56,22 @@ class DecisionMaking:
         self.start_time = time.time()
         self.wait_time = wait_time
 
-    def reiniate_speed(self):
+    def reiniate_speed(self, car_handler):
         if self.start_time and self.wait_time:
             if time.time() - self.start_time > self.wait_time:
                 self.speed = self.default_speed
                 self.start_time = None
+                self.is_crosswalk = False
+
+                if self.is_overtaking:
+                    print("end")
+                    status, mess_angle = self.__CarHandlerTh.setAngle(23, send_attempt=100)
+                    error = self.__CarHandlerTh.moveDistance_Block(0.45, 0.05)
+
+                    status, mess_angle = self.__CarHandlerTh.setAngle(-23, send_attempt=100)
+                    error = self.__CarHandlerTh.moveDistance_Block(0.6, 0.05)
+
+                    self.is_overtaking = False
     
     def reiniate_map(self):
         self.point_handler.switch_to_main_map()

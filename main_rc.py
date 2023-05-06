@@ -64,9 +64,9 @@ from threading import Thread
 if __name__ == '__main__':
     
     # =============================== CONFIG =================================================
-    enableYolo               =  False    
+    enableYolo               =  False
     
-    enableStream             =  True
+    enableStream             =  False
     enableStreamObject       =  False
     enableLaneStream         =  False
     enableInterceptStream    =  False

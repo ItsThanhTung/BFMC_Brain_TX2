@@ -12,11 +12,15 @@ class CarObjectHandler(GeneralHandler):
     def handler(self, decision_maker, object_info):
         self.start_handler_log()
         
-        self.point_handler.switch_to_sub_map()
+        status, mess_angle = self.__CarHandlerTh.setAngle(-23, send_attempt=100)
+        error = self.__CarHandlerTh.moveDistance_Block(0.45, 0.05)
+
+        status, mess_angle = self.__CarHandlerTh.setAngle(23, send_attempt=100)
+        error = self.__CarHandlerTh.moveDistance_Block(0.6, 0.05)
         
-        # print('handler switch to sub')
-        self.car_handler.setSpeed(25,1)
-        decision_maker.trafic_strategy ="GPS" 
+        decision_maker.is_overtaking = True
+        decision_maker.start_time = time.time()
+        decision_maker.wait_time = 3
         
         self.end_handler_log()
         return True
