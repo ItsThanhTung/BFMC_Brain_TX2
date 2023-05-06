@@ -286,6 +286,8 @@ class DecisionMakingProcess(WorkerProcess):
               
                     if data[2] < 400:
                         self.parking_2()
+                        
+                    self.decision_maker.is_parking = False
             
 
                     # send pipe object result 
